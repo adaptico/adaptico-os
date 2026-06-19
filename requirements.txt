@@ -1,0 +1,4 @@
+# Adaptico OS — Python Dependencies
+#
+# Core edition: NONE required. The analysis scripts run on the Python standard library.
+#   (Optional: `requests` slightly speeds up fetching, but urllib is used as a fallback.)

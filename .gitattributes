@@ -1,0 +1,21 @@
+# Line endings: store text as LF in the repo AND keep LF in the working tree
+# on every OS. This is a Unix-tool repo (shell scripts shipped to mac/Linux),
+# and AI agents/tools always write LF - so LF everywhere avoids diff noise.
+* text=auto eol=lf
+
+# Scripts run on macOS/Linux - must stay LF.
+*.sh   text eol=lf
+*.py   text eol=lf
+
+# Windows-only scripts, if ever added, must stay CRLF or they break.
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.ps1  text eol=crlf
+
+# Binary assets - never normalize.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary

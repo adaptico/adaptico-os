@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 452" fill="none">
+  <!-- Background -->
+  <rect width="900" height="452" rx="12" fill="#0F172A" stroke="#1E293B" stroke-width="2"/>
+
+  <!-- Terminal window top bar -->
+  <rect width="900" height="30" rx="12" fill="#1E293B"/>
+  <rect x="0" y="20" width="900" height="10" fill="#1E293B"/> <!-- Square bottom corners of the top bar -->
+
+  <!-- Mac OS window controls -->
+  <circle cx="20" cy="15" r="6" fill="#EF4444"/>
+  <circle cx="40" cy="15" r="6" fill="#F59E0B"/>
+  <circle cx="60" cy="15" r="6" fill="#10B981"/>
+
+  <!-- Terminal Header Title -->
+  <text x="450" y="20" font-family="monospace, 'Courier New'" font-size="12" fill="#64748B" text-anchor="middle">bash</text>
+
+  <!-- ASCII Art Title -->
+  <g font-family="monospace, 'Courier New'" font-size="12.5" fill="#E2E8F0" font-weight="bold">
+    <text x="36" y="54" xml:space="preserve">  █████╗ ██████╗  █████╗ ██████╗ ████████╗██╗ ██████╗ ██████╗     ██████╗ ███████╗</text>
+    <text x="36" y="70" xml:space="preserve"> ██╔══██╗██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██║██╔════╝██╔═══██╗   ██╔═══██╗██╔════╝</text>
+    <text x="36" y="86" xml:space="preserve"> ███████║██║  ██║███████║██████╔╝   ██║   ██║██║     ██║   ██║   ██║   ██║███████╗</text>
+    <text x="36" y="102" xml:space="preserve"> ██╔══██║██║  ██║██╔══██║██╔═══╝    ██║   ██║██║     ██║   ██║   ██║   ██║╚════██║</text>
+    <text x="36" y="118" xml:space="preserve"> ██║  ██║██████╔╝██║  ██║██║        ██║   ██║╚██████╗╚██████╔╝   ╚██████╔╝███████║</text>
+    <text x="36" y="134" xml:space="preserve"> ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝        ╚═╝   ╚═╝ ╚═════╝ ╚═════╝     ╚═════╝ ╚══════╝</text>
+  </g>
+
+  <!-- Command -->
+  <text x="36" y="166" font-family="monospace, 'Courier New'" font-size="14.5">
+    <tspan fill="#38BDF8">founder@startup</tspan><tspan fill="#64748B">:</tspan><tspan fill="#A78BFA">~/my-startup</tspan><tspan fill="#64748B">$ </tspan><tspan fill="#FF6B35">/gtm audit</tspan>
+  </text>
+
+  <!-- Output header -->
+  <text x="36" y="196" font-family="monospace, 'Courier New'" font-size="13" fill="#CBD5E1" letter-spacing="1">=== GTM AUDIT COMPLETE ===</text>
+  <text x="36" y="220" font-family="monospace, 'Courier New'" font-size="13"><tspan fill="#64748B">Startup: </tspan><tspan fill="#CBD5E1">yourstartup </tspan><tspan fill="#64748B">(SaaS)</tspan></text>
+
+  <!-- Score breakdown with block-char bars -->
+  <text x="36" y="250" font-family="monospace, 'Courier New'" font-size="13" fill="#64748B">Score Breakdown:</text>
+  <g font-family="monospace, 'Courier New'" font-size="13">
+    <text y="276"><tspan x="56" fill="#94A3B8">Content &amp; Messaging</tspan><tspan x="288" fill="#10B981">76/100</tspan><tspan x="384" fill="#10B981">████████</tspan><tspan fill="#334155">░░</tspan></text>
+    <text y="298"><tspan x="56" fill="#94A3B8">Conversion Optimization</tspan><tspan x="288" fill="#EF4444">48/100</tspan><tspan x="384" fill="#EF4444">█████</tspan><tspan fill="#334155">░░░░░</tspan></text>
+    <text y="320"><tspan x="56" fill="#94A3B8">SEO &amp; Discoverability</tspan><tspan x="288" fill="#10B981">89/100</tspan><tspan x="384" fill="#10B981">█████████</tspan><tspan fill="#334155">░</tspan></text>
+    <text y="342"><tspan x="56" fill="#94A3B8">Competitive Positioning</tspan><tspan x="288" fill="#10B981">74/100</tspan><tspan x="384" fill="#10B981">███████</tspan><tspan fill="#334155">░░░</tspan></text>
+    <text y="364"><tspan x="56" fill="#94A3B8">Brand &amp; Trust</tspan><tspan x="288" fill="#F59E0B">63/100</tspan><tspan x="384" fill="#F59E0B">██████</tspan><tspan fill="#334155">░░░░</tspan></text>
+    <text y="386"><tspan x="56" fill="#94A3B8">Growth &amp; Strategy</tspan><tspan x="288" fill="#EF4444">52/100</tspan><tspan x="384" fill="#EF4444">█████</tspan><tspan fill="#334155">░░░░░</tspan></text>
+  </g>
+
+  <!-- Hero: composite score, after the breakdown -->
+  <text x="36" y="426" font-family="monospace, 'Courier New'">
+    <tspan font-size="14" fill="#94A3B8">GTM Score: </tspan><tspan font-size="25" font-weight="bold" fill="#F59E0B">69/100</tspan><tspan font-size="15" fill="#94A3B8">  (Grade: </tspan><tspan font-size="15" font-weight="bold" fill="#F59E0B">C</tspan><tspan font-size="15" fill="#94A3B8">)</tspan>
+  </text>
+</svg>
