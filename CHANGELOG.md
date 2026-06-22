@@ -4,6 +4,15 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.1.2]
+
+### Changed
+- `/gtm copy` and `/gtm landing` now read your profile to tailor their output (ICP, positioning, competitors), so rewrites and teardowns lead with your established positioning instead of re-deriving it from the page.
+- `/gtm landing` checks the hero against the promise of wherever traffic comes from (ad, launch post, docs link).
+
+### Fixed
+- `/gtm copy` no longer picks CTA colors by "color psychology"; it optimizes for contrast and visual isolation, validated by A/B test.
+
 ## [0.1.1]
 
 ### Changed
