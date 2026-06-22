@@ -1,6 +1,6 @@
 ---
 name: gtm-competitors
-version: 1.0.0
+version: 1.1.0
 description: Competitive intelligence for /gtm competitors <target>. Use when the user wants to identify competitors, analyze rival marketing and positioning, or find differentiation gaps and steal-worthy tactics. Also trigger for "who are my competitors", "analyze my competition", "competitive analysis", "how do rivals market", or "where can we differentiate".
 ---
 
@@ -18,7 +18,7 @@ You are the competitive intelligence engine for `/gtm competitors <target>`. You
 
 ## When This Skill Is Invoked
 
-The user runs `/gtm competitors <target>`. In project mode, seed from PROFILE.md (Phase 0), then identify and analyze competitors, write results back to PROFILE.md, and save the report as `YYYY-MM-DD-competitor-report.md` in the project folder. In URL mode, save to the current working directory.
+The user runs `/gtm competitors <target>`. In project mode, seed from PROFILE.md (Phase 0), then identify and analyze competitors, offer to write results back to PROFILE.md, and save the report as `YYYY-MM-DD-competitor-report.md` in the project folder. In URL mode, save to the current working directory.
 
 ---
 
@@ -29,6 +29,8 @@ Before doing any discovery, check whether competitors are already known. In proj
 - `### AI-Researched Competitors` — competitors discovered by a previous run of this skill
 
 Collect all entries from both sections as your **seed list**. In Phase 1, start from this list and expand it rather than starting from scratch. Competitors already in the seed list do not need to be re-discovered, but do still need to be fully analyzed if they haven't been profiled yet.
+
+Also read the rest of the profile so the analysis is tailored, not generic: the target's `Website`, `Startup type`, `ICP`, `Key pain points`, `Differentiator`, `Key messages`, `Main goal`, and any `Links & Channels` key pages. These frame the comparison (the target fills its own column in every matrix) and are the baseline the closing write-back compares its findings against, so it can sharpen them surgically rather than overwrite.
 
 If both sections are empty and the user hasn't already been asked (via the orchestrator's Competitor Resolution Protocol), offer to proceed with full discovery or ask the user to provide starting names.
 
@@ -89,7 +91,7 @@ The script can collect:
 - Technology stack detection
 - Page speed metrics
 
-If the script is not available, use `WebFetch` to manually collect this data for each competitor.
+If the script is not available, use `WebFetch` to manually collect this data for each competitor - and fetch more than the homepage: also pull the About/company, pricing, and a product or features page where they exist, since these info-rich pages reveal positioning, audience, and proof that the homepage only compresses.
 
 ---
 
@@ -554,9 +556,9 @@ Full report saved to: YYYY-MM-DD-competitor-report.md
 
 ---
 
-## Write Back to PROFILE.md (Project Mode Only)
+## Write the Competitor List Back to PROFILE.md (Project Mode Only)
 
-After completing the analysis, update `projects/<name>/PROFILE.md` with the newly discovered competitors. This keeps the profile current so all future skills can use it without re-running discovery.
+After completing the analysis, offer to update `projects/<name>/PROFILE.md` with the newly discovered competitors - show the founder the list you'd add and ask before writing. On approval, write them back so the profile stays current and all future skills can use it without re-running discovery; if the founder declines, leave PROFILE.md untouched.
 
 **Find the `### AI-Researched Competitors` section** in PROFILE.md and replace its contents with the full competitor list discovered in this run. Use this format:
 
@@ -571,13 +573,31 @@ Rules:
 - Never touch the `### User-Added Competitors` section
 - If PROFILE.md does not yet have the `### AI-Researched Competitors` section (older profile format), append it after `### User-Added Competitors`
 
-Tell the user: "I've updated `projects/<name>/PROFILE.md` with [N] competitors. Future `/gtm position`, `/gtm audit`, and other commands will use this list automatically."
+Once the founder approves and you've made the edit, tell them: "Added [N] competitors to `projects/<name>/PROFILE.md`. Future `/gtm position`, `/gtm audit`, and other commands will use this list automatically."
+
+---
+
+## Write Findings Back to PROFILE.md (Project Mode Only)
+
+The dated report is the full record; the profile is the quick-extract layer every *other* skill reads. Once the founder has reacted to the analysis, offer to record the headline findings so `position`, `copy`, `landing`, `brand`, and `ads` inherit them without re-opening this report:
+
+> "Want me to save these findings to your profile so other commands reuse them? I'd set:
+> - **Differentiator** -> [the strongest differentiation angle from Phase 4.2]
+> - **ICP / Key pain points** -> [only when the analysis clearly sharpened them - a segment rivals ignore, a pain their reviews expose]
+> (y/n)"
+
+On yes, edit `projects/<name>/PROFILE.md` surgically, never wholesale:
+- **Blank or still template text** - write the finding in full and tag it `(set by /gtm competitors, YYYY-MM-DD)` so it reads as a generated value, not the founder's own words.
+- **Already holds the founder's wording** - don't overwrite. Take the lightest action that fits: *aligned* (it says essentially the same thing) leave it as is and tell the founder it still holds; *improvable* propose the smallest edit that sharpens it - swap a weak phrase, tighten a clause, add the missing audience qualifier - keeping their voice and the rest of the sentence intact; *outdated or wrong* (the analysis just disproved it) only then propose a full replacement, and say why.
+- Either way, show the current value beside your proposed edit and get approval before writing.
+
+Touch only the fields you offered above; the competitor list is handled in the section above, and everything else - goal, links, notes - stays exactly as it is.
 
 ---
 
 ## Cross-Skill Integration
 
-- Check `PROFILE.md` for user-added competitors before starting discovery (Phase 0)
-- After analysis, write results back to PROFILE.md `### AI-Researched Competitors` section
+- Check `PROFILE.md` for user-added competitors and the target's own context before starting discovery (Phase 0)
+- After analysis, offer to write the competitor list and key findings back to PROFILE.md (`### AI-Researched Competitors`, plus `Differentiator` and audience fields)
 - If a marketing audit report exists in the project folder, reference competitive positioning scores from it
 - Suggest follow-up: `/gtm position` for positioning strategy, `/gtm copy` for differentiated messaging
