@@ -4,6 +4,12 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.1.1]
+
+### Changed
+- `/gtm position`, `/gtm competitors`, and `/gtm launch` now read more of your profile to tailor their output, and offer to save findings back to PROFILE.md so other commands reuse them.
+- `/gtm competitors` also reads About/pricing/product pages, not just the homepage.
+
 ## [0.1.0] - 2026-06-19
 
 First public release. Adaptico OS is a go-to-market operating system for

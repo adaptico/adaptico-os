@@ -1,6 +1,6 @@
 ---
 name: gtm-launch
-version: 1.0.0
+version: 1.1.0
 description: Launch playbook for /gtm launch <target>. Use when the user wants a week-by-week launch plan for Product Hunt, Hacker News, or X, with templates, checklists, and metrics. Also trigger for "plan my launch", "Product Hunt launch", "launch playbook", "how do I launch", or "launch checklist".
 ---
 
@@ -24,7 +24,24 @@ Generate a complete, week-by-week launch playbook for any product, service, or f
 ## How to Execute
 
 ### Step 1: Gather Launch Context
-Before generating the playbook, collect these inputs from the user (ask if not provided):
+**First, choose how this run works** - the launch skill runs two ways:
+
+1. **Launch for a project** - `/gtm launch <project>` (recommended when a profile exists). Tie the launch to a saved project: run the orchestrator's *Target & Output Resolution* to resolve `<project>` (**Project mode**), read its `PROFILE.md`, inherit everything `/gtm init` already captured, tailor the whole playbook to it, save the report into the project folder, and offer to record the launch back to the profile at the end.
+2. **Brainstorm a launch** - `/gtm launch <project description>`. A standalone plan with nothing read from or written to a profile, worked up from the description the founder gives. Use it for a fresh idea, a side project, or before a profile exists.
+
+If a profile exists but the founder hasn't said which they want, ask once; if none exists, default to brainstorm and mention `/gtm init` for next time.
+
+**In Project mode, load context from `PROFILE.md` before asking anything - never re-ask what `/gtm init` already captured.** Map its fields to the inputs below and ask only for the gaps:
+- **Target audience** ← `ICP`, `Secondary audience`, `Key pain points`
+- **Launch goal** ← `Main goal (next 90 days)` (sharpen it to this launch if needed)
+- **Channels & assets** ← `Primary channel today`, `Existing assets` (list size, following), `Links & Channels` social profiles
+- **Existing customers/users** ← `Current traction`, `Existing assets`
+- **Startup type** ← `Startup type` (drives the launch-type choice in Step 2)
+- **Positioning** ← `Differentiator` and `Key messages` (set by `/gtm position` or `/gtm competitors`) - reuse these for the Week 1-2 positioning statement instead of writing one from scratch
+- **Competitors** ← run the orchestrator's *Competitor Resolution Protocol*; use them for the "why us vs alternatives" content in launch week
+- Also read any `Reference Documents` (strategy, brand manifesto) and honor them as source of truth.
+
+Then collect the inputs below - in Project mode only the launch-specific gaps (what's launching, launch date, price, budget), in brainstorm mode all of them:
 
 1. **What are you launching?** (product, service, feature, course, event)
 2. **Who is the target audience?** (demographics, pain points, existing list size)
@@ -54,7 +71,7 @@ Select the primary launch strategy based on the user's context:
 **Objective:** Lock in positioning, build assets, set up infrastructure.
 
 **Tasks:**
-- [ ] Define launch positioning statement: "For [TARGET] who [PROBLEM], [PRODUCT] is a [CATEGORY] that [KEY BENEFIT]. Unlike [ALTERNATIVE], we [DIFFERENTIATOR]."
+- [ ] Define launch positioning statement: "For [TARGET] who [PROBLEM], [PRODUCT] is a [CATEGORY] that [KEY BENEFIT]. Unlike [ALTERNATIVE], we [DIFFERENTIATOR]." In Project mode, build this from the profile's `Differentiator` and `Key messages` (set by `/gtm position` / `/gtm competitors`) - refine the established position, don't reinvent it.
 - [ ] Create launch one-pager (internal alignment doc)
 - [ ] Set up landing page / waitlist page
 - [ ] Set up analytics and tracking (UTM parameters, conversion goals, event tracking)
@@ -458,6 +475,21 @@ Write the report to the resolved output path as `YYYY-MM-DD-launch-playbook.md` 
 ## Post-Launch Plan
 [Week 8+ activities and analysis framework]
 ```
+
+## Update the Profile (Project mode)
+
+A launch playbook is mostly episodic, but a couple of facts are worth keeping so the next command and the next run know a launch is in flight. Once the playbook is written, offer to record them - never auto-write:
+
+> "Want me to note this launch in your profile? I'd set:
+> - **Main goal (next 90 days)** -> [the launch and its target] (only if this launch is your main 90-day goal)
+> - **Context & notes -> Notes** -> "Launch playbook generated [today]: [type] launch targeting [date], goal [goal]."
+> (y/n)"
+
+On yes, edit `projects/<name>/PROFILE.md` surgically:
+- **Blank or still template text** - write it in full and tag it `(set by /gtm launch, YYYY-MM-DD)`.
+- **Already holds the founder's wording** - don't overwrite; show the current value beside your proposed change and take the lightest action that fits: leave it if it still holds, the smallest sharpening edit if improvable, a full replacement only if the launch genuinely changed the goal.
+
+Touch only the two fields above; leave competitors, differentiator, links, and everything else exactly as they are.
 
 ## Key Principles
 - Every recommendation should be tied to the user's specific product, audience, and resources. Generic advice is useless.
