@@ -1,3 +1,9 @@
+---
+name: gtm-audit
+version: 1.0.0
+description: Full go-to-market marketing audit for /gtm audit <target>. Runs 5 parallel audit subagents (content, conversion, competitive, technical, strategy) and produces a unified, scored, date-stamped report. Use when the user wants a full marketing/GTM audit, an overall website marketing review, or a composite GTM score. Also trigger for "audit my site", "review my marketing", "how's my GTM", "full marketing teardown", or "score my website".
+---
+
 # Marketing Audit Orchestrator
 
 > **Default lens: a SaaS / AI software startup.** Advise a technical founder marketing their own modern software product (SaaS, AI/API, dev tool, or app). Tailor every recommendation to that reader.

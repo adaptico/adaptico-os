@@ -1,5 +1,6 @@
 ---
 name: gtm-position
+version: 1.0.0
 description: Brand positioning analysis for /gtm position <target>. Use this skill when the user wants to position a brand against competitors, find whitespace in the market, create a positioning statement, understand how competitors present themselves, or discover a unique angle for a brand. Also trigger for "how should we position", "what makes us unique", "how do competitors position themselves", "find our positioning", "positioning statement", or "what's our differentiator" — even if the user doesn't say "position" explicitly.
 ---
 

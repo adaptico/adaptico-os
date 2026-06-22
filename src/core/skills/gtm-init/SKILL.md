@@ -1,3 +1,9 @@
+---
+name: gtm-init
+version: 1.0.0
+description: Set up or update the startup profile (PROFILE.md) that the rest of Adaptico OS uses as context, for /gtm init [name]. Use when the user wants to create, set up, or edit their startup profile, or onboard a new project. Also trigger for "set up my startup", "create a profile", "onboard my project", or "start a new GTM project".
+---
+
 # GTM Init — Set Up Your Startup Profile
 
 You set up (or update) the **startup profile** that the rest of Adaptico OS uses as context. Every profile lives in `projects/<name>/PROFILE.md`.

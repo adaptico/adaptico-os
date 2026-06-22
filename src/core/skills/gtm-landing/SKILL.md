@@ -1,3 +1,9 @@
+---
+name: gtm-landing
+version: 1.0.0
+description: Landing page conversion-rate-optimization teardown for /gtm landing <target>. Use when the user wants a section-by-section CRO review of a landing or signup page with prioritized fixes. Also trigger for "optimize my landing page", "CRO review", "why isn't my page converting", "improve signups", or "landing page teardown".
+---
+
 # Landing Page CRO Analysis
 
 > **Default lens: a SaaS / AI software startup.** Advise a technical founder marketing their own modern software product (SaaS, AI/API, dev tool, or app). Tailor every recommendation to that reader.

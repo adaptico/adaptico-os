@@ -1,5 +1,6 @@
 ---
 name: gtm
+version: 1.0.0
 description: Adaptico OS — the go-to-market operating system for SaaS & AI startup founders. Routes /gtm commands (audit, quick, position, competitors, copy, landing, launch, init). Use whenever the user types /gtm, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
 ---
 

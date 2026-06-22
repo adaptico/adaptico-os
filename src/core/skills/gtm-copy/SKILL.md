@@ -1,3 +1,9 @@
+---
+name: gtm-copy
+version: 1.0.0
+description: Website copy analysis and rewriting for /gtm copy <target>. Use when the user wants to score existing copy and get optimized before/after rewrites for headlines, value props, CTAs, or body copy. Also trigger for "improve my copy", "rewrite my headline", "is my copy good", "better value prop", or "punch up this page".
+---
+
 # Copywriting Analysis & Generation
 
 > **Default lens: a SaaS / AI software startup.** Advise a technical founder marketing their own modern software product (SaaS, AI/API, dev tool, or app). Tailor every recommendation to that reader.
