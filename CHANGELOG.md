@@ -4,6 +4,12 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.1.3]
+
+### Changed
+- `/gtm audit` now reads your profile to tailor the whole audit: it feeds ICP, positioning, competitors, channel, and goal into all 5 subagents (flagging where the live site under-sells its own positioning) and orders recommendations by your stage and main goal.
+- `/gtm init` now derives secondary profile fields (pain points, primary channel, tone, MRR) from answers you already gave instead of re-asking, and leaves Differentiator/Key messages for `/gtm position` and `/gtm competitors` to fill in.
+
 ## [0.1.2]
 
 ### Changed
