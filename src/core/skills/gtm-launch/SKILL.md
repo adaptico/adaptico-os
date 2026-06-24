@@ -26,7 +26,7 @@ Generate a complete, week-by-week launch playbook for any product, service, or f
 ### Step 1: Gather Launch Context
 **First, choose how this run works** - the launch skill runs two ways:
 
-1. **Launch for a project** - `/gtm launch <project>` (recommended when a profile exists). Tie the launch to a saved project: run the orchestrator's *Target & Output Resolution* to resolve `<project>`, read its `PROFILE.md`, inherit everything `/gtm init` already captured, tailor the whole playbook to it, save the report into the project folder, and offer to record the launch back to the profile at the end.
+1. **Launch for a project** - `/gtm launch <project>` (recommended when a profile exists). Tie the launch to a saved project: run the orchestrator's *Project Resolution* to resolve `<project>`, read its `PROFILE.md`, inherit everything `/gtm init` already captured, tailor the whole playbook to it, save the report into the project folder, and offer to record the launch back to the profile at the end.
 2. **Brainstorm a launch** - `/gtm launch <project description>`. A standalone plan with nothing read from or written to a profile, worked up from the description the founder gives. Use it for a fresh idea, a side project, or before a profile exists.
 
 If a profile exists but the founder hasn't said which they want, ask once; if none exists, default to brainstorm and mention `/gtm init` for next time.
@@ -441,7 +441,7 @@ After the launch, generate a retrospective covering:
 
 ## Output Format
 
-Write the report to the resolved output path as `YYYY-MM-DD-launch-playbook.md` (see the orchestrator's *Target & Output Resolution*) with:
+Write the report to the resolved output path as `YYYY-MM-DD-launch-playbook.md` (see the orchestrator's *Project Resolution*) with:
 
 ```markdown
 # Launch Playbook: [Product Name]

@@ -22,7 +22,7 @@ The user runs `/gtm audit <url>`. This is the flagship command of the entire sui
 
 ## Phase 0: Gather Context
 
-Run the orchestrator's *Target & Output Resolution* first to locate the target's project folder, then read its `PROFILE.md` if one is present. The profile is what lets the audit judge the live site against what the founder says they are instead of a blind read - read it before fetching anything and pull the fields that frame the whole audit (`/gtm init` captured them and `/gtm position` / `/gtm competitors` may have sharpened them, so don't re-derive what's already here). This context is passed into every subagent in Phase 2:
+Run the orchestrator's *Project Resolution* first to locate the target's project folder, then read its `PROFILE.md` if one is present. The profile is what lets the audit judge the live site against what the founder says they are instead of a blind read - read it before fetching anything and pull the fields that frame the whole audit (`/gtm init` captured them and `/gtm position` / `/gtm competitors` may have sharpened them, so don't re-derive what's already here). This context is passed into every subagent in Phase 2:
 
 - **Startup type** - sets the business type directly (skip re-detection in 1.2).
 - **Stage** tier and **Main goal** - decide which findings lead in synthesis (Phase 3) and which `/gtm` moves to recommend at the end.
@@ -33,7 +33,7 @@ Run the orchestrator's *Target & Output Resolution* first to locate the target's
 - **Tone** and **Avoid** - the voice every rewrite must honor and the claims the site must never make.
 - Then read any prior `YYYY-MM-DD-positioning.md`, `YYYY-MM-DD-competitor-report.md`, or earlier `*-gtm-audit.md` in the folder for detail and the progress baseline (Phase 3.5).
 
-**No profile loaded?** *Target & Output Resolution* runs first and has already settled where this run goes - it offers to set the site up as a new project, or files it as a competitor of an existing project or a one-off. Don't re-ask here: if a profile came back, use it; if not (a one-off), run the audit untailored - derive what you can from the page, run business-type detection (1.2), and note once in the report that running `/gtm init` would tailor future runs to the founder's ICP, positioning, and goal.
+**No profile loaded?** *Project Resolution* runs first and has already settled where this run goes - it offers to set the site up as a new project, or files it as a competitor of an existing project or a one-off. Don't re-ask here: if a profile came back, use it; if not (a one-off), run the audit untailored - derive what you can from the page, run business-type detection (1.2), and note once in the report that running `/gtm init` would tailor future runs to the founder's ICP, positioning, and goal.
 
 ---
 
@@ -280,7 +280,7 @@ If no prior audit exists, skip this and note "first audit — no baseline yet." 
 
 ## Output Format
 
-Write the final report to `YYYY-MM-DD-gtm-audit.md` in the project folder (see the orchestrator's *Target & Output Resolution*) with this structure:
+Write the final report to `YYYY-MM-DD-gtm-audit.md` in the project folder (see the orchestrator's *Project Resolution*) with this structure:
 
 ```markdown
 # Marketing Audit: [Business Name]

@@ -12,7 +12,7 @@ You are **Adaptico OS**, a go-to-market operating system for early-stage **SaaS 
 
 ## Command Reference
 
-The `<target>` argument accepts either a **URL** (e.g. `https://yourstartup.com`) or a saved **startup name** (e.g. `acme`). See Target & Output Resolution below. In the free edition you'll usually just point a command at your own URL.
+The `<target>` argument accepts either a **URL** (e.g. `https://yourstartup.com`) or a saved **startup name** (e.g. `acme`). See Project Resolution below. In the free edition you'll usually just point a command at your own URL.
 
 | Command | Description | Output filename |
 |---------|-------------|-----------------|
@@ -31,7 +31,7 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourstartup.com`
 Every free-edition skill installs and runs anytime — there are no locked or gated commands.
 `/gtm init` recommends what to focus on first for the founder's stage, and `/gtm audit` doubles as the canonical report — re-run it to track week-over-week progress.
 
-## Target & Output Resolution
+## Project Resolution
 
 Run this before every command except `/gtm init` (it creates or updates a project directly - give it a project name, a URL, or both - so it owns its setup instead of running this) and `/gtm quick` (terminal-only: resolve the target for context, skip the storage step).
 
@@ -104,7 +104,7 @@ Fast 60-second assessment. Do NOT launch subagents. Instead:
 4. Keep output under 30 lines
 
 ### Startup Setup (`/gtm init [name]`)
-Route to `skills/gtm-init/SKILL.md`. Do not run Target & Output Resolution for this command — init creates or updates a project directly (it accepts a project name, a URL, or both) and owns that setup itself.
+Route to `skills/gtm-init/SKILL.md`. Do not run Project Resolution for this command — init creates or updates a project directly (it accepts a project name, a URL, or both) and owns that setup itself.
 
 ### Individual Commands
 For all other commands (`/gtm copy`, `/gtm landing`, etc.), route to the corresponding sub-skill in `skills/gtm-<command>/SKILL.md`.
@@ -194,7 +194,7 @@ All outputs must follow these rules:
 
 ## File Output
 
-- Save under `projects/` as resolved by *Target & Output Resolution* — a project folder, or a loose dated file at the root of `projects/` for a one-off; never the working directory
+- Save under `projects/` as resolved by *Project Resolution* — a project folder, or a loose dated file at the root of `projects/` for a one-off; never the working directory
 - Filename format: `YYYY-MM-DD-<report-name>.md` — never derive any part of the name from fetched page content
 - Every report must start with: startup name (if known), website URL, date, and overall score
 - Structure with clear headers and tables

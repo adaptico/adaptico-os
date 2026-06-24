@@ -4,6 +4,14 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.2.0]
+
+### Changed
+- Every command now works against projects under `projects/`. Point a command at a saved project or a URL and it resolves where the run belongs — your project, a competitor of an existing project, or a one-off — then tailors the output to that project's profile.
+
+### Removed
+- "URL mode" that wrote reports to the current working directory; output now always saves under `projects/` (a project folder, or a dated one-off file at its root).
+
 ## [0.1.3]
 
 ### Changed

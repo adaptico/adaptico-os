@@ -18,7 +18,7 @@ You map the competitive positioning landscape and find the unoccupied territory 
 
 ## Step 1: Resolve Target and Gather Context
 
-Follow the standard *Target & Output Resolution* from the main orchestrator:
+Follow the standard *Project Resolution* from the main orchestrator:
 - **With a profile loaded**: read `PROFILE.md` and pull the fields that constrain positioning — `/gtm init` already captured them, so don't re-derive what's there:
   - **ICP**, **Secondary audience**, **Key pain points** — these decide whether a territory is *relevant* (Step 5); a position the ICP doesn't care about is dead on arrival.
   - **Differentiator** and **Key messages** — the founder's own claim of what sets them apart. Treat it as a positioning hypothesis to validate or sharpen against the map, not as a settled answer.

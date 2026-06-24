@@ -18,7 +18,7 @@ You are the competitive intelligence engine for `/gtm competitors <target>`. You
 
 ## When This Skill Is Invoked
 
-The user runs `/gtm competitors <target>`. With a profile loaded, seed from PROFILE.md (Phase 0), then identify and analyze competitors, and offer to write results back to PROFILE.md. The report saves as `YYYY-MM-DD-competitor-report.md` where *Target & Output Resolution* puts it (the project folder, or a loose one-off at the root of `projects/` when there's no project).
+The user runs `/gtm competitors <target>`. With a profile loaded, seed from PROFILE.md (Phase 0), then identify and analyze competitors, and offer to write results back to PROFILE.md. The report saves as `YYYY-MM-DD-competitor-report.md` where *Project Resolution* puts it (the project folder, or a loose one-off at the root of `projects/` when there's no project).
 
 ---
 

@@ -16,20 +16,20 @@ You are the copywriting engine for `/gtm copy <url>`. You analyze existing websi
 
 ## When This Skill Is Invoked
 
-The user runs `/gtm copy <url>`. Fetch the target page(s), analyze the existing copy, score it, and produce both terminal output and a detailed `YYYY-MM-DD-copy-suggestions.md` report (see the orchestrator's *Target & Output Resolution*).
+The user runs `/gtm copy <url>`. Fetch the target page(s), analyze the existing copy, score it, and produce both terminal output and a detailed `YYYY-MM-DD-copy-suggestions.md` report (see the orchestrator's *Project Resolution*).
 
 ---
 
 ## Phase 0: Gather Context
 
-Before fetching anything, run the orchestrator's *Target & Output Resolution*. With a profile loaded, read `PROFILE.md` and pull the fields that constrain copy - `/gtm init` captured them and `/gtm position` / `/gtm competitors` may have sharpened them, so don't re-derive from the page what's already here:
+Before fetching anything, run the orchestrator's *Project Resolution*. With a profile loaded, read `PROFILE.md` and pull the fields that constrain copy - `/gtm init` captured them and `/gtm position` / `/gtm competitors` may have sharpened them, so don't re-derive from the page what's already here:
 - **ICP**, **Secondary audience**, **Key pain points** - who the copy speaks to and the pain it names; these set headline relevance (2.1) and seed the Value Proposition Canvas (2.4).
 - **Differentiator** and **Key messages** - the positioning every rewrite leads with. `/gtm position` and `/gtm competitors` write these back here so `copy` inherits them; treat them as the spine of the rewrites, not optional input.
 - **Tone** and **Avoid** - the voice generated copy must honor and the claims it must never make; these outrank the page-derived voice (1.3) on conflict.
 - **Startup type**, **Stage**, and **Main goal** - frame the read; a Tier 1 founder needs copy that wins a first persona, not category-defining prose.
 - Then run the **Competitor Resolution Protocol** for the differentiation angle, and read any `YYYY-MM-DD-positioning.md` or `YYYY-MM-DD-competitor-report.md` in the folder for detail.
 
-With no profile loaded, derive what you can from the page; *Target & Output Resolution* will have offered to set one up, and running `/gtm init` would sharpen the rewrites.
+With no profile loaded, derive what you can from the page; *Project Resolution* will have offered to set one up, and running `/gtm init` would sharpen the rewrites.
 
 ---
 
@@ -313,7 +313,7 @@ Full report saved to: YYYY-MM-DD-copy-suggestions.md
 
 ### Report file
 
-Write the full report to the resolved output path as `YYYY-MM-DD-copy-suggestions.md` (see the orchestrator's *Target & Output Resolution*) with this structure:
+Write the full report to the resolved output path as `YYYY-MM-DD-copy-suggestions.md` (see the orchestrator's *Project Resolution*) with this structure:
 
 ```markdown
 # Copy Analysis & Suggestions: [URL]
