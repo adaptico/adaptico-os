@@ -4,6 +4,15 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.3.0]
+
+### Added
+- `/gtm funnel` - funnel and activation analysis: maps your public funnel (landing, pricing, signup) and works through the post-signup path to first value, to find drop-off and improve trial-to-paid / PLG activation.
+- `/gtm emails` - lifecycle email sequences: generates activation onboarding and dunning (failed-payment recovery) emails for your product.
+
+### Changed
+- Commands take a project name or URL interchangeably as `<target>`, and a non-project target can be filed into any existing project it relates to, not just as a competitor.
+
 ## [0.2.0]
 
 ### Changed

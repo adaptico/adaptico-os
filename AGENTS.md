@@ -74,6 +74,7 @@ Every generated report begins with:
 | `/gtm copy <target>` | Optimized copy with before/after rewrites |
 | `/gtm landing <target>` | Landing page CRO (SaaS signup focus) |
 | `/gtm funnel <target>` | Funnel / activation analysis (trial & PLG focus) |
+| `/gtm emails <target>` | Activation onboarding & dunning email sequences |
 
 `<target>` is a URL, a saved startup project name, or omitted to use the default project.
 

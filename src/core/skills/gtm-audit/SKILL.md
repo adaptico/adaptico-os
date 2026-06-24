@@ -464,6 +464,7 @@ End every audit — both in the saved report (as a final `## Recommended Next Mo
 
 - **Pre-launch** → `/gtm position`, `/gtm landing`, `/gtm launch`
 - **Just launched / pre-PMF** → `/gtm position`, `/gtm competitors`, `/gtm landing`
+- **Early growth** → `/gtm funnel`, `/gtm emails`
 - **Weak conversion score** → `/gtm landing`, `/gtm copy`
 - **Weak positioning/competitive score** → `/gtm position`, `/gtm competitors`
 

@@ -38,6 +38,8 @@ Look up this command's verdict for the founder's tier:
 | copy | Useful | Core | Useful |
 | landing | Useful | Core | Useful |
 | funnel | Useful | Useful | Useful |
+| emails | Too early | Core | Useful |
+
 
 Verdicts:
 - **Core** - run it now; foundational for this tier.
@@ -56,3 +58,8 @@ Verdicts:
 How the two note types read:
 - **Too early** - one plain line letting the founder know they may not be spending time and resources optimally; the payoff comes at a later tier, so focus on the fundamentals for now.
 - **Avoid** - a warning that the activity can be counterproductive and increase the chances of failure.
+
+## Premature-use notes (verbatim)
+
+When a command is Too early or Avoid for the founder's tier, prepend its note verbatim, then generate the work anyway:
+- **emails** (Too early at Tier 1): "There's no lifecycle to automate yet. Onboarding, activation, and dunning sequences pay off once signups are flowing - revisit once you have traffic and trials."
