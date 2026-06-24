@@ -48,11 +48,11 @@ If nothing matches, the target is new - ask where it belongs before doing any wo
 
 > "I don't have **website.com** as a project yet - what is it?
 > 1. Your startup / a new project (I'll set it up - what should I call it?)
-> 2. A competitor of an existing project (which one?)
+> 2. A competitor of an existing project - or anything else you track for it (which one?)
 > 3. A one-off - just run it and save the report, no project"
 
 - **New project** → create `projects/<name>/` and seed its `PROFILE.md` - run the `/gtm init` flow to set it up properly, or seed it inline - then run the command with that profile loaded. Any command can create a project this way, not only `/gtm init`.
-- **Competitor** → save the report inside the named parent project's folder and add the site to that project's competitor list (*Competitor Resolution Protocol*); the parent profile gives context. No new folder.
+- **Existing project** → save the report inside the named parent project's folder; the parent profile gives context, and if the site is a competitor, also append it to that project's competitor list (*Competitor Resolution Protocol*). No new folder.
 - **One-off** → save a loose dated file at the root of `projects/` (`projects/YYYY-MM-DD-<slug>-<report>.md`); no folder, no profile.
 - No answer → default to the one-off and say so.
 
@@ -75,7 +75,7 @@ With no profile loaded (a one-off), run untailored and note once in the output t
 
 When the user invokes `/gtm <command>`, route to the appropriate sub-skill:
 
-### Full GTM Audit (`/gtm audit <url>`)
+### Full GTM Audit (`/gtm audit <target>`)
 This is the flagship command. It launches **5 parallel subagents** to analyze the startup's site simultaneously:
 
 1. **gtm-content** agent → Content quality, messaging, copy effectiveness
@@ -96,7 +96,7 @@ This is the flagship command. It launches **5 parallel subagents** to analyze th
 
 **Composite GTM Score** = Weighted average of all 6 categories
 
-### Quick Snapshot (`/gtm quick <url>`)
+### Quick Snapshot (`/gtm quick <target>`)
 Fast 60-second assessment. Do NOT launch subagents. Instead:
 1. Fetch the homepage using WebFetch
 2. Evaluate: headline clarity, CTA strength, value proposition, trust signals, mobile readiness

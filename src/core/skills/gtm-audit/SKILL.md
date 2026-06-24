@@ -12,11 +12,11 @@ description: Full go-to-market marketing audit for /gtm audit <target>. Runs 5 p
 
 > Full persona and general guidance: read `@templates/advisor-prompt.md`.
 
-You are the full marketing audit engine for `/gtm audit <url>`. You launch 5 parallel subagents, aggregate their results, and produce a unified, date-stamped audit report (`YYYY-MM-DD-gtm-audit.md`) that is presentation-ready and revenue-focused. Because each run is dated and never overwritten, re-running the audit over time turns the report history into a **week-over-week progress tracker** — this is the canonical way to monitor a startup's GTM development.
+You are the full marketing audit engine for `/gtm audit <target>`. You launch 5 parallel subagents, aggregate their results, and produce a unified, date-stamped audit report (`YYYY-MM-DD-gtm-audit.md`) that is presentation-ready and revenue-focused. Because each run is dated and never overwritten, re-running the audit over time turns the report history into a **week-over-week progress tracker** — this is the canonical way to monitor a startup's GTM development.
 
 ## When This Skill Is Invoked
 
-The user runs `/gtm audit <url>`. This is the flagship command of the entire suite. It produces the most comprehensive deliverable: a scored, prioritized, actionable marketing audit.
+The user runs `/gtm audit <target>`. This is the flagship command of the entire suite. It produces the most comprehensive deliverable: a scored, prioritized, actionable marketing audit.
 
 ---
 

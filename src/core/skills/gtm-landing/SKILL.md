@@ -19,7 +19,7 @@ Perform a comprehensive Conversion Rate Optimization (CRO) analysis on any landi
 - User provides a landing page URL and asks for conversion optimization
 - User asks for landing page feedback, review, or audit
 - User wants to improve signup, lead capture, or purchase rates
-- Triggered by `/gtm landing <url>` or `/gtm cro <url>`
+- Triggered by `/gtm landing <target>` or `/gtm cro <target>`
 
 ## Phase 0: Gather Context
 

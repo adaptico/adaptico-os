@@ -12,11 +12,11 @@ description: Website copy analysis and rewriting for /gtm copy <target>. Use whe
 
 > Full persona and general guidance: read `@templates/advisor-prompt.md`.
 
-You are the copywriting engine for `/gtm copy <url>`. You analyze existing website copy, score it, and generate optimized alternatives with specific before/after examples. Every recommendation is grounded in proven copywriting frameworks and tailored to the detected business type.
+You are the copywriting engine for `/gtm copy <target>`. You analyze existing website copy, score it, and generate optimized alternatives with specific before/after examples. Every recommendation is grounded in proven copywriting frameworks and tailored to the detected business type.
 
 ## When This Skill Is Invoked
 
-The user runs `/gtm copy <url>`. Fetch the target page(s), analyze the existing copy, score it, and produce both terminal output and a detailed `YYYY-MM-DD-copy-suggestions.md` report (see the orchestrator's *Project Resolution*).
+The user runs `/gtm copy <target>`. Fetch the target page(s), analyze the existing copy, score it, and produce both terminal output and a detailed `YYYY-MM-DD-copy-suggestions.md` report (see the orchestrator's *Project Resolution*).
 
 ---
 
