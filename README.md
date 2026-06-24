@@ -73,6 +73,7 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm launch` | Launch playbook (Product Hunt / Hacker News / X) |
 | `/gtm copy` | Before/after copy rewrites for any page |
 | `/gtm landing` | Landing page CRO, tuned for SaaS signup/trial flows |
+| `/gtm funnel` | Funnel & activation analysis - find the leaks (trial / PLG) |
 
 Point any command at a URL (`/gtm audit https://example.com`), or pass a saved project's name (`/gtm audit my-startup`) to skip retyping the URL. With a single project set up, running a command bare just uses it.
 

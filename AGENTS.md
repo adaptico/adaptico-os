@@ -73,6 +73,7 @@ Every generated report begins with:
 | `/gtm launch <target>` | Launch playbook (Product Hunt / HN / X) |
 | `/gtm copy <target>` | Optimized copy with before/after rewrites |
 | `/gtm landing <target>` | Landing page CRO (SaaS signup focus) |
+| `/gtm funnel <target>` | Funnel / activation analysis (trial & PLG focus) |
 
 `<target>` is a URL, a saved startup project name, or omitted to use the default project.
 

@@ -24,6 +24,7 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourstartup.com`
 | `/gtm launch <target>` | Generate launch playbook (Product Hunt / HN / X) | `YYYY-MM-DD-launch-playbook.md` |
 | `/gtm copy <target>` | Generate optimized copy for any page | `YYYY-MM-DD-copy-suggestions.md` |
 | `/gtm landing <target>` | Landing page CRO analysis | `YYYY-MM-DD-landing-cro.md` |
+| `/gtm funnel <target>` | Funnel and activation analysis (trial / PLG) | `YYYY-MM-DD-funnel-analysis.md` |
 
 
 ## Running Any Command

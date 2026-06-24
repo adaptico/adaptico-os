@@ -37,6 +37,7 @@ Look up this command's verdict for the founder's tier:
 | launch | Core | Useful | Useful |
 | copy | Useful | Core | Useful |
 | landing | Useful | Core | Useful |
+| funnel | Useful | Useful | Useful |
 
 Verdicts:
 - **Core** - run it now; foundational for this tier.

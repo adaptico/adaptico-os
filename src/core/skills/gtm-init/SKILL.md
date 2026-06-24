@@ -141,8 +141,8 @@ For Links & Channels: write the documentation URL, key pages, and social profile
 After confirming the profile, give a short, stage-aware recommendation of what to run next - based on the founder's Stage tier (from the Step 2a diagnostic), `Main goal`, and `Primary channel today`. Always begin with `/gtm audit` once a page exists - it scores the whole site, feeds every other skill, and (re-run weekly) tracks progress over time. Then follow the tier's sequence:
 
 - **Tier 1 - Validate the Demand:** `/gtm position` -> `/gtm competitors` -> `/gtm copy` -> `/gtm landing` -> `/gtm launch` (fold in `/gtm audit` once a page is live). Hold off on paid ads and SEO for now - talk to 10 potential users, protect runway, and focus on manual distribution.
-- **Tier 2 - Find a Channel:** `/gtm audit` -> `/gtm quick` -> `/gtm landing` -> `/gtm copy` - tighten what converts while you test channels to find one that reliably brings pipeline.
-- **Tier 3 - Scale the Channel:** `/gtm audit` (weekly) -> `/gtm competitors` (continuous) - optimize and defend the channel that already works.
+- **Tier 2 - Find a Channel:** `/gtm audit` -> `/gtm quick` -> `/gtm landing` -> `/gtm copy` -> `/gtm funnel` - tighten what converts and find the funnel leaks while you test channels to find one that reliably brings pipeline.
+- **Tier 3 - Scale the Channel:** `/gtm audit` (weekly) -> `/gtm funnel` -> `/gtm competitors` (continuous) - optimize and defend the channel that already works.
 - **Tier 4-5 - Systematize Growth / Build the Organization:** any command still runs, but a single-player CLI can't fix a bandwidth bottleneck - the constraint here is time, not marketing knowledge.
 
 Keep this to a few lines - one clear next action, not a menu dump.
