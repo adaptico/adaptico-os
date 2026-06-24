@@ -1,6 +1,6 @@
 ---
 name: gtm-position
-version: 1.1.0
+version: 1.1.1
 description: Brand positioning analysis for /gtm position <target>. Use this skill when the user wants to position a brand against competitors, find whitespace in the market, create a positioning statement, understand how competitors present themselves, or discover a unique angle for a brand. Also trigger for "how should we position", "what makes us unique", "how do competitors position themselves", "find our positioning", "positioning statement", or "what's our differentiator" — even if the user doesn't say "position" explicitly.
 ---
 
@@ -18,27 +18,27 @@ You map the competitive positioning landscape and find the unoccupied territory 
 
 ## Step 1: Resolve Target and Gather Context
 
-Follow the standard Project & Output Resolution from the main orchestrator:
-- **Project mode**: read `PROFILE.md` and pull the fields that constrain positioning — `/gtm init` already captured them, so don't re-derive what's there:
+Follow the standard *Target & Output Resolution* from the main orchestrator:
+- **With a profile loaded**: read `PROFILE.md` and pull the fields that constrain positioning — `/gtm init` already captured them, so don't re-derive what's there:
   - **ICP**, **Secondary audience**, **Key pain points** — these decide whether a territory is *relevant* (Step 5); a position the ICP doesn't care about is dead on arrival.
   - **Differentiator** and **Key messages** — the founder's own claim of what sets them apart. Treat it as a positioning hypothesis to validate or sharpen against the map, not as a settled answer.
   - **One-liner**, **Startup type**, **Stage** tier, and **Main goal** — frame the read (a Tier 1 founder needs a position that wins a first persona, not a category-defining stance).
   - **Tone** and **Avoid** — messaging constraints every tagline and statement must respect.
   - Then run the **Competitor Resolution Protocol** from the orchestrator to load competitor data, and if a recent `/gtm competitors` report exists in the project folder, read it for additional detail.
-- **URL mode**: fetch the homepage (and one more page if it's thin — see Step 3) to understand the brand's category, audience, and what they currently say about themselves. Competitor resolution is done inline in Step 2.
+- **With no profile loaded**: fetch the homepage (and one more page if it's thin — see Step 3) to understand the brand's category, audience, and what they currently say about themselves. Competitor resolution is done inline in Step 2.
 
 ## Step 2: Identify 4–6 Direct Competitors
 
-In **project mode**, start with competitors from the Competitor Resolution Protocol (user-added and/or AI-researched). Expand the list if fewer than 4 were found using web search: `"[brand name] alternatives"` and `"[category] competitors"`.
+**With a profile loaded**, start with competitors from the Competitor Resolution Protocol (user-added and/or AI-researched). Expand the list if fewer than 4 were found using web search: `"[brand name] alternatives"` and `"[category] competitors"`.
 
-In **URL mode** (no PROFILE.md), discover competitors from scratch:
+**With no profile loaded**, discover competitors from scratch:
 1. Search `"[brand name] alternatives"` and `"[category] competitors"`
 
-In both modes: prioritize competitors that target the same customer — audience fit over name recognition.
+Either way: prioritize competitors that target the same customer — audience fit over name recognition.
 
 Record each competitor's name, website URL, and any X/Twitter handle you spot along the way.
 
-### Save what you discover (project mode)
+### Save what you discover (with a profile loaded)
 If you discovered or expanded competitors that weren't already in `PROFILE.md` — they came from your search, not the profile — offer to persist them so no future run has to re-find them:
 
 > "I found [N] competitors not in your profile: [names]. Want me to save them to PROFILE.md so `/gtm position`, `/gtm audit`, and others reuse them? (y/n)"
@@ -181,7 +181,7 @@ Save to the project folder as `YYYY-MM-DD-positioning.md`. Never overwrite an ex
 4. Reference this report when running `/gtm copy` for headline rewrites
 ```
 
-## Write Findings Back to PROFILE.md (project mode)
+## Write Findings Back to PROFILE.md (with a profile loaded)
 
 The dated report is the full record; the profile is the quick-extract layer every *other* skill reads. Once the founder has reacted to the recommendation, offer to record the chosen position so `copy`, `landing`, `launch`, `brand`, and `ads` inherit it without re-opening this report:
 

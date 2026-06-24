@@ -1,6 +1,6 @@
 ---
 name: gtm-audit
-version: 1.1.0
+version: 1.1.1
 description: Full go-to-market marketing audit for /gtm audit <target>. Runs 5 parallel audit subagents (content, conversion, competitive, technical, strategy) and produces a unified, scored, date-stamped report. Use when the user wants a full marketing/GTM audit, an overall website marketing review, or a composite GTM score. Also trigger for "audit my site", "review my marketing", "how's my GTM", "full marketing teardown", or "score my website".
 ---
 
@@ -33,11 +33,7 @@ Run the orchestrator's *Target & Output Resolution* first to locate the target's
 - **Tone** and **Avoid** - the voice every rewrite must honor and the claims the site must never make.
 - Then read any prior `YYYY-MM-DD-positioning.md`, `YYYY-MM-DD-competitor-report.md`, or earlier `*-gtm-audit.md` in the folder for detail and the progress baseline (Phase 3.5).
 
-**No profile for this target?** A profile makes every score sharper, so offer to set one up before going further rather than guessing silently:
-
-> "I don't have a profile for this site yet. Want me to set one up so this audit - and future re-runs - are tailored to your ICP, positioning, and goal? If so, what should I call the project? (or say 'skip' for a one-off, untailored audit.)"
-
-On a name, hand off to `/gtm init <name>` to capture the essentials, then continue with that profile loaded. On 'skip', run the audit untailored - derive what you can from the page, run business-type detection (1.2), and note in the report that running `/gtm init` would tailor future runs. Where the report is filed (a new project, a competitor of an existing project, or one-off research) follows the orchestrator's *Target & Output Resolution* - this skill does not decide that on its own.
+**No profile loaded?** *Target & Output Resolution* runs first and has already settled where this run goes - it offers to set the site up as a new project, or files it as a competitor of an existing project or a one-off. Don't re-ask here: if a profile came back, use it; if not (a one-off), run the audit untailored - derive what you can from the page, run business-type detection (1.2), and note once in the report that running `/gtm init` would tailor future runs to the founder's ICP, positioning, and goal.
 
 ---
 
@@ -63,7 +59,7 @@ It returns JSON with the title tag, meta description, Open Graph tags, full head
 
 ### 1.2 Detect Business Type
 
-Take the type from `PROFILE.md` (Phase 0) when it's set - don't re-derive what the founder already told you; the default lens is a SaaS/AI software startup. Run the detection below only when no profile is loaded (or it carries no type yet), or to sanity-check an obvious mismatch between the profile and the live site. Classify the business into one of these categories - this classification shapes every subagent's analysis focus:
+Take the type from `PROFILE.md` (Phase 0) when it's set - don't re-derive what the founder already told you; the default lens is a SaaS/AI software startup. Run the detection below only with no profile loaded (or it carries no type yet), or to sanity-check an obvious mismatch between the profile and the live site. Classify the business into one of these categories - this classification shapes every subagent's analysis focus:
 
 | Business Type | Detection Signals | Analysis Focus |
 |---------------|-------------------|----------------|
@@ -92,7 +88,7 @@ Store this page map for all subagents to reference.
 
 ## Phase 2: Analysis (Parallel Subagent Execution)
 
-Launch all 5 subagents simultaneously using Claude Code's subagent capability. Each subagent receives the business type, page map, fetched content, and the **profile context from Phase 0** (ICP, pain points, stated Differentiator and Key messages, the competitor list, primary channel, tone/avoid, stage, and goal). Subagents judge the site against that context rather than re-deriving it: a strong site that doesn't reflect the founder's own stated positioning is a finding, not a pass. (When no profile is loaded, they fall back to deriving from the page.)
+Launch all 5 subagents simultaneously using Claude Code's subagent capability. Each subagent receives the business type, page map, fetched content, and the **profile context from Phase 0** (ICP, pain points, stated Differentiator and Key messages, the competitor list, primary channel, tone/avoid, stage, and goal). Subagents judge the site against that context rather than re-deriving it: a strong site that doesn't reflect the founder's own stated positioning is a finding, not a pass. (With no profile loaded, they fall back to deriving from the page.)
 
 ### Subagent 1: gtm-content
 

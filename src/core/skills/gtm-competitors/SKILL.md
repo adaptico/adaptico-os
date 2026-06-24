@@ -1,6 +1,6 @@
 ---
 name: gtm-competitors
-version: 1.1.0
+version: 1.1.1
 description: Competitive intelligence for /gtm competitors <target>. Use when the user wants to identify competitors, analyze rival marketing and positioning, or find differentiation gaps and steal-worthy tactics. Also trigger for "who are my competitors", "analyze my competition", "competitive analysis", "how do rivals market", or "where can we differentiate".
 ---
 
@@ -18,13 +18,13 @@ You are the competitive intelligence engine for `/gtm competitors <target>`. You
 
 ## When This Skill Is Invoked
 
-The user runs `/gtm competitors <target>`. In project mode, seed from PROFILE.md (Phase 0), then identify and analyze competitors, offer to write results back to PROFILE.md, and save the report as `YYYY-MM-DD-competitor-report.md` in the project folder. In URL mode, save to the current working directory.
+The user runs `/gtm competitors <target>`. With a profile loaded, seed from PROFILE.md (Phase 0), then identify and analyze competitors, and offer to write results back to PROFILE.md. The report saves as `YYYY-MM-DD-competitor-report.md` where *Target & Output Resolution* puts it (the project folder, or a loose one-off at the root of `projects/` when there's no project).
 
 ---
 
-## Phase 0: Seed from PROFILE.md (Project Mode Only)
+## Phase 0: Seed from PROFILE.md (with a profile loaded)
 
-Before doing any discovery, check whether competitors are already known. In project mode, read `PROFILE.md` and look for entries in:
+Before doing any discovery, check whether competitors are already known. With a profile loaded, read `PROFILE.md` and look for entries in:
 - `### User-Added Competitors` — competitors the founder specified manually
 - `### AI-Researched Competitors` — competitors discovered by a previous run of this skill
 
@@ -558,7 +558,7 @@ Full report saved to: YYYY-MM-DD-competitor-report.md
 
 ---
 
-## Write the Competitor List Back to PROFILE.md (Project Mode Only)
+## Write the Competitor List Back to PROFILE.md (with a profile loaded)
 
 After completing the analysis, offer to update `projects/<name>/PROFILE.md` with the newly discovered competitors - show the founder the list you'd add and ask before writing. On approval, write them back so the profile stays current and all future skills can use it without re-running discovery; if the founder declines, leave PROFILE.md untouched.
 
@@ -579,7 +579,7 @@ Once the founder approves and you've made the edit, tell them: "Added [N] compet
 
 ---
 
-## Write Findings Back to PROFILE.md (Project Mode Only)
+## Write Findings Back to PROFILE.md (with a profile loaded)
 
 The dated report is the full record; the profile is the quick-extract layer every *other* skill reads. Once the founder has reacted to the analysis, offer to record the headline findings so `position`, `copy`, `landing`, `brand`, and `ads` inherit them without re-opening this report:
 

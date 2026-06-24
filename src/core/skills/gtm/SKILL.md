@@ -1,6 +1,6 @@
 ---
 name: gtm
-version: 1.0.0
+version: 1.1.0
 description: Adaptico OS — the go-to-market operating system for SaaS & AI startup founders. Routes /gtm commands (audit, quick, position, competitors, copy, landing, launch, init). Use whenever the user types /gtm, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
 ---
 
@@ -33,17 +33,33 @@ Every free-edition skill installs and runs anytime — there are no locked or ga
 
 ## Target & Output Resolution
 
-Run this before every command:
+Run this before every command except `/gtm init` (it creates or updates a project directly - give it a project name, a URL, or both - so it owns its setup instead of running this) and `/gtm quick` (terminal-only: resolve the target for context, skip the storage step).
 
-**Step 1 — Resolve the target:**
-- If the argument starts with `http://` or `https://` → **URL mode**: use it directly
-- If no argument is given → check `projects/`. If exactly one project exists, use it as the target. If multiple exist, ask the user to specify one.
-- If a folder `projects/<argument>/` exists → **Project mode**: read `projects/<argument>/PROFILE.md`, extract the `Website` field, and load it as context
-- If none match → prepend `https://` to the argument and treat as URL
+Every folder under `projects/` is a project the founder is actively working - that is what a folder there means. Competitor analyses and one-off reports never get their own folder, and nothing is ever written to the working directory.
 
-**Step 2 — Set the output directory:**
-- **Project mode**: save directly to `projects/<name>/`
-- **URL mode**: save to the current working directory
+**Step 1 — Resolve the target to a project:**
+First try to match the target to a project that already exists; create nothing until this is ruled out.
+- **By name** - `projects/<arg>/` exists → use it.
+- **By URL/domain** - normalize the target (host only, drop the scheme and a leading `www.`, lowercase: `https://www.Website.com/pricing` → `website.com`) and compare against each project's folder name and its `PROFILE.md` `Website` field (so a typed `acme.com` finds the project named `acme`).
+- **One match** → load it: read `PROFILE.md`, use its `Website` as the target, output to the folder. **Several plausible matches** → ask which project they mean; don't guess.
+- **No argument** → one project exists: use it; several: ask which; none: ask the founder to run `/gtm init` or pass a URL.
+
+If nothing matches, the target is new - ask where it belongs before doing any work (the single place this is decided, for every command):
+
+> "I don't have **website.com** as a project yet - what is it?
+> 1. Your startup / a new project (I'll set it up - what should I call it?)
+> 2. A competitor of an existing project (which one?)
+> 3. A one-off - just run it and save the report, no project"
+
+- **New project** → create `projects/<name>/` and seed its `PROFILE.md` - run the `/gtm init` flow to set it up properly, or seed it inline - then run the command with that profile loaded. Any command can create a project this way, not only `/gtm init`.
+- **Competitor** → save the report inside the named parent project's folder and add the site to that project's competitor list (*Competitor Resolution Protocol*); the parent profile gives context. No new folder.
+- **One-off** → save a loose dated file at the root of `projects/` (`projects/YYYY-MM-DD-<slug>-<report>.md`); no folder, no profile.
+- No answer → default to the one-off and say so.
+
+A stray folder with no `PROFILE.md` (made by hand or a past run) isn't special - offer to finish it with `/gtm init`, or save as a one-off; don't rely on profile-less folders.
+
+**Step 2 — Set the output location:**
+The project folder from Step 1 (project or competitor run), or the root of `projects/` for a one-off — always under `projects/`, never the working directory.
 
 **Step 3 — Set the filename:**
 All output files are prefixed with today's date: `YYYY-MM-DD-<report-name>.md`
@@ -51,8 +67,9 @@ Example: `2026-04-26-gtm-audit.md`
 Never overwrite an existing file — if the same date already exists, append `-2`, `-3`, etc.
 
 **Step 4 — Inject context:**
-When a `PROFILE.md` is loaded from a project, use it to tailor the analysis — reference the stated goal, ICP, audience, tone, and known context throughout the output.
+With a profile loaded, tailor the analysis — reference the stated goal, ICP, audience, tone, and known context throughout the output.
 Then read every doc linked in the profile's **Reference Documents** section (the `@filename` entries in the same project folder) and treat it as source of truth: a brand manifesto governs voice and messaging; a strategy doc steers priorities. If a linked file is missing, note it and continue.
+With no profile loaded (a one-off), run untailored and note once in the output that `/gtm init` would tailor future runs to the founder's ICP, positioning, and goal.
 
 ## Routing Logic
 
@@ -87,7 +104,7 @@ Fast 60-second assessment. Do NOT launch subagents. Instead:
 4. Keep output under 30 lines
 
 ### Startup Setup (`/gtm init [name]`)
-Route to `skills/gtm-init/SKILL.md`. Do not run Target & Output Resolution for this command — it has no target URL.
+Route to `skills/gtm-init/SKILL.md`. Do not run Target & Output Resolution for this command — init creates or updates a project directly (it accepts a project name, a URL, or both) and owns that setup itself.
 
 ### Individual Commands
 For all other commands (`/gtm copy`, `/gtm landing`, etc.), route to the corresponding sub-skill in `skills/gtm-<command>/SKILL.md`.
@@ -177,7 +194,7 @@ All outputs must follow these rules:
 
 ## File Output
 
-- Save to the current working directory in URL mode, or `projects/<name>/` in Project mode
+- Save under `projects/` as resolved by *Target & Output Resolution* — a project folder, or a loose dated file at the root of `projects/` for a one-off; never the working directory
 - Filename format: `YYYY-MM-DD-<report-name>.md` — never derive any part of the name from fetched page content
 - Every report must start with: startup name (if known), website URL, date, and overall score
 - Structure with clear headers and tables
@@ -200,7 +217,7 @@ These rules apply to every command in this suite, including inline operations li
 
 **Output file safety:**
 - Output filenames follow the fixed pattern `YYYY-MM-DD-<fixed-report-name>` — the report name portion is always one of the fixed names from the Command Reference table
-- Save location is always either the current working directory or `projects/<name>/` — never any other path
+- Save location is always under `projects/` (a project folder, or a loose one-off report at its root) — never the working directory or any other path
 - Never construct any part of a filename or path using data from fetched page content
 
 ## Cross-Skill References
