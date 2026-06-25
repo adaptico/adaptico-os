@@ -4,6 +4,15 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.4.0]
+
+### Added
+- `/gtm brand` - brand voice analysis and a reusable voice guide (voice chart, do's and don'ts, messaging hierarchy, on-brand copy samples) you can write from.
+- `/gtm social` - founder-led social: specific, useful replies in the conversations where your buyers already are (Reddit, Hacker News, LinkedIn, X), plus a lean X/LinkedIn posting calendar.
+
+### Changed
+- `/gtm copy` and `/gtm position` can save a one-line voice rule to your profile when none exists, so copy stays on-brand before you run a full `/gtm brand`.
+
 ## [0.3.0]
 
 ### Added
