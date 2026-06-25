@@ -26,6 +26,7 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourstartup.com`
 | `/gtm landing <target>` | Landing page CRO analysis | `YYYY-MM-DD-landing-cro.md` |
 | `/gtm funnel <target>` | Funnel and activation analysis (trial / PLG) | `YYYY-MM-DD-funnel-analysis.md` |
 | `/gtm emails <target>` | Lifecycle email sequences (onboarding + dunning) | `YYYY-MM-DD-email-sequences.md` |
+| `/gtm social <target>` | Founder-led social: conversations, replies, and an X/LinkedIn calendar | `YYYY-MM-DD-social-calendar.md` |
 | `/gtm brand <target>` | Brand voice analysis + reusable voice guide (chart, do's/don'ts, copy samples) | `YYYY-MM-DD-brand-voice.md` |
 
 

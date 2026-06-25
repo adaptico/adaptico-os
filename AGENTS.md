@@ -75,6 +75,7 @@ Every generated report begins with:
 | `/gtm landing <target>` | Landing page CRO (SaaS signup focus) |
 | `/gtm funnel <target>` | Funnel / activation analysis (trial & PLG focus) |
 | `/gtm emails <target>` | Activation onboarding & dunning email sequences |
+| `/gtm social <target>` | Founder-led social: conversations + replies, plus an X/LinkedIn content calendar |
 | `/gtm brand <target>` | Brand voice analysis + a reusable voice guide (voice chart, do's/don'ts, copy samples) |
 
 `<target>` is a URL, a saved startup project name, or omitted to use the default project.
