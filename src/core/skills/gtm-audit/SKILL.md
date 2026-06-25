@@ -1,6 +1,6 @@
 ---
 name: gtm-audit
-version: 1.1.1
+version: 1.1.2
 description: Full go-to-market marketing audit for /gtm audit <target>. Runs 5 parallel audit subagents (content, conversion, competitive, technical, strategy) and produces a unified, scored, date-stamped report. Use when the user wants a full marketing/GTM audit, an overall website marketing review, or a composite GTM score. Also trigger for "audit my site", "review my marketing", "how's my GTM", "full marketing teardown", or "score my website".
 ---
 
@@ -455,6 +455,7 @@ Full report saved to: YYYY-MM-DD-gtm-audit.md
 ## Cross-Skill Integration
 
 - If a `*-competitor-report.md` exists in the current directory, incorporate its findings
+- If a `*-brand-voice.md` exists, use it to contextualize content analysis
 - Reference other available analyses in the executive summary
 - Suggest follow-up commands: `/gtm copy`, `/gtm competitors`, `/gtm landing` for deeper dives
 

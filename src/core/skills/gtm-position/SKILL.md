@@ -1,6 +1,6 @@
 ---
 name: gtm-position
-version: 1.1.1
+version: 1.2.0
 description: Brand positioning analysis for /gtm position <target>. Use this skill when the user wants to position a brand against competitors, find whitespace in the market, create a positioning statement, understand how competitors present themselves, or discover a unique angle for a brand. Also trigger for "how should we position", "what makes us unique", "how do competitors position themselves", "find our positioning", "positioning statement", or "what's our differentiator" — even if the user doesn't say "position" explicitly.
 ---
 
@@ -188,6 +188,7 @@ The dated report is the full record; the profile is the quick-extract layer ever
 > "Want me to save this position to your profile so other commands reuse it? I'd set:
 > - **Differentiator** → [recommended positioning statement]
 > - **Key messages** → [tagline + the one-line promise]
+> - **Tone** → [a one-line voice rule drawn from the brand's own copy] *(only when `Tone` is still blank - the build-once voice essential, so `/gtm copy` writes on-brand before a later `/gtm brand` run)*
 > (y/n)"
 
 On yes, update `projects/<name>/PROFILE.md`, editing surgically rather than wholesale:
@@ -199,7 +200,7 @@ On yes, update `projects/<name>/PROFILE.md`, editing surgically rather than whol
   - Either way, show the current value beside your proposed edit and get approval before writing.
 - Save the *recommended* option by default; if the founder preferred a different option, save that one.
 
-Touch only these two fields — competitors are handled in Step 2; leave notes and everything else exactly as they are.
+Touch only these fields - **Differentiator**, **Key messages**, and **Tone** (the last only when it's still blank); competitors are handled in Step 2; leave notes and everything else exactly as they are.
 
 ## Cross-Skill Integration
 

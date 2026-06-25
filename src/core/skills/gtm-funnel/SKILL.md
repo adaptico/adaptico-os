@@ -469,3 +469,4 @@ Full analysis saved to: YYYY-MM-DD-funnel-analysis.md
 - If a `YYYY-MM-DD-positioning.md` or `YYYY-MM-DD-competitor-report.md` exists, use the positioning and the competitor funnels to frame the comparison.
 - If a `YYYY-MM-DD-landing-cro.md` exists, fold its hero and CTA findings into the top-of-funnel step rather than repeating them.
 - Suggest follow-up: `/gtm landing` for a deep CRO teardown of the worst-scoring page, and `/gtm copy` to rewrite the leaking pages.
+- For the onboarding/activation and dunning email sequences this analysis points to, run `/gtm emails`.

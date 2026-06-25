@@ -26,6 +26,7 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourstartup.com`
 | `/gtm landing <target>` | Landing page CRO analysis | `YYYY-MM-DD-landing-cro.md` |
 | `/gtm funnel <target>` | Funnel and activation analysis (trial / PLG) | `YYYY-MM-DD-funnel-analysis.md` |
 | `/gtm emails <target>` | Lifecycle email sequences (onboarding + dunning) | `YYYY-MM-DD-email-sequences.md` |
+| `/gtm brand <target>` | Brand voice analysis + reusable voice guide (chart, do's/don'ts, copy samples) | `YYYY-MM-DD-brand-voice.md` |
 
 
 ## Running Any Command
@@ -228,5 +229,6 @@ Many skills work together:
 - `/gtm audit` calls all subagents → produces the comprehensive, scored report everything else builds on; it folds in any `*-competitor-report.md` already in the folder
 - Re-running `/gtm audit` over time is the progress tracker — the dated reports form the history, and each run shows the week-over-week delta. (For a polished compiled PDF, that's Pro `report-pdf`.)
 - `/gtm position` sharpens the messaging that `/gtm copy` and `/gtm landing` then apply
+- `/gtm copy` benefits from `/gtm brand` voice guidelines if run first
 - `/gtm emails` aligns its onboarding sequence to the activation leak `/gtm funnel` finds
 - `/gtm launch` pulls from positioning and competitors to build the playbook

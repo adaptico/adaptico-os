@@ -1,6 +1,6 @@
 ---
 name: gtm-copy
-version: 1.1.2
+version: 1.2.0
 description: Website copy analysis and rewriting for /gtm copy <target>. Use when the user wants to score existing copy and get optimized before/after rewrites for headlines, value props, CTAs, or body copy. Also trigger for "improve my copy", "rewrite my headline", "is my copy good", "better value prop", or "punch up this page".
 ---
 
@@ -78,6 +78,11 @@ Before generating new copy, analyze the existing voice:
 - **Authority:** Peer ←→ Expert (1-5 scale)
 
 Document this voice profile so all generated copy matches the brand's existing tone, unless the existing tone is clearly ineffective.
+
+**Voice in one sentence (build-once).** If `PROFILE.md`'s `Tone` is blank (the founder hasn't run `/gtm brand` - a later-stage skill), distill this profile into a single voice rule - e.g. "direct, technical, plainspoken - confident, not hype" - and offer to save it:
+> "Want me to save a one-line voice rule to your profile? `Tone: [rule]` (y/n)"
+
+On yes, write it to `Tone` tagged `(set by /gtm copy, YYYY-MM-DD)`. This is the essential voice bit early-stage founders need without a full brand book; a later `/gtm brand` run replaces it with the deep guide. If `Tone` already has a value, use it - don't re-ask.
 
 ---
 
@@ -357,6 +362,7 @@ Write the full report to the resolved output path as `YYYY-MM-DD-copy-suggestion
 ## Cross-Skill Integration
 
 - With a profile loaded, read `PROFILE.md` first - its `Differentiator` and `Key messages` (set by `/gtm position` / `/gtm competitors`) are the positioning every rewrite should lead with
+- If a `*-brand-voice.md` exists, use its voice guidelines to calibrate generated copy
 - If a `*-gtm-audit.md` exists, reference the Content & Messaging score
 - If a `*-competitor-report.md` exists, use competitor messaging to inform differentiation
 - Suggest follow-up: `/gtm landing` for landing-page-specific deep dive

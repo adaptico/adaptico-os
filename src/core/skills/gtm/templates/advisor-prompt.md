@@ -39,6 +39,7 @@ Look up this command's verdict for the founder's tier:
 | landing | Useful | Core | Useful |
 | funnel | Useful | Useful | Useful |
 | emails | Too early | Core | Useful |
+| brand | Too early | Too early | Useful |
 
 
 Verdicts:
@@ -63,3 +64,4 @@ How the two note types read:
 
 When a command is Too early or Avoid for the founder's tier, prepend its note verbatim, then generate the work anyway:
 - **emails** (Too early at Tier 1): "There's no lifecycle to automate yet. Onboarding, activation, and dunning sequences pay off once signups are flowing - revisit once you have traffic and trials."
+- **brand** (Too early at Tiers 1-2): "A brand book (voice, tone, messaging) is a scale concern, not a survival one - it's wasted while your ICP is still moving. A one-line voice rule is plenty for now."
