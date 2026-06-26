@@ -74,6 +74,7 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm copy` | Before/after copy rewrites for any page |
 | `/gtm landing` | Landing page CRO, tuned for SaaS signup/trial flows |
 | `/gtm funnel` | Funnel & activation analysis - find the leaks (trial / PLG) |
+| `/gtm outreach` | Cold outbound sequences - cold email & LinkedIn DM |
 | `/gtm emails` | Activation onboarding & dunning (failed-payment recovery) email sequences |
 | `/gtm social` | Founder-led social: join conversations where buyers are, plus an X/LinkedIn calendar |
 | `/gtm brand` | Brand voice audit + a reusable voice guide (do's & don'ts, copy samples) |

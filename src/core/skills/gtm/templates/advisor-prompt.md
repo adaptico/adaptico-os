@@ -38,6 +38,7 @@ Look up this command's verdict for the founder's tier:
 | copy | Useful | Core | Useful |
 | landing | Useful | Core | Useful |
 | funnel | Useful | Useful | Useful |
+| outreach | Core | Core | Useful |
 | emails | Too early | Core | Useful |
 | social | Too early | Useful | Useful |
 | brand | Too early | Too early | Useful |

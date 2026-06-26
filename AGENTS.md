@@ -74,6 +74,7 @@ Every generated report begins with:
 | `/gtm copy <target>` | Optimized copy with before/after rewrites |
 | `/gtm landing <target>` | Landing page CRO (SaaS signup focus) |
 | `/gtm funnel <target>` | Funnel / activation analysis (trial & PLG focus) |
+| `/gtm outreach <target>` | Cold outbound sequences - cold email & LinkedIn DM |
 | `/gtm emails <target>` | Activation onboarding & dunning email sequences |
 | `/gtm social <target>` | Founder-led social: conversations + replies, plus an X/LinkedIn content calendar |
 | `/gtm brand <target>` | Brand voice analysis + a reusable voice guide (voice chart, do's/don'ts, copy samples) |
