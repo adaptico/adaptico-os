@@ -4,6 +4,11 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.5.0]
+
+### Added
+- `/gtm outreach` - cold outbound sequences: multi-touch, value-first cold email and LinkedIn DM sequences for founder-led manual outreach to land your first customers.
+
 ## [0.4.0]
 
 ### Added
