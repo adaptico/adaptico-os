@@ -2,30 +2,25 @@
   <img src="banner.svg" alt="Adaptico OS - go-to-market for SaaS & AI founders, in Claude Code" width="100%">
 </p>
 
-# Adaptico OS - the go-to-market operating system for founders
+# Adaptico OS - the go-to-market operating system for SaaS and AI founders
 
 Plug your startup into Claude Code and get a real go-to-market team on the command line. Adaptico OS audits your marketing, sharpens your positioning, fixes your conversion, writes your copy, plans your launch, and tracks your competitors - tuned specifically for **early-stage SaaS and AI startup founders**.
 
-It's more than a set of skills - it's an orchestrator that routes each request to the right specialists and runs them in parallel. You install it, run `/gtm init` once, and then talk to it like a GTM advisor who already knows your product. Built for technical founders shipping modern software.
+It's more than a set of skills - it's an orchestrator that puts a whole team of specialists on your startup and runs them in parallel if needed. Install it, run `/gtm init` once, and you've got a GTM advisor that already knows your product. Built for technical founders shipping modern software.
 
 ---
 
 ## What it does
 
-```
-> /gtm audit
+Each Adaptico OS command puts a specialist on one part of your go-to-market - positioning, conversion, copy, a launch plan, a competitor breakdown. 
 
-Launching parallel agents on yourstartup.com...
-✓ Content & Messaging     - 72/100
-✓ Conversion Optimization - 58/100
-✓ SEO & Discoverability   - 81/100
-✓ Competitive Positioning - 64/100
-✓ Brand & Trust           - 76/100
-✓ Growth & Strategy       - 61/100
+After `/gtm init`, the next one to run is `/gtm audit`: it sends a whole team across your site at once, scores six GTM dimensions, and rolls them into a single score out of 100 with the biggest fixes ranked first:
 
-GTM Score: 69/100  →  saved to 2026-05-31-gtm-audit.md
-Top fix: your homepage explains what you built, not who it's for or why it matters.
-```
+<p align="center">
+  <img src="audit.svg" alt="Terminal output of /gtm audit: a six-dimension score breakdown and a composite GTM Score of 69/100" width="100%">
+</p>
+
+Every run saves a dated report you can work through, and re-running it week to week turns the score into a progress tracker.
 
 ---
 
@@ -44,16 +39,16 @@ curl -fsSL https://raw.githubusercontent.com/adaptico/adaptico-os/main/install.s
 /gtm landing
 ```
 
-Manual install:
+Or install manually:
 
 ```bash
 git clone https://github.com/adaptico/adaptico-os.git
 cd adaptico-os
 
-# macOS / Linux
+# macOS / Linux:
 ./install.sh
 
-# Windows - PowerShell and cmd can't run .sh files, so run it through Git Bash:
+# Windows:
 bash install.sh
 ```
 
@@ -81,14 +76,6 @@ After installing, restart Claude Code so it picks up the new skills.
 
 Point any command at a URL (`/gtm audit https://example.com`), or pass a saved project's name (`/gtm audit my-startup`) to skip retyping the URL. With a single project set up, running a command bare just uses it.
 
----
-
-## How it works
-
-1. **You run a command** - e.g. `/gtm audit`.
-2. **Claude reads the skill files** - they tell it exactly how to analyze your startup.
-3. **Agents and scripts do the work** - specialized agents work in parallel, each focused on a different GTM dimension (content, conversion, SEO, positioning, brand, growth), while Python utilities extract page data and scan competitors.
-4. **You get a scored, prioritized, founder-honest report** - saved as a dated Markdown file you can act on or share.
 ---
 
 
