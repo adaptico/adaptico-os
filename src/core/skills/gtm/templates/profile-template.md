@@ -5,12 +5,13 @@
 ## Identity
 - **Website:** https://
 - **One-liner:** *One sentence — what the product does and who it's for.*
-- **Startup type:** *PLG/self-serve SaaS · sales-led B2B SaaS · AI/API product · dev tool/infra · prosumer/mobile app*
+- **Startup type:** *self-serve SaaS (users sign up on their own) · sales-led B2B SaaS (won through demos and sales calls) · AI/API product · dev tool/infra · prosumer/mobile app*
 - **Stage:** *Your tier, set by `/gtm init` from a short diagnostic. One of: Tier 1 - Validate the Demand · Tier 2 - Find a Channel · Tier 3 - Scale the Channel · Tier 4 - Systematize Growth · Tier 5 - Build the Organization.*
 - **MRR (optional):** *Rough monthly recurring revenue, if useful - a secondary signal only, not how Adaptico OS places your stage.*
 
 ## Goal
-- **Main goal (next 90 days):** *The one metric you most want to move — signups, trial→paid, activation, first 100 users, launch, etc.*
+- **Main goal (next 30 days):** *The one thing you most want to move right now - more signups, first paying users, a launch, etc.*
+- **90-day direction (optional):** *Where that 30-day goal is heading over the quarter - e.g. first 100 paying users, one reliable signup channel.*
 - **Current traction:** *Optional — users / MRR / signups, however rough.*
 
 ## Audience

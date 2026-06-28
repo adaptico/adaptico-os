@@ -1,6 +1,6 @@
 ---
 name: gtm-launch
-version: 1.1.1
+version: 1.1.2
 description: Launch playbook for /gtm launch <target>. Use when the user wants a week-by-week launch plan for Product Hunt, Hacker News, or X, with templates, checklists, and metrics. Also trigger for "plan my launch", "Product Hunt launch", "launch playbook", "how do I launch", or "launch checklist".
 ---
 
@@ -33,7 +33,7 @@ If a profile exists but the founder hasn't said which they want, ask once; if no
 
 **With a profile loaded, load context from `PROFILE.md` before asking anything - never re-ask what `/gtm init` already captured.** Map its fields to the inputs below and ask only for the gaps:
 - **Target audience** ← `ICP`, `Secondary audience`, `Key pain points`
-- **Launch goal** ← `Main goal (next 90 days)` (sharpen it to this launch if needed)
+- **Launch goal** ← `Main goal (next 30 days)` and `90-day direction` if set (sharpen to this launch if needed)
 - **Channels & assets** ← `Primary channel today`, `Existing assets` (list size, following), `Links & Channels` social profiles
 - **Existing customers/users** ← `Current traction`, `Existing assets`
 - **Startup type** ← `Startup type` (drives the launch-type choice in Step 2)
@@ -481,7 +481,7 @@ Write the report to the resolved output path as `YYYY-MM-DD-launch-playbook.md` 
 A launch playbook is mostly episodic, but a couple of facts are worth keeping so the next command and the next run know a launch is in flight. Once the playbook is written, offer to record them - never auto-write:
 
 > "Want me to note this launch in your profile? I'd set:
-> - **Main goal (next 90 days)** -> [the launch and its target] (only if this launch is your main 90-day goal)
+> - **Main goal (next 30 days)** -> [the launch and its target] (only if this launch is your main near-term goal)
 > - **Context & notes -> Notes** -> "Launch playbook generated [today]: [type] launch targeting [date], goal [goal]."
 > (y/n)"
 
