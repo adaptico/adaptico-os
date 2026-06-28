@@ -77,10 +77,10 @@ Use multiple methods to identify competitors:
 
 ### 1.3 Automated Data Collection
 
-Use the Python script at `scripts/competitor_scanner.py` for automated data collection when available:
+Use the bundled `competitor_scanner.py` for automated data collection when available:
 
 ```
-python scripts/competitor_scanner.py --url [competitor-url] --output json
+python3 .claude/skills/gtm-competitors/scripts/competitor_scanner.py --url [competitor-url] --output json
 ```
 
 The script can collect:

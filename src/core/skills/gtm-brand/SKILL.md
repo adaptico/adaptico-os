@@ -69,7 +69,7 @@ Founder-provided material can be pasted inline or dropped into the project folde
 
 **Label every observation** by where it came from - **public** (fetched), **founder-provided** (pasted or uploaded), or **inferred** (your best read from a public signal) - so the founder knows which parts are grounded in real copy and which are reconstruction. This matters most in the Consistency Audit (Step 7): when the founder hasn't shared in-product or email samples, don't claim consistency across those channels - say what's missing.
 
-Use browser tools or the `analyze_page.py` script to fetch public pages. If a fetch fails, use the orchestrator's *Web Fetching Fallback Protocol*.
+Use browser tools or the bundled page analyzer (`python3 .claude/skills/gtm/scripts/analyze_page.py <url>`) to fetch public pages. If a fetch fails, use the orchestrator's *Web Fetching Fallback Protocol*.
 
 ### Step 2: Voice Dimension Analysis
 Map the brand's voice along four primary dimensions. Each dimension is a spectrum, not a binary.

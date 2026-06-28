@@ -52,7 +52,7 @@ Use `WebFetch` to retrieve the homepage and up to 5 key interior pages (pricing,
 For the homepage and each key page, run the page analyzer bundled with the gtm skill to get machine-extracted facts instead of eyeballing raw HTML:
 
 ```bash
-python3 scripts/analyze_page.py <url>
+python3 .claude/skills/gtm/scripts/analyze_page.py <url>
 ```
 
 It returns JSON with the title tag, meta description, Open Graph tags, full heading hierarchy (H1-H6), internal/external links, image alt-text coverage, forms and CTAs, schema/structured data, social links, tracking scripts, viewport, canonical, and robots directives. Store this alongside the raw content and pass it to every subagent — it is the factual backbone of the audit. In particular, `gtm-technical` should base its SEO and structured-data findings on it, and `gtm-content` / `gtm-conversion` should use the extracted headings, CTAs, and forms rather than re-deriving them.

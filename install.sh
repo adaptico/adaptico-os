@@ -126,7 +126,7 @@ shopt -u nullglob
 # Scripts and templates live inside src/core/skills/gtm/ (scripts/, templates/) and are
 # installed together with the gtm skill in the loop above — no separate copy step needed.
 
-# Python check (scripts use the standard library; requests is an optional speedup)
+# Python check (the analysis scripts use only the Python standard library)
 echo -e "\n${BLUE}Checking Python...${NC}"
 if command -v python3 &>/dev/null; then
     PYTHON_VERSION=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>/dev/null)
