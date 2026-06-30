@@ -60,18 +60,23 @@ After installing, restart Claude Code so it picks up the new skills.
 
 | Command | What it does |
 |---------|-------------|
+| **Start here** | |
 | `/gtm init` | Set up your startup profile (`PROFILE.md`) - do this first |
 | `/gtm audit` | Full GTM audit with parallel agents + composite score |
 | `/gtm quick` | 60-second snapshot - top wins and fixes |
-| `/gtm position` | Positioning map vs competitors + a positioning statement |
-| `/gtm competitors` | Competitive intelligence on other SaaS in your space |
+| **Improve positioning** | |
+| `/gtm position` | Positioning map + statement - includes a quick competitor scan |
+| `/gtm competitors` | The deep competitor dive (pricing, features, reviews, gaps); `position` uses it if present |
+| **Launch & convert** | |
 | `/gtm launch` | Launch playbook (Product Hunt / Hacker News / X) |
 | `/gtm copy` | Before/after copy rewrites for any page |
 | `/gtm landing` | Landing page CRO, tuned for SaaS signup/trial flows |
 | `/gtm funnel` | Funnel & activation analysis - find the leaks (trial / PLG) |
+| **Reach & retain** | |
 | `/gtm outreach` | Cold outbound sequences - cold email & LinkedIn DM |
 | `/gtm emails` | Activation onboarding & dunning (failed-payment recovery) email sequences |
-| `/gtm social` | Founder-led social: join conversations where buyers are, plus an X/LinkedIn calendar |
+| `/gtm social` | Founder-led socials: join conversations where buyers are, and an X/LinkedIn calendar |
+| **Scale up (later)** | |
 | `/gtm brand` | Brand voice audit + a reusable voice guide (do's & don'ts, copy samples) |
 
 Point any command at a URL (`/gtm audit https://example.com`), or pass a saved project's name (`/gtm audit my-startup`) to skip retyping the URL. With a single project set up, running a command bare just uses it.
