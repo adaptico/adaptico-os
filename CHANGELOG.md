@@ -4,6 +4,14 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.5.1]
+
+### Changed
+- `/gtm init` onboarding: the main goal is now a required 30-day focus plus an optional 90-day direction, with plain-language answer suggestions.
+
+### Fixed
+- The bundled analysis scripts now run as documented - `analyze_page.py` and `competitor_scanner.py` are invoked from their installed `.claude/skills/.../scripts/` paths.
+
 ## [0.5.0]
 
 ### Added
