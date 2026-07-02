@@ -1,6 +1,6 @@
 ---
 name: gtm-copy
-version: 1.2.0
+version: 1.2.1
 description: Website copy analysis and rewriting for /gtm copy <target>. Use when the user wants to score existing copy and get optimized before/after rewrites for headlines, value props, CTAs, or body copy. Also trigger for "improve my copy", "rewrite my headline", "is my copy good", "better value prop", or "punch up this page".
 ---
 
@@ -252,7 +252,7 @@ Analyze every CTA on the page:
 - There is no universally winning button color - the lift comes from contrast and visual isolation (the Von Restorff / isolation effect), not the specific hue.
 - Make the primary CTA the single most visually dominant element in its view: it should stand out from the page background and surrounding elements.
 - Reserve that high-contrast treatment for one action per view - if every button shouts, none does. Style secondary actions (ghost/outline buttons) so they recede.
-- Pick the color against your own page, not a hue rule: choose whatever maximizes contrast with this design, then validate with an A/B test rather than assuming green/orange/blue "psychology" applies.
+- Pick the color against your own page, not a hue rule: choose whatever maximizes contrast with this design, then validate with an A/B test rather than assuming green/orange/blue "psychology" applies - and at early-stage traffic, skip the test: ship the higher-contrast option as a judgment call; an underpowered test just stalls the fix.
 
 ### 3.3 Before/After Examples
 
