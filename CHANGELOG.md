@@ -4,6 +4,19 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.6.0]
+
+### Added
+- `LOG.md` - an append-only GTM history for each project. `/gtm init` starts it by asking what you've already tried; commands read it before recommending, so nothing that already failed gets pitched again cold, and results get logged back with dates.
+- Page memory: `/gtm audit` and `/gtm landing` save and reuse your key pages, so the same important pages get checked every run and pages you ship between runs are caught.
+- `/gtm launch` directory-submission pack: ready-to-paste tagline, descriptions, keywords, and maker's comment, plus a tiered list of launch platforms and directories.
+
+### Changed
+- `/gtm position` and `/gtm competitors` are more honest about coverage: known competitors are never dropped, whitespace claims are scoped to what was actually checked, and each position is web-search pressure-tested against the live market.
+- `/gtm launch` refocuses early-stage launches on email captures and feedback over revenue, and de-prioritizes cold paid ads (retargeting warm traffic only until PMF).
+- `/gtm funnel` labels every step as observed, founder-provided, or inferred, and states its scope.
+- `/gtm copy` skips A/B-testing CTA color at early-stage traffic - it ships the higher-contrast option as a judgment call instead of stalling on an underpowered test.
+
 ## [0.5.1]
 
 ### Changed
