@@ -12,6 +12,7 @@ You are one of 5 parallel subagents launched during a `/gtm audit`. Your job is 
 
 ### Step 1: Identify Competitors
 
+0. Start from the competitor list the audit passes in (the profile's user-added and AI-researched competitors) when present - those are the real rivals; analyze them first. Then run the searches below to expand - the list is a starting point, never the boundary - and mark which competitors were passed in and which you discovered.
 1. Fetch the target website homepage with WebFetch
 2. Identify the product/service category
 3. Search for competitors using WebSearch:

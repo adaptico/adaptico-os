@@ -1,6 +1,6 @@
 ---
 name: gtm-competitors
-version: 1.1.1
+version: 1.1.2
 description: Competitive intelligence for /gtm competitors <target>. Use when the user wants to identify competitors, analyze rival marketing and positioning, or find differentiation gaps and steal-worthy tactics. Also trigger for "who are my competitors", "analyze my competition", "competitive analysis", "how do rivals market", or "where can we differentiate".
 ---
 
@@ -33,6 +33,8 @@ Collect all entries from both sections as your **seed list**. In Phase 1, start 
 Also read the rest of the profile so the analysis is tailored, not generic: the target's `Website`, `Startup type`, `ICP`, `Key pain points`, `Differentiator`, `Key messages`, `Main goal`, and any `Links & Channels` key pages. These frame the comparison (the target fills its own column in every matrix) and are the baseline the closing write-back compares its findings against, so it can sharpen them surgically rather than overwrite.
 
 If both sections are empty and the user hasn't already been asked (via the orchestrator's Competitor Resolution Protocol), offer to proceed with full discovery or ask the user to provide starting names.
+
+The seed list is a starting point, never the boundary. Run the Phase 1 discovery methods even when the seed list already meets the category counts - the point of a re-run is catching entrants the profile doesn't know about yet. In the report's competitor overview, mark each competitor **seeded** (from the profile) or **newly discovered** (this run), so it's visible that discovery actually happened.
 
 ---
 

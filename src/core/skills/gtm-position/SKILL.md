@@ -1,6 +1,6 @@
 ---
 name: gtm-position
-version: 1.2.0
+version: 1.3.0
 description: Brand positioning analysis for /gtm position <target>. Use this skill when the user wants to position a brand against competitors, find whitespace in the market, create a positioning statement, understand how competitors present themselves, or discover a unique angle for a brand. Also trigger for "how should we position", "what makes us unique", "how do competitors position themselves", "find our positioning", "positioning statement", or "what's our differentiator" — even if the user doesn't say "position" explicitly.
 ---
 
@@ -30,6 +30,8 @@ Follow the standard *Project Resolution* from the main orchestrator:
 ## Step 2: Identify 4–6 Direct Competitors
 
 **With a profile loaded**, start with competitors from the Competitor Resolution Protocol (user-added and/or AI-researched). Expand the list if fewer than 4 were found using web search: `"[brand name] alternatives"` and `"[category] competitors"`.
+
+Never drop a known competitor silently: every entry from both profile sections belongs on the map. Detail the 4-6 closest rivals as below; give the rest at least a territory assignment from data already on hand (their profile note, a prior competitor report) so no known player is missing when a territory is called open.
 
 **With no profile loaded**, discover competitors from scratch:
 1. Search `"[brand name] alternatives"` and `"[category] competitors"`
@@ -101,6 +103,8 @@ Cross-reference the competitive map with what you know about the brand:
 
 A strong position is three things at once: **true** (the brand can actually deliver on it), **differentiated** (no competitor owns it), and **relevant** (the ICP and pain points loaded in Step 1 confirm the audience actively cares about it). Prioritize options that hit all three.
 
+Calibrate every whitespace claim. Never state a territory is empty in absolute terms - an unseen competitor can always exist. The honest form is scoped: "open among the [N] competitors mapped plus a search sweep on [date]".
+
 ## Step 6: Generate Three Positioning Options
 
 Produce three distinct positioning options, each occupying different territory. Variety is important — give the user genuinely different angles to react to, not three ways of saying the same thing.
@@ -118,9 +122,15 @@ For each option, provide:
 
 **Risk** — what would make this hard to own (e.g., a competitor could easily copy it, the brand doesn't yet have the proof points to back it).
 
+**Whitespace check** - what the pressure-test below searched and what came back: "searched [queries]; nothing beyond the mapped set claims this" or "contested: [who] uses similar language - option sharpened to avoid the overlap".
+
+### Pressure-test each option before finalizing
+
+The map covers 4-6 rivals; the market is bigger. For each option, run 1-2 web searches on the language it would own - the draft tagline in quotes, and `"[category] [the option's angle or audience]"` - looking for companies *beyond the mapped set* already occupying that ground. This tests the claim against the live market instead of relying on model knowledge, which can be stale or incomplete. If someone already claims it, the territory is contested: name them, and either sharpen the option away from the overlap or keep it with the conflict stated. Record the result in the option's **Whitespace check** line.
+
 ## Step 7: Make a Recommendation
 
-Pick the strongest option and explain the choice clearly. Don't hedge — the user can push back if they disagree. Reference the competitive map: "Competitors A, B, and C all occupy the simplicity territory. Option 2 claims the outcome-focused position that none of them are making, and the brand's case studies give them the proof points to back it up."
+Pick the strongest option and explain the choice clearly. Don't hedge — the user can push back if they disagree. Reference the competitive map: "Competitors A, B, and C all occupy the simplicity territory. Option 2 claims the outcome-focused position that none of them are making, and the brand's case studies give them the proof points to back it up." Cite the whitespace check alongside the map - a recommendation is only as strong as the coverage behind it.
 
 ## Output
 
@@ -144,6 +154,8 @@ Save to the project folder as `YYYY-MM-DD-positioning.md`. Never overwrite an ex
 ### Territory Notes
 [Which positions are crowded, which are sparsely occupied, and what this means for the brand]
 
+> **Coverage note:** this analysis is only as complete as the competitor set it could find and check - the [N] competitors mapped above plus the whitespace search sweep. A rival this run didn't surface could occupy the same territory, so read "open" as "open among what was checked" and weigh the recommendation accordingly.
+
 ---
 
 ## Target Brand: Current Positioning
@@ -159,6 +171,7 @@ Save to the project folder as `YYYY-MM-DD-positioning.md`. Never overwrite an ex
 **Territory:** [what competitive whitespace this claims]
 **Rationale:** [why this is open and why the brand can own it]
 **Risk:** [what could work against this]
+**Whitespace check:** [what was searched; "nothing beyond the mapped set claims this" or "contested: who, and how the option was adjusted"]
 
 ### Option 2: [Territory Name]
 [same structure]
