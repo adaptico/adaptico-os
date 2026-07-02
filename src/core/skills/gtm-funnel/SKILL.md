@@ -1,6 +1,6 @@
 ---
 name: gtm-funnel
-version: 1.2.0
+version: 1.2.2
 description: Funnel and activation analysis for /gtm funnel <target>: maps the public funnel (landing, pricing, signup) and works with the founder on the post-signup path to first value. Use when the user wants to find funnel drop-off/leaks or improve trial-to-paid and PLG activation. Also trigger for "fix my funnel", "where am I losing users", "activation rate", "trial conversion", or "funnel leaks".
 ---
 
@@ -40,7 +40,7 @@ With no profile loaded, derive what you can from the page and ask the user for t
 
 ### Before mapping: what's public, and what to ask for
 
-This skill reads your *public* pages - landing, pricing, the signup form, docs and quickstarts, product-tour and demo pages, changelog, and third-party reviews. It can't log in or walk the post-signup flow, so onboarding, the empty state, and the activation moment are invisible unless the founder shows them. Before mapping, ask once (skip if a profile field or a linked reference doc already describes the flow):
+This skill reads your *public* pages - landing, pricing, the signup form, docs and quickstarts, product-tour and demo pages, changelog, and third-party reviews. With a profile loaded, take these from `Links & Channels -> Key pages` first and fill the gaps with what the site's nav exposes - the profile list persists across runs, so every funnel read walks the same pages. It can't log in or walk the post-signup flow, so onboarding, the empty state, and the activation moment are invisible unless the founder shows them. Before mapping, ask once (skip if a profile field or a linked reference doc already describes the flow):
 
 > "I can see everything up to your signup form. For what happens after signup - onboarding, and the moment a new user first gets value - tell me whatever you can: a sentence or two on the steps, a screenshot or screen-recording, or a link or doc (onboarding guide, Loom, help-center article). It's optional - without it I'll infer those steps from your docs, demos, and reviews and mark them as inferred."
 
@@ -264,7 +264,7 @@ Rank every recommendation using this framework:
 ### 4.2 Funnel-Stage-Specific Optimizations
 
 **Top of Funnel (visit to signup):**
-- Headline A/B testing for message match with the traffic source (expected lift: 10-30%)
+- Headline message-match fix against the traffic source (expected lift: 10-30%; A/B test it only if traffic allows - otherwise just ship the matched version)
 - Social proof near the signup CTA (expected lift: 5-15%)
 - Page speed optimization (expected lift: 5-20%)
 - Cut signup-form fields to the minimum (expected lift: ~7% per field removed)
@@ -368,13 +368,17 @@ Write the full output to the resolved output path as `YYYY-MM-DD-funnel-analysis
 **Startup Type:** [type]
 **Funnel Shape:** [landing -> ... -> paid]
 **Activation Moment:** [the single first-value action]
+**Evidence:** [X] observed · [Y] founder-provided · [Z] inferred
+**Scope:** public pages plus what the founder shared - steps behind login that weren't shown are reconstructed from public signals and labeled inferred
 **Overall Funnel Health: [X]/100**
 
 ---
 
 ## Executive Summary
 [3-4 paragraphs: funnel shape and activation moment, current performance,
-biggest bottleneck, top 3 fixes with revenue impact]
+biggest bottleneck, top 3 fixes with revenue impact. State the scope plainly:
+the analysis covers public surfaces plus what the founder provided, and
+inferred steps are best reconstructions, not observations]
 
 ---
 
@@ -442,6 +446,7 @@ signups drop before first value, and the single highest-priority fix]
 Business: [name]
 Funnel Shape: [landing -> ... -> paid]
 Steps: [count]
+Evidence: [X] observed · [Y] founder-provided · [Z] inferred
 Funnel Health: [X]/100
 
 Conversion Flow:
