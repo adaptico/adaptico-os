@@ -1,6 +1,6 @@
 ---
 name: gtm-social
-version: 1.2.0
+version: 1.2.2
 description: Founder-led social for /gtm social <target>: leads early with participating in the conversations where your buyers already are - drafting specific, useful replies on Reddit, Hacker News, LinkedIn, and X - plus a lean X/LinkedIn posting calendar that becomes the bigger play as an audience forms. Use when the user wants a social plan, founder-led distribution, or help knowing what to post and where to engage. Also trigger for "content calendar", "what should I post", "social media plan", "founder content", "where should I engage", or "LinkedIn/X posts".
 ---
 
@@ -36,6 +36,7 @@ Before fetching anything, run the orchestrator's *Project Resolution*. With a pr
 - **Primary channel today**, **Existing assets**, and **Links & Channels** (Social profiles) - the platforms the founder is already on and the audience size; this sets the conversation-vs-calendar weighting (no audience -> mostly participating in conversations; an established following -> invest more in the calendar).
 - **Startup type**, **Stage**, and **Main goal** - the type points to which communities the buyers gather in; the stage sets the weighting; the goal is what the work drives toward (replies, profile clicks, signups).
 - **User-Added** and **AI-Researched competitors** - whose audiences, subreddits, and threads to mine: competitor mentions and "alternatives to X" discussions are the highest-intent places to join the conversation. Read what's in the profile; don't run discovery (that's `/gtm competitors`).
+- **`LOG.md`** (beside the profile) - channels and content already tried. If the log shows weeks of posting into a channel with nothing to show for it, don't restart it unchanged - shift the weighting toward conversations or a different channel and say why.
 - Then read any `YYYY-MM-DD-positioning.md`, `YYYY-MM-DD-competitor-report.md`, or `YYYY-MM-DD-brand-voice.md` in the folder and reuse their findings (the POV, the rival list, the voice) rather than re-deriving them.
 
 With no profile loaded, derive what you can from the page and the brand's public social, and note that running `/gtm init` would tailor the plan to the founder's ICP, voice, competitors, and goal.
@@ -294,5 +295,6 @@ Full plan saved to: YYYY-MM-DD-social-calendar.md
 
 - If a `*-competitor-report.md` or `*-positioning.md` exists, use the rival list and differentiation angle to pick which conversations to join ("alternatives to X" discussions) and to frame both replies and posts.
 - If a `*-copy-suggestions.md` exists, reuse its value propositions and CTA language so social, site, and replies say the same thing.
+- If a `*-brand-voice.md` exists, match all social copy to the documented voice guidelines.
 - If a `*-launch-playbook.md` exists, line the calendar up to amplify the launch window.
 - Suggest follow-up: `/gtm copy` for website messaging the posts point to, and `/gtm position` if the differentiation angle is still fuzzy.

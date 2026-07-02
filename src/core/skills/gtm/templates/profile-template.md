@@ -51,4 +51,5 @@
 ## Context & notes
 - **Primary channel today:** *Where users come from now (Twitter, SEO, outbound, PH, word of mouth…).*
 - **Existing assets:** *Landing page, blog, email list size, social following, etc.*
+- **GTM log:** `LOG.md` beside this profile holds the dated history of what was tried and what happened - commands read it before recommending.
 - **Notes:**

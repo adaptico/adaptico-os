@@ -1,6 +1,6 @@
 ---
 name: gtm-outreach
-version: 1.0.0
+version: 1.0.1
 description: Cold outbound sequences for /gtm outreach <target> - multi-touch, value-first cold email and LinkedIn DM sequences for founder-led manual outreach to land the first customers. Use when the user wants cold outreach, outbound, cold email, LinkedIn DMs, prospecting messages, or founder-led sales scripts. Also trigger for "write cold emails", "outbound sequence", "LinkedIn outreach", "how do I reach prospects", "cold DM", or "founder sales script".
 ---
 
@@ -25,6 +25,7 @@ Run the orchestrator's *Project Resolution* first. With a profile loaded, read `
 - **Tone** and **Avoid** - the founder's voice every message matches, and the claims to never make.
 - **Startup type** - sets the default channel (Phase 1) and the buyer.
 - **Main goal** - the conversation each sequence is trying to start (a reply, a problem confirmed, a first call).
+- **`LOG.md`** (beside the profile) - what's already been tried. If it shows past outreach - a channel tested, an angle that flopped, a segment already contacted - don't repeat it cold: change the angle or the audience and say why. After a campaign, results belong back in the log (dated, with numbers) so the next run starts smarter.
 
 With no profile loaded, ask for the product, the ICP, and the one problem it solves, and note that `/gtm init` would tailor this to the founder's ICP and positioning.
 

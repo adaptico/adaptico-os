@@ -33,7 +33,7 @@ adaptico-os/
 ## How a Founder Uses It
 
 1. Install the skills (`./install.sh`) into their own workspace.
-2. Run `/gtm init` to create a `projects/<project-name>/PROFILE.md` describing their startup (URL, type, stage, ICP, goal, competitors).
+2. Run `/gtm init` to create a `projects/<project-name>/PROFILE.md` describing their startup (URL, type, stage, ICP, goal, competitors), plus a `LOG.md` history of what's been tried.
 3. Run commands against their own site — e.g. `/gtm audit`, `/gtm position`, `/gtm landing`.
 4. Reports save to the project directory (`projects/<project-name>/`) with a `YYYY-MM-DD-` prefix.
 

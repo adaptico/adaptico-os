@@ -1,6 +1,6 @@
 ---
 name: gtm
-version: 1.1.0
+version: 1.2.2
 description: Adaptico OS — the go-to-market operating system for SaaS & AI startup founders. Routes /gtm commands (audit, quick, position, competitors, copy, landing, launch, init). Use whenever the user types /gtm, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
 ---
 
@@ -34,6 +34,7 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourstartup.com`
 ## Running Any Command
 
 Every free-edition skill installs and runs anytime — there are no locked or gated commands.
+A few skills pay off mainly at a later stage (e.g. `brand`, `social`); each runs the central **Stage-Fit Check** against the founder's tier in `PROFILE.md` (via `templates/advisor-prompt.md`) and, if premature for that tier, opens with one honest Strategic Advisor Note before proceeding (it never refuses).
 `/gtm init` recommends what to focus on first for the founder's stage, and `/gtm audit` doubles as the canonical report — re-run it to track week-over-week progress.
 
 ## Project Resolution
@@ -74,6 +75,7 @@ Never overwrite an existing file — if the same date already exists, append `-2
 **Step 4 — Inject context:**
 With a profile loaded, tailor the analysis — reference the stated goal, ICP, audience, tone, and known context throughout the output.
 Then read every doc linked in the profile's **Reference Documents** section (the `@filename` entries in the same project folder) and treat it as source of truth: a brand manifesto governs voice and messaging; a strategy doc steers priorities. If a linked file is missing, note it and continue.
+Also read `LOG.md` in the project folder when it exists - the dated, append-only history of what was tried and what happened (the founder's attempts, and Adaptico OS actions as they get logged). Weigh it before recommending: don't re-pitch cold what the log shows already failed, and build on what it shows worked. Read it, don't rewrite it - a skill appends entries in the log's own fixed format only where its instructions say so.
 With no profile loaded (a one-off), run untailored and note once in the output that `/gtm init` would tailor future runs to the founder's ICP, positioning, and goal.
 
 ## Routing Logic
@@ -150,6 +152,7 @@ This protocol applies whenever a `PROFILE.md` or `BRIEF.md` is loaded, for any c
 - **Option 2**: Run competitor discovery inline (same process as `/gtm competitors` Phase 1–2), write results to the `AI-Researched Competitors` section of PROFILE.md, then continue.
 - **Option 3**: Do both — collect user input first, then research to fill gaps.
 - **Option 4**: Continue without competitor data; note the limitation in the output report.
+- **No answer** (or an unattended/scheduled run): default to option 4 - continue without competitor data and note the limitation in the output. Never leave a run waiting on this question.
 
 **Writing back to PROFILE.md:**
 When adding AI-researched competitors, append to the `### AI-Researched Competitors` section:

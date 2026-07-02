@@ -1,6 +1,6 @@
 ---
 name: gtm-init
-version: 1.1.5
+version: 1.2.0
 description: Set up or update the startup profile (PROFILE.md) that the rest of Adaptico OS uses as context, for /gtm init [name]. Use when the user wants to create, set up, or edit their startup profile, or onboard a new project. Also trigger for "set up my startup", "create a profile", "onboard my project", or "start a new GTM project".
 ---
 
@@ -51,6 +51,7 @@ Ask these one at a time. Keep it short and founder-friendly.
 7. **Competitors** — "Any competitors or alternatives in mind? Names or URLs, one per line — or leave blank, I can research them with `/gtm competitors`."
 8. **Documentation** — "What's your documentation or developer-docs URL, if you have one?" Always ask this explicitly — site parsing (Step 2d) can miss it, and it's the link worth having for certain.
 9. **Key pages & socials** *(optional)* — "Any other key links — pricing, blog, changelog, GitHub, social profiles? Paste what you've got, one per line."
+10. **What have you already tried?** — "Last one: what have you already done to get users — a launch, ads, cold outreach, content, communities? And what happened? Rough numbers or a gut feeling both count. If you keep notes or a log file, drop it into `projects/<name>/` and I'll pull from it."
 
 When the interface offers suggested answers to these questions, write them for a founder who has never done marketing:
 - Plain words only - no GTM or insider jargon (PLG, activation, CAC, mid-market, discovery-to-delivery, scaleup...). If a term is genuinely needed, say it plainly and gloss it in the same breath.
@@ -65,6 +66,8 @@ Q1-Q3 lead; Q3 maps to a route behind the scenes (the founder never sees these l
 - **Tier 2 - Find a Channel** - product live with early customers, acquisition still manual, conversion is the bottleneck. PMF is there; no repeatable channel yet.
 - **Tier 3 - Scale the Channel** - one channel works but it's manual and fragile; traffic or retention is the bottleneck. Optimize, automate, and defend it.
 - **Tier 4 - Systematize Growth / Tier 5 - Build the Organization** - sound business, founder-led growth stalling, time is the real constraint (typically $10k+ MRR). The tools still run, but there's no tier-specific playbook here yet.
+
+**Write the attempts to `LOG.md`:** a log entry is only useful with a date and an outcome, so if the founder named attempts without them, ask once more - briefly, all together: "Roughly when was each of those - month-level or 'about three months ago' is fine - and what came of them?" One follow-up is the cap; don't interrogate. Convert relative answers to approximate absolute dates with a `?` ("about three months ago" -> `2026-04?`). Then write one line per attempt, oldest first, to `projects/<name>/LOG.md` in the log's fixed format - creating the file from `templates/log-template.md` if it doesn't exist. Attempts never go into `PROFILE.md`; the profile points to the log.
 
 ---
 
@@ -83,6 +86,7 @@ Go through blank fields **one at a time** in this priority order:
 6. `User-Added Competitors` (offer `/gtm competitors` to discover more)
 7. `Links & Channels` (documentation, key pages, socials)
 8. `Tone` / `Key messages`
+9. `LOG.md` - not a profile field, but check it here: if the log is missing or empty, ask the what-have-you-tried question (Step 2a #10) and write it
 
 Skip any field that already has a real value — never ask the user to re-confirm it. If nothing is blank, say the profile looks complete and suggest a next step.
 
@@ -90,7 +94,7 @@ Skip any field that already has a real value — never ask the user to re-confir
 
 ## Step 2c: Detect reference documents (both modes)
 
-Scan `projects/<name>/` for supporting docs the founder dropped in — any `.md` other than `PROFILE.md` and dated reports (`YYYY-MM-DD-*.md`). For each, infer its role from the filename/contents (brand manifesto, strategy/GTM plan, style guide, ICP research…) and link it under the matching label in the **Reference Documents** section as `@filename`. Only link files that actually exist — never invent one. This is local files only; the founder's external documentation *site* belongs in Links & Channels (Step 2d), not here.
+Scan `projects/<name>/` for supporting docs the founder dropped in — any `.md` other than `PROFILE.md`, `LOG.md`, and dated reports (`YYYY-MM-DD-*.md`). For each, infer its role from the filename/contents (brand manifesto, strategy/GTM plan, style guide, ICP research…) and link it under the matching label in the **Reference Documents** section as `@filename`. Only link files that actually exist — never invent one. This is local files only; the founder's external documentation *site* belongs in Links & Channels (Step 2d), not here.
 
 If none are found, leave the hint text and tell the founder once:
 > "Have a brand manifesto, strategy, or style guide? Drop it into `projects/<name>/` and re-run `/gtm init <name>` — every command will then read and apply it."
@@ -160,3 +164,4 @@ Keep this to a few lines - one clear next action, not a menu dump.
 - In update mode, never overwrite fields that already have values.
 - Never touch `### AI-Researched Competitors` — that section belongs to `/gtm competitors`.
 - Always create and update `PROFILE.md` inside `projects/<name>/`.
+- `LOG.md` is append-only history - add entries, never rewrite or delete past ones (only a `pending` outcome gets updated in place).
