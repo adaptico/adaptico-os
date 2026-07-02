@@ -1,6 +1,6 @@
 ---
 name: gtm-launch
-version: 1.1.2
+version: 1.3.0
 description: Launch playbook for /gtm launch <target>. Use when the user wants a week-by-week launch plan for Product Hunt, Hacker News, or X, with templates, checklists, and metrics. Also trigger for "plan my launch", "Product Hunt launch", "launch playbook", "how do I launch", or "launch checklist".
 ---
 
@@ -45,12 +45,12 @@ Then collect the inputs below - with a profile loaded, only the launch-specific 
 
 1. **What are you launching?** (product, service, feature, course, event)
 2. **Who is the target audience?** (demographics, pain points, existing list size)
-3. **What is the primary launch goal?** (revenue target, signups, downloads, awareness)
+3. **What is the primary launch goal?** (signups, email captures, feedback, revenue target, awareness) - pre-PMF, steer the goal toward email captures and feedback conversations rather than revenue (see the early-stage default in Step 2)
 4. **What is the launch date?** (or desired timeline)
 5. **What channels do you have access to?** (email list size, social following, ad budget, partnerships)
 6. **What is the price point?** (if applicable)
 7. **Do you have existing customers/users?** (for beta, testimonials, case studies)
-8. **What is the budget?** (bootstrapped, moderate, well-funded)
+8. **What is the budget?** (bootstrapped, moderate, well-funded) - when you present these as options, lead each with its top spend from the Step 10 allocation guide; never lead a tier with paid ads (at these stages "paid" means retargeting warm launch traffic, not cold acquisition).
 
 ### Step 2: Determine Launch Type
 Select the primary launch strategy based on the user's context:
@@ -64,6 +64,8 @@ Select the primary launch strategy based on the user's context:
 | Community Launch | Niche product, developer tools | Reddit, Discord, Slack communities | 6-8 weeks |
 | Partner Launch | B2B, enterprise, marketplace | Partner channels | 8-12 weeks |
 | Hybrid Launch | Any high-stakes launch | Multi-channel coordinated | 8-12 weeks |
+
+**Early-stage default (Tiers 1-2, no audience yet):** treat the launch as one event, not a strategy - a Product Hunt + directories moment whose real yields are email captures, feedback conversations, a handful of early adopters, and durable backlinks. Set the goal in those units, not revenue. Expect the traffic spike to decay within days; the plan's job is to convert the spike into a list and learnings before it fades.
 
 ### Step 3: Generate the 8-Week Launch Timeline
 
@@ -204,6 +206,26 @@ Select the primary launch strategy based on the user's context:
 - [ ] Identify top customers for case studies
 - [ ] Begin planning v2 features based on feedback
 - [ ] Set up ongoing marketing engine (content, ads, email nurture)
+
+### Step 3b: Directory Submission Pack (Product Hunt + directories launches)
+
+Directories all ask for the same assets in different lengths. Generate the pack once from the profile's positioning (`Differentiator`, `Key messages`, the one-liner), ready to paste into any submission form:
+
+- **Tagline** (60 characters or less)
+- **Short description** (140 characters or less)
+- **Long description** (~500 words)
+- **Keyword list** (comma-separated)
+- **Maker's comment** (first person - the story of why you built it, ending with an honest ask for feedback)
+
+Submission order: directories first (they build the backlink base quietly), Product Hunt as the peak event.
+
+| Tier | Targets | Why |
+|---|---|---|
+| 1 - Launch platforms | Product Hunt, BetaList, Peerlist Launchpad | Launch-day visibility and early adopters |
+| 2 - Software directories | SaaSHub, AlternativeTo, Capterra | Steady referral trickle + domain-authority backlinks |
+| 3 - AI-specific (for AI products) | Toolify.ai, There's An AI For That, Future Tools | Category browsers actively hunting new AI tools |
+
+The table is the stable core, not a ceiling - platforms appear and fade, so run one quick web search per launch (`"[category] launch platforms"`, `"Product Hunt alternatives"`) and slot anything current and relevant into the right tier. Every listing should point at a page with an email capture, so directory traffic that doesn't convert today still lands on the list.
 
 ### Step 4: Email Sequence Templates
 
@@ -403,6 +425,8 @@ Track these metrics in real-time during launch week:
 - Support ticket volume
 - NPS score
 
+**Pre-PMF scoreboard (Tiers 1-2):** email captures, feedback conversations started, and activated early adopters - in that order. Upvotes and traffic are inputs, not outcomes; revenue targets belong to launches that already have an audience to sell to.
+
 ### Step 9: Common Launch Mistakes to Avoid
 
 1. **Launching to nobody** -- Build the audience BEFORE the product is ready
@@ -420,10 +444,12 @@ Track these metrics in real-time during launch week:
 
 | Budget Level | Allocation |
 |---|---|
-| **Bootstrapped ($0-500)** | 100% organic: content, communities, email list, personal outreach |
-| **Moderate ($500-5,000)** | 40% paid ads, 30% influencer/partner, 20% tools/software, 10% design |
-| **Well-Funded ($5,000-25,000)** | 35% paid ads, 25% influencer/partner, 20% PR/media, 10% events, 10% tools |
+| **Bootstrapped ($0-500)** | 100% organic: content, communities, founder-led social, manual outreach |
+| **Moderate ($500-5,000)** | 35% design/assets (demo video, landing page, launch graphics), 30% tools/software (email, analytics, scheduling), 25% influencer/partner/community seeding, 10% retargeting ads (warm launch visitors only, not cold acquisition) |
+| **Well-Funded ($5,000-25,000)** | 25% influencer/partner, 25% PR/media, 20% content/assets, 15% events, 15% paid ads (retargeting first; cold acquisition only once PMF is validated) |
 | **Enterprise ($25,000+)** | 30% paid ads, 20% events/webinars, 20% PR, 15% influencer, 10% content, 5% tools |
+
+At the served tiers the founder is usually pre- or early-PMF, so fundamentals lead and "paid" means retargeting warm launch visitors, not cold acquisition - cold paid pre-PMF burns scarce cash (B2B SaaS CAC $150-$500) and corrupts the read on real demand. Scale cold acquisition only once the funnel converts the traffic it already gets. (Enterprise sits at Tier 4-5, where paid acquisition is a legitimate core channel, so it leads there.)
 
 ### Step 11: Post-Launch Analysis Framework
 
@@ -451,6 +477,9 @@ Write the report to the resolved output path as `YYYY-MM-DD-launch-playbook.md` 
 
 ---
 
+## What to Expect
+[Include this section in every early-stage playbook - an honest, founder-facing paragraph: this launch is one event, not a growth strategy. For a product nobody knows yet, a good launch day is hundreds of visitors, a few dozen list signups, and a handful of real conversations - the durable yield is the email list, the feedback, and the backlinks. This playbook is the map; the results come from you doing the manual work - replying to every comment, following up with every signup, showing up all day.]
+
 ## Week-by-Week Plan
 [Detailed week-by-week tasks with checkboxes]
 
@@ -459,6 +488,9 @@ Write the report to the resolved output path as `YYYY-MM-DD-launch-playbook.md` 
 
 ## Social Media Content
 [Platform-specific posts ready to customize and schedule]
+
+## Directory Pack
+[Tagline, short and long descriptions, keyword list, maker's comment, and the tiered submission table with order]
 
 ## Partner/Influencer Plan
 [Outreach templates and coordination timeline]
