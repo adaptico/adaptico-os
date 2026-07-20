@@ -1,6 +1,6 @@
 ---
 name: gtm-brand
-version: 1.2.0
+version: 1.2.2
 description: Brand voice analysis and guidelines for /gtm brand <target>. Audits the live voice (formal/casual, technical/simple, archetype, consistency) and produces a reusable voice guide: voice chart, do's and don'ts, messaging hierarchy, and on-brand copy samples your team or AI can write from. Use when the user wants to define, analyze, or document their brand voice, tone, and messaging, or keep copy consistent. Also trigger for "what's our brand voice", "brand guidelines", "tone of voice", "how should we sound", or "make our copy consistent".
 ---
 
@@ -13,7 +13,7 @@ description: Brand voice analysis and guidelines for /gtm brand <target>. Audits
 > "A brand book (voice, tone, messaging) is a scale concern, not a survival one - it's wasted while your ICP is still moving. A one-line voice rule is plenty for now."
 > Then generate the work anyway - never refuse.
 
-> Full persona and general guidance: read `@templates/advisor-prompt.md`.
+> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 ## Skill Purpose
 Analyze a brand's voice, tone, and messaging across all available channels and generate a comprehensive brand voice guidelines document. This skill examines how a brand communicates, identifies patterns and inconsistencies, and produces actionable guidelines that any writer or marketer can follow to maintain brand consistency.
@@ -69,7 +69,7 @@ Founder-provided material can be pasted inline or dropped into the project folde
 
 **Label every observation** by where it came from - **public** (fetched), **founder-provided** (pasted or uploaded), or **inferred** (your best read from a public signal) - so the founder knows which parts are grounded in real copy and which are reconstruction. This matters most in the Consistency Audit (Step 7): when the founder hasn't shared in-product or email samples, don't claim consistency across those channels - say what's missing.
 
-Use browser tools or the bundled page analyzer (`python3 .claude/skills/gtm/scripts/analyze_page.py <url>`) to fetch public pages. If a fetch fails, use the orchestrator's *Web Fetching Fallback Protocol*.
+Use browser tools or the bundled page analyzer (`node .claude/skills/gtm/scripts/analyze_page.js <url>`) to fetch public pages. If a fetch fails, use the orchestrator's *Web Fetching Fallback Protocol*.
 
 ### Step 2: Voice Dimension Analysis
 Map the brand's voice along four primary dimensions. Each dimension is a spectrum, not a binary.

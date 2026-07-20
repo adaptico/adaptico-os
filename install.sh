@@ -97,12 +97,12 @@ for skill_path in "$SRC_DIR/skills"/*/; do
     fi
     rm -rf "$SKILLS_DIR/$skill"
     cp -R "$skill_path" "$SKILLS_DIR/$skill"
-    # Make any bundled scripts executable (e.g. gtm/scripts/*.py).
+    # Make any bundled scripts executable (e.g. gtm/scripts/*.js).
     # Pure-bash glob (no `find`) so it doesn't collide with Windows find.exe on Git Bash.
     if [ -d "$SKILLS_DIR/$skill/scripts" ]; then
         shopt -s nullglob
-        for py in "$SKILLS_DIR/$skill/scripts"/*.py; do
-            chmod +x "$py"
+        for script in "$SKILLS_DIR/$skill/scripts"/*.js; do
+            chmod +x "$script"
         done
         shopt -u nullglob
     fi
@@ -126,14 +126,14 @@ shopt -u nullglob
 # Scripts and templates live inside src/core/skills/gtm/ (scripts/, templates/) and are
 # installed together with the gtm skill in the loop above — no separate copy step needed.
 
-# Python check (the analysis scripts use only the Python standard library)
-echo -e "\n${BLUE}Checking Python...${NC}"
-if command -v python3 &>/dev/null; then
-    PYTHON_VERSION=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>/dev/null)
-    echo -e "  ${GREEN}✓${NC} Python $PYTHON_VERSION detected (scripts run on the standard library)"
+# Node check (the analysis scripts are zero-dependency Node - nothing to npm install)
+echo -e "\n${BLUE}Checking Node.js...${NC}"
+if command -v node &>/dev/null; then
+    NODE_VERSION=$(node --version 2>/dev/null)
+    echo -e "  ${GREEN}✓${NC} Node.js $NODE_VERSION detected (scripts run on the standard library)"
 else
-    echo -e "  ${YELLOW}⚠${NC} Python 3 not found — the analysis scripts won't run"
-    echo -e "    Install Python: ${CYAN}https://python.org${NC}"
+    echo -e "  ${YELLOW}⚠${NC} Node.js not found - the analysis scripts won't run"
+    echo -e "    Install Node.js: ${CYAN}https://nodejs.org${NC}"
 fi
 
 # Cleanup temp clone if used

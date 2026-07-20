@@ -1,4 +1,0 @@
-# Adaptico OS — Python Dependencies
-#
-# Core edition: NONE required. The analysis scripts use only the Python standard
-# library (urllib for fetching) - nothing to pip install.
