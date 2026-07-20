@@ -4,6 +4,20 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.7.0]
+
+### Added
+- `/gtm critic` - an adversarial red-team of any saved report or draft: severity-ranked findings (Critical / Major / Minor) with exact-line citations, the principle each one breaks, and the single most valuable fix. `/gtm copy`, `/gtm landing`, `/gtm position`, and `/gtm audit` can run it as an optional pass before saving.
+- `/gtm audit` now computes its composite score with a bundled script instead of by hand, so the same six category scores always give the same score, grade, and band. Unresolved Critical findings from a critic pass cap the composite at 69 (grade C), shown next to the uncapped value.
+
+### Changed
+- The bundled analysis scripts are now zero-dependency Node instead of Python. **Node.js is required; Python no longer is**, and `requirements.txt` is gone.
+- The `/gtm competitors` scanner takes several competitor URLs per run and returns more: positioning, a pricing-page probe, trust signals, CTAs, and content stats.
+
+### Fixed
+- Skills pointed at the advisor framework by a path that didn't resolve from their own folder; they now use its installed location and fall back cleanly when it's absent.
+- The bundled fetchers connect to the exact address that passed URL validation, closing a DNS-rebinding window that a re-resolve reopened.
+
 ## [0.6.0]
 
 ### Added
