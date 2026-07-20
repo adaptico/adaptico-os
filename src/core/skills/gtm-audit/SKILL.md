@@ -1,6 +1,6 @@
 ---
 name: gtm-audit
-version: 1.2.1
+version: 1.3.1
 description: Full go-to-market marketing audit for /gtm audit <target>. Runs 5 parallel audit subagents (content, conversion, competitive, technical, strategy) and produces a unified, scored, date-stamped report. Use when the user wants a full marketing/GTM audit, an overall website marketing review, or a composite GTM score. Also trigger for "audit my site", "review my marketing", "how's my GTM", "full marketing teardown", or "score my website".
 ---
 
@@ -10,7 +10,7 @@ description: Full go-to-market marketing audit for /gtm audit <target>. Runs 5 p
 >
 > Stage-fit (`audit`): Tier 1 Core · Tier 2 Core · Tier 3 Core. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `@templates/advisor-prompt.md`.
+> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the full marketing audit engine for `/gtm audit <target>`. You launch 5 parallel subagents, aggregate their results, and produce a unified, date-stamped audit report (`YYYY-MM-DD-gtm-audit.md`) that is presentation-ready and revenue-focused. Because each run is dated and never overwritten, re-running the audit over time turns the report history into a **week-over-week progress tracker** — this is the canonical way to monitor a startup's GTM development.
 
@@ -53,7 +53,7 @@ Use `WebFetch` to retrieve the homepage and up to 5 key interior pages (pricing,
 For the homepage and each key page, run the page analyzer bundled with the gtm skill to get machine-extracted facts instead of eyeballing raw HTML:
 
 ```bash
-python3 .claude/skills/gtm/scripts/analyze_page.py <url>
+node .claude/skills/gtm/scripts/analyze_page.js <url>
 ```
 
 It returns JSON with the title tag, meta description, Open Graph tags, full heading hierarchy (H1-H6), internal/external links, image alt-text coverage, forms and CTAs, schema/structured data, social links, tracking scripts, viewport, canonical, and robots directives. Store this alongside the raw content and pass it to every subagent — it is the factual backbone of the audit. In particular, `gtm-technical` should base its SEO and structured-data findings on it, and `gtm-content` / `gtm-conversion` should use the extracted headings, CTAs, and forms rather than re-deriving them.
@@ -172,29 +172,18 @@ Evaluates:
 
 ## Phase 3: Synthesis (Aggregation and Scoring)
 
-### 3.1 Scoring Methodology
+### 3.1 Scoring Methodology (deterministic)
 
-Compute the composite Marketing Score using weighted averages:
+Each subagent's 0-100 category score is an LLM judgment against its rubric. Everything after that - the weights, the rounding, the grade banding, and the critical-findings cap - is one deterministic script bundled with the gtm skill. Never hand-compute or adjust the composite; run the script and use its output verbatim:
 
-```
-Marketing Score = (
-    Content_Score      * 0.25 +
-    Conversion_Score   * 0.20 +
-    SEO_Score          * 0.20 +
-    Competitive_Score  * 0.15 +
-    Brand_Score        * 0.10 +
-    Growth_Score       * 0.10
-)
+```bash
+node .claude/skills/gtm/scripts/gtm_score.js \
+  --content 72 --conversion 65 --seo 70 --competitive 60 --brand 75 --growth 68 --criticals 0
 ```
 
-**Score interpretation:**
-| Score Range | Grade | Meaning |
-|-------------|-------|---------|
-| 85-100 | A | Excellent — minor optimizations only |
-| 70-84 | B | Good — clear opportunities for improvement |
-| 55-69 | C | Average — significant gaps to address |
-| 40-54 | D | Below average — major overhaul needed |
-| 0-39 | F | Critical — fundamental marketing issues |
+It returns JSON with the weighted composite (Content 25%, Conversion 20%, SEO 20%, Competitive 15%, Brand 10%, Growth 10%), the letter grade with its band meaning (A 85-100, B 70-84, C 55-69, D 40-54, F 0-39), per-vector weighted contributions, and the weakest/strongest vectors. Same six inputs, same score, every run - the composite is a method, not a vibe (`--selftest` proves the math). Take the report's score, grade, and band strings from this output.
+
+`--criticals` is the count of unresolved Critical findings from a critique pass, 0 when none ran. One or more caps the composite at 69 (grade C): a report standing on a critical defect cannot grade "good", however strong the other vectors. When the cap fires, the JSON carries both values - show `composite` as the score and note the `uncapped` value beside it.
 
 ### 3.2 Aggregate Recommendations
 
@@ -278,6 +267,12 @@ This is what lets `/gtm audit` double as a recurring progress report. Before wri
 If no prior audit exists, skip this and note "first audit — no baseline yet." Never invent a baseline.
 
 ---
+
+### 3.6 Optional Critic Gate (on request)
+
+If the founder asked for a critiqued or red-teamed audit, run the `gtm-critic` review protocol (`skills/gtm-critic/SKILL.md`) on the draft report before saving: fix or verify its Major and Minor findings, and pass its count of unresolved Critical findings to the score script as `--criticals` - one or more caps the composite at 69 (grade C). When the cap fires, say so plainly in the Score Breakdown ("capped by N unresolved Critical finding(s): [one-line list]") and show the uncapped value beside it. Also read any `*-critique.md` of a prior audit in the folder: Criticals it raised that this run has not resolved still count toward the cap.
+
+On a default run (nobody asked), skip this gate and mention `/gtm critic` once after the report saves. Never leave a run waiting on an answer.
 
 ## Output Format
 
