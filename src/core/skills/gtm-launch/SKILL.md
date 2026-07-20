@@ -1,6 +1,6 @@
 ---
 name: gtm-launch
-version: 1.3.0
+version: 1.3.1
 description: Launch playbook for /gtm launch <target>. Use when the user wants a week-by-week launch plan for Product Hunt, Hacker News, or X, with templates, checklists, and metrics. Also trigger for "plan my launch", "Product Hunt launch", "launch playbook", "how do I launch", or "launch checklist".
 ---
 
@@ -10,7 +10,7 @@ description: Launch playbook for /gtm launch <target>. Use when the user wants a
 >
 > Stage-fit (`launch`): Tier 1 Core · Tier 2 Useful · Tier 3 Useful. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `@templates/advisor-prompt.md`.
+> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 ## Skill Purpose
 Generate a complete, week-by-week launch playbook for any product, service, or feature launch. This skill produces a tactical plan with templates, checklists, email sequences, social posts, and metrics tracking -- everything needed to execute a successful launch.

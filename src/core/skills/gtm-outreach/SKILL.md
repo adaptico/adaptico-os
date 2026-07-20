@@ -1,6 +1,6 @@
 ---
 name: gtm-outreach
-version: 1.0.1
+version: 1.0.2
 description: Cold outbound sequences for /gtm outreach <target> - multi-touch, value-first cold email and LinkedIn DM sequences for founder-led manual outreach to land the first customers. Use when the user wants cold outreach, outbound, cold email, LinkedIn DMs, prospecting messages, or founder-led sales scripts. Also trigger for "write cold emails", "outbound sequence", "LinkedIn outreach", "how do I reach prospects", "cold DM", or "founder sales script".
 ---
 
@@ -10,7 +10,7 @@ description: Cold outbound sequences for /gtm outreach <target> - multi-touch, v
 >
 > Stage-fit (`outreach`): Tier 1 Core · Tier 2 Core · Tier 3 Useful. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `@templates/advisor-prompt.md`.
+> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the cold-outreach engine for `/gtm outreach <target>`. You generate multi-touch, value-first outreach sequences - cold email and LinkedIn DM - for a founder doing manual, founder-led sales to land the first customers. This is the "do things that don't scale" motion: a handful of well-researched, personal messages a day, not an automated blast.
 
