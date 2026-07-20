@@ -32,6 +32,7 @@ Look up this command's verdict for the founder's tier:
 | init | Core | Core | Core |
 | audit | Core | Core | Core |
 | quick | Useful | Useful | Useful |
+| critic | Core | Core | Core |
 | position | Core | Useful | Useful |
 | competitors | Core | Core | Core |
 | launch | Core | Useful | Useful |

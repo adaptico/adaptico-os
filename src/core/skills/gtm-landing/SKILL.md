@@ -1,6 +1,6 @@
 ---
 name: gtm-landing
-version: 1.2.2
+version: 1.3.1
 description: Landing page conversion-rate-optimization teardown for /gtm landing <target>. Use when the user wants a section-by-section CRO review of a landing or signup page with prioritized fixes. Also trigger for "optimize my landing page", "CRO review", "why isn't my page converting", "improve signups", or "landing page teardown".
 ---
 
@@ -10,7 +10,7 @@ description: Landing page conversion-rate-optimization teardown for /gtm landing
 >
 > Stage-fit (`landing`): Tier 1 Useful · Tier 2 Core · Tier 3 Useful. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `@templates/advisor-prompt.md`.
+> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 ## Skill Purpose
 Perform a comprehensive Conversion Rate Optimization (CRO) analysis on any landing page. This skill produces a section-by-section teardown with prioritized, actionable fixes that directly impact conversion rates.
@@ -361,6 +361,10 @@ Write the report to the resolved output path as `YYYY-MM-DD-landing-cro.md` (see
 ## Before/After Wireframe Suggestions
 [Text-based wireframe descriptions of current vs recommended layout]
 ```
+
+## Optional Critic Pass
+
+If the founder asked for a red-teamed or critiqued teardown, run the `gtm-critic` review protocol (`skills/gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
 
 ## Key Principles
 - Always tie recommendations to REVENUE IMPACT. Don't just say "change the button color" -- say "changing the CTA button to a contrasting color typically increases clicks 15-30%, which at your current traffic could mean X more conversions per month."

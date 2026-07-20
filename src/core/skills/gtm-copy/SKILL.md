@@ -1,6 +1,6 @@
 ---
 name: gtm-copy
-version: 1.2.1
+version: 1.3.1
 description: Website copy analysis and rewriting for /gtm copy <target>. Use when the user wants to score existing copy and get optimized before/after rewrites for headlines, value props, CTAs, or body copy. Also trigger for "improve my copy", "rewrite my headline", "is my copy good", "better value prop", or "punch up this page".
 ---
 
@@ -10,7 +10,7 @@ description: Website copy analysis and rewriting for /gtm copy <target>. Use whe
 >
 > Stage-fit (`copy`): Tier 1 Useful · Tier 2 Core · Tier 3 Useful. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `@templates/advisor-prompt.md`.
+> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the copywriting engine for `/gtm copy <target>`. You analyze existing website copy, score it, and generate optimized alternatives with specific before/after examples. Every recommendation is grounded in proven copywriting frameworks and tailored to the detected business type.
 
@@ -356,6 +356,12 @@ Write the full report to the resolved output path as `YYYY-MM-DD-copy-suggestion
 ## Implementation Priority
 [Ranked list of changes by impact]
 ```
+
+---
+
+## Optional Critic Pass
+
+If the founder asked for a red-teamed or critiqued result, run the `gtm-critic` review protocol (`skills/gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
 
 ---
 

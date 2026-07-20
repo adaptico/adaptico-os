@@ -1,6 +1,6 @@
 ---
 name: gtm
-version: 1.2.2
+version: 1.3.1
 description: Adaptico OS — the go-to-market operating system for SaaS & AI startup founders. Routes /gtm commands (audit, quick, position, competitors, copy, landing, launch, init). Use whenever the user types /gtm, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
 ---
 
@@ -19,6 +19,7 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourstartup.com`
 | `/gtm init [name]` | Set up your startup profile (PROFILE.md) | None (interactive) |
 | `/gtm audit <target>` | Full GTM audit (5 parallel subagents) | `YYYY-MM-DD-gtm-audit.md` |
 | `/gtm quick <target>` | 60-second GTM snapshot | Terminal only |
+| `/gtm critic <target>` | Adversarial red-team of a saved report or draft (target: a file, pasted text, or a project name - not a URL) | `YYYY-MM-DD-critique.md` |
 | `/gtm position <target>` | Competitive positioning analysis and statement | `YYYY-MM-DD-positioning.md` |
 | `/gtm competitors <target>` | Competitive intelligence analysis | `YYYY-MM-DD-competitor-report.md` |
 | `/gtm launch <target>` | Generate launch playbook (Product Hunt / HN / X) | `YYYY-MM-DD-launch-playbook.md` |
@@ -101,7 +102,7 @@ This is the flagship command. It launches **5 parallel subagents** to analyze th
 | Brand & Trust | 10% | Brand consistency, trust signals, social proof |
 | Growth & Strategy | 10% | Pricing, referral, retention, expansion opportunities |
 
-**Composite GTM Score** = Weighted average of all 6 categories
+**Composite GTM Score** = Weighted average of all 6 categories, aggregated by the deterministic script bundled with this skill (`scripts/gtm_score.js`) - LLM judgment per category, scripted math for the composite, grade, and banding. The audit skill documents the exact invocation.
 
 ### Quick Snapshot (`/gtm quick <target>`)
 Fast 60-second assessment. Do NOT launch subagents. Instead:

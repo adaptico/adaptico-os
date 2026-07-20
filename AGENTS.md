@@ -68,6 +68,7 @@ Every generated report begins with:
 | `/gtm init` | Set up your startup profile (`PROFILE.md`) |
 | `/gtm audit <target>` | Full GTM audit — 5 parallel agents, composite score |
 | `/gtm quick <target>` | 60-second snapshot — top wins and fixes, terminal only |
+| `/gtm critic <target>` | Adversarial red-team of any report or draft - severity-ranked findings with exact-line citations, plus the single highest-leverage fix |
 | `/gtm position <target>` | Positioning map + positioning statement |
 | `/gtm competitors <target>` | Competitive intelligence |
 | `/gtm launch <target>` | Launch playbook (Product Hunt / HN / X) |

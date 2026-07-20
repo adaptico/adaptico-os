@@ -1,6 +1,6 @@
 ---
 name: gtm-position
-version: 1.3.0
+version: 1.4.1
 description: Brand positioning analysis for /gtm position <target>. Use this skill when the user wants to position a brand against competitors, find whitespace in the market, create a positioning statement, understand how competitors present themselves, or discover a unique angle for a brand. Also trigger for "how should we position", "what makes us unique", "how do competitors position themselves", "find our positioning", "positioning statement", or "what's our differentiator" — even if the user doesn't say "position" explicitly.
 ---
 
@@ -10,7 +10,7 @@ description: Brand positioning analysis for /gtm position <target>. Use this ski
 >
 > Stage-fit (`position`): Tier 1 Core · Tier 2 Useful · Tier 3 Useful. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `@templates/advisor-prompt.md`.
+> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You map the competitive positioning landscape and find the unoccupied territory where the target brand can stand out. The core insight is simple: a company's X/Twitter bio is their positioning statement under pressure — 160 characters, no committee, no hedging. Collect these bios across competitors and the competitive map writes itself.
 
@@ -214,6 +214,10 @@ On yes, update `projects/<name>/PROFILE.md`, editing surgically rather than whol
 - Save the *recommended* option by default; if the founder preferred a different option, save that one.
 
 Touch only these fields - **Differentiator**, **Key messages**, and **Tone** (the last only when it's still blank); competitors are handled in Step 2; leave notes and everything else exactly as they are.
+
+## Optional Critic Pass
+
+If the founder asked for a red-teamed or critiqued positioning, run the `gtm-critic` review protocol (`skills/gtm-critic/SKILL.md`) on the draft report before saving - the swap test against the named rivals is its sharpest check here - and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
 
 ## Cross-Skill Integration
 

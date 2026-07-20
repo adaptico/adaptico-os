@@ -64,6 +64,7 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm init` | Set up your startup profile (`PROFILE.md`) - do this first |
 | `/gtm audit` | Full GTM audit with parallel agents + composite score |
 | `/gtm quick` | 60-second snapshot - top wins and fixes |
+| `/gtm critic` | Red-team any report or draft - ranked findings, the one fix that matters most |
 | **Improve positioning** | |
 | `/gtm position` | Positioning map + statement - includes a quick competitor scan |
 | `/gtm competitors` | The deep competitor dive (pricing, features, reviews, gaps); `position` uses it if present |
