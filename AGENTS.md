@@ -66,7 +66,7 @@ Every generated report begins with:
 | Command | What it does |
 |---------|-------------|
 | `/gtm init` | Set up your startup profile (`PROFILE.md`) |
-| `/gtm audit <target>` | Full GTM audit — 5 parallel agents, composite score |
+| `/gtm audit <target>` | Full GTM audit — 5 parallel agents, composite score; re-audits lead with what changed since the last run |
 | `/gtm quick <target>` | 60-second snapshot — top wins and fixes, terminal only |
 | `/gtm critic <target>` | Adversarial red-team of any report or draft - severity-ranked findings with exact-line citations, plus the single highest-leverage fix |
 | `/gtm position <target>` | Positioning map + positioning statement |

@@ -1,6 +1,6 @@
 ---
 name: gtm-init
-version: 1.2.0
+version: 1.2.1
 description: Set up or update the startup profile (PROFILE.md) that the rest of Adaptico OS uses as context, for /gtm init [name]. Use when the user wants to create, set up, or edit their startup profile, or onboard a new project. Also trigger for "set up my startup", "create a profile", "onboard my project", or "start a new GTM project".
 ---
 
@@ -150,11 +150,11 @@ For Links & Channels: write the documentation URL, key pages, and social profile
 
 ## Step 5: Recommend a starting path
 
-After confirming the profile, give a short, stage-aware recommendation of what to run next - based on the founder's Stage tier (from the Step 2a diagnostic), `Main goal`, and `Primary channel today`. Always begin with `/gtm audit` once a page exists - it scores the whole site, feeds every other skill, and (re-run weekly) tracks progress over time. Then follow the tier's sequence:
+After confirming the profile, give a short, stage-aware recommendation of what to run next - based on the founder's Stage tier (from the Step 2a diagnostic), `Main goal`, and `Primary channel today`. Always begin with `/gtm audit` once a page exists - it scores the whole site, feeds every other skill, and every re-audit leads with what changed since the last one (re-audit monthly/quarterly for strategy movement; weekly only to verify shipped fixes). Then follow the tier's sequence:
 
 - **Tier 1 - Validate the Demand:** `/gtm position` -> `/gtm competitors` -> `/gtm copy` -> `/gtm landing` -> `/gtm launch` -> `/gtm outreach` (fold in `/gtm audit` once a page is live). Hold off on paid ads and SEO for now - talk to 10 potential users, protect runway, and focus on manual distribution.
 - **Tier 2 - Find a Channel:** `/gtm audit` -> `/gtm quick` -> `/gtm landing` -> `/gtm copy` -> `/gtm funnel` -> `/gtm emails` -> `/gtm outreach` - tighten what converts, find the funnel leaks, and automate the lifecycle emails while you test channels to find one that reliably brings pipeline.
-- **Tier 3 - Scale the Channel:** `/gtm audit` (weekly) -> `/gtm funnel` -> `/gtm emails` (retention/dunning) -> `/gtm social` -> `/gtm competitors` (continuous) -> `/gtm brand` - optimize and defend the channel that already works, then document the voice as you scale.
+- **Tier 3 - Scale the Channel:** `/gtm audit` (monthly) -> `/gtm funnel` -> `/gtm emails` (retention/dunning) -> `/gtm social` -> `/gtm competitors` (continuous) -> `/gtm brand` - optimize and defend the channel that already works, then document the voice as you scale.
 - **Tier 4-5 - Systematize Growth / Build the Organization:** any command still runs and helps whoever owns execution - the founder or an in-house marketer. It's a lightweight tool, so the real constraint here is time and bandwidth, not marketing knowledge.
 
 Keep this to a few lines - one clear next action, not a menu dump.

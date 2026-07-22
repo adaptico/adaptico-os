@@ -369,6 +369,6 @@ If the founder asked for a red-teamed or critiqued result, run the `gtm-critic` 
 
 - With a profile loaded, read `PROFILE.md` first - its `Differentiator` and `Key messages` (set by `/gtm position` / `/gtm competitors`) are the positioning every rewrite should lead with
 - If a `*-brand-voice.md` exists, use its voice guidelines to calibrate generated copy
-- If a `*-gtm-audit.md` exists, reference the Content & Messaging score
+- If a `*-gtm-audit.md` exists, reference its ICP Focus and Positioning Clarity scores - the two vectors copy rewrites move
 - If a `*-competitor-report.md` exists, use competitor messaging to inform differentiation
 - Suggest follow-up: `/gtm landing` for landing-page-specific deep dive

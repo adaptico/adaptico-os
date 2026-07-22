@@ -14,13 +14,13 @@ It's more than a set of skills - it's an orchestrator that puts a whole team of 
 
 Each Adaptico OS command puts a specialist on one part of your go-to-market - positioning, conversion, copy, a launch plan, a competitor breakdown. 
 
-After `/gtm init`, the next one to run is `/gtm audit`: it sends a whole team across your site at once, scores six GTM dimensions, and rolls them into a single score out of 100 with the biggest fixes ranked first:
+After `/gtm init`, the next one to run is `/gtm audit`: it sends a whole team across your site at once, scores the six dimensions that actually move an early-stage startup - positioning clarity, ICP focus, conversion, activation, channel concentration, revenue quality - and rolls them into a single score out of 100 with the biggest fixes ranked first. It never invents a number: what can't be known from your pages is listed as a named gap, not guessed.
 
 <p align="center">
   <img src="audit.svg" alt="Terminal output of /gtm audit: a six-dimension score breakdown and a composite GTM Score of 69/100" width="100%">
 </p>
 
-Every run saves a dated report you can work through, and re-running it week to week turns the score into a progress tracker.
+Every run saves a dated report you can work through, and every re-audit opens with what changed since the last one - score movement per dimension, what you fixed, what regressed. Re-audit monthly or quarterly to measure strategy movement; re-run weekly only to verify a batch of shipped fixes.
 
 ---
 
@@ -62,10 +62,10 @@ After installing, restart Claude Code so it picks up the new skills.
 |---------|-------------|
 | **Start here** | |
 | `/gtm init` | Set up your startup profile (`PROFILE.md`) - do this first |
-| `/gtm audit` | Full GTM audit with parallel agents + composite score |
+| `/gtm audit` | Full GTM audit with parallel agents + composite score; re-audits lead with what changed |
 | `/gtm quick` | 60-second snapshot - top wins and fixes |
 | `/gtm critic` | Red-team any report or draft - ranked findings, the one fix that matters most |
-| **Improve positioning** | |
+| **Research & position** | |
 | `/gtm position` | Positioning map + statement - includes a quick competitor scan |
 | `/gtm competitors` | The deep competitor dive (pricing, features, reviews, gaps); `position` uses it if present |
 | **Launch & convert** | |

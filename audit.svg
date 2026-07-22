@@ -26,12 +26,12 @@
 
   <text x="36" y="148" font-family="monospace, &#39;Courier New&#39;" font-size="13" fill="#7D7870">Score Breakdown:</text>
   <g font-family="monospace, &#39;Courier New&#39;" font-size="13">
-    <text y="174"><tspan x="56" fill="#D7CDBD">Content &amp; Messaging</tspan><tspan x="288" fill="#9DBE6A">76/100</tspan><tspan x="384" fill="#9DBE6A">████████</tspan><tspan fill="#444341">░░</tspan></text>
-    <text y="196"><tspan x="56" fill="#D7CDBD">Conversion Optimization</tspan><tspan x="288" fill="#E5694C">48/100</tspan><tspan x="384" fill="#E5694C">█████</tspan><tspan fill="#444341">░░░░░</tspan></text>
-    <text y="218"><tspan x="56" fill="#D7CDBD">SEO &amp; Discoverability</tspan><tspan x="288" fill="#9DBE6A">89/100</tspan><tspan x="384" fill="#9DBE6A">█████████</tspan><tspan fill="#444341">░</tspan></text>
-    <text y="240"><tspan x="56" fill="#D7CDBD">Competitive Positioning</tspan><tspan x="288" fill="#9DBE6A">74/100</tspan><tspan x="384" fill="#9DBE6A">███████</tspan><tspan fill="#444341">░░░</tspan></text>
-    <text y="262"><tspan x="56" fill="#D7CDBD">Brand &amp; Trust</tspan><tspan x="288" fill="#F2A23C">63/100</tspan><tspan x="384" fill="#F2A23C">██████</tspan><tspan fill="#444341">░░░░</tspan></text>
-    <text y="284"><tspan x="56" fill="#D7CDBD">Growth &amp; Strategy</tspan><tspan x="288" fill="#E5694C">52/100</tspan><tspan x="384" fill="#E5694C">█████</tspan><tspan fill="#444341">░░░░░</tspan></text>
+    <text y="174"><tspan x="56" fill="#D7CDBD">Positioning Clarity</tspan><tspan x="288" fill="#9DBE6A">78/100</tspan><tspan x="384" fill="#9DBE6A">████████</tspan><tspan fill="#444341">░░</tspan></text>
+    <text y="196"><tspan x="56" fill="#D7CDBD">ICP Focus</tspan><tspan x="288" fill="#9DBE6A">82/100</tspan><tspan x="384" fill="#9DBE6A">████████</tspan><tspan fill="#444341">░░</tspan></text>
+    <text y="218"><tspan x="56" fill="#D7CDBD">Conversion (Primary Pages)</tspan><tspan x="288" fill="#E5694C">48/100</tspan><tspan x="384" fill="#E5694C">█████</tspan><tspan fill="#444341">░░░░░</tspan></text>
+    <text y="240"><tspan x="56" fill="#D7CDBD">Activation &amp; Time-to-Value</tspan><tspan x="288" fill="#F2A23C">64/100</tspan><tspan x="384" fill="#F2A23C">██████</tspan><tspan fill="#444341">░░░░</tspan></text>
+    <text y="262"><tspan x="56" fill="#D7CDBD">Channel Concentration</tspan><tspan x="288" fill="#9DBE6A">74/100</tspan><tspan x="384" fill="#9DBE6A">███████</tspan><tspan fill="#444341">░░░</tspan></text>
+    <text y="284"><tspan x="56" fill="#D7CDBD">Revenue Quality</tspan><tspan x="288" fill="#9DBE6A">72/100</tspan><tspan x="384" fill="#9DBE6A">███████</tspan><tspan fill="#444341">░░░</tspan></text>
   </g>
 
 
