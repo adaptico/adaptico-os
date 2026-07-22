@@ -1,6 +1,6 @@
 ---
 name: gtm
-version: 1.3.1
+version: 1.4.1
 description: Adaptico OS — the go-to-market operating system for SaaS & AI startup founders. Routes /gtm commands (audit, quick, position, competitors, copy, landing, launch, init). Use whenever the user types /gtm, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
 ---
 
@@ -36,7 +36,7 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourstartup.com`
 
 Every free-edition skill installs and runs anytime — there are no locked or gated commands.
 A few skills pay off mainly at a later stage (e.g. `brand`, `social`); each runs the central **Stage-Fit Check** against the founder's tier in `PROFILE.md` (via `templates/advisor-prompt.md`) and, if premature for that tier, opens with one honest Strategic Advisor Note before proceeding (it never refuses).
-`/gtm init` recommends what to focus on first for the founder's stage, and `/gtm audit` doubles as the canonical report — re-run it to track week-over-week progress.
+`/gtm init` recommends what to focus on first for the founder's stage, and `/gtm audit` doubles as the canonical report - every re-audit leads with what changed since the last one (re-audit monthly/quarterly for strategy movement; weekly only to verify shipped fixes).
 
 ## Project Resolution
 
@@ -84,25 +84,25 @@ With no profile loaded (a one-off), run untailored and note once in the output t
 When the user invokes `/gtm <command>`, route to the appropriate sub-skill:
 
 ### Full GTM Audit (`/gtm audit <target>`)
-This is the flagship command. It launches **5 parallel subagents** to analyze the startup's site simultaneously:
+This is the flagship command. It launches **5 parallel subagents** (skipping any whose signals don't exist on the site, and saying so), validates each agent's JSON output before synthesis, and - when a prior audit exists - leads the report with what changed since it:
 
-1. **gtm-content** agent → Content quality, messaging, copy effectiveness
-2. **gtm-conversion** agent → CRO, signup/trial flows, activation, landing pages
-3. **gtm-competitive** agent → Competitive positioning, market landscape
-4. **gtm-technical** agent → Technical SEO, site architecture, page speed, AI-search visibility (GEO — monitor-only)
-5. **gtm-strategy** agent → Overall strategy, pricing, growth opportunities
+1. **gtm-content** agent → ICP Focus vector: does the copy speak to one named reader
+2. **gtm-conversion** agent → Conversion (Primary Pages) + Activation & Time-to-Value vectors
+3. **gtm-competitive** agent → Positioning Clarity vector, judged against the real rivals
+4. **gtm-technical** agent → evidence backbone (unscored): technical facts, cross-vector verification, AI-search visibility (GEO - monitor-only)
+5. **gtm-strategy** agent → Channel Concentration + Revenue Quality vectors
 
 **Scoring Methodology (GTM Score 0–100):**
-| Category | Weight | What It Measures |
-|----------|--------|------------------|
-| Content & Messaging | 25% | Copy quality, value props, clarity, persuasion |
-| Conversion Optimization | 20% | CTAs, forms, friction, social proof, urgency |
-| SEO & Discoverability | 20% | On-page SEO, technical SEO, content structure |
-| Competitive Positioning | 15% | Differentiation, market awareness, alternatives pages |
-| Brand & Trust | 10% | Brand consistency, trust signals, social proof |
-| Growth & Strategy | 10% | Pricing, referral, retention, expansion opportunities |
+| Vector | Weight | What It Measures |
+|--------|--------|------------------|
+| Positioning Clarity | 20% | What it is, who it's for, why it beats the real alternatives |
+| ICP Focus | 15% | Copy aimed at one named reader, in their language, with relevant proof |
+| Conversion (Primary Pages) | 20% | Hero → CTA → signup path: friction, trust at the CTA, message match |
+| Activation & Time-to-Value | 15% | Post-click promise, time-to-value credibility, path to first value |
+| Channel Concentration | 15% | One deliberate compounding channel vs scattergun, judged stage-aware |
+| Revenue Quality | 15% | Pricing/packaging, expansion paths, retention signals |
 
-**Composite GTM Score** = Weighted average of all 6 categories, aggregated by the deterministic script bundled with this skill (`scripts/gtm_score.js`) - LLM judgment per category, scripted math for the composite, grade, and banding. The audit skill documents the exact invocation.
+**Composite GTM Score** = weighted average aggregated by the deterministic script bundled with this skill (`scripts/gtm_score.js`) - LLM judgment per vector, scripted math for the composite, grade, and banding. A vector without signals (e.g. no signup surface) is skipped with a stated reason and the weights re-normalize; a partial composite is always labeled as partial. The audit never invents a metric - unknown data is a named gap. The audit skill documents the exact invocation.
 
 ### Quick Snapshot (`/gtm quick <target>`)
 Fast 60-second assessment. Do NOT launch subagents. Instead:
@@ -233,7 +233,7 @@ These rules apply to every command in this suite, including inline operations li
 
 Many skills work together:
 - `/gtm audit` calls all subagents → produces the comprehensive, scored report everything else builds on; it folds in any `*-competitor-report.md` already in the folder
-- Re-running `/gtm audit` over time is the progress tracker — the dated reports form the history, and each run shows the week-over-week delta. (For a polished compiled PDF, that's Pro `report-pdf`.)
+- Re-running `/gtm audit` over time is the progress tracker - the dated reports form the history, and each re-audit leads with the delta since the last one. Cadence: monthly/quarterly for strategy movement, weekly only to verify shipped fixes. (For a polished compiled PDF, that's Pro `report-pdf`.)
 - `/gtm position` sharpens the messaging that `/gtm copy` and `/gtm landing` then apply
 - `/gtm copy` benefits from `/gtm brand` voice guidelines if run first
 - `/gtm emails` aligns its onboarding sequence to the activation leak `/gtm funnel` finds

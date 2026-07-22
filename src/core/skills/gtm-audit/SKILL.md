@@ -1,7 +1,7 @@
 ---
 name: gtm-audit
-version: 1.3.1
-description: Full go-to-market marketing audit for /gtm audit <target>. Runs 5 parallel audit subagents (content, conversion, competitive, technical, strategy) and produces a unified, scored, date-stamped report. Use when the user wants a full marketing/GTM audit, an overall website marketing review, or a composite GTM score. Also trigger for "audit my site", "review my marketing", "how's my GTM", "full marketing teardown", or "score my website".
+version: 2.0.1
+description: Full go-to-market marketing audit for /gtm audit <target>. Runs up to 5 parallel audit subagents with machine-validated outputs and produces a scored, date-stamped report that leads with what changed since the last audit - and never invents a number. Use when the user wants a full marketing/GTM audit, an overall website marketing review, or a composite GTM score. Also trigger for "audit my site", "review my marketing", "how's my GTM", "full marketing teardown", or "score my website".
 ---
 
 # Marketing Audit Orchestrator
@@ -12,7 +12,13 @@ description: Full go-to-market marketing audit for /gtm audit <target>. Runs 5 p
 
 > Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
-You are the full marketing audit engine for `/gtm audit <target>`. You launch 5 parallel subagents, aggregate their results, and produce a unified, date-stamped audit report (`YYYY-MM-DD-gtm-audit.md`) that is presentation-ready and revenue-focused. Because each run is dated and never overwritten, re-running the audit over time turns the report history into a **week-over-week progress tracker** — this is the canonical way to monitor a startup's GTM development.
+You are the full marketing audit engine for `/gtm audit <target>`. You launch the audit subagents whose signals exist on this site, validate their outputs, and produce a unified, date-stamped report (`YYYY-MM-DD-gtm-audit.md`). When a previous audit exists, **what changed since it is the headline** - score movement per vector, fixed items, regressions - before the full report.
+
+Three promises define this skill:
+
+- **Provenance** - the audit never invents or estimates a metric. Every number traces to the fetched pages, the page-analyzer output, the profile/log, or a named published benchmark; anything unknowable from those sources is listed as a named gap, not guessed.
+- **Honest cadence** - re-audit monthly or quarterly to measure strategy movement (positioning, channel, revenue quality shift over weeks, not days); re-run weekly only to verify that a batch of shipped fixes moved its vector. Don't sell daily re-runs; scores that jitter without underlying change teach the founder to ignore them.
+- **Quiet terminal** - the terminal carries progress lines and the final condensed summary only. Full analyzer JSON goes to `--out` files (1.1b), agent outputs go to temp files (2.1), and the report body exists only in the saved file. Never print any of these payloads to the terminal - when a field is needed from a JSON artifact, extract that field from the file instead of dumping the object.
 
 ## When This Skill Is Invoked
 
@@ -25,14 +31,15 @@ The user runs `/gtm audit <target>`. This is the flagship command of the entire 
 Run the orchestrator's *Project Resolution* first to locate the target's project folder, then read its `PROFILE.md` if one is present. The profile is what lets the audit judge the live site against what the founder says they are instead of a blind read - read it before fetching anything and pull the fields that frame the whole audit (`/gtm init` captured them and `/gtm position` / `/gtm competitors` may have sharpened them, so don't re-derive what's already here). This context is passed into every subagent in Phase 2:
 
 - **Startup type** - sets the business type directly (skip re-detection in 1.2).
-- **Stage** tier and **Main goal** - decide which findings lead in synthesis (Phase 3) and which `/gtm` moves to recommend at the end.
-- **ICP**, **Secondary audience**, **Key pain points** - the audience the site must speak to; the relevance bar for `gtm-content` and `gtm-conversion`.
+- **Stage** tier and **Main goal** - decide which findings lead in synthesis (Phase 3), how `gtm-strategy` judges channel stage-fit, and which `/gtm` moves to recommend at the end.
+- **ICP**, **Secondary audience**, **Key pain points** - the audience the site must speak to; the scoring bar for `gtm-content`'s ICP Focus vector.
 - **Differentiator** and **Key messages** - the positioning the site is supposed to lead with. `gtm-content` and `gtm-competitive` check the live page against this: a gap between the founder's stated positioning and what the homepage actually says is a high-value finding (the site is under-selling its own angle).
-- **User-Added** and **AI-Researched competitors** - feed `gtm-competitive` so it compares against the real rivals instead of guessing. Run the orchestrator's *Competitor Resolution Protocol* to load them; read what's there, don't run full discovery.
-- **Primary channel today** and **Existing assets** - where traffic comes from; lets `gtm-conversion` judge the hero for message match against that source.
+- **User-Added** and **AI-Researched competitors** - feed `gtm-competitive` so Positioning Clarity is judged against the real rivals instead of guesses. Run the orchestrator's *Competitor Resolution Protocol* to load them; read what's there, don't run full discovery.
+- **Primary channel today** and **Existing assets** - the backbone of `gtm-strategy`'s Channel Concentration vector, and what lets `gtm-conversion` judge the hero for message match against the traffic source.
+- **Revenue model / stage signals** - whether the startup is pre-revenue decides if the Revenue Quality vector runs at all (Phase 1.4).
 - **Tone** and **Avoid** - the voice every rewrite must honor and the claims the site must never make.
 - **`LOG.md`** (beside the profile) - the dated history of what was tried and what happened. Pass it to `gtm-strategy` and `gtm-competitive`: a channel the log shows was tried and abandoned is never re-recommended without addressing why it failed the first time.
-- Then read any prior `YYYY-MM-DD-positioning.md`, `YYYY-MM-DD-competitor-report.md`, or earlier `*-gtm-audit.md` in the folder for detail and the progress baseline (Phase 3.5).
+- **The baseline** - find the most recent prior `*-gtm-audit.md` in the folder (an earlier date, or an earlier run today with a lower `-N` suffix - same-day re-runs are real baselines) and any `*-critique.md` reviewing an audit. These drive the delta headline (Phase 3.5) and the critic gate's carried-over Criticals (Phase 3.6).
 
 **No profile loaded?** *Project Resolution* runs first and has already settled where this run goes - it offers to set the site up as a new project, or files it as a competitor of an existing project or a one-off. Don't re-ask here: if a profile came back, use it; if not (a one-off), run the audit untailored - derive what you can from the page, run business-type detection (1.2), and note once in the report that running `/gtm init` would tailor future runs to the founder's ICP, positioning, and goal.
 
@@ -53,10 +60,10 @@ Use `WebFetch` to retrieve the homepage and up to 5 key interior pages (pricing,
 For the homepage and each key page, run the page analyzer bundled with the gtm skill to get machine-extracted facts instead of eyeballing raw HTML:
 
 ```bash
-node .claude/skills/gtm/scripts/analyze_page.js <url>
+node .claude/skills/gtm/scripts/analyze_page.js <url> --out <temp-dir>/page-<name>.json
 ```
 
-It returns JSON with the title tag, meta description, Open Graph tags, full heading hierarchy (H1-H6), internal/external links, image alt-text coverage, forms and CTAs, schema/structured data, social links, tracking scripts, viewport, canonical, and robots directives. Store this alongside the raw content and pass it to every subagent — it is the factual backbone of the audit. In particular, `gtm-technical` should base its SEO and structured-data findings on it, and `gtm-content` / `gtm-conversion` should use the extracted headings, CTAs, and forms rather than re-deriving them.
+`--out` writes the full JSON to the file (the OS temp directory, like the agent outputs in 2.1 - never the project folder) and prints only a one-line summary, keeping the terminal clean. The JSON carries the title tag, meta description, Open Graph tags, full heading hierarchy (H1-H6), internal/external links, image alt-text coverage, forms and CTAs, schema/structured data, social links, tracking scripts, viewport, canonical, and robots directives. Store it alongside the raw content and pass it to every subagent - it is the factual backbone of the audit and the first source under the provenance rule. `gtm-technical` bases its structural findings on it, and `gtm-content` / `gtm-conversion` use the extracted headings, CTAs, and forms rather than re-deriving them.
 
 ### 1.2 Detect Business Type
 
@@ -73,100 +80,66 @@ Take the type from `PROFILE.md` (Phase 0) when it's set - don't re-derive what t
 
 ### 1.3 Identify Key Pages
 
-Map the site architecture to identify:
-- Homepage
-- Primary landing pages
-- Pricing page (if exists)
-- Product/feature pages
-- About/team page
-- Blog/content hub
-- Contact/signup/trial page
-- Legal pages (privacy, terms)
+Map the site architecture to identify: homepage, primary landing pages, pricing page, product/feature pages, about/team page, blog/content hub, contact/signup/trial page, legal pages. Store this page map for all subagents to reference.
 
-Store this page map for all subagents to reference.
+### 1.4 Signal Check (conditional agent spawning)
+
+Only run vectors whose signals exist. From the page map, the analyzer output, and the profile, decide the run plan **before** launching agents - and say in the report what was skipped and why:
+
+| Vector | Runs when | Skip reason to record when it doesn't |
+|--------|-----------|----------------------------------------|
+| Positioning Clarity | always (there is always a claimed position, even a bad one) | - |
+| ICP Focus | always (there is always copy) | - |
+| Conversion (Primary Pages) | always (every site has a primary action, even "join the waitlist") | - |
+| Activation & Time-to-Value | a signup / trial / demo / purchase surface exists | "no signup surface - [what the site has instead, e.g. waitlist only]" |
+| Channel Concentration | always (profile + log + visible surfaces always give a picture) | - |
+| Revenue Quality | a monetization surface exists (pricing page, plans), OR the profile states a revenue model | "pre-revenue per profile, no monetization surface yet" |
+
+Judgment call the table can't make: a product that clearly sells but hides all pricing is a **low Revenue Quality score with a finding**, not a skip - skips are for signals that don't exist, never for signals that look bad.
+
+Agents map to vectors as follows, so a skipped vector shrinks its agent's job (pass the skip decision into the agent's prompt) - and if all of an agent's vectors are skipped, don't launch it at all:
+
+- `gtm-competitive` → Positioning Clarity
+- `gtm-content` → ICP Focus
+- `gtm-conversion` → Conversion (Primary Pages) + Activation & Time-to-Value
+- `gtm-strategy` → Channel Concentration + Revenue Quality
+- `gtm-technical` → no scored vector; always runs (it is the evidence backbone: technical facts, cross-vector verification, and the GEO monitor)
+
+### 1.5 Profile Conflict Check (before any scoring)
+
+Compare what discovery found on the live site against the profile's **ICP**, **Differentiator**, and **Key messages**. When the two affirmatively disagree about who the product is for or what it claims to be (e.g. the site sells team coordination while the profile names a solo-founder ICP), do not score yet: the profile may be stale (the founder shipped a deliberate change the docs never caught up with), or the site may have drifted. A composite scored against the wrong audience is a misleading number, however correct the math. Ask once, before launching agents:
+
+> "Your live site speaks to **[audience/claim the site shows]**, but your profile says **[the profile's ICP/claim]**. Which should this audit judge against?
+> 1. **The profile is current** - the site drifted; the mismatch will be scored as a finding (likely the top one)
+> 2. **The site is current** - the profile is outdated; I'll update PROFILE.md to match the site before scoring"
+
+- **Option 1** → proceed; the mismatch is scored and led with, as today.
+- **Option 2** → update the profile's ICP / Key messages to what the site shows (confirm the exact new wording with the founder), append a dated entry to `LOG.md` ("profile reconciled to live site before audit"), then run the audit against the updated profile.
+- **No answer** (a scheduled or unattended run) → proceed as option 1, and open the executive summary with the conflict: state that the score assumes the profile is current, and that reconciling PROFILE.md (or re-running after choosing option 2) is the first move if the site is the truth.
+
+This check fires only on a direct contradiction - a site that merely *under-sells* the profile's positioning (weak, vague, missing the differentiator) is a normal finding, not a conflict, and never triggers the question.
 
 ---
 
 ## Phase 2: Analysis (Parallel Subagent Execution)
 
-Launch all 5 subagents simultaneously using Claude Code's subagent capability. Each subagent receives the business type, page map, fetched content, and the **profile context from Phase 0** (ICP, pain points, stated Differentiator and Key messages, the competitor list, primary channel, tone/avoid, stage, goal, and the `LOG.md` history). Subagents judge the site against that context rather than re-deriving it: a strong site that doesn't reflect the founder's own stated positioning is a finding, not a pass. (With no profile loaded, they fall back to deriving from the page.)
+Launch the subagents from the 1.4 run plan simultaneously. Each subagent receives the business type, page map, fetched content, analyzer JSON, its skip decisions, and the **profile context from Phase 0** (ICP, pain points, stated Differentiator and Key messages, the competitor list, primary channel, tone/avoid, stage, goal, and the `LOG.md` history). Subagents judge the site against that context rather than re-deriving it. (With no profile loaded, they fall back to deriving from the page.)
 
-### Subagent 1: gtm-content
+Each agent's file defines its rubric, its provenance rule, and its **output contract**: a single JSON block with its vector score(s) or skip reasons, severity-ranked findings with verbatim evidence, and named `data_gaps`.
 
-**Focus:** Content quality, messaging clarity, copy effectiveness
+### 2.1 Validate Every Agent's Output (before synthesis)
 
-Evaluates:
-- Headline clarity and specificity (does it pass the 5-second test?)
-- Value proposition strength (is the unique value immediately obvious?)
-- Body copy persuasion (does it speak to pain points and desired outcomes?)
-- Social proof quality (testimonials, logos, case studies, numbers)
-- Content depth and authority (blog quality, thought leadership)
-- Brand voice consistency across pages (against the profile's Tone / Avoid)
-- Positioning match: does the live copy actually lead with the profile's stated Differentiator and Key messages, and speak to the named ICP and pain points? Flag where the site under-sells or contradicts its own positioning.
+For each agent that returns, save its output to a temp file (the OS temp directory - never the project folder) and validate it:
 
-**Scores:** Content & Messaging (0-100)
+```bash
+node .claude/skills/gtm-audit/scripts/validate_agent_output.js <temp-file>
+```
 
-### Subagent 2: gtm-conversion
+- **Valid** → use the parsed JSON in synthesis. The validator's summary line gives you the scored/skipped vectors and finding counts.
+- **Invalid** → re-run that one agent **once**, quoting the validator's error lines verbatim in the re-run prompt ("your previous output failed validation: ...").
+- **Invalid twice** → mark every vector that agent owns as **degraded**: pass the literal `degraded` for it to the score script, list it under Coverage & Data Gaps ("[vector] degraded - agent output failed validation twice"), and put the agent's raw, unvalidated text in a clearly-labeled report appendix. A degraded vector is reported loudly - never silently dropped, and never guessed at from the broken output.
 
-**Focus:** CRO, funnels, landing pages, signup flows
-
-Evaluates:
-- CTA effectiveness (clarity, placement, contrast, urgency)
-- Form friction (number of fields, progressive disclosure, inline validation)
-- Page layout and visual hierarchy (does the eye flow toward conversion?)
-- Trust signals near conversion points (guarantees, security badges, testimonials)
-- Mobile conversion experience
-- Signup/checkout flow steps and drop-off risk
-- Pricing page effectiveness (anchoring, packaging, FAQ)
-
-**Scores:** Conversion Optimization (0-100)
-
-### Subagent 3: gtm-competitive
-
-**Focus:** Competitive positioning, market landscape
-
-Evaluates:
-- Unique positioning clarity (how differentiated is the messaging?)
-- Differentiation vs the actual competitors from `PROFILE.md` - compare the site's claims head-to-head against the loaded rival list rather than guessing who the competitors are
-- Competitor awareness signals (comparison pages, "vs" pages, alternatives pages)
-- Market category definition (are they creating or joining a category?)
-- Pricing relative to likely competitors
-- Feature differentiation signals
-- Review/reputation presence on third-party sites
-
-**Scores:** Competitive Positioning (0-100)
-
-### Subagent 4: gtm-technical
-
-**Focus:** Technical SEO, site architecture, page speed
-
-Evaluates:
-- Title tags, meta descriptions, header hierarchy
-- URL structure and internal linking
-- Image optimization (alt tags, file sizes, modern formats)
-- Mobile responsiveness
-- Page load speed indicators (DOM size, resource count, render-blocking)
-- Schema markup / structured data
-- Sitemap and robots.txt
-- Core Web Vitals signals (where detectable)
-- Accessibility basics (contrast, form labels, skip navigation)
-
-**Scores:** SEO & Discoverability (0-100)
-
-### Subagent 5: gtm-strategy
-
-**Focus:** Overall strategy, pricing, growth opportunities
-
-Evaluates:
-- Business model clarity
-- Pricing strategy (value-based, competitor-based, cost-plus)
-- Growth loops (referral, viral, content, sales-led)
-- Retention signals (loyalty programs, community, email nurture)
-- Expansion revenue opportunities (upsells, cross-sells, tiers)
-- Market timing and trends alignment
-- Brand trust signals (about page, team, mission, social proof depth)
-
-**Scores:** Brand & Trust (0-100), Growth & Strategy (0-100)
+The same rule covers an agent that errors or returns nothing: one retry, then degraded.
 
 ---
 
@@ -174,105 +147,69 @@ Evaluates:
 
 ### 3.1 Scoring Methodology (deterministic)
 
-Each subagent's 0-100 category score is an LLM judgment against its rubric. Everything after that - the weights, the rounding, the grade banding, and the critical-findings cap - is one deterministic script bundled with the gtm skill. Never hand-compute or adjust the composite; run the script and use its output verbatim:
+Each scored vector's 0-100 value is the owning agent's LLM judgment against its rubric. Everything after that - the weights, the re-normalization over skipped/degraded vectors, the rounding, the grade banding, and the critical-findings cap - is one deterministic script bundled with the gtm skill. Never hand-compute or adjust the composite; run the script and use its output verbatim:
 
 ```bash
 node .claude/skills/gtm/scripts/gtm_score.js \
-  --content 72 --conversion 65 --seo 70 --competitive 60 --brand 75 --growth 68 --criticals 0
+  --positioning 78 --icp 82 --conversion 48 --activation skipped \
+  --channel 74 --revenue 72 --criticals 0
 ```
 
-It returns JSON with the weighted composite (Content 25%, Conversion 20%, SEO 20%, Competitive 15%, Brand 10%, Growth 10%), the letter grade with its band meaning (A 85-100, B 70-84, C 55-69, D 40-54, F 0-39), per-vector weighted contributions, and the weakest/strongest vectors. Same six inputs, same score, every run - the composite is a method, not a vibe (`--selftest` proves the math). Take the report's score, grade, and band strings from this output.
+Every vector flag is required: a number 0-100 from the owning agent, or the literal `skipped` (from the 1.4 run plan or the agent's own skip) or `degraded` (from 2.1). The weights, in journey order: Positioning Clarity 20%, ICP Focus 15%, Conversion (Primary Pages) 20%, Activation & Time-to-Value 15%, Channel Concentration 15%, Revenue Quality 15%. The script returns the composite (re-normalized over the scored vectors' weights), the letter grade and band (A 85-100, B 70-84, C 55-69, D 40-54, F 0-39), per-vector contributions, the excluded vectors, `weightCoverage`, and `partial`. Same inputs, same score, every run (`--selftest` proves the math).
 
-`--criticals` is the count of unresolved Critical findings from a critique pass, 0 when none ran. One or more caps the composite at 69 (grade C): a report standing on a critical defect cannot grade "good", however strong the other vectors. When the cap fires, the JSON carries both values - show `composite` as the score and note the `uncapped` value beside it.
+**Partial-composite honesty:** whenever `partial` is true, never present the score bare - everywhere the composite appears (header, terminal, exec summary), write it as `X/100 (partial - N of 6 vectors scored)`. A composite over 4 vectors posing as a full GTM score would be an invented number by omission.
+
+`--criticals` is the count of unresolved Critical findings from the critic gate (Phase 3.6). One or more caps the composite at 69 (grade C): a report standing on a critical defect cannot grade "good", however strong the other vectors. When the cap fires, the JSON carries both values - show `composite` as the score and note the `uncapped` value beside it.
 
 ### 3.2 Aggregate Recommendations
 
-The six category scores and their weights stay fixed at every tier - that is what keeps the overall score comparable week over week (Phase 3.5). What *is* tier-aware is the ordering: the same findings get prioritized differently depending on where the founder is. Before bucketing, read the founder's **Stage** tier and **Main goal** from Phase 0 and lead with the findings that move the needle at that stage (per the methodology):
+The six vectors and their weights stay fixed at every tier - that is what keeps the composite comparable across audits. What *is* tier-aware is the ordering: read the founder's **Stage** tier and **Main goal** from Phase 0 and lead with the findings that move the needle at that stage (per the methodology):
 
-- **Tier 1 (Validate)** - lead with positioning and message clarity (content, competitive). A weak conversion score matters less than a homepage nobody understands.
-- **Tier 2 (Find a Channel)** - lead with content and conversion findings: the landing page and copy are what turn the channel tests into signups.
-- **Tier 3 (Scale)** - lead with strategy and technical findings: retention, growth loops, and the durable channels (SEO) that defend the working channel.
+- **Tier 1 (Validate)** - lead with Positioning Clarity and ICP Focus findings. A weak conversion score matters less than a homepage nobody understands, aimed at nobody in particular.
+- **Tier 2 (Find a Channel)** - lead with Conversion and Activation findings, then Channel: the pages must convert the traffic the channel tests bring, and the tests need a verdict.
+- **Tier 3 (Scale)** - lead with Channel Concentration and Revenue Quality findings: defend the working channel, stem churn, make the revenue durable.
 - In every tier, push a finding up the list if it directly blocks the founder's stated **Main goal**, and note that link explicitly ("this is the top blocker on your goal of X").
 
-This reorders which recommendations surface first and which 3 land in the executive summary and terminal Top 3 - it does not change any score. Then classify them:
+This reorders which recommendations surface first and which 3 land in the executive summary and terminal Top 3 - it does not change any score. Then classify every recommendation:
 
-**Quick Wins** (implement in < 1 week, low effort, high impact):
-- Copy changes to headlines and CTAs
-- Adding missing meta descriptions
-- Adding trust signals near CTAs
-- Fixing broken links or images
-- Adding urgency or social proof
+- **Quick Wins** (implement in < 1 week, low effort, high impact) - copy and CTA changes, missing meta descriptions, trust signals near CTAs, broken links.
+- **Strategic Recommendations** (1-4 weeks, medium effort, high impact) - pricing-page redesign, comparison pages, lead magnets, email sequences.
+- **Long-Term Initiatives** (1-3 months, high effort, transformative) - content engine, channel development, funnel redesign, repositioning.
 
-**Strategic Recommendations** (1-4 weeks, medium effort, high impact):
-- Redesigning pricing page
-- Building comparison/alternatives pages
-- Creating lead magnets or content upgrades
-- Email sequence implementation
-- Landing page A/B test designs
+### 3.3 Impact Estimates (provenance-safe)
 
-**Long-Term Initiatives** (1-3 months, high effort, transformative impact):
-- Content marketing strategy overhaul
-- SEO content gap campaign
-- Funnel redesign
-- Brand repositioning
-- New growth channel development
+Impact estimates follow the same provenance rule as everything else - **never invent the inputs**:
 
-### 3.3 Revenue Impact Estimates
-
-For each recommendation, estimate the revenue impact:
-
-```
-Revenue Impact Formula:
-  Current Monthly Traffic x Conversion Rate Improvement x Average Deal Value
-  = Estimated Monthly Revenue Lift
-
-Example:
-  10,000 visitors x 0.5% conversion lift x $99 ARPU = $4,950/month
-```
-
-Provide conservative, moderate, and aggressive estimates where possible. Use these qualifiers:
-
-| Impact Level | Monthly Revenue Lift | Confidence |
-|-------------|---------------------|------------|
-| High Impact | >$5,000/mo or >20% improvement | Based on clear evidence from audit |
-| Medium Impact | $1,000-$5,000/mo or 5-20% improvement | Based on industry benchmarks |
-| Low Impact | <$1,000/mo or <5% improvement | Incremental optimization |
+- **When the numbers exist** (the profile or log carries real traffic, signup, or ARPU figures the founder provided), size the impact with them and show the arithmetic: `2,000 visitors/mo x +0.5pp conversion x $29 ARPU ≈ $290/mo` - each input named with its source.
+- **When they don't** (the usual case), state impact qualitatively - High / Medium / Low with the reasoning ("removes the only CTA blocker on the pricing page") - and add the missing inputs to the Data Gaps section as one named line: "monthly visitors and ARPU - add them to PROFILE.md and the next audit sizes these in $".
+- Never print a dollar figure whose inputs were assumed, and never dress a guess up as a range. A report the founder can trust beats a report that looks precise.
 
 ### 3.4 Competitor Comparison Table
 
-If the competitive subagent identified competitors, include a comparison:
+If `gtm-competitive` returned a `competitors` array, render it as a comparison table (name, source - profile or discovered, positioning quote, key strength, key weakness). Facts only - every cell traces to a fetched page; unknowns stay blank with a note, not padded.
 
-```markdown
-| Factor | [Target] | Competitor A | Competitor B | Competitor C |
-|--------|----------|-------------|-------------|-------------|
-| Headline Clarity | 6/10 | 8/10 | 5/10 | 7/10 |
-| Value Prop Strength | 5/10 | 7/10 | 6/10 | 8/10 |
-| Trust Signals | 7/10 | 9/10 | 4/10 | 6/10 |
-| CTA Effectiveness | 4/10 | 8/10 | 6/10 | 7/10 |
-| Pricing Clarity | 6/10 | 7/10 | 8/10 | 5/10 |
-| Content Depth | 5/10 | 9/10 | 3/10 | 6/10 |
-```
+### 3.5 The Delta (What Changed Since Last Audit)
 
----
+This is the headline of every re-audit. Using the baseline located in Phase 0 (the most recent prior `*-gtm-audit.md`):
 
-### 3.5 Progress Tracking (Week-over-Week)
+1. Parse the prior audit's **Score Breakdown** table (overall + per-vector scores).
+2. **Same dimension set** (a 2.0-era audit: Positioning Clarity, ICP Focus, ...) → compute deltas per vector and overall (`now - prior`, e.g. `+5`, `-2`, `0`). A vector scored then but skipped now (or vice versa) shows `n/a` with the reason - never a fabricated delta.
+3. **Pre-2.0 dimension set** (Content & Messaging, SEO & Discoverability, ...) → the dimensions were recalibrated; per-vector deltas do not exist. Show the prior overall score labeled "prior method - reference only, not comparable", and say the next audit will have a true baseline. Never map old vectors onto new ones.
+4. Reconcile the prior audit's **Quick Wins**: mark each ✅ resolved, ◐ partial, or ⬜ still open based on the current findings.
+5. Identify the single biggest improvement and the single biggest regression, each tied to what actually changed on the site ("pricing page added tiers" - not just the number moving).
 
-This is what lets `/gtm audit` double as a recurring progress report. Before writing the output, look in the **same output folder** for the most recent **prior** `*-gtm-audit.md` with an earlier date than today. If one exists:
+If no prior audit exists, the section is one line: "First audit - no baseline yet. The next run will open with what changed." Never invent a baseline.
 
-1. Parse its **Score Breakdown** table (overall + the six category scores).
-2. Compute deltas — overall and per category (`now − prior`, e.g. `+5`, `−2`, `0`).
-3. Reconcile the prior audit's **Quick Wins**: mark each ✅ resolved, ◐ partial, or ⬜ still open based on the current findings.
-4. Identify the single biggest improvement and the single biggest regression.
+### 3.6 Critic Gate (always, before the report saves)
 
-If no prior audit exists, skip this and note "first audit — no baseline yet." Never invent a baseline.
+Every audit passes through the adversarial critic before it saves - this is the report's quality gate, not an opt-in:
 
----
+1. Assemble the complete draft report, then run the `gtm-critic` review protocol (`.claude/skills/gtm-critic/SKILL.md`, Phases 1-3 - including its `critic_lint.js` deterministic pass) against the draft.
+2. **Fix what the gate catches**: apply unambiguous Major/Minor fixes directly to the draft (an uncited number gets its source or gets cut; a generic paragraph gets specific or gets cut).
+3. **Count what stands**: unresolved Critical findings - plus Criticals from any prior `*-critique.md` in the folder that this run has not resolved - feed the score script as `--criticals N`. One or more caps the composite at 69 (grade C).
+4. **Disclose the gate** in the report header and Score Breakdown: "Critic gate: clean" or "Critic gate: capped by N unresolved Critical finding(s): [one-line each]", with the uncapped value shown beside the capped score.
 
-### 3.6 Optional Critic Gate (on request)
-
-If the founder asked for a critiqued or red-teamed audit, run the `gtm-critic` review protocol (`skills/gtm-critic/SKILL.md`) on the draft report before saving: fix or verify its Major and Minor findings, and pass its count of unresolved Critical findings to the score script as `--criticals` - one or more caps the composite at 69 (grade C). When the cap fires, say so plainly in the Score Breakdown ("capped by N unresolved Critical finding(s): [one-line list]") and show the uncapped value beside it. Also read any `*-critique.md` of a prior audit in the folder: Criticals it raised that this run has not resolved still count toward the cap.
-
-On a default run (nobody asked), skip this gate and mention `/gtm critic` once after the report saves. Never leave a run waiting on an answer.
+The gate never blocks the save - it caps and discloses. Don't save a separate critique file from the gate run (the standalone `/gtm critic` command does that); the gate's outcome lives inside the audit report. After the report saves, mention `/gtm critic` once for founders who want the full adversarial review as its own document.
 
 ## Output Format
 
@@ -280,128 +217,145 @@ Write the final report to `YYYY-MM-DD-gtm-audit.md` in the project folder (see t
 
 ```markdown
 # Marketing Audit: [Business Name]
-**URL:** [url]
+**Startup:** [business name or domain]
+**Website:** [url]
 **Date:** [current date]
 **Business Type:** [detected type]
-**Overall Marketing Score: [X]/100 (Grade: [letter])**
+**Overall GTM Score: [X]/100 (Grade: [letter])**  *(append "(partial - N of 6 vectors scored)" when partial)*
+**Coverage:** [N] of 6 vectors scored[; list skipped/degraded with one-line reasons]
+**Critic gate:** clean | capped by N unresolved Critical finding(s)
+
+---
+
+## What Changed Since Last Audit
+
+*(THE HEADLINE SECTION on every re-audit - the full report follows it. On a first run, the single line: "First audit - no baseline yet. The next run will open with what changed.")*
+
+**Compared to [prior date] - overall [prev]→[now] ([±Δ])**
+
+| Vector | Prev | Now | Δ |
+|--------|------|-----|---|
+| Positioning Clarity | X | X | ±X |
+| ICP Focus | X | X | ±X |
+| Conversion (Primary Pages) | X | X | ±X |
+| Activation & Time-to-Value | X | X | ±X |
+| Channel Concentration | X | X | ±X |
+| Revenue Quality | X | X | ±X |
+| **Overall** | **X** | **X** | **±X** |
+
+- **Fixed since last audit:** [prior quick wins now resolved - ✅ each]
+- **Still open:** [◐ partial / ⬜ untouched]
+- **Biggest gain:** [vector - what changed on the site]
+- **Regression:** [vector - what changed, or "none"]
+
+*(Pre-2.0 baseline: show the prior overall labeled "prior method - reference only, not comparable", reconcile its quick wins, and skip the per-vector table.)*
 
 ---
 
 ## Executive Summary
 
-[3-5 paragraph summary for a non-technical stakeholder. Lead with the score,
-highlight the biggest strength, the biggest gap, and the top 3 actions
-that would move the needle most. Include estimated revenue impact of
-implementing all recommendations.]
+[3-5 paragraphs for a non-technical stakeholder. Lead with the score (and its
+movement, when a baseline exists), the biggest strength, the biggest gap, and
+the top 3 actions that would move the needle most - ordered by the founder's
+tier per 3.2.]
 
 ---
 
 ## Score Breakdown
 
-| Category | Score | Weight | Weighted Score | Key Finding |
-|----------|-------|--------|---------------|-------------|
-| Content & Messaging | X/100 | 25% | X | [one-line finding] |
-| Conversion Optimization | X/100 | 20% | X | [one-line finding] |
-| SEO & Discoverability | X/100 | 20% | X | [one-line finding] |
-| Competitive Positioning | X/100 | 15% | X | [one-line finding] |
-| Brand & Trust | X/100 | 10% | X | [one-line finding] |
-| Growth & Strategy | X/100 | 10% | X | [one-line finding] |
-| **TOTAL** | | **100%** | **X/100** | |
+| Vector | Score | Weight | Weighted | Key Finding |
+|--------|-------|--------|----------|-------------|
+| Positioning Clarity | X/100 | 20% | X | [agent's one-line summary] |
+| ICP Focus | X/100 | 15% | X | [one-line] |
+| Conversion (Primary Pages) | X/100 | 20% | X | [one-line] |
+| Activation & Time-to-Value | X/100 | 15% | X | [one-line, or "skipped - reason"] |
+| Channel Concentration | X/100 | 15% | X | [one-line] |
+| Revenue Quality | X/100 | 15% | X | [one-line, or "skipped - reason"] |
+| **TOTAL** | | | **X/100** | [grade + band; note re-normalization when partial; note cap when fired] |
 
 ---
 
-## Progress Since Last Audit
-*(Include only when a prior dated audit exists in this folder; omit entirely on a first run.)*
+## Coverage & Data Gaps
 
-**Compared to [prior date] — overall [prev]→[now] ([±Δ])**
-
-| Category | Prev | Now | Δ |
-|----------|------|-----|---|
-| Content & Messaging | X | X | ±X |
-| Conversion Optimization | X | X | ±X |
-| SEO & Discoverability | X | X | ±X |
-| Competitive Positioning | X | X | ±X |
-| Brand & Trust | X | X | ±X |
-| Growth & Strategy | X | X | ±X |
-| **Overall** | **X** | **X** | **±X** |
-
-- **Biggest gain:** [category — what changed]
-- **Biggest regression:** [category — what changed]
-- **Prior Quick Wins:** ✅ [resolved] · ◐ [partial] · ⬜ [still open]
+- **Skipped vectors:** [vector - reason from the 1.4 run plan, or "none"]
+- **Degraded vectors:** [vector - "agent output failed validation twice", or "none"]
+- **Named data gaps:** [aggregated data_gaps from all agents - each one line: what is unknown, why, and where the founder can get it]
 
 ---
 
 ## Quick Wins (This Week)
 
-[Numbered list of 5-10 quick wins with specific implementation steps.
-Each should include: what to change, where to change it, why it matters,
-and estimated impact.]
+[5-10, each: what to change, where, why it matters, impact per 3.3.]
 
 ## Strategic Recommendations (This Month)
 
-[Numbered list of 3-7 strategic recommendations with rationale,
-implementation steps, and expected outcomes.]
+[3-7 with rationale, implementation steps, expected outcome.]
 
 ## Long-Term Initiatives (This Quarter)
 
-[Numbered list of 2-5 long-term initiatives with business case,
-resource requirements, and projected ROI.]
+[2-5 with business case and resource requirements.]
 
 ---
 
-## Detailed Analysis by Category
+## Detailed Findings by Vector
 
-### Content & Messaging Analysis
-[Full findings from gtm-content subagent]
+### Positioning Clarity
+[gtm-competitive's findings: evidence-quoted, severity-ranked]
 
-### Conversion Optimization Analysis
-[Full findings from gtm-conversion subagent]
+### ICP Focus
+[gtm-content's findings + before/after rewrites]
 
-### SEO & Discoverability Analysis
-[Full findings from gtm-technical subagent]
+### Conversion (Primary Pages)
+[gtm-conversion's conversion findings + conversion-path map]
 
-### Competitive Positioning Analysis
-[Full findings from gtm-competitive subagent]
+### Activation & Time-to-Value
+[gtm-conversion's activation findings, or the skip reason]
 
-### Brand & Trust Analysis
-[Full findings from gtm-strategy subagent — brand section]
+### Channel Concentration
+[gtm-strategy's channel findings + channels_observed table]
 
-### Growth & Strategy Analysis
-[Full findings from gtm-strategy subagent — growth section]
+### Revenue Quality
+[gtm-strategy's revenue findings, or the skip reason]
+
+---
+
+## Technical Foundations (not scored)
+
+[gtm-technical's findings - structure, crawlability, tracking, schema - with
+severity; a Critical here is as loud as any scored finding. Close with the
+AI-Search Visibility (GEO) monitor table - monitor only, no score weight.]
 
 ---
 
 ## Competitor Comparison
 
-[Comparison table from Section 3.4]
+[Table from 3.4, when competitor data exists.]
 
 ---
 
-## Revenue Impact Summary
+## Impact Summary
 
-| Recommendation | Est. Monthly Impact | Confidence | Timeline |
-|---------------|-------------------|------------|----------|
-| [recommendation 1] | $X,XXX | High/Med/Low | X weeks |
-| [recommendation 2] | $X,XXX | High/Med/Low | X weeks |
-| ... | | | |
-| **Total Potential** | **$XX,XXX/mo** | | |
+[Recommendations with impact per 3.3 - dollars only where the inputs exist
+and are named; otherwise High/Med/Low with reasoning.]
 
 ---
 
-## Next Steps
+## Recommended Next Moves
 
-1. [Most critical action item]
-2. [Second priority]
-3. [Third priority]
+[3-5 prioritized `/gtm` commands for THIS startup, from its lowest vectors,
+tier, and goal - one sentence each on why. See the mapping below.]
 
 ---
 
 ## Glossary
-*(Optional — include only terms actually used above that a non-marketer founder may not know. 3-8 entries max, one line each. Skip the section entirely if the report used no jargon.)*
-- **[Term]:** [plain-English definition]
+*(Optional - include only terms actually used above that a non-marketer
+founder may not know. 3-8 entries max, one line each. Skip the section
+entirely if the report used no jargon.)*
 
-*Generated by Adaptico OS — `/gtm audit`*
+*Generated by Adaptico OS - `/gtm audit`*
 ```
+
+*(Appendix, only when a vector degraded: the agent's raw unvalidated output under "## Appendix: unvalidated agent output".)*
 
 ---
 
@@ -414,15 +368,22 @@ In addition to the file, display a condensed summary in the terminal:
 
 Startup: [name] ([type])
 URL: [url]
-GTM Score: [X]/100 (Grade: [letter])   [±Δ since YYYY-MM-DD — show only if a prior audit exists]
+GTM Score: [X]/100 (Grade: [letter])   [±Δ since YYYY-MM-DD | "first audit - no baseline"]
+[Coverage: N of 6 vectors - <skipped vector>: <short reason>   - only when partial]
+[Critic gate: capped by N Critical(s), uncapped [Y]/100          - only when capped]
+
+Since last audit:   [only when a comparable baseline exists]
+  Biggest gain:  [vector ±X - what changed]
+  Regression:    [vector ±X - what changed, or omit]
+  Fixed: [n] of [m] prior quick wins
 
 Score Breakdown:
-  Content & Messaging:     [XX]/100 ████████░░
-  Conversion Optimization: [XX]/100 ██████░░░░
-  SEO & Discoverability:   [XX]/100 ███████░░░
-  Competitive Positioning: [XX]/100 █████░░░░░
-  Brand & Trust:           [XX]/100 ████████░░
-  Growth & Strategy:       [XX]/100 ██████░░░░
+  Positioning Clarity:         [XX]/100 ████████░░
+  ICP Focus:                   [XX]/100 ████████░░
+  Conversion (Primary Pages):  [XX]/100 █████░░░░░
+  Activation & Time-to-Value:  skipped - no signup surface
+  Channel Concentration:       [XX]/100 ███████░░░
+  Revenue Quality:             [XX]/100 ███████░░░
 
 Top 3 Quick Wins:
   1. [win]
@@ -434,10 +395,42 @@ Top 3 Strategic Moves:
   2. [move]
   3. [move]
 
-Estimated Revenue Impact: $X,XXX-$XX,XXX/month
-
 Full report saved to: YYYY-MM-DD-gtm-audit.md
 ```
+
+---
+
+## Re-Audit Cadence (set expectations honestly)
+
+When the founder asks how often to re-run - and once, at the end of a first audit - frame it straight:
+
+- **Monthly or quarterly** for strategy movement: positioning, channel concentration, and revenue quality move on the timescale of shipped work, not days.
+- **Weekly only to verify fixes**: after shipping a batch of quick wins, one re-run confirms whether their vector moved.
+- A daily or idle weekly re-run measures noise and erodes trust in the score. The delta headline is only meaningful when something was shipped in between.
+
+---
+
+## Telegram Notification (closing step, opt-in by configuration)
+
+The audit ships with a zero-dependency notify script at `scripts/notify_telegram.js` - a dumb sender that posts one message to the founder's **own** Telegram bot. Nothing leaves the machine unless the founder configured their own credentials; the payload is the minimal summary only.
+
+**After the report is saved**, send the summary - score, grade, top 3 quick wins, and the report path:
+
+```bash
+node .claude/skills/gtm-audit/scripts/notify_telegram.js \
+  --title "GTM audit: <project>" \
+  "Score 72/100 (B), +4 since 2026-06-05. Top wins: 1) ... 2) ... 3) ... Report: projects/<project>/YYYY-MM-DD-gtm-audit.md"
+```
+
+When no credentials are set, the script prints `not configured - skipping` and exits 0 - so interactive runs and scheduled routines never break on it. Always run it; it costs nothing when unconfigured.
+
+**One-time setup (founder does this once):** create a bot with Telegram's `@BotFather` (it returns the bot token), send the new bot any message, read the chat id from `https://api.telegram.org/bot<token>/getUpdates`, then either export `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` or write `~/.adaptico/telegram.json` as `{ "bot_token": "...", "chat_id": "..." }`. `--dry-run` previews the message without sending.
+
+**Scheduled routine template** - for a recurring audit that lands on the founder's phone, schedule exactly this prompt:
+
+> Run /gtm audit <project>. When the report is saved, read it and send a Telegram summary - score, grade, top 3 quick wins, and the report path - by calling the notify script with --title 'GTM audit: <project>'.
+
+Keep it exactly that simple - no other channels, no extra payload.
 
 ---
 
@@ -454,26 +447,36 @@ If an answer comes, append each item to the project's `LOG.md` in the log's fixe
 ## Error Handling
 
 - If the URL is unreachable, report the error and suggest checking the URL
-- If a subagent fails, continue with remaining subagents and note the gap in the report
+- If an agent's output fails validation, follow 2.1: one re-run with the validator's errors quoted, then degrade its vectors - reported in Coverage & Data Gaps, never silently dropped
 - If the site is behind authentication, note what was accessible and recommend manual review for gated content
-- If the site has very little content (single page), adapt the analysis accordingly and note limited scope
+- If the site has very little content (single page), the 1.4 signal check will already have skipped the vectors without signals; run what remains and present the composite as partial
 
 ## Cross-Skill Integration
 
 - If a `*-competitor-report.md` exists in the current directory, incorporate its findings
-- If a `*-brand-voice.md` exists, use it to contextualize content analysis
+- If a `*-brand-voice.md` exists, use it to contextualize the ICP Focus analysis
+- If a `*-critique.md` of a prior audit exists, its unresolved Criticals feed the critic gate (3.6)
 - Reference other available analyses in the executive summary
-- Suggest follow-up commands: `/gtm copy`, `/gtm competitors`, `/gtm landing` for deeper dives
 
 ## Recommended Next Moves (always include)
 
-End every audit — both in the saved report (as a final `## Recommended Next Moves` section) and in the terminal summary — with a short, prioritized list of what to do next, tailored to the startup's **type** and **stage** (from `PROFILE.md` if present, otherwise inferred). Recommend specific `/gtm` commands first. Use this mapping as a starting point, not a script:
+End every audit - both in the saved report and in the terminal summary - with a short, prioritized list of what to do next, tailored to the startup's **type** and **stage** (from `PROFILE.md` if present, otherwise inferred). Recommend specific `/gtm` commands first. Use this mapping as a starting point, not a script:
 
+- **Weak Positioning Clarity** → `/gtm position`, `/gtm competitors`
+- **Weak ICP Focus** → `/gtm position`, `/gtm copy`
+- **Weak Conversion** → `/gtm landing`, `/gtm copy`
+- **Weak Activation & Time-to-Value** → `/gtm funnel`, `/gtm emails`
+- **Weak Channel Concentration** → Tier 1: keep it manual (`/gtm outreach`); Tier 2-3: `/gtm funnel`, `/gtm social`
+- **Weak Revenue Quality** → `/gtm funnel`, `/gtm emails` (dunning)
 - **Pre-launch** → `/gtm position`, `/gtm landing`, `/gtm launch`
-- **Just launched / pre-PMF** → `/gtm position`, `/gtm competitors`, `/gtm landing`
-- **Early growth** → `/gtm funnel`, `/gtm emails`
-- **Weak conversion score** → `/gtm landing`, `/gtm copy`
-- **Weak positioning/competitive score** → `/gtm position`, `/gtm competitors`
 - **B2B, founder-led** → `/gtm social` (build-in-public)
 
-Pick the 3–5 highest-leverage moves for *this* startup based on its lowest scores and stage. Keep it concrete — name the command and one sentence on why.
+Pick the 3-5 highest-leverage moves for *this* startup based on its lowest vectors and stage. Keep it concrete - name the command and one sentence on why.
+
+## Related Commands
+
+- `/gtm critic` - the adversarial review this audit runs as its closing gate; run it standalone for a full critique document of any report or draft.
+- `/gtm quick` - the 60-second snapshot when a full audit is too much.
+- `/gtm position` - rebuilds the positioning a weak Positioning Clarity vector exposes.
+- `/gtm landing` - the deep CRO teardown behind a weak Conversion vector.
+- `/gtm funnel` - traces the activation leaks behind a weak Activation vector.
