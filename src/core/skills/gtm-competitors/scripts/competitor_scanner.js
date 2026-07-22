@@ -20,6 +20,7 @@
 
 "use strict";
 
+const fs = require("fs");
 const https = require("https");
 const http = require("http");
 const zlib = require("zlib");
@@ -659,18 +660,25 @@ async function main() {
     await selftest();
     return;
   }
-  if (!args.length) {
+  // --out <file>: write the full JSON there and print a one-line summary
+  // instead - keeps large payloads out of the terminal transcript.
+  const outIdx = args.indexOf("--out");
+  const outFile = outIdx !== -1 && args[outIdx + 1] ? args[outIdx + 1] : null;
+  const positional = args.filter(function (a, i) {
+    return i !== outIdx && i !== outIdx + 1 && a.slice(0, 2) !== "--";
+  });
+  if (!positional.length) {
     console.log(JSON.stringify({
-      usage: "node competitor_scanner.js <url1> [url2] [url3] ...",
+      usage: "node competitor_scanner.js <url1> [url2] [url3] ... [--out <file>]",
       example: "node competitor_scanner.js competitor-one.com competitor-two.com competitor-three.com",
-      description: "Scans competitor websites for positioning, pricing, and trust signals",
+      description: "Scans competitor websites for positioning, pricing, and trust signals; --out writes the full JSON to a file and prints only a one-line summary",
     }, null, 2));
     return;
   }
 
   const validated = [];
-  for (let i = 0; i < args.length; i++) {
-    let u = args[i];
+  for (let i = 0; i < positional.length; i++) {
+    let u = positional[i];
     if (u.indexOf("http") !== 0) u = "https://" + u;
     const check = await validateUrl(u);
     if (!check.valid) {
@@ -680,11 +688,15 @@ async function main() {
     validated.push(u);
   }
 
-  if (validated.length === 1) {
-    console.log(JSON.stringify(await scanCompetitor(validated[0]), null, 2));
-  } else {
-    console.log(JSON.stringify({ competitors: await scanMultiple(validated) }, null, 2));
+  const results = validated.length === 1
+    ? await scanCompetitor(validated[0])
+    : { competitors: await scanMultiple(validated) };
+  if (!outFile) {
+    console.log(JSON.stringify(results, null, 2));
+    return;
   }
+  fs.writeFileSync(outFile, JSON.stringify(results, null, 2));
+  console.log("competitor_scanner: scanned " + validated.length + " site(s) -> " + outFile);
 }
 
 if (require.main === module) {

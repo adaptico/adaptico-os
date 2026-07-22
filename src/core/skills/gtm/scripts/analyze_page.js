@@ -18,6 +18,7 @@
 
 "use strict";
 
+const fs = require("fs");
 const https = require("https");
 const http = require("http");
 const zlib = require("zlib");
@@ -860,16 +861,23 @@ async function main() {
     await selftest();
     return;
   }
-  if (!args.length) {
+  // --out <file>: write the full JSON there and print a one-line summary
+  // instead - keeps large payloads out of the terminal transcript.
+  const outIdx = args.indexOf("--out");
+  const outFile = outIdx !== -1 && args[outIdx + 1] ? args[outIdx + 1] : null;
+  const positional = args.filter(function (a, i) {
+    return i !== outIdx && i !== outIdx + 1 && a.slice(0, 2) !== "--";
+  });
+  if (!positional.length) {
     console.log(JSON.stringify({
-      usage: "node analyze_page.js <url>",
-      example: "node analyze_page.js https://yourstartup.com",
-      description: "Analyzes a webpage for marketing effectiveness",
+      usage: "node analyze_page.js <url> [--out <file>]",
+      example: "node analyze_page.js https://yourstartup.com --out page.json",
+      description: "Analyzes a webpage for marketing effectiveness; --out writes the full JSON to a file and prints only a one-line summary",
     }, null, 2));
     return;
   }
 
-  let url = args[0];
+  let url = positional[0];
   if (url.indexOf("http") !== 0) url = "https://" + url;
 
   const check = await validateUrl(url);
@@ -879,7 +887,19 @@ async function main() {
   }
 
   const results = await analyze(url);
-  console.log(JSON.stringify(results, null, 2));
+  if (!outFile) {
+    console.log(JSON.stringify(results, null, 2));
+    return;
+  }
+  fs.writeFileSync(outFile, JSON.stringify(results, null, 2));
+  const a = results.analysis || {};
+  const line = results.status === "success"
+    ? "analyze_page: " + results.url + " - success (title " + ((a.seo && a.seo.title) ? "ok" : "missing") +
+      ", h1 " + ((a.seo && a.seo.headings && a.seo.headings.h1 && a.seo.headings.h1.length) || 0) +
+      ", ctas " + ((a.conversion && a.conversion.cta_count) || 0) +
+      ", schema " + ((a.tracking && a.tracking.schema_count) || 0) + ")"
+    : "analyze_page: " + results.url + " - " + results.status + (results.message ? " (" + results.message + ")" : "");
+  console.log(line + " -> " + outFile);
 }
 
 if (require.main === module) {

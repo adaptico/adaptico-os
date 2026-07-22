@@ -1,6 +1,6 @@
 ---
 name: gtm-competitors
-version: 1.2.2
+version: 1.2.3
 description: Competitive intelligence for /gtm competitors <target>. Use when the user wants to identify competitors, analyze rival marketing and positioning, or find differentiation gaps and steal-worthy tactics. Also trigger for "who are my competitors", "analyze my competition", "competitive analysis", "how do rivals market", or "where can we differentiate".
 ---
 
