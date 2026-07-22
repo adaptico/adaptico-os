@@ -136,6 +136,30 @@ else
     echo -e "    Install Node.js: ${CYAN}https://nodejs.org${NC}"
 fi
 
+# Telegram notification config (optional; seeded once, never overwritten)
+TELEGRAM_CONFIG="$INSTALL_DIR/.adaptico/telegram.json"
+echo -e "\n${BLUE}Telegram notifications (optional)...${NC}"
+if [ -f "$TELEGRAM_CONFIG" ]; then
+    echo -e "  ${GREEN}✓${NC} Config found at $TELEGRAM_CONFIG (left untouched)"
+else
+    mkdir -p "$INSTALL_DIR/.adaptico"
+    cat > "$TELEGRAM_CONFIG" <<'EOF'
+{
+  "bot_token": "",
+  "chat_id": "",
+  "_setup": "Optional - get audit summaries on your phone. 1) In Telegram open @BotFather and send /newbot (or pick an existing bot - its token is under API Token); copy the HTTP API token into the bot_token field above. 2) Open your bot's chat and press Start - a bot can only message people who started it. 3) Open @idbot and send /userinfo; copy the Id it replies with into the chat_id field above - that is your own user id, which is also the id of your private chat with the bot (the bot's own id will not work). Leave both fields empty to keep notifications off."
+}
+EOF
+    echo -e "  ${GREEN}✓${NC} Created $TELEGRAM_CONFIG"
+    echo -e "    Fill in bot_token + chat_id to get /gtm audit summaries in Telegram (steps are inside the file)."
+fi
+# Keep credentials out of the founder's git history (append once; create if absent)
+GITIGNORE="$INSTALL_DIR/.gitignore"
+if ! grep -qxF ".adaptico/" "$GITIGNORE" 2>/dev/null; then
+    { [ -s "$GITIGNORE" ] && echo ""; echo "# Adaptico OS - Telegram credentials (never commit)"; echo ".adaptico/"; } >> "$GITIGNORE"
+    echo -e "  ${GREEN}✓${NC} Added .adaptico/ to .gitignore"
+fi
+
 # Cleanup temp clone if used
 if [ -n "$TEMP_DIR" ] && [ -d "$TEMP_DIR" ]; then
     rm -rf "$TEMP_DIR"

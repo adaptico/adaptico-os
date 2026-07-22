@@ -1,6 +1,6 @@
 ---
 name: gtm-audit
-version: 2.0.1
+version: 2.0.3
 description: Full go-to-market marketing audit for /gtm audit <target>. Runs up to 5 parallel audit subagents with machine-validated outputs and produces a scored, date-stamped report that leads with what changed since the last audit - and never invents a number. Use when the user wants a full marketing/GTM audit, an overall website marketing review, or a composite GTM score. Also trigger for "audit my site", "review my marketing", "how's my GTM", "full marketing teardown", or "score my website".
 ---
 
@@ -412,23 +412,63 @@ When the founder asks how often to re-run - and once, at the end of a first audi
 
 ## Telegram Notification (closing step, opt-in by configuration)
 
-The audit ships with a zero-dependency notify script at `scripts/notify_telegram.js` - a dumb sender that posts one message to the founder's **own** Telegram bot. Nothing leaves the machine unless the founder configured their own credentials; the payload is the minimal summary only.
+The audit ships with a zero-dependency notify script at `scripts/notify_telegram.js` - a dumb sender that posts one message to the founder's **own** Telegram bot. Nothing leaves the machine unless the founder configured their own credentials; the payload is the audit summary only - never the report body.
 
-**After the report is saved**, send the summary - score, grade, top 3 quick wins, and the report path:
+**After the report is saved**, send the summary in this exact format - it mirrors the terminal summary (minus the score bars), so the phone and the terminal always tell the same story. Pass the body via stdin so the multi-line message needs no shell quoting:
 
 ```bash
-node .claude/skills/gtm-audit/scripts/notify_telegram.js \
-  --title "GTM audit: <project>" \
-  "Score 72/100 (B), +4 since 2026-06-05. Top wins: 1) ... 2) ... 3) ... Report: projects/<project>/YYYY-MM-DD-gtm-audit.md"
+node .claude/skills/gtm-audit/scripts/notify_telegram.js --html --title "<b>Adaptico OS - GTM Audit: [audited domain]</b>" <<'MSG'
+Date: YYYY-MM-DD HH:MM
+
+<b>Score: [X]/100 ([grade][, partial - N of 6 vectors])</b>
+Change: [±N] vs [prior date] | first audit - no baseline
+Critic gate: clean | capped by N Critical(s), uncapped [Y]/100
+
+<b>Since last audit:</b>
+- Biggest gain: [vector ±X - what changed on the site]
+- Regression: [vector ±X - what changed, or none]
+- Fixed: [n] of [m] prior quick wins
+
+<b>Vectors:</b>
+- Positioning Clarity: [X] ([±d])
+- ICP Focus: [X] ([±d])
+- Conversion (Primary Pages): [X] ([±d])
+- Activation &amp; Time-to-Value: [X] ([±d])
+- Channel Concentration: [X] ([±d])
+- Revenue Quality: [X] ([±d])
+
+<b>Top 3 Quick Wins:</b>
+1) [win]
+2) [win]
+3) [win]
+
+<b>Top 3 Strategic Moves:</b>
+1) [move]
+2) [move]
+3) [move]
+
+<b>Next:</b> <code>/gtm copy</code>, <code>/gtm landing</code>
+
+<b>Report:</b> <code>projects/[project]/YYYY-MM-DD-gtm-audit.md</code>
+MSG
 ```
+
+Format rules:
+
+- The title names the audited domain, bare - `ferrix.ai`, not `https://ferrix.ai` and never the lowercase project folder name. **Date** is the run's local date and time (24h).
+- The message is Telegram HTML (`--html`). Only three tags, used exactly as the template shows: `<b>` for the title, the Score line, and section labels; `<code>` for every `/gtm` command, file path, and site path (e.g. `<code>/old-home</code>`) - monospace also stops Telegram's auto-linking; `<i>` is allowed but unused by default. Escape literal `&` `<` `>` in dynamic text as `&amp;` `&lt;` `&gt;` - a broken tag falls back to an unformatted send, never a lost message.
+- Deltas: `(+N)` / `(-N)`, `(0)` when flat, `(n/a)` when not comparable. A skipped vector's line reads `skipped - <short reason>` instead of a score; a degraded one reads `degraded`.
+- **Since last audit** appears only when a comparable baseline exists - on a first audit drop the whole section (the Change line already says it).
+- No emojis, no markdown symbols, no score bars (the terminal bars don't align in Telegram's proportional font).
+- Nothing else goes in: no narrative paragraphs, no closing check-in, no report body. The script truncates at Telegram's 4096-char limit as a safety net; this format fits well under it.
 
 When no credentials are set, the script prints `not configured - skipping` and exits 0 - so interactive runs and scheduled routines never break on it. Always run it; it costs nothing when unconfigured.
 
-**One-time setup (founder does this once):** create a bot with Telegram's `@BotFather` (it returns the bot token), send the new bot any message, read the chat id from `https://api.telegram.org/bot<token>/getUpdates`, then either export `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` or write `~/.adaptico/telegram.json` as `{ "bot_token": "...", "chat_id": "..." }`. `--dry-run` previews the message without sending.
+**One-time setup (founder does this once):** the installer seeds `.adaptico/telegram.json` in the workspace root (gitignored automatically) with the setup steps inside the file. In Telegram: open `@BotFather` and send `/newbot` (for an existing bot the token sits under its API Token menu), copy the HTTP API token into the `bot_token` field, and press Start in your bot's chat - a bot can only message people who started it. Then open `@idbot`, send `/userinfo`, and copy the Id it returns into the `chat_id` field: that's your own user id, which is also the id of your private chat with the bot (the bot's own id won't work; `https://api.telegram.org/bot<token>/getUpdates` shows the same id as `chat.id`). For remote or scheduled environments, export `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` instead (env vars win over the file). `--dry-run` previews the message without sending.
 
 **Scheduled routine template** - for a recurring audit that lands on the founder's phone, schedule exactly this prompt:
 
-> Run /gtm audit <project>. When the report is saved, read it and send a Telegram summary - score, grade, top 3 quick wins, and the report path - by calling the notify script with --title 'GTM audit: <project>'.
+> Run /gtm audit <project>. When the report is saved, send the Telegram summary by calling the notify script.
 
 Keep it exactly that simple - no other channels, no extra payload.
 

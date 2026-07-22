@@ -12,12 +12,18 @@
  * Usage:
  *   node notify_telegram.js --title "GTM audit: acme" "Score 72/100 (B) ..."
  *   echo "message body" | node notify_telegram.js --title "GTM audit: acme"
+ *   node notify_telegram.js --html --title "<b>t</b>" "body with <b>/<code> tags"
  *   node notify_telegram.js --dry-run --title "t" "m"   (print, don't send)
  *   node notify_telegram.js --selftest
  *
+ * --html sends with Telegram parse_mode HTML (tags: b, i, code; escape literal
+ * & < > as &amp; &lt; &gt;). If Telegram rejects the HTML (400), the message is
+ * re-sent once as stripped plain text - a notification never dies on markup.
+ *
  * Credentials (checked in this order):
  *   1. env vars   TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID
- *   2. JSON file  ~/.adaptico/telegram.json
+ *   2. JSON file  .adaptico/telegram.json in the workspace root
+ *                 (seeded empty by install.sh, gitignored)
  *                 { "bot_token": "123:abc", "chat_id": "123456789" }
  *
  * Exit codes: 0 sent, dry-run, or not configured (skip); 1 send failed;
@@ -29,7 +35,6 @@
 "use strict";
 
 const fs = require("fs");
-const os = require("os");
 const path = require("path");
 const https = require("https");
 
@@ -37,10 +42,11 @@ const https = require("https");
 const MAX_LEN = 4096;
 const TRUNCATION_MARK = "\n[truncated]";
 
-/** Parse argv (after node + script). Returns { title, message, dryRun }. */
+/** Parse argv (after node + script). Returns { title, message, dryRun, html }. */
 function parseArgs(argv) {
   let title = null;
   let dryRun = false;
+  let html = false;
   const positional = [];
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--title") {
@@ -48,13 +54,15 @@ function parseArgs(argv) {
       i++;
     } else if (argv[i] === "--dry-run") {
       dryRun = true;
+    } else if (argv[i] === "--html") {
+      html = true;
     } else if (argv[i].slice(0, 2) === "--") {
       // Unknown flags are ignored - a dumb sender does not argue.
     } else {
       positional.push(argv[i]);
     }
   }
-  return { title: title, message: positional.length ? positional.join(" ") : null, dryRun: dryRun };
+  return { title: title, message: positional.length ? positional.join(" ") : null, dryRun: dryRun, html: html };
 }
 
 /**
@@ -86,11 +94,24 @@ function buildText(title, message) {
 }
 
 function configPath() {
-  return path.join(os.homedir(), ".adaptico", "telegram.json");
+  // Workspace-local, like everything Adaptico installs. All bundled scripts
+  // run from the workspace root, so cwd is the workspace.
+  return path.join(process.cwd(), ".adaptico", "telegram.json");
 }
 
-function send(creds, text, done) {
-  const body = JSON.stringify({ chat_id: creds.chatId, text: text });
+/** Drop HTML tags and unescape entities - the plain-text fallback body. */
+function stripHtml(text) {
+  return text
+    .replace(/<[^>]+>/g, "")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&");
+}
+
+function send(creds, text, html, done) {
+  const payload = { chat_id: creds.chatId, text: text };
+  if (html) payload.parse_mode = "HTML";
+  const body = JSON.stringify(payload);
   const req = https.request(
     {
       hostname: "api.telegram.org",
@@ -137,6 +158,13 @@ function selftest() {
   assertEq(parseArgs(["--dry-run", "--title", "t", "m"]).dryRun, true, "dry-run parsed");
   assertEq(parseArgs(["--title", "t"]).message, null, "no positional -> null message (stdin)");
   assertEq(parseArgs(["one", "two"]).message, "one two", "multiple positionals joined");
+  assertEq(parseArgs(["--html", "m"]).html, true, "html flag parsed");
+  assertEq(parseArgs(["m"]).html, false, "html defaults false");
+
+  // HTML stripping (the plain-text fallback body).
+  assertEq(stripHtml("<b>Score:</b> 48/100"), "Score: 48/100", "tags stripped");
+  assertEq(stripHtml("Activation &amp; TTV &lt;5 min&gt;"), "Activation & TTV <5 min>", "entities unescaped");
+  assertEq(stripHtml("<code>/gtm copy</code>"), "/gtm copy", "code tag stripped");
 
   // Credential resolution: env wins, file is fallback, absence is null.
   const envCreds = resolveCredentials(
@@ -201,17 +229,29 @@ function main() {
   const text = buildText(args.title, message);
 
   if (args.dryRun) {
-    console.log("dry-run - would send" + (creds ? "" : " (NOT CONFIGURED - a real run would skip)") + ":");
+    console.log("dry-run - would send" + (args.html ? " as HTML" : "") + (creds ? "" : " (NOT CONFIGURED - a real run would skip)") + ":");
     console.log(text);
     process.exit(0);
   }
 
   if (!creds) {
-    console.log("not configured - skipping (set TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID, or " + configPath() + ")");
+    console.log("not configured - skipping (fill in " + configPath() + ")");
     process.exit(0);
   }
 
-  send(creds, text, function (err) {
+  send(creds, text, args.html, function (err) {
+    if (err && args.html && err.message.indexOf("returned 400") !== -1) {
+      // Broken HTML must not lose the message - deliver it plain instead.
+      send(creds, stripHtml(text), false, function (err2) {
+        if (err2) {
+          console.error("notify_telegram: send failed - " + err2.message);
+          process.exit(1);
+        }
+        console.log("sent (plain fallback - HTML rejected: " + err.message + ")");
+        process.exit(0);
+      });
+      return;
+    }
     if (err) {
       console.error("notify_telegram: send failed - " + err.message);
       process.exit(1);
@@ -225,4 +265,4 @@ if (require.main === module) {
   main();
 }
 
-module.exports = { parseArgs: parseArgs, resolveCredentials: resolveCredentials, buildText: buildText };
+module.exports = { parseArgs: parseArgs, resolveCredentials: resolveCredentials, buildText: buildText, stripHtml: stripHtml };
