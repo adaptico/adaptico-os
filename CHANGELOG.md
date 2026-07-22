@@ -4,6 +4,21 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.8.0]
+
+### Changed
+- `/gtm audit` now scores six dimensions chosen for early-stage projects - Positioning Clarity, ICP Focus, Conversion (Primary Pages), Activation & Time-to-Value, Channel Concentration, Revenue Quality - replacing the old content / conversion / SEO / competitive / brand / growth set. **Scores from 0.7.0 and earlier are not comparable to new ones**, so expect your number to move on the first re-audit for reasons that aren't your site.
+- A dimension whose signals don't exist on your site is skipped with a stated reason and the composite re-normalizes over the rest; a partial score is always labeled partial. The audit never invents a metric - what can't be known is listed as a named gap.
+- Every re-audit opens with what changed since the last one - score movement per dimension, what you fixed, what regressed. Re-audit monthly or quarterly for strategy movement; weekly only to verify a batch of shipped fixes.
+- The five audit subagents are remapped onto the new dimensions, with the technical agent becoming an unscored evidence backbone that verifies the others.
+
+### Added
+- Optional Telegram summaries: when `/gtm audit` finishes it can send the score, the change since your last audit, per-vector lines, and the top fixes to your own Telegram bot - useful for scheduled runs. The installer seeds a config file and gitignores it; with no credentials set nothing is sent and nothing breaks.
+- `--out <file>` on the bundled analysis scripts writes the full JSON to a file and prints a one-line summary, keeping large payloads out of the run transcript.
+
+### Fixed
+- Each subagent's output is validated before it reaches the report. A malformed agent is re-run once, and if it fails again its dimensions are marked degraded rather than silently dropped.
+
 ## [0.7.0]
 
 ### Added
