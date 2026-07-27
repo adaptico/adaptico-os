@@ -4,6 +4,19 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.9.0]
+
+### Added
+- `/gtm humanize` - strips the tells that make a draft read machine-written (hype words, stock phrases, the "it's not X, it's Y" pivot, em-dash overuse), then enforces your voice. Runs on pasted text or a file.
+- `/gtm copyedit` - a line edit of a draft you wrote: front-loads the point, tightens sentences, swaps jargon for plain English, and reports how much it cut, without flattening your voice.
+
+### Changed
+- `/gtm brand` now writes a `brand-voice.md` voice guide into your project. `/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, and `/gtm emails` read it automatically, so everything they write comes out in one voice instead of re-deriving it each run. It updates in place across runs and won't overwrite your own edits.
+- The writing commands finish with the humanize pass by default. Add `--no-humanize` to skip it.
+
+### Fixed
+- Two skills referenced the critic by a path that didn't resolve from their own folder; they now use its installed location.
+
 ## [0.8.0]
 
 ### Changed
