@@ -1,6 +1,6 @@
 ---
 name: gtm-outreach
-version: 1.0.2
+version: 1.1.1
 description: Cold outbound sequences for /gtm outreach <target> - multi-touch, value-first cold email and LinkedIn DM sequences for founder-led manual outreach to land the first customers. Use when the user wants cold outreach, outbound, cold email, LinkedIn DMs, prospecting messages, or founder-led sales scripts. Also trigger for "write cold emails", "outbound sequence", "LinkedIn outreach", "how do I reach prospects", "cold DM", or "founder sales script".
 ---
 
@@ -23,6 +23,7 @@ Run the orchestrator's *Project Resolution* first. With a profile loaded, read `
 - **Key pain points** - the problem each opener leads with (you sell the problem, not the product).
 - **Differentiator** and **Key messages** - the value the message offers; lean on `/gtm position` / `/gtm competitors` output if it's in the folder.
 - **Tone** and **Avoid** - the founder's voice every message matches, and the claims to never make.
+- **`brand-voice.md`** (project root, written by `/gtm brand`) - when present, the full voice contract: its word lists and Do/Don't rules shape every message so cold email sounds like the same person as the website. It outranks the one-line `Tone` on conflict.
 - **Startup type** - sets the default channel (Phase 1) and the buyer.
 - **Main goal** - the conversation each sequence is trying to start (a reply, a problem confirmed, a first call).
 - **`LOG.md`** (beside the profile) - what's already been tried. If it shows past outreach - a channel tested, an angle that flopped, a segment already contacted - don't repeat it cold: change the angle or the audience and say why. After a campaign, results belong back in the log (dated, with numbers) so the next run starts smarter.
@@ -141,7 +142,7 @@ For developer and community-native audiences, do not cold-blast. Show up where t
 
 ## Phase 4: Make It Not Sound AI-Written
 
-Cold copy that reads as AI-generated gets deleted and trains spam filters. Hold every message to these.
+Cold copy that reads as AI-generated gets deleted and trains spam filters. Hold every message to these rules while writing; the drafted sequences then also get the full `gtm-humanize` closing pass before saving (see below), so nothing here relies on memory alone.
 
 **Cut these tells:**
 - AI-favorite words: delve, leverage, seamless, robust, elevate, unlock, streamline, empower, utilize, harness, comprehensive. Use plain verbs.
@@ -177,6 +178,15 @@ The copy can protect deliverability, and that part is this skill's job:
 - A plain-text feel and a real personal structure; templated "sales-speak" gets filtered on structure alone, not just words.
 
 What the copy can't control is your sending setup. Before a campaign, that's yours to verify, outside this skill: send from a separate domain (not your primary), with SPF, DKIM, and DMARC set, a warmed inbox, and a low daily volume. The skill writes the words; you own the infrastructure.
+
+## Humanize Closing Pass (default)
+
+Before saving, run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on every drafted message - subjects, bodies, DMs, and the breakup. It enforces Phase 4 deterministically (the lint script catches what a writing pass misses), applies the voice source from Phase 0, and tightens each touch. Two outreach-specific rules:
+
+- The bracketed personalization slots (`[one real, recent thing you verified about them]`) are this skill's design, not unfilled-placeholder tells - the pass keeps them exactly as written.
+- The length caps stand: after the pass, an opener email is still under ~80 words and a DM under ~150 characters.
+
+Add the pass's one-line summary to the terminal output. Skip the pass entirely when the founder appends `--no-humanize` to the command.
 
 ## Output Format
 
@@ -227,6 +237,7 @@ Full sequences saved to: YYYY-MM-DD-outreach-sequences.md
 ## Cross-Skill Integration
 
 - Reads `PROFILE.md` for ICP, differentiator, key messages, and tone
+- If `brand-voice.md` exists (the voice guide `/gtm brand` maintains at the project root), every message writes inside it, so outreach sounds like the same person as the site
 - If a `/gtm position` or `/gtm competitors` report is in the folder, lead the message with that differentiator and angle
 - Pairs with `/gtm emails` (lifecycle): outreach starts the conversation; `emails` takes over once a prospect signs up
 - Suggest `/gtm position` first if the differentiator is fuzzy - a sharp angle is what makes a cold message land

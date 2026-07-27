@@ -494,7 +494,7 @@ If an answer comes, append each item to the project's `LOG.md` in the log's fixe
 ## Cross-Skill Integration
 
 - If a `*-competitor-report.md` exists in the current directory, incorporate its findings
-- If a `*-brand-voice.md` exists, use it to contextualize the ICP Focus analysis
+- Read the project's stable `brand-voice.md` (the voice-chain artifact) when present - falling back to the most recent dated `*-brand-voice.md` report - to contextualize the ICP Focus analysis
 - If a `*-critique.md` of a prior audit exists, its unresolved Criticals feed the critic gate (3.6)
 - Reference other available analyses in the executive summary
 

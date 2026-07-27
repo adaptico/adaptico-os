@@ -1,6 +1,6 @@
 ---
 name: gtm-copy
-version: 1.3.1
+version: 1.4.1
 description: Website copy analysis and rewriting for /gtm copy <target>. Use when the user wants to score existing copy and get optimized before/after rewrites for headlines, value props, CTAs, or body copy. Also trigger for "improve my copy", "rewrite my headline", "is my copy good", "better value prop", or "punch up this page".
 ---
 
@@ -26,6 +26,7 @@ Before fetching anything, run the orchestrator's *Project Resolution*. With a pr
 - **ICP**, **Secondary audience**, **Key pain points** - who the copy speaks to and the pain it names; these set headline relevance (2.1) and seed the Value Proposition Canvas (2.4).
 - **Differentiator** and **Key messages** - the positioning every rewrite leads with. `/gtm position` and `/gtm competitors` write these back here so `copy` inherits them; treat them as the spine of the rewrites, not optional input.
 - **Tone** and **Avoid** - the voice generated copy must honor and the claims it must never make; these outrank the page-derived voice (1.3) on conflict.
+- **`brand-voice.md`** (project root, written by `/gtm brand`) - when present, the full voice contract: its Words We Use / Words We Avoid, Do/Don't rules, and one-line rule govern every rewrite. It outranks both the profile's one-line `Tone` and the page-derived voice.
 - **Startup type**, **Stage**, and **Main goal** - frame the read; a Tier 1 founder needs copy that wins a first persona, not category-defining prose.
 - Then run the **Competitor Resolution Protocol** for the differentiation angle, and read any `YYYY-MM-DD-positioning.md` or `YYYY-MM-DD-competitor-report.md` in the folder for detail.
 
@@ -68,7 +69,7 @@ Identify what kind of page this is, because each type has different copy priorit
 
 ### 1.3 Voice and Tone Analysis
 
-Before generating new copy, analyze the existing voice:
+If `brand-voice.md` exists in the project folder, its documented voice IS the profile - skip the derivation below except to flag where the live page drifts from the guide (that drift is a finding for the rewrites to fix). Otherwise, analyze the existing voice:
 
 **Voice Dimensions to Assess:**
 - **Formality:** Casual ←→ Formal (1-5 scale)
@@ -110,7 +111,7 @@ Use these proven frameworks to generate alternative headlines:
 Problem: [State the pain point]
 Agitate: [Make the pain feel urgent]
 Solve: [Present the product as the solution]
-Headline: "Stop [pain]. Start [desired outcome] — with [product]."
+Headline: "Stop [pain]. Start [desired outcome] - with [product]."
 ```
 
 **AIDA (Attention-Interest-Desire-Action):**
@@ -119,7 +120,7 @@ Attention: [Surprising fact or bold claim]
 Interest: [Why this matters to the reader]
 Desire: [What life looks like after using this]
 Action: [What to do next]
-Headline: "[Bold claim] — [specific outcome] in [timeframe]."
+Headline: "[Bold claim] - [specific outcome] in [timeframe]."
 ```
 
 **Before-After-Bridge:**
@@ -127,7 +128,7 @@ Headline: "[Bold claim] — [specific outcome] in [timeframe]."
 Before: [Current painful state]
 After: [Desired future state]
 Bridge: [The product connects the two]
-Headline: "From [before state] to [after state] — [product] makes it happen."
+Headline: "From [before state] to [after state] - [product] makes it happen."
 ```
 
 **4U Framework:**
@@ -136,7 +137,7 @@ Useful: [What benefit does it provide?]
 Ultra-specific: [Can you add numbers, timeframes, percentages?]
 Unique: [What angle hasn't been tried?]
 Urgent: [Why act now?]
-Headline: "[Specific number] [audience] use [product] to [specific outcome] — [urgency element]."
+Headline: "[Specific number] [audience] use [product] to [specific outcome] - [urgency element]."
 ```
 
 Generate 5-10 headline alternatives using these frameworks.
@@ -263,7 +264,7 @@ BEFORE (Current):
   "We provide innovative solutions for businesses."
 
 AFTER (Recommended):
-  "Cut your customer support tickets by 40% — AI-powered responses
+  "Cut your customer support tickets by 40% - AI-powered responses
    that resolve issues in under 2 minutes."
 
 WHY: The "before" is vague and generic. The "after" is specific (40%),
@@ -359,16 +360,25 @@ Write the full report to the resolved output path as `YYYY-MM-DD-copy-suggestion
 
 ---
 
+## Humanize Closing Pass (default)
+
+Before saving, run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on the shippable copy in the report - the rewrites, before/after "after" lines, swipe file, headlines, and CTAs. Leave the analysis, scores, and quoted "before" examples untouched (they are evidence, not copy to ship). The pass strips the hard AI tells, enforces the voice source from Phase 0, and compresses; add its one-line summary to the terminal output.
+
+Skip the pass entirely when the founder appends `--no-humanize` to the command.
+
+---
+
 ## Optional Critic Pass
 
-If the founder asked for a red-teamed or critiqued result, run the `gtm-critic` review protocol (`skills/gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
+If the founder asked for a red-teamed or critiqued result, run the `gtm-critic` review protocol (`.claude/skills/gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
 
 ---
 
 ## Cross-Skill Integration
 
 - With a profile loaded, read `PROFILE.md` first - its `Differentiator` and `Key messages` (set by `/gtm position` / `/gtm competitors`) are the positioning every rewrite should lead with
-- If a `*-brand-voice.md` exists, use its voice guidelines to calibrate generated copy
+- If `brand-voice.md` exists (the voice guide `/gtm brand` maintains at the project root), write inside it: its word lists and Do/Don't rules govern every rewrite; fall back to a dated `*-brand-voice.md` report if only that exists
 - If a `*-gtm-audit.md` exists, reference its ICP Focus and Positioning Clarity scores - the two vectors copy rewrites move
 - If a `*-competitor-report.md` exists, use competitor messaging to inform differentiation
+- For a draft the founder wrote (an email, a post, a doc), route to `/gtm copyedit` - this skill analyzes and rewrites the live site's pages
 - Suggest follow-up: `/gtm landing` for landing-page-specific deep dive

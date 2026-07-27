@@ -1,7 +1,7 @@
 ---
 name: gtm-brand
-version: 1.2.2
-description: Brand voice analysis and guidelines for /gtm brand <target>. Audits the live voice (formal/casual, technical/simple, archetype, consistency) and produces a reusable voice guide: voice chart, do's and don'ts, messaging hierarchy, and on-brand copy samples your team or AI can write from. Use when the user wants to define, analyze, or document their brand voice, tone, and messaging, or keep copy consistent. Also trigger for "what's our brand voice", "brand guidelines", "tone of voice", "how should we sound", or "make our copy consistent".
+version: 1.3.1
+description: Brand voice analysis and guidelines for /gtm brand <target>. Audits the live voice (formal/casual, technical/simple, archetype, consistency) and produces a reusable voice guide: voice chart, do's and don'ts, messaging hierarchy, and on-brand copy samples - distilled into a brand-voice.md the writing commands (copy, social, outreach, emails, humanize) read automatically. Use when the user wants to define, analyze, or document their brand voice, tone, and messaging, or keep copy consistent. Also trigger for "what's our brand voice", "brand guidelines", "tone of voice", "how should we sound", or "make our copy consistent".
 ---
 
 # Brand Voice Analysis and Guidelines Generation
@@ -17,6 +17,8 @@ description: Brand voice analysis and guidelines for /gtm brand <target>. Audits
 
 ## Skill Purpose
 Analyze a brand's voice, tone, and messaging across all available channels and generate a comprehensive brand voice guidelines document. This skill examines how a brand communicates, identifies patterns and inconsistencies, and produces actionable guidelines that any writer or marketer can follow to maintain brand consistency.
+
+The guide is not just a report: with a profile loaded, its essentials are distilled into `brand-voice.md` at the project root - a fixed-format voice guide the writing commands (`copy`, `copyedit`, `social`, `outreach`, `emails`, `humanize`) read automatically, so the documented voice governs everything written after this run.
 
 ## When to Use
 - User wants to understand or document a brand's voice
@@ -525,27 +527,74 @@ Biggest gap: [the sharpest stated-vs-actual or cross-channel inconsistency]
 
 Voice in one line: [the one-line voice rule]
 
-Full guide saved to: YYYY-MM-DD-brand-voice.md
+Full guide saved to:  YYYY-MM-DD-brand-voice.md
+Voice guide written:  brand-voice.md (read automatically by copy, copyedit,
+                      social, outreach, emails, and humanize)
 ```
 
 ---
 
 ## Persist the Voice (with a profile loaded)
 
-The full guide is the dated report - it should never be copied into `PROFILE.md`. Keep the profile compact (it's the layer every command loads on every run) and let the deep voice live in a referenced doc. Handle the case you're in:
+The voice lives in three layers, each with one job: the dated report is the full analysis (a snapshot, never overwritten), `brand-voice.md` is the working voice guide the other commands read on every run, and `PROFILE.md`'s `Tone` / `Avoid` are the compact fallback for when no guide exists. Never copy the full guide into `PROFILE.md` - keep the profile compact and let the deep voice live in its own files.
+
+### Write the voice guide - `brand-voice.md` (every run with a profile)
+
+Distill the analysis into `projects/<name>/brand-voice.md` - the stable-path artifact the writing commands (`copy`, `copyedit`, `social`, `outreach`, `emails`, `humanize`) read automatically when present. This is a default step, not an offer: the chain only works if the file reliably exists after a brand run. Add `@brand-voice.md` under the profile's **Reference Documents** if it isn't linked yet.
+
+The file follows this fixed format - consumers rely on these exact section headings, so keep them verbatim and put the substance in plain bullets under each:
+
+```markdown
+# Voice Guide: [Brand]
+<!-- Written by /gtm brand. Fixed format: the writing commands read this file
+     by section heading - keep the headings, edit the content freely. -->
+**Updated:** YYYY-MM-DD (source: YYYY-MM-DD-brand-voice.md)
+
+## Voice in One Line
+[the one-line voice rule]
+
+## Dimensions
+- Formal <> Casual: X/10 - [one line]
+- Serious <> Playful: X/10 - [one line]
+- Technical <> Simple: X/10 - [one line]
+- Reserved <> Bold: X/10 - [one line]
+- Archetype: [primary] (+ [secondary], if any)
+
+## Words We Use
+[the 10-15 most characteristic words and phrases]
+
+## Words We Avoid
+[the words that break the voice, plus every claim from the profile's Avoid list]
+
+## Signature Phrases
+[recurring phrases and patterns, or "none yet"]
+
+## Do
+- [3-6 concrete writing rules from the Do's]
+
+## Don't
+- [3-6 concrete anti-patterns from the Don'ts]
+
+## Sample Lines
+- Headline: "[sample]"
+- CTA: "[sample]"
+- Email subject: "[sample]"
+- Social opener: "[sample]"
+```
+
+Update semantics - the guide is a living doc, not a dated report:
+
+- **File doesn't exist** - write it and say so in the terminal output.
+- **File exists from a previous brand run** - update it in place to match this analysis, and list what changed in one line.
+- **File exists and the founder has edited it** (content that no generated guide would contain, or wording that departs from the last dated report) - treat their edits as decisions: show the proposed changes as before/after and apply only on approval; with no answer (an unattended run), leave the file untouched and note the proposed changes in the dated report instead.
 
 ### A brand manifesto or voice doc is already linked
 If the profile's **Reference Documents** point to a brand manifesto or voice doc (e.g. `@brand-manifesto.md`), read it as the founder's stated voice *intent* - the reference, not infallible gospel. The orchestrator already loads it on every command. So:
 - Analyze the live site against it and surface where they disagree. Drift cuts both ways: the copy may have wandered from the manifesto, or the manifesto may be stale, aspirational, or simply wrong. If the site consistently does something the manifesto forbids (or vice versa), say so plainly and show the evidence rather than assuming the document is right.
 - For each inconsistency, offer remediation in both directions and let the founder choose: align the copy to the manifesto, or update the manifesto to match what's actually working. Flag clear manifesto errors, internal contradictions, and stale rules as their own findings.
 - Never silently overwrite or duplicate the manifesto. If the founder decides a rule should change, show the exact before/after and edit only on approval; otherwise leave it untouched and offer to append the findings as a short dated note.
-- For the profile, at most confirm `Tone` points to it (e.g. `Tone: see @brand-manifesto.md` plus a one-line distillation), so the compact layer and the deep doc don't become two competing truths.
-
-### No manifesto yet, but the founder wants a living voice doc
-Offer to promote the guide to an undated, canonical `brand-voice.md` that the profile references, so every future command reads the full voice (not just the one-liner):
-> "Want a living voice doc? I'll save this as `brand-voice.md` and link it in your profile, so `copy`, `landing`, and `emails` write from the full guide - the dated report stays as the snapshot."
-
-On yes, write `projects/<name>/brand-voice.md` (the guide, undated) and add `@brand-voice.md` under the profile's **Reference Documents**.
+- The manifesto and `brand-voice.md` don't compete: the manifesto is the founder's intent in their own words; the voice guide is the machine-read distillation of what the voice should be after this analysis reconciled the two. Where they disagree and the founder has ruled, the guide carries the ruling.
+- For the profile, at most confirm `Tone` points to the right doc (e.g. `Tone: see @brand-manifesto.md` plus a one-line distillation), so the compact layer and the deep docs don't become competing truths.
 
 ### Always: the compact extract
 Either way, offer to set the two small fields the rest of the suite reads - never more than a few lines:
@@ -554,12 +603,12 @@ Either way, offer to set the two small fields the rest of the suite reads - neve
 > - **Avoid** -> [the top 3-4 anti-patterns from the Voice Chart 'IS NOT' column]
 > (y/n)"
 
-On yes, edit `projects/<name>/PROFILE.md` surgically, never wholesale (same rules as `/gtm position`):
+On yes, edit `projects/<name>/PROFILE.md` surgically, never wholesale:
 - **Blank or still template text** - write it in full and tag it `(set by /gtm brand, YYYY-MM-DD)` so it reads as a generated value, not the founder's own words.
 - **Already holds the founder's wording** - don't overwrite. Take the lightest action that fits: *aligned* leave it as is and say it still holds; *improvable* propose the smallest sharpening, keeping their voice intact; *outdated or wrong* (this analysis disproved it) only then propose a full replacement, and say why.
 - Either way, show the current value beside your proposed edit and get approval before writing.
 
-Touch only `Tone` / `Avoid` (and the Reference Documents link if you added a doc); leave `Differentiator` / `Key messages` to `/gtm position` and `/gtm competitors`, and everything else exactly as it is.
+Touch only `Tone` / `Avoid` (and the Reference Documents link if you added a doc); leave `Differentiator` / `Key messages` to `/gtm position` and `/gtm competitors`, and everything else exactly as it is. The compact fields matter even with `brand-voice.md` written: they are what the other commands fall back on in projects where the guide is later removed, and what `/gtm init`-only projects run on before a brand run exists.
 
 ---
 
@@ -570,7 +619,8 @@ Touch only `Tone` / `Avoid` (and the Reference Documents link if you added a doc
 - If a `YYYY-MM-DD-competitor-report.md` exists, use its competitor profiles for the Competitor Voice Comparison (Step 6) rather than re-fetching.
 - If a `YYYY-MM-DD-copy-suggestions.md` or `YYYY-MM-DD-gtm-audit.md` exists, reuse its copy and content findings as live-voice evidence.
 - If a brand manifesto or voice doc is linked in the profile's Reference Documents, read it as stated voice *intent* (not infallible) and analyze the live site against it - surface where they disagree (the manifesto can be the stale or wrong one) and offer two-way remediation; never silently overwrite or duplicate it.
-- Persist the voice (see *Persist the Voice*): the compact `Tone` / `Avoid` go in `PROFILE.md`; the full voice stays in the dated report or a referenced `brand-voice.md` / brand manifesto - never copied into the profile.
+- Persist the voice (see *Persist the Voice*): the compact `Tone` / `Avoid` go in `PROFILE.md`; the working voice guide is `brand-voice.md` at the project root; the full analysis stays in the dated report - never copied into the profile.
+- `brand-voice.md` is the voice chain's contract: `copy`, `copyedit`, `social`, `outreach`, `emails`, and `humanize` read it automatically when present, so this skill's output becomes an input everywhere text gets written.
 - Suggest follow-up: `/gtm copy` to rewrite the site in the documented voice; run `/gtm position` first if the brand has no clear position yet.
 
 ## Key Principles
@@ -581,3 +631,10 @@ Touch only `Tone` / `Avoid` (and the Reference Documents link if you added a doc
 - Voice and tone are different. Voice is the consistent personality. Tone shifts based on context (a customer complaint response is different from a product launch announcement, but both should be in the same voice).
 - If the brand's voice is inconsistent across channels, frame it as an opportunity to strengthen their brand, not as a failure. Consistency issues are common and fixable.
 - The voice dimensions should be plotted visually (text-based spectrum) so stakeholders can quickly understand the positioning at a glance.
+
+## Related Commands
+
+- `/gtm copy` - rewrites the site in the voice this skill documents; reads `brand-voice.md` automatically.
+- `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails` - the other writers on the voice chain; all read `brand-voice.md` when present.
+- `/gtm humanize` - the closing pass that enforces the voice guide while stripping AI tells.
+- `/gtm position` - settle the positioning first when the brand has no clear position to voice.
