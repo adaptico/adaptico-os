@@ -1,6 +1,6 @@
 ---
 name: gtm-landing
-version: 1.3.1
+version: 1.3.2
 description: Landing page conversion-rate-optimization teardown for /gtm landing <target>. Use when the user wants a section-by-section CRO review of a landing or signup page with prioritized fixes. Also trigger for "optimize my landing page", "CRO review", "why isn't my page converting", "improve signups", or "landing page teardown".
 ---
 
@@ -364,7 +364,7 @@ Write the report to the resolved output path as `YYYY-MM-DD-landing-cro.md` (see
 
 ## Optional Critic Pass
 
-If the founder asked for a red-teamed or critiqued teardown, run the `gtm-critic` review protocol (`skills/gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
+If the founder asked for a red-teamed or critiqued teardown, run the `gtm-critic` review protocol (`.claude/skills/gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
 
 ## Key Principles
 - Always tie recommendations to REVENUE IMPACT. Don't just say "change the button color" -- say "changing the CTA button to a contrasting color typically increases clicks 15-30%, which at your current traffic could mean X more conversions per month."

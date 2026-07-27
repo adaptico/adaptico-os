@@ -1,6 +1,6 @@
 ---
 name: gtm-competitors
-version: 1.2.3
+version: 1.2.4
 description: Competitive intelligence for /gtm competitors <target>. Use when the user wants to identify competitors, analyze rival marketing and positioning, or find differentiation gaps and steal-worthy tactics. Also trigger for "who are my competitors", "analyze my competition", "competitive analysis", "how do rivals market", or "where can we differentiate".
 ---
 
@@ -25,8 +25,8 @@ The user runs `/gtm competitors <target>`. With a profile loaded, seed from PROF
 ## Phase 0: Seed from PROFILE.md (with a profile loaded)
 
 Before doing any discovery, check whether competitors are already known. With a profile loaded, read `PROFILE.md` and look for entries in:
-- `### User-Added Competitors` — competitors the founder specified manually
-- `### AI-Researched Competitors` — competitors discovered by a previous run of this skill
+- `### User-Added Competitors` - competitors the founder specified manually
+- `### AI-Researched Competitors` - competitors discovered by a previous run of this skill
 
 Collect all entries from both sections as your **seed list**. In Phase 1, start from this list and expand it rather than starting from scratch. Competitors already in the seed list do not need to be re-discovered, but do still need to be fully analyzed if they haven't been profiled yet.
 
@@ -207,10 +207,10 @@ For each competitor, analyze:
 List topics that competitors cover but the target does not:
 ```
 CONTENT GAPS (Competitors Cover, Target Does Not):
-  1. [Topic] — covered by Comp A, B (high search intent)
-  2. [Topic] — covered by Comp A, C (medium search intent)
-  3. [Topic] — covered by Comp B (high search intent)
-  4. [Topic] — covered by all competitors (critical gap)
+  1. [Topic] - covered by Comp A, B (high search intent)
+  2. [Topic] - covered by Comp A, C (medium search intent)
+  3. [Topic] - covered by Comp B (high search intent)
+  4. [Topic] - covered by all competitors (critical gap)
 ```
 
 ### 2.5 Social Media Presence Comparison
@@ -301,13 +301,13 @@ Identify specific marketing tactics from competitors worth adopting:
 STEAL-WORTHY TACTICS
 ====================
 
-1. [Competitor A] — [Tactic: e.g., "Interactive pricing calculator"]
+1. [Competitor A] - [Tactic: e.g., "Interactive pricing calculator"]
    Why it works: [explanation]
    How to implement: [specific steps for the target]
    Estimated effort: [Low/Medium/High]
    Expected impact: [Low/Medium/High]
 
-2. [Competitor B] — [Tactic: e.g., "Customer success story video series"]
+2. [Competitor B] - [Tactic: e.g., "Customer success story video series"]
    Why it works: [explanation]
    How to implement: [specific steps]
    Estimated effort: [Low/Medium/High]
@@ -491,7 +491,7 @@ top 3 strategic recommendations]
 
 ---
 
-## SWOT Analysis — [Target Brand]
+## SWOT Analysis - [Target Brand]
 [Aggregate SWOT based on competitive intelligence]
 
 ---
@@ -565,9 +565,9 @@ After completing the analysis, offer to update `projects/<name>/PROFILE.md` with
 **Find the `### AI-Researched Competitors` section** in PROFILE.md and replace its contents with the full competitor list discovered in this run. Use this format:
 
 ```
-- [Competitor Name](https://url) — Direct
-- [Competitor Name](https://url) — Indirect
-- [Competitor Name](https://url) — Aspirational
+- [Competitor Name](https://url) - Direct
+- [Competitor Name](https://url) - Indirect
+- [Competitor Name](https://url) - Aspirational
 ```
 
 Rules:

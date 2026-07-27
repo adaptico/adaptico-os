@@ -1,7 +1,7 @@
 #!/bin/bash
-# Adaptico OS — Claude Code Skills Installer
+# Adaptico OS - Claude Code Skills Installer
 # Installs the free (core) go-to-market skills, agents, and scripts into .claude/ in the working directory.
-# Sources live under src/core/. Skills and agents are auto-discovered — no arrays to keep in sync.
+# Sources live under src/core/. Skills and agents are auto-discovered - no arrays to keep in sync.
 
 set -e
 
@@ -24,7 +24,7 @@ echo -e "${CYAN}║     go-to-market for SaaS & AI founders      ║${NC}"
 echo -e "${CYAN}╚══════════════════════════════════════════════╝${NC}"
 echo ""
 
-# INSTALL_DIR is always where the user currently is — this is where .claude/ lands.
+# INSTALL_DIR is always where the user currently is - this is where .claude/ lands.
 # SCRIPT_DIR is where the source files come from (local checkout or temp clone).
 INSTALL_DIR="$(pwd)"
 
@@ -33,7 +33,7 @@ if [ -n "$BASH_SOURCE" ] && [ "$BASH_SOURCE" != "bash" ] && [ -f "$BASH_SOURCE" 
     SCRIPT_DIR="$(cd "$(dirname "$BASH_SOURCE")" && pwd)"
 else
     # curl | bash: clone the repo to a temp dir, clean up after install
-    echo -e "${YELLOW}Running remote install — cloning repository...${NC}"
+    echo -e "${YELLOW}Running remote install - cloning repository...${NC}"
     TEMP_DIR=$(mktemp -d)
     git clone --depth 1 "$REPO_URL" "$TEMP_DIR/repo" 2>/dev/null
     if [ $? -ne 0 ]; then
@@ -47,7 +47,7 @@ fi
 # Source layout (post-refactor): all installable sources live under src/.
 SRC_DIR="$SCRIPT_DIR/src/core"
 
-# Target directories — local to the working directory, not system-wide
+# Target directories - local to the working directory, not system-wide
 SKILLS_DIR="$INSTALL_DIR/.claude/skills"
 AGENTS_DIR="$INSTALL_DIR/.claude/agents"
 
@@ -84,7 +84,7 @@ mkdir -p "$SKILLS_DIR"
 mkdir -p "$AGENTS_DIR"
 mkdir -p "$INSTALL_DIR/projects"
 
-# Install skills (auto-discovered — every dir with a SKILL.md, incl. the gtm orchestrator)
+# Install skills (auto-discovered - every dir with a SKILL.md, incl. the gtm orchestrator)
 echo -e "\n${BLUE}Installing skills...${NC}"
 SKILL_COUNT=0
 INSTALLED_SKILLS=()
@@ -124,7 +124,7 @@ done
 shopt -u nullglob
 
 # Scripts and templates live inside src/core/skills/gtm/ (scripts/, templates/) and are
-# installed together with the gtm skill in the loop above — no separate copy step needed.
+# installed together with the gtm skill in the loop above - no separate copy step needed.
 
 # Node check (the analysis scripts are zero-dependency Node - nothing to npm install)
 echo -e "\n${BLUE}Checking Node.js...${NC}"
