@@ -37,6 +37,8 @@ Look up this command's verdict for the founder's tier:
 | competitors | Core | Core | Core |
 | launch | Core | Useful | Useful |
 | copy | Useful | Core | Useful |
+| copyedit | Useful | Useful | Useful |
+| humanize | Useful | Useful | Useful |
 | landing | Useful | Core | Useful |
 | funnel | Useful | Useful | Useful |
 | outreach | Core | Core | Useful |

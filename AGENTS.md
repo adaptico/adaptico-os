@@ -73,6 +73,8 @@ Every generated report begins with:
 | `/gtm competitors <target>` | Competitive intelligence |
 | `/gtm launch <target>` | Launch playbook (Product Hunt / HN / X) |
 | `/gtm copy <target>` | Optimized copy with before/after rewrites |
+| `/gtm copyedit <target>` | Line-edit your own draft for clarity while keeping your voice |
+| `/gtm humanize <target>` | Strip AI-tells from any draft before it ships |
 | `/gtm landing <target>` | Landing page CRO (SaaS signup focus) |
 | `/gtm funnel <target>` | Funnel / activation analysis (trial & PLG focus) |
 | `/gtm outreach <target>` | Cold outbound sequences - cold email & LinkedIn DM |
