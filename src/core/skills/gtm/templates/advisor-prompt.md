@@ -40,6 +40,7 @@ Look up this command's verdict for the founder's tier:
 | copyedit | Useful | Useful | Useful |
 | humanize | Useful | Useful | Useful |
 | landing | Useful | Core | Useful |
+| pricing | Useful | Core | Core |
 | funnel | Useful | Useful | Useful |
 | outreach | Core | Core | Useful |
 | emails | Too early | Core | Useful |

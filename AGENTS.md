@@ -76,6 +76,7 @@ Every generated report begins with:
 | `/gtm copyedit <target>` | Line-edit your own draft for clarity while keeping your voice |
 | `/gtm humanize <target>` | Strip AI-tells from any draft before it ships |
 | `/gtm landing <target>` | Landing page CRO (SaaS signup focus) |
+| `/gtm pricing <target>` | Pricing page + value-based 3-tier packaging + pricing calculator |
 | `/gtm funnel <target>` | Funnel / activation analysis (trial & PLG focus) |
 | `/gtm outreach <target>` | Cold outbound sequences - cold email & LinkedIn DM |
 | `/gtm emails <target>` | Activation onboarding & dunning email sequences |
