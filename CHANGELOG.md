@@ -4,6 +4,14 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.10.0]
+
+### Added
+- `/gtm pricing` - works out what to charge from the value you deliver rather than your costs, designs three tiers with the annual-discount math worked out, and audits or drafts the pricing page itself, objection handling included. A bundled calculator does the arithmetic - tier ratios, annual pricing, break-even, CAC payback - so the numbers in the report are computed, not estimated.
+
+### Fixed
+- `/gtm brand` and `/gtm humanize` listed which commands read the voice guide and run the humanize pass, and both lists had gone stale; they now include `/gtm pricing`.
+
 ## [0.9.0]
 
 ### Added
