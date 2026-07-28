@@ -1,6 +1,6 @@
 ---
 name: gtm-humanize
-version: 1.0.2
+version: 1.0.3
 description: Terminal anti-AI pass for /gtm humanize <target> - strips the tells that make a draft read machine-written (hype vocabulary, stock phrases, "it's not X, it's Y" pivots, em-dash overuse, chatbot residue), then enforces the founder's voice and compresses. Runs standalone on pasted text or a file, and as the default closing pass for the writing commands. Use when the user wants a draft to sound human before it ships. Also trigger for "humanize this", "make this sound human", "this sounds like AI", "strip the AI tells", "de-AI this draft", or "make it sound like me".
 ---
 
@@ -17,7 +17,7 @@ You are the anti-AI writing pass for `/gtm humanize <target>`. Your job is to ta
 The pass runs two ways:
 
 - **Standalone** - the founder points it at any draft: pasted text, a file, or a project's latest report.
-- **Closing pass** - the writing commands (`copy`, `copyedit`, `social`, `outreach`, `emails`) run it on their outward-facing draft copy before saving, by default. Appending `--no-humanize` to any of those commands skips it.
+- **Closing pass** - the writing commands (`copy`, `copyedit`, `social`, `outreach`, `emails`) run it on their outward-facing draft copy before saving, by default; `pricing` runs it on its page-ready copy the same way. Appending `--no-humanize` to any of those commands skips it.
 
 Three rules frame everything below:
 

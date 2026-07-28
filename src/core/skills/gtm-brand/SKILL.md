@@ -1,7 +1,7 @@
 ---
 name: gtm-brand
-version: 1.3.1
-description: Brand voice analysis and guidelines for /gtm brand <target>. Audits the live voice (formal/casual, technical/simple, archetype, consistency) and produces a reusable voice guide: voice chart, do's and don'ts, messaging hierarchy, and on-brand copy samples - distilled into a brand-voice.md the writing commands (copy, social, outreach, emails, humanize) read automatically. Use when the user wants to define, analyze, or document their brand voice, tone, and messaging, or keep copy consistent. Also trigger for "what's our brand voice", "brand guidelines", "tone of voice", "how should we sound", or "make our copy consistent".
+version: 1.3.2
+description: Brand voice analysis and guidelines for /gtm brand <target>. Audits the live voice (formal/casual, technical/simple, archetype, consistency) and produces a reusable voice guide: voice chart, do's and don'ts, messaging hierarchy, and on-brand copy samples - distilled into a brand-voice.md the writing commands (copy, copyedit, social, outreach, emails, pricing, humanize) read automatically. Use when the user wants to define, analyze, or document their brand voice, tone, and messaging, or keep copy consistent. Also trigger for "what's our brand voice", "brand guidelines", "tone of voice", "how should we sound", or "make our copy consistent".
 ---
 
 # Brand Voice Analysis and Guidelines Generation
@@ -18,7 +18,7 @@ description: Brand voice analysis and guidelines for /gtm brand <target>. Audits
 ## Skill Purpose
 Analyze a brand's voice, tone, and messaging across all available channels and generate a comprehensive brand voice guidelines document. This skill examines how a brand communicates, identifies patterns and inconsistencies, and produces actionable guidelines that any writer or marketer can follow to maintain brand consistency.
 
-The guide is not just a report: with a profile loaded, its essentials are distilled into `brand-voice.md` at the project root - a fixed-format voice guide the writing commands (`copy`, `copyedit`, `social`, `outreach`, `emails`, `humanize`) read automatically, so the documented voice governs everything written after this run.
+The guide is not just a report: with a profile loaded, its essentials are distilled into `brand-voice.md` at the project root - a fixed-format voice guide the writing commands (`copy`, `copyedit`, `social`, `outreach`, `emails`, `pricing`, `humanize`) read automatically, so the documented voice governs everything written after this run.
 
 ## When to Use
 - User wants to understand or document a brand's voice
@@ -529,7 +529,7 @@ Voice in one line: [the one-line voice rule]
 
 Full guide saved to:  YYYY-MM-DD-brand-voice.md
 Voice guide written:  brand-voice.md (read automatically by copy, copyedit,
-                      social, outreach, emails, and humanize)
+                      social, outreach, emails, pricing, and humanize)
 ```
 
 ---
@@ -540,7 +540,7 @@ The voice lives in three layers, each with one job: the dated report is the full
 
 ### Write the voice guide - `brand-voice.md` (every run with a profile)
 
-Distill the analysis into `projects/<name>/brand-voice.md` - the stable-path artifact the writing commands (`copy`, `copyedit`, `social`, `outreach`, `emails`, `humanize`) read automatically when present. This is a default step, not an offer: the chain only works if the file reliably exists after a brand run. Add `@brand-voice.md` under the profile's **Reference Documents** if it isn't linked yet.
+Distill the analysis into `projects/<name>/brand-voice.md` - the stable-path artifact the writing commands (`copy`, `copyedit`, `social`, `outreach`, `emails`, `pricing`, `humanize`) read automatically when present. This is a default step, not an offer: the chain only works if the file reliably exists after a brand run. Add `@brand-voice.md` under the profile's **Reference Documents** if it isn't linked yet.
 
 The file follows this fixed format - consumers rely on these exact section headings, so keep them verbatim and put the substance in plain bullets under each:
 
@@ -620,7 +620,7 @@ Touch only `Tone` / `Avoid` (and the Reference Documents link if you added a doc
 - If a `YYYY-MM-DD-copy-suggestions.md` or `YYYY-MM-DD-gtm-audit.md` exists, reuse its copy and content findings as live-voice evidence.
 - If a brand manifesto or voice doc is linked in the profile's Reference Documents, read it as stated voice *intent* (not infallible) and analyze the live site against it - surface where they disagree (the manifesto can be the stale or wrong one) and offer two-way remediation; never silently overwrite or duplicate it.
 - Persist the voice (see *Persist the Voice*): the compact `Tone` / `Avoid` go in `PROFILE.md`; the working voice guide is `brand-voice.md` at the project root; the full analysis stays in the dated report - never copied into the profile.
-- `brand-voice.md` is the voice chain's contract: `copy`, `copyedit`, `social`, `outreach`, `emails`, and `humanize` read it automatically when present, so this skill's output becomes an input everywhere text gets written.
+- `brand-voice.md` is the voice chain's contract: `copy`, `copyedit`, `social`, `outreach`, `emails`, `pricing`, and `humanize` read it automatically when present, so this skill's output becomes an input everywhere text gets written.
 - Suggest follow-up: `/gtm copy` to rewrite the site in the documented voice; run `/gtm position` first if the brand has no clear position yet.
 
 ## Key Principles
@@ -635,6 +635,6 @@ Touch only `Tone` / `Avoid` (and the Reference Documents link if you added a doc
 ## Related Commands
 
 - `/gtm copy` - rewrites the site in the voice this skill documents; reads `brand-voice.md` automatically.
-- `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails` - the other writers on the voice chain; all read `brand-voice.md` when present.
+- `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm pricing` - the other writers on the voice chain; all read `brand-voice.md` when present.
 - `/gtm humanize` - the closing pass that enforces the voice guide while stripping AI tells.
 - `/gtm position` - settle the positioning first when the brand has no clear position to voice.
