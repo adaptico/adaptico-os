@@ -1,6 +1,6 @@
 ---
 name: gtm-funnel
-version: 1.2.3
+version: 1.2.4
 description: Funnel and activation analysis for /gtm funnel <target>: maps the public funnel (landing, pricing, signup) and works with the founder on the post-signup path to first value. Use when the user wants to find funnel drop-off/leaks or improve trial-to-paid and PLG activation. Also trigger for "fix my funnel", "where am I losing users", "activation rate", "trial conversion", or "funnel leaks".
 ---
 
@@ -475,3 +475,4 @@ Full analysis saved to: YYYY-MM-DD-funnel-analysis.md
 - If a `YYYY-MM-DD-landing-cro.md` exists, fold its hero and CTA findings into the top-of-funnel step rather than repeating them.
 - Suggest follow-up: `/gtm landing` for a deep CRO teardown of the worst-scoring page, and `/gtm copy` to rewrite the leaking pages.
 - For the onboarding/activation and dunning email sequences this analysis points to, run `/gtm emails`.
+- For the post-signup slice this map flags - committing to one activation metric, the first-90-days plan, and the cancel-flow / save-offer / failed-payment mechanics - run `/gtm retention`; it goes deep where this map goes wide, and it reuses this report's activation section rather than re-deriving it.
