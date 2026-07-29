@@ -79,6 +79,7 @@ After installing, restart Claude Code so it picks up the new skills.
 | **Reach & retain** | |
 | `/gtm outreach` | Cold outbound sequences - cold email & LinkedIn DM |
 | `/gtm emails` | Activation onboarding & dunning (failed-payment recovery) email sequences |
+| `/gtm retention` | Activation + churn defense - cancel-flows and save-offers |
 | `/gtm social` | Founder-led socials: join conversations where buyers are, and an X/LinkedIn calendar |
 | **Scale up (later)** | |
 | `/gtm brand` | Brand voice audit + a reusable voice guide (do's & don'ts, copy samples) |
