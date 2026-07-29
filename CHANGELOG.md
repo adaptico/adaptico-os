@@ -4,6 +4,18 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.11.0]
+
+### Added
+- `/gtm retention` - maps the path from signup to first value, holds you to one activation metric, and puts first-90-days fixes ahead of late-stage retention tricks. Also designs the churn defenses: cancel flow, save offers, and what to do when a payment fails.
+
+### Changed
+- `/gtm emails` anchors its onboarding sequence to the activation metric from a retention run, and matches its dunning sequence to that run's failed-payment posture. `/gtm funnel` hands the post-signup work off to `/gtm retention` rather than half-covering it.
+- Retention is now its own step in the Tier 3 journey `/gtm init` recommends, instead of a note attached to the emails step.
+
+### Fixed
+- `/gtm audit` pointed weak Activation and Revenue Quality scores at commands that only partly address them. Activation now leads to `/gtm retention`, and Revenue Quality to `/gtm pricing` for packaging and `/gtm retention` for churn defenses.
+
 ## [0.10.0]
 
 ### Added
