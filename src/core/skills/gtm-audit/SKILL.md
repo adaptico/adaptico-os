@@ -505,9 +505,9 @@ End every audit - both in the saved report and in the terminal summary - with a 
 - **Weak Positioning Clarity** → `/gtm position`, `/gtm competitors`
 - **Weak ICP Focus** → `/gtm position`, `/gtm copy`
 - **Weak Conversion** → `/gtm landing`, `/gtm copy`
-- **Weak Activation & Time-to-Value** → `/gtm funnel`, `/gtm emails`
+- **Weak Activation & Time-to-Value** → `/gtm retention` (the vector's dedicated deep dive), `/gtm funnel`, `/gtm emails`
 - **Weak Channel Concentration** → Tier 1: keep it manual (`/gtm outreach`); Tier 2-3: `/gtm funnel`, `/gtm social`
-- **Weak Revenue Quality** → `/gtm funnel`, `/gtm emails` (dunning)
+- **Weak Revenue Quality** → `/gtm pricing` (packaging), `/gtm retention` (churn defenses), `/gtm funnel`, `/gtm emails` (dunning)
 - **Pre-launch** → `/gtm position`, `/gtm landing`, `/gtm launch`
 - **B2B, founder-led** → `/gtm social` (build-in-public)
 
