@@ -1,6 +1,6 @@
 ---
 name: gtm-audit
-version: 2.0.3
+version: 2.1.0
 description: Full go-to-market marketing audit for /gtm audit <target>. Runs up to 5 parallel audit subagents with machine-validated outputs and produces a scored, date-stamped report that leads with what changed since the last audit - and never invents a number. Use when the user wants a full marketing/GTM audit, an overall website marketing review, or a composite GTM score. Also trigger for "audit my site", "review my marketing", "how's my GTM", "full marketing teardown", or "score my website".
 ---
 
@@ -93,6 +93,7 @@ Only run vectors whose signals exist. From the page map, the analyzer output, an
 | Conversion (Primary Pages) | always (every site has a primary action, even "join the waitlist") | - |
 | Activation & Time-to-Value | a signup / trial / demo / purchase surface exists | "no signup surface - [what the site has instead, e.g. waitlist only]" |
 | Channel Concentration | always (profile + log + visible surfaces always give a picture) | - |
+| AI-Search Readiness | always (crawler access, extractable copy, structure, and rendering are observable on every live site) | - |
 | Revenue Quality | a monetization surface exists (pricing page, plans), OR the profile states a revenue model | "pre-revenue per profile, no monetization surface yet" |
 
 Judgment call the table can't make: a product that clearly sells but hides all pricing is a **low Revenue Quality score with a finding**, not a skip - skips are for signals that don't exist, never for signals that look bad.
@@ -103,7 +104,7 @@ Agents map to vectors as follows, so a skipped vector shrinks its agent's job (p
 - `gtm-content` → ICP Focus
 - `gtm-conversion` → Conversion (Primary Pages) + Activation & Time-to-Value
 - `gtm-strategy` → Channel Concentration + Revenue Quality
-- `gtm-technical` → no scored vector; always runs (it is the evidence backbone: technical facts, cross-vector verification, and the GEO monitor)
+- `gtm-technical` → AI-Search Readiness; always runs (it is also the evidence backbone: technical facts and cross-vector verification, unscored)
 
 ### 1.5 Profile Conflict Check (before any scoring)
 
@@ -152,23 +153,26 @@ Each scored vector's 0-100 value is the owning agent's LLM judgment against its 
 ```bash
 node .claude/skills/gtm/scripts/gtm_score.js \
   --positioning 78 --icp 82 --conversion 48 --activation skipped \
-  --channel 74 --revenue 72 --criticals 0
+  --channel 74 --geo 55 --revenue 72 --criticals 0
 ```
 
-Every vector flag is required: a number 0-100 from the owning agent, or the literal `skipped` (from the 1.4 run plan or the agent's own skip) or `degraded` (from 2.1). The weights, in journey order: Positioning Clarity 20%, ICP Focus 15%, Conversion (Primary Pages) 20%, Activation & Time-to-Value 15%, Channel Concentration 15%, Revenue Quality 15%. The script returns the composite (re-normalized over the scored vectors' weights), the letter grade and band (A 85-100, B 70-84, C 55-69, D 40-54, F 0-39), per-vector contributions, the excluded vectors, `weightCoverage`, and `partial`. Same inputs, same score, every run (`--selftest` proves the math).
+Every vector flag is required: a number 0-100 from the owning agent, or the literal `skipped` (from the 1.4 run plan or the agent's own skip) or `degraded` (from 2.1). The weights, in journey order: Positioning Clarity 18%, ICP Focus 14%, Conversion (Primary Pages) 18%, Activation & Time-to-Value 14%, Channel Concentration 13%, AI-Search Readiness 10%, Revenue Quality 13%. The script returns the composite (re-normalized over the scored vectors' weights), the letter grade and band (A 85-100, B 70-84, C 55-69, D 40-54, F 0-39), per-vector contributions, the excluded vectors, `weightCoverage`, and `partial`. Same inputs, same score, every run (`--selftest` proves the math).
 
-**Partial-composite honesty:** whenever `partial` is true, never present the score bare - everywhere the composite appears (header, terminal, exec summary), write it as `X/100 (partial - N of 6 vectors scored)`. A composite over 4 vectors posing as a full GTM score would be an invented number by omission.
+AI-Search Readiness entered the composite in 2.1 at the smallest weight deliberately: it scores cheap, observable groundwork for AI-answer surfaces (crawler access, extractable copy, structure, server-rendered visibility - `gtm-technical`'s Step 6 rubric), never citation performance - a rising discovery surface earns real weight, groundwork-sized.
+
+**Partial-composite honesty:** whenever `partial` is true, never present the score bare - everywhere the composite appears (header, terminal, exec summary), write it as `X/100 (partial - N of 7 vectors scored)`. A composite over 4 vectors posing as a full GTM score would be an invented number by omission.
 
 `--criticals` is the count of unresolved Critical findings from the critic gate (Phase 3.6). One or more caps the composite at 69 (grade C): a report standing on a critical defect cannot grade "good", however strong the other vectors. When the cap fires, the JSON carries both values - show `composite` as the score and note the `uncapped` value beside it.
 
 ### 3.2 Aggregate Recommendations
 
-The six vectors and their weights stay fixed at every tier - that is what keeps the composite comparable across audits. What *is* tier-aware is the ordering: read the founder's **Stage** tier and **Main goal** from Phase 0 and lead with the findings that move the needle at that stage (per the methodology):
+The seven vectors and their weights stay fixed at every tier - that is what keeps the composite comparable across audits. What *is* tier-aware is the ordering: read the founder's **Stage** tier and **Main goal** from Phase 0 and lead with the findings that move the needle at that stage (per the methodology):
 
 - **Tier 1 (Validate)** - lead with Positioning Clarity and ICP Focus findings. A weak conversion score matters less than a homepage nobody understands, aimed at nobody in particular.
 - **Tier 2 (Find a Channel)** - lead with Conversion and Activation findings, then Channel: the pages must convert the traffic the channel tests bring, and the tests need a verdict.
 - **Tier 3 (Scale)** - lead with Channel Concentration and Revenue Quality findings: defend the working channel, stem churn, make the revenue durable.
 - In every tier, push a finding up the list if it directly blocks the founder's stated **Main goal**, and note that link explicitly ("this is the top blocker on your goal of X").
+- **AI-Search Readiness findings are tier-independent**: they are hours-sized groundwork (a robots.txt line, an extractable value-prop sentence), so when one is cheap it belongs in Quick Wins at any tier - never framed as "start an SEO program".
 
 This reorders which recommendations surface first and which 3 land in the executive summary and terminal Top 3 - it does not change any score. Then classify every recommendation:
 
@@ -193,10 +197,11 @@ If `gtm-competitive` returned a `competitors` array, render it as a comparison t
 This is the headline of every re-audit. Using the baseline located in Phase 0 (the most recent prior `*-gtm-audit.md`):
 
 1. Parse the prior audit's **Score Breakdown** table (overall + per-vector scores).
-2. **Same dimension set** (a 2.0-era audit: Positioning Clarity, ICP Focus, ...) → compute deltas per vector and overall (`now - prior`, e.g. `+5`, `-2`, `0`). A vector scored then but skipped now (or vice versa) shows `n/a` with the reason - never a fabricated delta.
-3. **Pre-2.0 dimension set** (Content & Messaging, SEO & Discoverability, ...) → the dimensions were recalibrated; per-vector deltas do not exist. Show the prior overall score labeled "prior method - reference only, not comparable", and say the next audit will have a true baseline. Never map old vectors onto new ones.
-4. Reconcile the prior audit's **Quick Wins**: mark each ✅ resolved, ◐ partial, or ⬜ still open based on the current findings.
-5. Identify the single biggest improvement and the single biggest regression, each tied to what actually changed on the site ("pricing page added tiers" - not just the number moving).
+2. **Same dimension set** (a 2.1-era audit: all seven vectors) → compute deltas per vector and overall (`now - prior`, e.g. `+5`, `-2`, `0`). A vector scored then but skipped now (or vice versa) shows `n/a` with the reason - never a fabricated delta.
+3. **2.0-era baseline** (six vectors, no AI-Search Readiness) → compute per-vector deltas for the six shared vectors as usual; AI-Search Readiness shows `n/a - vector added in 2.1`; label the overall delta "approximate - weights recalibrated in 2.1" (the six weights shifted to make room for the new vector, so overall movement is directional, not exact).
+4. **Pre-2.0 dimension set** (Content & Messaging, SEO & Discoverability, ...) → the dimensions were recalibrated; per-vector deltas do not exist. Show the prior overall score labeled "prior method - reference only, not comparable", and say the next audit will have a true baseline. Never map old vectors onto new ones.
+5. Reconcile the prior audit's **Quick Wins**: mark each ✅ resolved, ◐ partial, or ⬜ still open based on the current findings.
+6. Identify the single biggest improvement and the single biggest regression, each tied to what actually changed on the site ("pricing page added tiers" - not just the number moving).
 
 If no prior audit exists, the section is one line: "First audit - no baseline yet. The next run will open with what changed." Never invent a baseline.
 
@@ -221,8 +226,8 @@ Write the final report to `YYYY-MM-DD-gtm-audit.md` in the project folder (see t
 **Website:** [url]
 **Date:** [current date]
 **Business Type:** [detected type]
-**Overall GTM Score: [X]/100 (Grade: [letter])**  *(append "(partial - N of 6 vectors scored)" when partial)*
-**Coverage:** [N] of 6 vectors scored[; list skipped/degraded with one-line reasons]
+**Overall GTM Score: [X]/100 (Grade: [letter])**  *(append "(partial - N of 7 vectors scored)" when partial)*
+**Coverage:** [N] of 7 vectors scored[; list skipped/degraded with one-line reasons]
 **Critic gate:** clean | capped by N unresolved Critical finding(s)
 
 ---
@@ -240,8 +245,9 @@ Write the final report to `YYYY-MM-DD-gtm-audit.md` in the project folder (see t
 | Conversion (Primary Pages) | X | X | ±X |
 | Activation & Time-to-Value | X | X | ±X |
 | Channel Concentration | X | X | ±X |
+| AI-Search Readiness | X | X | ±X *(2.0-era baseline: "n/a - vector added in 2.1")* |
 | Revenue Quality | X | X | ±X |
-| **Overall** | **X** | **X** | **±X** |
+| **Overall** | **X** | **X** | **±X** *(2.0-era baseline: "approximate - weights recalibrated in 2.1")* |
 
 - **Fixed since last audit:** [prior quick wins now resolved - ✅ each]
 - **Still open:** [◐ partial / ⬜ untouched]
@@ -265,12 +271,13 @@ tier per 3.2.]
 
 | Vector | Score | Weight | Weighted | Key Finding |
 |--------|-------|--------|----------|-------------|
-| Positioning Clarity | X/100 | 20% | X | [agent's one-line summary] |
-| ICP Focus | X/100 | 15% | X | [one-line] |
-| Conversion (Primary Pages) | X/100 | 20% | X | [one-line] |
-| Activation & Time-to-Value | X/100 | 15% | X | [one-line, or "skipped - reason"] |
-| Channel Concentration | X/100 | 15% | X | [one-line] |
-| Revenue Quality | X/100 | 15% | X | [one-line, or "skipped - reason"] |
+| Positioning Clarity | X/100 | 18% | X | [agent's one-line summary] |
+| ICP Focus | X/100 | 14% | X | [one-line] |
+| Conversion (Primary Pages) | X/100 | 18% | X | [one-line] |
+| Activation & Time-to-Value | X/100 | 14% | X | [one-line, or "skipped - reason"] |
+| Channel Concentration | X/100 | 13% | X | [one-line] |
+| AI-Search Readiness | X/100 | 10% | X | [one-line] |
+| Revenue Quality | X/100 | 13% | X | [one-line, or "skipped - reason"] |
 | **TOTAL** | | | **X/100** | [grade + band; note re-normalization when partial; note cap when fired] |
 
 ---
@@ -314,6 +321,13 @@ tier per 3.2.]
 ### Channel Concentration
 [gtm-strategy's channel findings + channels_observed table]
 
+### AI-Search Readiness
+[gtm-technical's geo findings: the four-signal breakdown from `geo_signals`
+(crawler access, extractable value prop, structure, server-rendered
+visibility), each with its observed evidence and exact fix. Close with the
+boundary line: this scores groundwork, not citations - `/gtm geo` runs the
+full visibility audit and monitoring.]
+
 ### Revenue Quality
 [gtm-strategy's revenue findings, or the skip reason]
 
@@ -321,9 +335,8 @@ tier per 3.2.]
 
 ## Technical Foundations (not scored)
 
-[gtm-technical's findings - structure, crawlability, tracking, schema - with
-severity; a Critical here is as loud as any scored finding. Close with the
-AI-Search Visibility (GEO) monitor table - monitor only, no score weight.]
+[gtm-technical's non-GEO findings - structure, crawlability, tracking,
+schema - with severity; a Critical here is as loud as any scored finding.]
 
 ---
 
@@ -369,7 +382,7 @@ In addition to the file, display a condensed summary in the terminal:
 Startup: [name] ([type])
 URL: [url]
 GTM Score: [X]/100 (Grade: [letter])   [±Δ since YYYY-MM-DD | "first audit - no baseline"]
-[Coverage: N of 6 vectors - <skipped vector>: <short reason>   - only when partial]
+[Coverage: N of 7 vectors - <skipped vector>: <short reason>   - only when partial]
 [Critic gate: capped by N Critical(s), uncapped [Y]/100          - only when capped]
 
 Since last audit:   [only when a comparable baseline exists]
@@ -383,6 +396,7 @@ Score Breakdown:
   Conversion (Primary Pages):  [XX]/100 █████░░░░░
   Activation & Time-to-Value:  skipped - no signup surface
   Channel Concentration:       [XX]/100 ███████░░░
+  AI-Search Readiness:         [XX]/100 ██████░░░░
   Revenue Quality:             [XX]/100 ███████░░░
 
 Top 3 Quick Wins:
@@ -507,6 +521,7 @@ End every audit - both in the saved report and in the terminal summary - with a 
 - **Weak Conversion** → `/gtm landing`, `/gtm copy`
 - **Weak Activation & Time-to-Value** → `/gtm retention` (the vector's dedicated deep dive), `/gtm funnel`, `/gtm emails`
 - **Weak Channel Concentration** → Tier 1: keep it manual (`/gtm outreach`); Tier 2-3: `/gtm funnel`, `/gtm social`
+- **Weak AI-Search Readiness** → `/gtm geo` (the full visibility audit and fixes); `/gtm seo` when the crawl/indexing groundwork is the blocker
 - **Weak Revenue Quality** → `/gtm pricing` (packaging), `/gtm retention` (churn defenses), `/gtm funnel`, `/gtm emails` (dunning)
 - **Pre-launch** → `/gtm position`, `/gtm landing`, `/gtm launch`
 - **B2B, founder-led** → `/gtm social` (build-in-public)
@@ -520,3 +535,4 @@ Pick the 3-5 highest-leverage moves for *this* startup based on its lowest vecto
 - `/gtm position` - rebuilds the positioning a weak Positioning Clarity vector exposes.
 - `/gtm landing` - the deep CRO teardown behind a weak Conversion vector.
 - `/gtm funnel` - traces the activation leaks behind a weak Activation vector.
+- `/gtm geo` - the full AI-answer visibility audit behind a weak AI-Search Readiness vector.

@@ -8,14 +8,20 @@
  * critical-findings cap, the rounding, and the grade banding. Same inputs,
  * same composite, every run. The score is a method, not a vibe.
  *
- * The six vectors mirror the methodology (what actually moves an early-stage
+ * The seven vectors mirror the methodology (what actually moves an early-stage
  * software startup), in journey order:
- *   positioning  Positioning Clarity          20%
- *   icp          ICP Focus                    15%
- *   conversion   Conversion (Primary Pages)   20%
- *   activation   Activation & Time-to-Value   15%
- *   channel      Channel Concentration        15%
- *   revenue      Revenue Quality              15%
+ *   positioning  Positioning Clarity          18%
+ *   icp          ICP Focus                    14%
+ *   conversion   Conversion (Primary Pages)   18%
+ *   activation   Activation & Time-to-Value   14%
+ *   channel      Channel Concentration        13%
+ *   geo          AI-Search Readiness          10%
+ *   revenue      Revenue Quality              13%
+ *
+ * geo entered the composite in audit 2.1: it scores the site's cheap,
+ * observable groundwork for AI-answer surfaces (crawler access, extractable
+ * copy, structure, server-rendered visibility) - readiness, never rank or
+ * citation performance, which stay evidence-only in /gtm geo.
  *
  * Every vector flag is REQUIRED and takes a number 0-100, or the literal
  * "skipped" (its signals don't exist on this site - conditional spawning) or
@@ -26,9 +32,9 @@
  *
  * Usage:
  *   node gtm_score.js --positioning 78 --icp 82 --conversion 48 \
- *                     --activation 64 --channel 74 --revenue 72 [--criticals N]
+ *                     --activation 64 --channel 74 --geo 60 --revenue 72 [--criticals N]
  *   node gtm_score.js --positioning 70 --icp 65 --conversion 60 \
- *                     --activation skipped --channel 55 --revenue degraded
+ *                     --activation skipped --channel 55 --geo 40 --revenue degraded
  *   node gtm_score.js --selftest
  *
  * Output: JSON with the composite, grade, band meaning, per-vector weighted
@@ -47,15 +53,16 @@
 
 // Weights must sum to exactly 1.0 (asserted in --selftest).
 const WEIGHTS = {
-  positioning: 0.20, // Positioning Clarity
-  icp: 0.15,         // ICP Focus
-  conversion: 0.20,  // Conversion (Primary Pages)
-  activation: 0.15,  // Activation & Time-to-Value
-  channel: 0.15,     // Channel Concentration
-  revenue: 0.15,     // Revenue Quality
+  positioning: 0.18, // Positioning Clarity
+  icp: 0.14,         // ICP Focus
+  conversion: 0.18,  // Conversion (Primary Pages)
+  activation: 0.14,  // Activation & Time-to-Value
+  channel: 0.13,     // Channel Concentration
+  geo: 0.10,         // AI-Search Readiness (audit 2.1 - groundwork, not rank)
+  revenue: 0.13,     // Revenue Quality
 };
 
-const VECTOR_ORDER = ["positioning", "icp", "conversion", "activation", "channel", "revenue"];
+const VECTOR_ORDER = ["positioning", "icp", "conversion", "activation", "channel", "geo", "revenue"];
 
 const VECTOR_LABELS = {
   positioning: "Positioning Clarity",
@@ -63,6 +70,7 @@ const VECTOR_LABELS = {
   conversion: "Conversion (Primary Pages)",
   activation: "Activation & Time-to-Value",
   channel: "Channel Concentration",
+  geo: "AI-Search Readiness",
   revenue: "Revenue Quality",
 };
 
@@ -89,8 +97,8 @@ function bandFor(score) {
 
 /**
  * Pure scoring function.
- * inputs: { positioning, icp, conversion, activation, channel, revenue } -
- *   each a number 0-100, or "skipped", or "degraded". All six required:
+ * inputs: { positioning, icp, conversion, activation, channel, geo, revenue } -
+ *   each a number 0-100, or "skipped", or "degraded". All seven required:
  *   excluding a vector is a conscious act, never a forgotten flag.
  * criticals: integer >= 0.
  * Returns the result object, or throws Error on invalid input.
@@ -181,7 +189,7 @@ function selftest() {
     }
   }
   function even(v) {
-    return { positioning: v, icp: v, conversion: v, activation: v, channel: v, revenue: v };
+    return { positioning: v, icp: v, conversion: v, activation: v, channel: v, geo: v, revenue: v };
   }
 
   // Weights must sum to exactly 1.0.
@@ -195,20 +203,24 @@ function selftest() {
   assertEq(computeScore(even(0), 0).grade, "F", "all 0 -> F");
 
   // Known mixed case:
-  // 78*.20 + 82*.15 + 48*.20 + 64*.15 + 74*.15 + 72*.15 = 69.0 -> 69 (C).
+  // 78*.18 + 82*.14 + 48*.18 + 64*.14 + 74*.13 + 60*.10 + 72*.13 = 68.10 -> 68 (C).
   const mixed = computeScore(
-    { positioning: 78, icp: 82, conversion: 48, activation: 64, channel: 74, revenue: 72 }, 0
+    { positioning: 78, icp: 82, conversion: 48, activation: 64, channel: 74, geo: 60, revenue: 72 }, 0
   );
-  assertEq(mixed.composite, 69, "mixed case composite");
+  assertEq(mixed.composite, 68, "mixed case composite");
   assertEq(mixed.grade, "C", "mixed case grade");
   assertEq(mixed.weakest, "conversion", "mixed case weakest vector");
   assertEq(mixed.strongest, "icp", "mixed case strongest vector");
   assertEq(mixed.partial, false, "full coverage is not partial");
 
-  // Weighting: positioning alone at 100 contributes 20 points.
+  // Weighting: positioning alone at 100 contributes 18 points; geo alone 10.
   assertEq(
-    computeScore({ positioning: 100, icp: 0, conversion: 0, activation: 0, channel: 0, revenue: 0 }, 0).composite,
-    20, "positioning weight = 20%"
+    computeScore({ positioning: 100, icp: 0, conversion: 0, activation: 0, channel: 0, geo: 0, revenue: 0 }, 0).composite,
+    18, "positioning weight = 18%"
+  );
+  assertEq(
+    computeScore({ positioning: 0, icp: 0, conversion: 0, activation: 0, channel: 0, geo: 100, revenue: 0 }, 0).composite,
+    10, "geo weight = 10%"
   );
 
   // Band edges.
@@ -223,25 +235,25 @@ function selftest() {
 
   // Skipped vectors re-normalize: an even 80 stays 80 with two vectors out.
   const skipped = computeScore(
-    { positioning: 80, icp: 80, conversion: 80, activation: "skipped", channel: 80, revenue: "skipped" }, 0
+    { positioning: 80, icp: 80, conversion: 80, activation: "skipped", channel: 80, geo: 80, revenue: "skipped" }, 0
   );
   assertEq(skipped.composite, 80, "skips re-normalize (even 80 stays 80)");
   assertEq(skipped.partial, true, "skips mark the composite partial");
-  assertEq(skipped.weightCoverage, 0.7, "coverage reflects scored weights");
-  assertEq(skipped.scoredCount, 4, "scored count excludes skips");
+  assertEq(skipped.weightCoverage, 0.73, "coverage reflects scored weights");
+  assertEq(skipped.scoredCount, 5, "scored count excludes skips");
   assertEq(skipped.excluded.length, 2, "excluded lists both vectors");
   assertEq(skipped.excluded[0].status, "skipped", "excluded carries status");
 
-  // Re-normalized mix: 90*.20 + 60*.20 over 0.40 coverage -> 75.
+  // Re-normalized mix: 90*.18 + 60*.18 over 0.36 coverage -> 75.
   const twoVector = computeScore(
-    { positioning: 90, icp: "skipped", conversion: 60, activation: "skipped", channel: "skipped", revenue: "skipped" }, 0
+    { positioning: 90, icp: "skipped", conversion: 60, activation: "skipped", channel: "skipped", geo: "skipped", revenue: "skipped" }, 0
   );
   assertEq(twoVector.composite, 75, "two-vector re-normalized composite");
-  assertEq(twoVector.weightCoverage, 0.4, "two-vector coverage");
+  assertEq(twoVector.weightCoverage, 0.36, "two-vector coverage");
 
   // Degraded is excluded like skipped, but labeled degraded.
   const degraded = computeScore(
-    { positioning: 70, icp: 70, conversion: 70, activation: 70, channel: 70, revenue: "degraded" }, 0
+    { positioning: 70, icp: 70, conversion: 70, activation: 70, channel: 70, geo: 70, revenue: "degraded" }, 0
   );
   assertEq(degraded.composite, 70, "degraded vector excluded from math");
   assertEq(degraded.excluded[0].status, "degraded", "degraded status preserved");
@@ -249,7 +261,7 @@ function selftest() {
 
   // Weakest/strongest ignore excluded vectors.
   const wk = computeScore(
-    { positioning: "skipped", icp: 40, conversion: 90, activation: 50, channel: 60, revenue: 70 }, 0
+    { positioning: "skipped", icp: 40, conversion: 90, activation: 50, channel: 60, geo: 55, revenue: 70 }, 0
   );
   assertEq(wk.weakest, "icp", "weakest among scored only");
   assertEq(wk.strongest, "conversion", "strongest among scored only");
@@ -263,7 +275,7 @@ function selftest() {
 
   // Cap applies to a partial composite too.
   const cappedPartial = computeScore(
-    { positioning: 90, icp: 90, conversion: 90, activation: "skipped", channel: 90, revenue: 90 }, 2
+    { positioning: 90, icp: 90, conversion: 90, activation: "skipped", channel: 90, geo: 90, revenue: 90 }, 2
   );
   assertEq(cappedPartial.composite, 69, "cap fires on a partial composite");
   assertEq(cappedPartial.partial, true, "partial flag survives the cap");
@@ -290,7 +302,7 @@ function selftest() {
   threw = false;
   try {
     computeScore(
-      { positioning: "skipped", icp: "skipped", conversion: "degraded", activation: "skipped", channel: "skipped", revenue: "skipped" }, 0
+      { positioning: "skipped", icp: "skipped", conversion: "degraded", activation: "skipped", channel: "skipped", geo: "skipped", revenue: "skipped" }, 0
     );
   } catch (e) { threw = true; }
   assertEq(threw, true, "all vectors excluded rejected");
@@ -343,7 +355,7 @@ function main() {
 
   if (missing.length) {
     console.error("gtm_score: missing required flag(s): " + missing.join(", "));
-    console.error("usage: node gtm_score.js --positioning N --icp N --conversion N --activation N --channel N --revenue N [--criticals N]");
+    console.error("usage: node gtm_score.js --positioning N --icp N --conversion N --activation N --channel N --geo N --revenue N [--criticals N]");
     console.error("       (each vector takes a number 0-100, or 'skipped', or 'degraded')");
     console.error("       node gtm_score.js --selftest");
     process.exit(2);

@@ -13,7 +13,7 @@
  *   - agent: one of the 5 agent names
  *   - vectors: exactly the vectors that agent owns; each entry is either
  *       { "score": 0-100, "summary": "..." }  or  { "skipped": "reason" }
- *     (gtm-technical owns none - its vectors must be {})
+ *     (gtm-technical owns exactly one: geo - AI-Search Readiness)
  *   - findings: array; each with severity critical|major|minor and
  *     non-empty area, issue, evidence, fix, impact strings
  *   - data_gaps: array of non-empty strings (may be empty - but must exist:
@@ -41,7 +41,7 @@ const AGENT_VECTORS = {
   "gtm-content": ["icp"],
   "gtm-conversion": ["conversion", "activation"],
   "gtm-competitive": ["positioning"],
-  "gtm-technical": [],
+  "gtm-technical": ["geo"],
   "gtm-strategy": ["channel", "revenue"],
 };
 
@@ -239,11 +239,20 @@ function selftest() {
   const convMissing = { agent: "gtm-conversion", vectors: { conversion: { score: 48, summary: "x" } }, findings: [], data_gaps: [] };
   check("missing owned vector", JSON.stringify(convMissing), false, "'vectors.activation' is missing");
 
-  const tech = { agent: "gtm-technical", vectors: {}, findings: [], data_gaps: ["real load timings - not measurable from static HTML"] };
-  check("technical empty vectors ok", JSON.stringify(tech), true);
+  const tech = {
+    agent: "gtm-technical",
+    vectors: { geo: { score: 55, summary: "Crawlers allowed, but the value prop is not extractable from raw HTML." } },
+    findings: [],
+    data_gaps: ["real load timings - not measurable from static HTML"],
+  };
+  const r3 = check("technical geo vector ok", JSON.stringify(tech), true);
+  if (r3.summary && r3.summary.scored.join(",") !== "geo") failures.push("technical: scored should be [geo]");
 
-  const techScored = { agent: "gtm-technical", vectors: { conversion: { score: 50, summary: "x" } }, findings: [], data_gaps: [] };
-  check("technical scoring a vector rejected", JSON.stringify(techScored), false, "does not belong");
+  const techEmpty = { agent: "gtm-technical", vectors: {}, findings: [], data_gaps: [] };
+  check("technical missing geo rejected", JSON.stringify(techEmpty), false, "'vectors.geo' is missing");
+
+  const techScored = { agent: "gtm-technical", vectors: { geo: { score: 55, summary: "x" }, conversion: { score: 50, summary: "x" } }, findings: [], data_gaps: [] };
+  check("technical scoring a foreign vector rejected", JSON.stringify(techScored), false, "does not belong");
 
   const badSev = JSON.parse(JSON.stringify(goodContent));
   badSev.findings[0].severity = "high";

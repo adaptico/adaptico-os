@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 350" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 372" fill="none">
 
-  <rect width="900" height="350" rx="12" fill="#1F1F1E" stroke="#383735" stroke-width="2"></rect>
+  <rect width="900" height="372" rx="12" fill="#1F1F1E" stroke="#383735" stroke-width="2"></rect>
 
 
   <rect width="900" height="30" rx="12" fill="#292827"></rect>
@@ -31,11 +31,12 @@
     <text y="218"><tspan x="56" fill="#D7CDBD">Conversion (Primary Pages)</tspan><tspan x="288" fill="#E5694C">48/100</tspan><tspan x="384" fill="#E5694C">█████</tspan><tspan fill="#444341">░░░░░</tspan></text>
     <text y="240"><tspan x="56" fill="#D7CDBD">Activation &amp; Time-to-Value</tspan><tspan x="288" fill="#F2A23C">64/100</tspan><tspan x="384" fill="#F2A23C">██████</tspan><tspan fill="#444341">░░░░</tspan></text>
     <text y="262"><tspan x="56" fill="#D7CDBD">Channel Concentration</tspan><tspan x="288" fill="#9DBE6A">74/100</tspan><tspan x="384" fill="#9DBE6A">███████</tspan><tspan fill="#444341">░░░</tspan></text>
-    <text y="284"><tspan x="56" fill="#D7CDBD">Revenue Quality</tspan><tspan x="288" fill="#9DBE6A">72/100</tspan><tspan x="384" fill="#9DBE6A">███████</tspan><tspan fill="#444341">░░░</tspan></text>
+    <text y="284"><tspan x="56" fill="#D7CDBD">AI-Search Readiness</tspan><tspan x="288" fill="#F2A23C">60/100</tspan><tspan x="384" fill="#F2A23C">██████</tspan><tspan fill="#444341">░░░░</tspan></text>
+    <text y="306"><tspan x="56" fill="#D7CDBD">Revenue Quality</tspan><tspan x="288" fill="#9DBE6A">72/100</tspan><tspan x="384" fill="#9DBE6A">███████</tspan><tspan fill="#444341">░░░</tspan></text>
   </g>
 
 
-  <text x="36" y="324" font-family="monospace, &#39;Courier New&#39;">
-    <tspan font-size="14" fill="#A09B92">GTM Score: </tspan><tspan font-size="25" font-weight="bold" fill="#FFFFFF">69/100</tspan><tspan font-size="15" fill="#7D7870">  (Grade: </tspan><tspan font-size="15" font-weight="bold" fill="#FFFFFF">C</tspan><tspan font-size="15" fill="#7D7870">)</tspan>
+  <text x="36" y="346" font-family="monospace, &#39;Courier New&#39;">
+    <tspan font-size="14" fill="#A09B92">GTM Score: </tspan><tspan font-size="25" font-weight="bold" fill="#FFFFFF">68/100</tspan><tspan font-size="15" fill="#7D7870">  (Grade: </tspan><tspan font-size="15" font-weight="bold" fill="#FFFFFF">C</tspan><tspan font-size="15" fill="#7D7870">)</tspan>
   </text>
 </svg>
