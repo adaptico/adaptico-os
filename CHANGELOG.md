@@ -8,7 +8,7 @@ All notable changes to Adaptico OS are documented here. The format follows
 
 ### Added
 - `/gtm seo` - checks the cheap SEO groundwork (crawlability, indexing, titles, headings, internal links) with exact fixes, then tells you whether it's worth investing in active SEO at your stage. It says "not yet" when that's the right answer.
-- `/gtm geo` - audits whether ChatGPT, Perplexity, and Google AI Overviews can find and quote you: an extractable value prop, quotable passages, AI-crawler access, server-rendered content. Every monitoring claim is labeled observed, inferred, or unknown rather than guessed.
+- `/gtm geo` - audits whether ChatGPT, Perplexity, and Google AI Overviews can find and quote you: an extractable value prop, quotable passages, AI-crawler access, server-rendered content.
 
 ### Changed
 - `/gtm audit` now scores a seventh dimension, AI-Search Readiness, at 10% of the composite. It measures the groundwork that makes a site quotable by AI answer engines - not whether you currently rank or get cited, which stays evidence-only in `/gtm geo`. The other six dimensions re-weight to make room, so **scores from 0.11.0 and earlier are not comparable to new ones**.
