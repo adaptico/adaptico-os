@@ -46,6 +46,8 @@ Look up this command's verdict for the founder's tier:
 | emails | Too early | Core | Useful |
 | retention | Too early | Useful | Core |
 | social | Too early | Useful | Useful |
+| seo | Too early | Too early | Core |
+| geo | Too early | Useful | Core |
 | brand | Too early | Too early | Useful |
 
 
@@ -73,4 +75,6 @@ When a command is Too early or Avoid for the founder's tier, prepend its note ve
 - **emails** (Too early at Tier 1): "There's no lifecycle to automate yet. Onboarding, activation, and dunning sequences pay off once signups are flowing - revisit once you have traffic and trials."
 - **retention** (Too early at Tier 1): "There's almost nothing to retain yet, and early churn is a PMF signal, not a leak to plug. Cancel-flows and save-offers pay off once you have a paying base - for now, keep your first users by talking to them, not by automating win-backs."
 - **social** (Too early at Tier 1): "With no audience yet, a posting calendar mostly goes unseen - so don't over-invest in it. Post occasionally, and put the real effort into participating in the conversations where your buyers already are, rather than scheduling posts for an audience that isn't there yet."
+- **seo** (Too early at Tiers 1-2): "Active SEO is a compounding bet - meaningful traffic takes months, and at your stage you need validation in weeks. Do the cheap groundwork now (crawlers allowed, site indexed, clean titles), so the domain banks age and history while you sell by hand - and skip the content program without guilt; the report names the conditions that would flip that verdict. AI-answer visibility is `/gtm geo`'s job, and `/gtm audit` scores your AI-search readiness every run."
+- **geo** (Too early at Tier 1): "Getting cited by AI answer engines (ChatGPT, Perplexity, AI Overviews) rests on authority, citations, and structured data you haven't built pre-PMF. Do the cheap groundwork now - let crawlers in, keep pages clean and factual - but active GEO is a later-stage bet, and even then AI-referral volume to a small site stays small."
 - **brand** (Too early at Tiers 1-2): "A brand book (voice, tone, messaging) is a scale concern, not a survival one - it's wasted while your ICP is still moving. A one-line voice rule is plenty for now."

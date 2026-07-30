@@ -14,10 +14,10 @@ It's more than a set of skills - it's an orchestrator that puts a whole team of 
 
 Each Adaptico OS command puts a specialist on one part of your go-to-market - positioning, conversion, copy, a launch plan, a competitor breakdown. 
 
-After `/gtm init`, the next one to run is `/gtm audit`: it sends a whole team across your site at once, scores the six dimensions that actually move an early-stage startup - positioning clarity, ICP focus, conversion, activation, channel concentration, revenue quality - and rolls them into a single score out of 100 with the biggest fixes ranked first. It never invents a number: what can't be known from your pages is listed as a named gap, not guessed.
+After `/gtm init`, the next one to run is `/gtm audit`: it sends a whole team across your site at once, scores the seven dimensions that actually move an early-stage startup - positioning clarity, ICP focus, conversion, activation, channel concentration, AI-search readiness, revenue quality - and rolls them into a single score out of 100 with the biggest fixes ranked first. It never invents a number: what can't be known from your pages is listed as a named gap, not guessed.
 
 <p align="center">
-  <img src="audit.svg" alt="Terminal output of /gtm audit: a six-dimension score breakdown and a composite GTM Score of 69/100" width="100%">
+  <img src="audit.svg" alt="Terminal output of /gtm audit: a seven-dimension score breakdown and a composite GTM Score of 68/100" width="100%">
 </p>
 
 Every run saves a dated report you can work through, and every re-audit opens with what changed since the last one - score movement per dimension, what you fixed, what regressed. Re-audit monthly or quarterly to measure strategy movement; re-run weekly only to verify a batch of shipped fixes.
@@ -82,6 +82,8 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm retention` | Activation + churn defense - cancel-flows and save-offers |
 | `/gtm social` | Founder-led socials: join conversations where buyers are, and an X/LinkedIn calendar |
 | **Scale up (later)** | |
+| `/gtm seo` | SEO groundwork audit + an honest "should I invest in SEO yet" verdict |
+| `/gtm geo` | AI-search visibility - get found and cited by ChatGPT, Perplexity, AI Overviews |
 | `/gtm brand` | Brand voice audit + a reusable voice guide (do's & don'ts, copy samples) |
 
 Point any command at a URL (`/gtm audit https://example.com`), or pass a saved project's name (`/gtm audit my-startup`) to skip retyping the URL. With a single project set up, running a command bare just uses it.

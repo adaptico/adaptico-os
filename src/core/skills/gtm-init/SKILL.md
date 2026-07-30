@@ -1,6 +1,6 @@
 ---
 name: gtm-init
-version: 1.2.3
+version: 1.2.4
 description: Set up or update the startup profile (PROFILE.md) that the rest of Adaptico OS uses as context, for /gtm init [name]. Use when the user wants to create, set up, or edit their startup profile, or onboard a new project. Also trigger for "set up my startup", "create a profile", "onboard my project", or "start a new GTM project".
 ---
 
@@ -40,8 +40,8 @@ Ask these one at a time. Keep it short and founder-friendly.
 2. **One-liner** - "Describe your product in one sentence - what it does and who it's for."
 3. **Startup type** - "Which fits best: self-serve SaaS (users sign up and start on their own), sales-led B2B SaaS (you win customers through demos and sales calls), AI/API product, dev tool/infra, or prosumer/mobile app?"
 4. **Stage diagnostic** - a short set of questions that place the founder on the maturity curve (this drives the recommendations). Q1-Q3 are the high-signal questions; Q4 is a revenue cross-check. Ask them all, then derive the tier:
-   - **Q1 - Product status:** A) pre-MVP / conceptual; B) MVP live, seeking traction; C) live with a stable paying base.
-   - **Q2 - Acquisition reality:** A) non-existent / manual (or no paying customers); B) one channel but constant manual effort; C) automated, predictable inbound.
+   - **Q1 - Product status:** A) pre-MVP/conceptual; B) MVP live, seeking traction; C) live with a stable paying base.
+   - **Q2 - Acquisition reality:** A) non-existent/manual (or no paying customers); B) one channel but constant manual effort; C) automated, predictable inbound.
    - **Q3 - Primary bottleneck** (pick the one that sounds most like you): A) people don't seem to get what it is or who it's for, and you're not sure who'd really pay; B) people show up but don't sign up, or sign up and never become paying users; C) the product lands with the people who try it, but you've run out of ways to reach new ones, or users sign up then drift away; D) not sure - that's what you're here to figure out.
    - **Q4 - Revenue check** (a cross-check, not the main signal): roughly, what's your monthly recurring revenue right now? A) none yet, or under $1k; B) $1k-$3k; C) $3k-$10k; D) over $10k.
 5. **ICP** - "Who's your ideal customer? (role, company type, the pain you solve)"
@@ -154,7 +154,7 @@ After confirming the profile, give a short, stage-aware recommendation of what t
 
 - **Tier 1 - Validate the Demand:** `/gtm position` -> `/gtm competitors` -> `/gtm copy` -> `/gtm landing` -> `/gtm launch` -> `/gtm outreach` (fold in `/gtm audit` once a page is live). Hold off on paid ads and SEO for now - talk to 10 potential users, protect runway, and focus on manual distribution.
 - **Tier 2 - Find a Channel:** `/gtm audit` -> `/gtm quick` -> `/gtm landing` -> `/gtm copy` -> `/gtm funnel` -> `/gtm emails` -> `/gtm outreach` - tighten what converts, find the funnel leaks, and automate the lifecycle emails while you test channels to find one that reliably brings pipeline.
-- **Tier 3 - Scale the Channel:** `/gtm audit` (monthly) -> `/gtm funnel` -> `/gtm retention` -> `/gtm emails` (dunning) -> `/gtm social` -> `/gtm competitors` (continuous) -> `/gtm brand` - optimize and defend the channel that already works, then document the voice as you scale.
+- **Tier 3 - Scale the Channel:** `/gtm audit` (monthly) -> `/gtm funnel` -> `/gtm retention` -> `/gtm emails` (dunning) -> `/gtm seo` -> `/gtm geo` -> `/gtm social` -> `/gtm competitors` (continuous) -> `/gtm brand` - optimize and defend the channel that already works, then document the voice as you scale.
 - **Tier 4-5 - Systematize Growth / Build the Organization:** any command still runs and helps whoever owns execution - the founder or an in-house marketer. It's a lightweight tool, so the real constraint here is time and bandwidth, not marketing knowledge.
 
 Keep this to a few lines - one clear next action, not a menu dump.

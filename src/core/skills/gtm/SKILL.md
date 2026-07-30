@@ -33,6 +33,8 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourstartup.com`
 | `/gtm emails <target>` | Lifecycle email sequences (onboarding + dunning) | `YYYY-MM-DD-email-sequences.md` |
 | `/gtm retention <target>` | Activation + churn mechanics (cancel-flow, save-offers) | `YYYY-MM-DD-retention.md` |
 | `/gtm social <target>` | Founder-led social: conversations, replies, and an X/LinkedIn calendar | `YYYY-MM-DD-social-calendar.md` |
+| `/gtm seo <target>` | SEO groundwork audit + when-to-invest verdict (classic search) | `YYYY-MM-DD-seo-audit.md` |
+| `/gtm geo <target>` | AI-search visibility audit (citability, AI-crawler access, monitoring) | `YYYY-MM-DD-geo-audit.md` |
 | `/gtm brand <target>` | Brand voice analysis + reusable voice guide (chart, do's/don'ts, copy samples) | `YYYY-MM-DD-brand-voice.md` |
 
 
@@ -93,18 +95,19 @@ This is the flagship command. It launches **5 parallel subagents** (skipping any
 1. **gtm-content** agent → ICP Focus vector: does the copy speak to one named reader
 2. **gtm-conversion** agent → Conversion (Primary Pages) + Activation & Time-to-Value vectors
 3. **gtm-competitive** agent → Positioning Clarity vector, judged against the real rivals
-4. **gtm-technical** agent → evidence backbone (unscored): technical facts, cross-vector verification, AI-search visibility (GEO - monitor-only)
+4. **gtm-technical** agent → AI-Search Readiness vector (crawler access, extractable copy, structure, server-rendered visibility) + the unscored evidence backbone: technical facts, cross-vector verification
 5. **gtm-strategy** agent → Channel Concentration + Revenue Quality vectors
 
 **Scoring Methodology (GTM Score 0-100):**
 | Vector | Weight | What It Measures |
 |--------|--------|------------------|
-| Positioning Clarity | 20% | What it is, who it's for, why it beats the real alternatives |
-| ICP Focus | 15% | Copy aimed at one named reader, in their language, with relevant proof |
-| Conversion (Primary Pages) | 20% | Hero → CTA → signup path: friction, trust at the CTA, message match |
-| Activation & Time-to-Value | 15% | Post-click promise, time-to-value credibility, path to first value |
-| Channel Concentration | 15% | One deliberate compounding channel vs scattergun, judged stage-aware |
-| Revenue Quality | 15% | Pricing/packaging, expansion paths, retention signals |
+| Positioning Clarity | 18% | What it is, who it's for, why it beats the real alternatives |
+| ICP Focus | 14% | Copy aimed at one named reader, in their language, with relevant proof |
+| Conversion (Primary Pages) | 18% | Hero → CTA → signup path: friction, trust at the CTA, message match |
+| Activation & Time-to-Value | 14% | Post-click promise, time-to-value credibility, path to first value |
+| Channel Concentration | 13% | One deliberate compounding channel vs scattergun, judged stage-aware |
+| AI-Search Readiness | 10% | Groundwork for AI-answer surfaces - crawler access, extractable copy, structure; readiness, never citation performance |
+| Revenue Quality | 13% | Pricing/packaging, expansion paths, retention signals |
 
 **Composite GTM Score** = weighted average aggregated by the deterministic script bundled with this skill (`scripts/gtm_score.js`) - LLM judgment per vector, scripted math for the composite, grade, and banding. A vector without signals (e.g. no signup surface) is skipped with a stated reason and the weights re-normalize; a partial composite is always labeled as partial. The audit never invents a metric - unknown data is a named gap. The audit skill documents the exact invocation.
 

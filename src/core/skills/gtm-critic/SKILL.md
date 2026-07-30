@@ -164,7 +164,7 @@ Save as `YYYY-MM-DD-critique.md` where *Project Resolution* puts it (the project
 
 ## Score Impact
 [Only when the subject is a scored report. State: "N unresolved Critical finding(s): the composite score is capped until they are resolved. Re-run the score with:
-`node .claude/skills/gtm/scripts/gtm_score.js --positioning X --icp X --conversion X --activation X --channel X --revenue X --criticals N`
+`node .claude/skills/gtm/scripts/gtm_score.js --positioning X --icp X --conversion X --activation X --channel X --geo X --revenue X --criticals N`
 (a vector the audit skipped or reported degraded keeps its literal `skipped`/`degraded` value). The next full audit applies the cap in its saved report." Omit this section entirely for unscored documents.]
 
 ## The Single Highest-Leverage Fix
