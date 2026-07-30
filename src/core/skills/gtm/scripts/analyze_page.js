@@ -866,7 +866,8 @@ async function main() {
   const outIdx = args.indexOf("--out");
   const outFile = outIdx !== -1 && args[outIdx + 1] ? args[outIdx + 1] : null;
   const positional = args.filter(function (a, i) {
-    return i !== outIdx && i !== outIdx + 1 && a.slice(0, 2) !== "--";
+    if (outIdx !== -1 && (i === outIdx || i === outIdx + 1)) return false;
+    return a.slice(0, 2) !== "--";
   });
   if (!positional.length) {
     console.log(JSON.stringify({
