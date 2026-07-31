@@ -4,6 +4,22 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.13.0]
+
+### Added
+- `/gtm ads` - runs a "should you run ads at all" gate against your stage and unit economics before any creative work, and a not-yet verdict names the exact numbers that would flip it. When the gate passes, it picks one platform, sizes the smallest test you can actually read, and writes paste-ready copy in your voice. It never touches an ad account - you launch.
+- An `Activation milestone` field in the profile: the one user action that predicts sticking around. `/gtm emails`, `/gtm funnel`, and `/gtm audit` anchor to the same milestone instead of each inferring its own. `/gtm init` fills it only when you already know it or a retention or funnel report names one.
+
+### Changed
+- `/gtm audit` names `/gtm retention` and `/gtm pricing` as the deep dives behind their vectors, and states why `/gtm ads` is deliberately absent from that map - no weak vector is fixed by buying traffic.
+- `/gtm seo` and `/gtm geo` print a terminal summary and recommend a critic pass before you commit to months of work.
+- `/gtm pricing` joins the Tier 2 and Tier 3 sequences `/gtm init` recommends.
+
+### Fixed
+- `/gtm copy` and `/gtm funnel` recommended labelling a plan "Most Popular" whether or not it was; the badge now has to be true, or it reads "Recommended".
+- `/gtm retention` keys its save-offer table to what the cancel survey actually said, rather than an abstract reason.
+- `/gtm seo` described Google's FAQ rich results incorrectly.
+
 ## [0.12.0]
 
 ### Added
