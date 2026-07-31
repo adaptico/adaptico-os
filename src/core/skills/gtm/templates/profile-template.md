@@ -12,6 +12,7 @@
 ## Goal
 - **Main goal (next 30 days):** *The one thing you most want to move right now - more signups, first paying users, a launch, etc.*
 - **90-day direction (optional):** *Where that 30-day goal is heading over the quarter - e.g. first 100 paying users, one reliable signup channel.*
+- **Activation milestone (optional):** *The one user action that predicts staying, e.g. "first report run within 7 days". `/gtm retention` helps define it; emails, funnel, and audits anchor to it.*
 - **Current traction:** *Optional - users / MRR / signups, however rough.*
 
 ## Audience
