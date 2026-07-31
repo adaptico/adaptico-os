@@ -1,6 +1,6 @@
 ---
 name: gtm-pricing
-version: 1.0.2
+version: 1.0.3
 description: Pricing page audit and value-based packaging design for /gtm pricing <target>. Challenges cost-plus pricing, anchors price to revenue gained or costs saved with an offer-strength check, designs 3 tiers with an honestly-badged anchored middle and annual-discount math (bundled calculator), and tears down or drafts the pricing page - FAQ with the AI-data-privacy answer, objection handling. Use when the user wants to set, raise, audit, or restructure pricing, packaging, or the offer. Also trigger for "how much should I charge", "price my product", "pricing page review", "design my tiers", "annual discount", or "am I charging too little".
 ---
 
@@ -266,4 +266,5 @@ Full report: [save path]
 - `/gtm landing` - CRO for the rest of the page; this skill owns the pricing section's logic.
 - `/gtm funnel` - where the pricing page sits in the full signup-to-paid path.
 - `/gtm copy` - rewrites beyond the pricing page when the value story itself is weak.
+- `/gtm ads` - consumes this report's contribution, margin, and break-even numbers as its readiness gate's inputs.
 - `/gtm critic` - red-team this report before shipping a price change.
