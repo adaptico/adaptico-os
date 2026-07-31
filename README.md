@@ -82,9 +82,10 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm retention` | Activation + churn defense - cancel-flows and save-offers |
 | `/gtm social` | Founder-led socials: join conversations where buyers are, and an X/LinkedIn calendar |
 | **Scale up (later)** | |
-| `/gtm seo` | SEO groundwork audit + an honest "should I invest in SEO yet" verdict |
+| `/gtm seo` | SEO groundwork audit + a when-to-invest verdict (it'll say "not yet" when that's right) |
 | `/gtm geo` | AI-search visibility - get found and cited by ChatGPT, Perplexity, AI Overviews |
 | `/gtm brand` | Brand voice audit + a reusable voice guide (do's & don'ts, copy samples) |
+| `/gtm ads` | Should-you-run-ads verdict + CAC/break-even math + a first real ad test - paste-ready copy, you press go |
 
 Point any command at a URL (`/gtm audit https://example.com`), or pass a saved project's name (`/gtm audit my-startup`) to skip retyping the URL. With a single project set up, running a command bare just uses it.
 

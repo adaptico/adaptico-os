@@ -49,6 +49,7 @@ Look up this command's verdict for the founder's tier:
 | seo | Too early | Too early | Core |
 | geo | Too early | Useful | Core |
 | brand | Too early | Too early | Useful |
+| ads | Avoid | Avoid | Useful |
 
 
 Verdicts:
@@ -78,3 +79,4 @@ When a command is Too early or Avoid for the founder's tier, prepend its note ve
 - **seo** (Too early at Tiers 1-2): "Active SEO is a compounding bet - meaningful traffic takes months, and at your stage you need validation in weeks. Do the cheap groundwork now (crawlers allowed, site indexed, clean titles), so the domain banks age and history while you sell by hand - and skip the content program without guilt; the report names the conditions that would flip that verdict. AI-answer visibility is `/gtm geo`'s job, and `/gtm audit` scores your AI-search readiness every run."
 - **geo** (Too early at Tier 1): "Getting cited by AI answer engines (ChatGPT, Perplexity, AI Overviews) rests on authority, citations, and structured data you haven't built pre-PMF. Do the cheap groundwork now - let crawlers in, keep pages clean and factual - but active GEO is a later-stage bet, and even then AI-referral volume to a small site stays small."
 - **brand** (Too early at Tiers 1-2): "A brand book (voice, tone, messaging) is a scale concern, not a survival one - it's wasted while your ICP is still moving. A one-line voice rule is plenty for now."
+- **ads** (Avoid at Tiers 1-2): "Running paid acquisition before validating organic PMF is dangerous - B2B SaaS CAC runs $150-$500 per customer, and bought clicks corrupt your read on real demand. Run funnel and audit first to confirm your funnel converts the traffic you already have."

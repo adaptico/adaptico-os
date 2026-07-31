@@ -82,9 +82,10 @@ Every generated report begins with:
 | `/gtm emails <target>` | Activation onboarding & dunning email sequences |
 | `/gtm retention <target>` | Activation/time-to-value diagnosis + cancel-flow & save-offer mechanics |
 | `/gtm social <target>` | Founder-led social: conversations + replies, plus an X/LinkedIn content calendar |
-| `/gtm seo <target>` | Founder-sized SEO groundwork audit + an honest "when to invest in active SEO" verdict |
-| `/gtm geo <target>` | AI-search visibility (ChatGPT / Perplexity / AI Overviews) - citability, AI-crawler access, honest monitoring |
+| `/gtm seo <target>` | Founder-sized SEO groundwork audit + a when-to-invest verdict (it'll say "not yet" when that's right) |
+| `/gtm geo <target>` | AI-search visibility (ChatGPT / Perplexity / AI Overviews) - citability, AI-crawler access, evidence-classed monitoring |
 | `/gtm brand <target>` | Brand voice analysis + a reusable voice guide (voice chart, do's/don'ts, copy samples) |
+| `/gtm ads <target>` | "Should you run ads at all" gate against demand validation + unit economics, then the smallest readable test and paste-ready ad copy - never touches an ad account; you launch |
 
 `<target>` is a URL, a saved startup project name, or omitted to use the default project.
 
