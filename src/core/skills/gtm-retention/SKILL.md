@@ -1,6 +1,6 @@
 ---
 name: gtm-retention
-version: 1.0.1
+version: 1.0.2
 description: Activation and early-churn diagnosis for /gtm retention <target> - maps signup to first value, commits the founder to ONE activation metric, prioritizes first-90-days fixes over late-stage retention tricks, and designs the churn defenses (cancel flow, save offers, failed-payment recovery posture). Use when the user wants to reduce churn, fix trial retention or activation, or design a cancel flow. Also trigger for "users churn", "trials go dead", "nobody comes back", "cancel flow", "save offer", "stop churn", "failed payments", "keep users", or "retention plan".
 ---
 
@@ -167,19 +167,19 @@ Two hard rules before any mechanics:
 - **Cancellation stays as easy as signup.** The cancel button is findable, the flow is short, and the offer is skippable in one click. Cancel mazes burn trust, poison reviews, and draw regulatory attention - US and EU regulators actively enforce against subscription dark patterns, and several US states require cancellation to be as easy as enrollment. (Have counsel confirm specifics for your market; this is direction, not legal advice.)
 - **The reason survey is the point.** Even a flow that saves nobody is worth shipping for the reason data alone: one required single-select question, 5-8 reasons, with an optional free-text line. At low volume, a personal founder email asking "what happened?" outperforms any widget - the flow can literally be that email.
 
-### 3.2 Match the offer to the reason
+### 3.2 Pick the save offer from the stated reason
 
-One offer per cancel attempt, picked by the stated reason - a blanket discount answers a question the user didn't ask:
+One offer per cancel attempt, and the survey answer picks it - a blanket discount answers a question the user didn't ask:
 
-| Stated reason | Matched save offer |
+| The survey said | The one offer that answers it |
 |---|---|
-| Too expensive | 20-30% discount for 2-3 months, or a downgrade framed as right-sizing ("keep what you use, drop what you don't") |
-| Not using it enough | Pause for 1-3 months (state the auto-resume date), or a hands-on onboarding offer |
-| Missing a feature | Honest roadmap answer with a timeline if real, a workaround if one exists - never a promise you can't keep |
-| Switching to an alternative | Ask what the alternative does better (intelligence, not a counter-pitch); offer a targeted counter only if one genuinely exists |
-| Technical problems | Skip the offer - route straight to a fix and a founder reply |
-| Temporary / seasonal need | Pause, with the return date in the confirmation |
-| Shutting down / no longer needed | No offer. Thank them, make leaving clean, state what happens to their data |
+| "Not using it enough" | Pause for 1-3 months (state the auto-resume date), or a hands-on onboarding offer |
+| "Technical problems" | Skip the offer - route straight to a fix and a founder reply |
+| "Too expensive" | 20-30% discount for 2-3 months, or a downgrade framed as right-sizing ("keep what you use, drop what you don't") |
+| "Missing a feature" | Honest roadmap answer with a timeline if real, a workaround if one exists - never a promise you can't keep |
+| "Switching to an alternative" | Ask what the alternative does better (intelligence, not a counter-pitch); offer a targeted counter only if one genuinely exists |
+| "Temporary / seasonal need" | Pause, with the return date in the confirmation |
+| "Shutting down / no longer needed" | No offer. Thank them, make leaving clean, state what happens to their data |
 
 ### 3.3 Offer rules
 

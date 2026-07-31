@@ -1,6 +1,6 @@
 ---
 name: gtm-seo
-version: 2.0.1
+version: 2.0.2
 description: Founder-sized classic-search (SEO) audit for /gtm seo <target>. Checks the cheap groundwork - crawlability, indexing, titles, headings, internal links - with exact fixes, then delivers an explicit "when to invest in active SEO" verdict tied to the founder's stage, including permission to skip it for now. Use when the user wants an SEO audit or asks about Google rankings, indexing, organic traffic, or on-page SEO. Also trigger for "SEO audit", "improve my rankings", "why am I not on Google", "keyword gaps", or "should I do SEO yet". For AI-answer visibility (ChatGPT, Perplexity, AI Overviews), route to gtm-geo instead.
 ---
 
@@ -107,7 +107,7 @@ JSON-LD structured data (the schema.org vocabulary, Google's preferred format) -
 - `SoftwareApplication` or `Product` where honest (real offers only).
 - `Article` on blog posts (headline, dates, author).
 
-Two honesty rules: never mark up content that isn't visible on the page, and don't chase rich-result stars - Google retired FAQ rich results for all sites in May 2026 (HowTo earlier), so FAQ markup earns no SERP decoration; FAQ *content* still matters, but for answer extraction, which is `/gtm geo`'s department. Validate whatever ships with Google's Rich Results Test or the schema.org validator.
+Two honesty rules: never mark up content that isn't visible on the page, and don't chase rich-result stars - the expandable FAQ dropdowns vanished from Google SERPs entirely as of May 2026 (they'd been limited to government and health sites since 2023, and HowTo went earlier), so FAQ markup earns no SERP decoration; FAQ *content* still matters, but for answer extraction, which is `/gtm geo`'s department. Validate whatever ships with Google's Rich Results Test or the schema.org validator.
 
 ### 2.6 Citability basics (the bridge to GEO)
 
@@ -115,7 +115,7 @@ One check only, because the full treatment lives in `/gtm geo`: does the homepag
 
 ## Phase 3: Search-Intent Sanity Pass
 
-Not keyword research - a sanity pass. For the homepage and each key page, name the **one primary query** the page should win, in the ICP's words (seed from the profile's pain points and key messages; ask the founder to confirm or correct). Then check alignment against the classic search-intent taxonomy (navigational / informational / transactional, plus the industry's commercial-investigation category):
+Not keyword research - a sanity pass. For the homepage and each key page, name the **one primary query** the page should win, in the ICP's words (seed from the profile's pain points and key messages; ask the founder to confirm or correct - optional: if unanswered, proceed with the profile-seeded picks and label them inferred). Then check alignment against the classic search-intent taxonomy (navigational / informational / transactional, plus the industry's commercial-investigation category):
 
 | Intent | The searcher wants | The page must be |
 |---|---|---|
@@ -143,6 +143,8 @@ Then deliver the verdict for **this founder's tier** (from the profile):
 **Flip conditions - name them in every skip verdict.** A skip is a decision under today's evidence, so state what would reverse it, e.g.: Search Console starts showing impressions for buying-intent queries you never targeted; a direct rival visibly compounds on content (their blog outranks your homepage for your category); Phase 3 surfaces intent queries the ICP confirms using; the founder reaches Tier 3 with runway for a quarters-long channel. Re-run this skill when one fires.
 
 **The specialist boundary, stated once and honestly:** a dedicated SEO practice adds what this skill deliberately does not carry - keyword research and rank tracking at scale, backlink analysis and acquisition, live Search Console/analytics API audits, Core Web Vitals lab testing, programmatic SEO, full schema coverage, content clustering, and local/international/e-commerce work. When search becomes your primary channel, buy or hire that practice; until then, this audit keeps the groundwork clean and tells you when that moment arrives.
+
+Either way the verdict lands, it steers months of effort - recommend running `/gtm critic` on this report before the founder commits to (or skips) the channel.
 
 ## Groundwork Score
 
@@ -186,10 +188,23 @@ it - e.g. "real query impressions - connect Search Console (free); the next
 run reads them from your screenshots or pasted exports."]
 ```
 
+Terminal summary:
+
+```
+=== SEO GROUNDWORK: <target> ===
+
+Score:       [X/100 | X/100 capped by N Critical (uncapped Y)]
+Verdict:     [invest now | test cheaply | skip for now - the one-line why]
+Critical:    [N - the finding(s), one line | none]
+Top fixes:   [the 2-3 highest effort-to-impact moves]
+
+Full report: [save path]
+```
+
 ## Key Principles
 
 - **Indicators, never invented metrics.** No Core Web Vitals numbers you didn't measure, no traffic estimates, no keyword volumes. Report what the fetched HTML shows; name the free tool that owns the real number (Search Console, PageSpeed Insights) and list it as a data gap.
-- **Every fix ships ready.** Before/after for titles and metas, paste-ready robots.txt and JSON-LD - the founder should be able to apply the fix list without interpreting it.
+- **Every fix ships ready.** Before/after for titles and metas, paste-ready robots.txt and JSON-LD - the founder should be able to apply the fix list without interpreting it. These rewrites are deliberately exempt from the `/gtm humanize` closing pass: titles, metas, and schema are written for character limits and machine parsing, not conversational voice.
 - **Explain why once, briefly.** One sentence of why per section, not a lecture - the founder is technical; respect that.
 - **Effort-to-impact order.** A title-tag fix takes 5 minutes and touches every impression; it outranks a week of schema polish.
 - **Cross-reference, don't re-derive.** If a prior `*-gtm-audit.md` exists, reconcile with its Technical Foundations and AI-Search Readiness findings instead of re-discovering them.
@@ -199,3 +214,4 @@ run reads them from your screenshots or pasted exports."]
 - `/gtm geo` - the neighbor job: visibility in AI answers (ChatGPT, Perplexity, AI Overviews) - citability, AI-crawler access, mention groundwork, monitoring.
 - `/gtm audit` - the full audit; its technical agent checks this groundwork and scores AI-search readiness on every run.
 - `/gtm landing` - conversion teardown for the pages search traffic lands on; groundwork brings the visitor, that skill converts them.
+- `/gtm critic` - red-team the verdict and the fix list before acting on them.

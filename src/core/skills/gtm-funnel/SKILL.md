@@ -1,6 +1,6 @@
 ---
 name: gtm-funnel
-version: 1.2.4
+version: 1.2.5
 description: Funnel and activation analysis for /gtm funnel <target>: maps the public funnel (landing, pricing, signup) and works with the founder on the post-signup path to first value. Use when the user wants to find funnel drop-off/leaks or improve trial-to-paid and PLG activation. Also trigger for "fix my funnel", "where am I losing users", "activation rate", "trial conversion", or "funnel leaks".
 ---
 
@@ -299,7 +299,7 @@ Since pricing pages are often the highest-leverage optimization point:
 **Pricing Page Audit Checklist:**
 - [ ] Headline frames value, not cost ("Choose your growth plan" not "Pricing")
 - [ ] Plans are limited to 3 (or 3 + enterprise)
-- [ ] One plan is highlighted as "Most Popular" or "Best Value"
+- [ ] One plan is highlighted with an honest badge ("Most Popular" only if it factually is the most-chosen plan; otherwise "Recommended")
 - [ ] Annual pricing is shown first with savings highlighted
 - [ ] Features are benefit-oriented (not jargon)
 - [ ] Social proof appears near pricing (testimonials, customer count)

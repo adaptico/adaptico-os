@@ -1,6 +1,6 @@
 ---
 name: gtm-audit
-version: 2.1.0
+version: 2.1.1
 description: Full go-to-market marketing audit for /gtm audit <target>. Runs up to 5 parallel audit subagents with machine-validated outputs and produces a scored, date-stamped report that leads with what changed since the last audit - and never invents a number. Use when the user wants a full marketing/GTM audit, an overall website marketing review, or a composite GTM score. Also trigger for "audit my site", "review my marketing", "how's my GTM", "full marketing teardown", or "score my website".
 ---
 
@@ -526,6 +526,8 @@ End every audit - both in the saved report and in the terminal summary - with a 
 - **Pre-launch** → `/gtm position`, `/gtm landing`, `/gtm launch`
 - **B2B, founder-led** → `/gtm social` (build-in-public)
 
+`/gtm ads` is deliberately absent from this map: no weak vector is fixed by buying traffic, so ads enters only through its own readiness gate - and typically at Tier 3, once the funnel demonstrably converts.
+
 Pick the 3-5 highest-leverage moves for *this* startup based on its lowest vectors and stage. Keep it concrete - name the command and one sentence on why.
 
 ## Related Commands
@@ -535,4 +537,6 @@ Pick the 3-5 highest-leverage moves for *this* startup based on its lowest vecto
 - `/gtm position` - rebuilds the positioning a weak Positioning Clarity vector exposes.
 - `/gtm landing` - the deep CRO teardown behind a weak Conversion vector.
 - `/gtm funnel` - traces the activation leaks behind a weak Activation vector.
+- `/gtm retention` - the dedicated deep dive behind a weak Activation & Time-to-Value vector; also the churn-defense half of Revenue Quality.
+- `/gtm pricing` - the packaging and unit-economics rebuild behind a weak Revenue Quality vector.
 - `/gtm geo` - the full AI-answer visibility audit behind a weak AI-Search Readiness vector.
