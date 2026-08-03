@@ -4,6 +4,17 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.14.0]
+
+### Added
+- `/gtm interviews` - two jobs in one command. It gives you a discovery kit (who to talk to, where to find them, Mom-Test-style questions that get at what people actually did, and a capture sheet per conversation), then turns your notes into validated pains, verbatim customer phrases, and switching triggers. Those go into the profile as Customer Evidence, and `/gtm position`, `/gtm copy`, and `/gtm outreach` read them automatically.
+- `Customer Evidence` and `Competitive Alternatives` sections in the profile, for what real conversations have established and what your customers would use if you didn't exist.
+
+### Changed
+- `/gtm position` now derives positioning as a chain rather than picking from a map: real alternatives, then the attributes only you have, then the value those produce, then the segment that cares most. Your current position gets scored before anything is rewritten, the three options are sharper-vertical variants pressure-tested against live rivals, and you end with a messaging house instead of one statement.
+- `/gtm init` asks what customers would do if your product vanished, and why the last one signed up. Interview notes or transcripts sitting in the project folder are handed to `/gtm interviews` instead of being linked as generic reference docs. The intake also says up front how long it is and why none of it is filler.
+- `/gtm copy` and `/gtm outreach` reuse the customers' own recurring phrases when Customer Evidence exists, instead of inventing language for the pain.
+
 ## [0.13.0]
 
 ### Added
