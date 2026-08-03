@@ -33,6 +33,7 @@ Look up this command's verdict for the founder's tier:
 | audit | Core | Core | Core |
 | quick | Useful | Useful | Useful |
 | critic | Core | Core | Core |
+| interviews | Core | Core | Useful |
 | position | Core | Useful | Useful |
 | competitors | Core | Core | Core |
 | launch | Core | Useful | Useful |

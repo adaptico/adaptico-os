@@ -66,7 +66,8 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm quick` | 60-second snapshot - top wins and fixes |
 | `/gtm critic` | Red-team any report or draft - ranked findings, the one fix that matters most |
 | **Research & position** | |
-| `/gtm position` | Positioning map + statement - includes a quick competitor scan |
+| `/gtm interviews` | Interview kit + synthesis - turn what customers actually said into evidence your positioning and copy start from |
+| `/gtm position` | Positioning chain + messaging house - scored, pressure-tested against live rivals; includes a quick competitor scan |
 | `/gtm competitors` | The deep competitor dive (pricing, features, reviews, gaps); `position` uses it if present |
 | **Launch & convert** | |
 | `/gtm launch` | Launch playbook (Product Hunt / Hacker News / X) |

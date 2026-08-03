@@ -69,7 +69,8 @@ Every generated report begins with:
 | `/gtm audit <target>` | Full GTM audit — 5 parallel agents, composite score; re-audits lead with what changed since the last run |
 | `/gtm quick <target>` | 60-second snapshot — top wins and fixes, terminal only |
 | `/gtm critic <target>` | Adversarial red-team of any report or draft - severity-ranked findings with exact-line citations, plus the single highest-leverage fix |
-| `/gtm position <target>` | Positioning map + positioning statement |
+| `/gtm interviews <target>` | Customer-conversation engine - Mom-Test-style interview kit, plus synthesis of your notes into pains, verbatim quotes, and switching triggers written back to the profile |
+| `/gtm position <target>` | Positioning derived from real alternatives (Obviously Awesome chain) - scored, pressure-tested against live rivals, 3 sharper-vertical variants + a messaging house |
 | `/gtm competitors <target>` | Competitive intelligence |
 | `/gtm launch <target>` | Launch playbook (Product Hunt / HN / X) |
 | `/gtm copy <target>` | Optimized copy with before/after rewrites |
