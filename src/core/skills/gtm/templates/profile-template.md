@@ -20,12 +20,23 @@
 - **Secondary audience:**
 - **Key pain points:**
 
+## Customer Evidence
+> What real customer conversations have established so far. Maintained by `/gtm interviews` from your notes and transcripts; edit freely - it's your evidence. Commands treat anything here as stronger signal than the fields above.
+
+- **Conversations so far:** *count and date of the last synthesis - e.g. 9 (last synthesized 2026-07-01).*
+- **Validated pains:** *Pains confirmed by 3+ independent conversations, with counts.*
+- **Customer phrases:** *Exact recurring words customers use for the problem and the value - verbatim, not polished.*
+- **Switching triggers:** *What pushed recent switchers to go looking, and what almost stopped them.*
+
 ## Messaging
 - **Tone:** *(e.g. technical, direct, playful, premium)*
 - **Key messages:** *The 2-3 things you most want a visitor to take away.*
 - **Avoid:** *Anything off-brand or that you don't want to claim.*
 
 ## Competitive Landscape
+
+### Competitive Alternatives
+<!-- What your customers would do or use if you didn't exist - a rival tool, a spreadsheet, an intern, doing nothing. Broader than named competitors, and where positioning starts. Format: - alternative - optional note -->
 
 ### User-Added Competitors
 <!-- Alternatives you care about. Format: - [Name](https://url) - optional note -->

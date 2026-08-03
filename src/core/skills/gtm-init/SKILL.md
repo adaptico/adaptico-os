@@ -1,7 +1,7 @@
 ---
 name: gtm-init
-version: 1.2.5
-description: Set up or update the startup profile (PROFILE.md) that the rest of Adaptico OS uses as context, for /gtm init [name]. Use when the user wants to create, set up, or edit their startup profile, or onboard a new project. Also trigger for "set up my startup", "create a profile", "onboard my project", or "start a new GTM project".
+version: 2.0.0
+description: Set up or update the startup profile (PROFILE.md) that the rest of Adaptico OS uses as context, for /gtm init [name]. Runs a founder-friendly intake - stage diagnostic, ICP and goal, what customers would use instead (competitive alternatives, not just competitor names), why the last customers came looking, what's already been tried - and points existing interview notes at /gtm interviews. Use when the user wants to create, set up, or edit their startup profile, or onboard a new project. Also trigger for "set up my startup", "create a profile", "onboard my project", or "start a new GTM project".
 ---
 
 # GTM Init - Set Up Your Startup Profile
@@ -36,6 +36,10 @@ Tell the user which mode you're in. For update mode:
 
 Ask these one at a time. Keep it short and founder-friendly.
 
+Before the first question, set expectations in one honest line - say why the intake is this long:
+
+> "A heads-up before we start: this intake is about a dozen short questions. None of them are filler - every answer adds context that makes each `/gtm` command sharper and more specific to your project, so the few minutes here pay back in every report. Don't have an answer yet? Say so and we'll move on - a blank is better than a guess."
+
 1. **Website URL** - "What's your startup's URL? (e.g. https://yourstartup.com)"
 2. **One-liner** - "Describe your product in one sentence - what it does and who it's for."
 3. **Startup type** - "Which fits best: self-serve SaaS (users sign up and start on their own), sales-led B2B SaaS (you win customers through demos and sales calls), AI/API product, dev tool/infra, or prosumer/mobile app?"
@@ -48,10 +52,11 @@ Ask these one at a time. Keep it short and founder-friendly.
 6. **Main goal** - ask two quick parts; the first matters most:
    - **Next 30 days (required):** "What's the one thing you most want to move in the next 30 days? (e.g. more signups, your first paying users, a launch.) This is your near-term focus - we'll revisit it each time you re-run /gtm audit."
    - **90-day direction (optional):** "Where's that heading over the quarter? (e.g. first 100 paying users, or one signup channel that reliably works.) Skip it if you're not sure yet - the 30-day goal is what matters."
-7. **Competitors** - "Any competitors or alternatives in mind? Names or URLs, one per line - or leave blank, I can research them with `/gtm competitors`."
-8. **Documentation** - "What's your documentation or developer-docs URL, if you have one?" Always ask this explicitly - site parsing (Step 2d) can miss it, and it's the link worth having for certain.
-9. **Key pages & socials** *(optional)* - "Any other key links - pricing, blog, changelog, GitHub, social profiles? Paste what you've got, one per line."
-10. **What have you already tried?** - "Last one: what have you already done to get users - a launch, ads, cold outreach, content, communities? And what happened? Rough numbers or a gut feeling both count. If you keep notes or a log file, drop it into `projects/<name>/` and I'll pull from it."
+7. **Alternatives & competitors** - one beat, two parts. First: "If your product vanished tomorrow, what would your customers do instead - a rival tool, a spreadsheet, someone doing it by hand, or just live with the problem?" (this is what positioning actually competes against, so don't skip the non-product answers). Then: "Which of those are named products? Names or URLs, one per line - or leave blank, I can research them with `/gtm competitors`."
+8. **Why customers come** *(skip when the diagnostic says there are no customers yet)* - "Think of the last customer who signed up: what was going on for them right before they came looking? And if you remember how they described the problem in their own words, give me the exact phrase - unpolished is better."
+9. **Documentation** - "What's your documentation or developer-docs URL, if you have one?" Always ask this explicitly - site parsing (Step 2d) can miss it, and it's the link worth having for certain.
+10. **Key pages & socials** *(optional)* - "Any other key links - pricing, blog, changelog, GitHub, social profiles? Paste what you've got, one per line."
+11. **What have you already tried?** - "Last one: what have you already done to get users - a launch, ads, cold outreach, content, communities? And what happened? Rough numbers or a gut feeling both count. If you keep notes or a log file, drop it into `projects/<name>/` and I'll pull from it. Notes from customer or user conversations count double - drop those in too and `/gtm interviews` will turn them into evidence every command uses."
 
 When the interface offers suggested answers to these questions, write them for a founder who has never done marketing:
 - Plain words only - no GTM or insider jargon (PLG, activation, CAC, mid-market, discovery-to-delivery, scaleup...). If a term is genuinely needed, say it plainly and gloss it in the same breath.
@@ -83,11 +88,12 @@ Go through blank fields **one at a time** in this priority order:
 3. `Startup type` and `Stage` (the diagnostic tier)
 4. `Main goal`
 5. `ICP`
-6. `User-Added Competitors` (offer `/gtm competitors` to discover more)
+6. `Competitive Alternatives` (the Step 2a #7 first part - what customers would do instead) and `User-Added Competitors` (offer `/gtm competitors` to discover more)
 7. `Links & Channels` (documentation, key pages, socials)
 8. `Tone` / `Key messages`
-9. `Activation milestone` - fill only if the founder already knows it or a retention/funnel report names one; never invent it (`/gtm retention` is the command that defines and pressure-tests it)
-10. `LOG.md` - not a profile field, but check it here: if the log is missing or empty, ask the what-have-you-tried question (Step 2a #10) and write it
+9. `Customer Evidence` - if the section is empty and the founder has customers, ask the why-customers-come question (Step 2a #8) and seed it as founder-recalled; if interview notes exist in the folder, point at `/gtm interviews` instead of asking
+10. `Activation milestone` - fill only if the founder already knows it or a retention/funnel report names one; never invent it (`/gtm retention` is the command that defines and pressure-tests it)
+11. `LOG.md` - not a profile field, but check it here: if the log is missing or empty, ask the what-have-you-tried question (Step 2a #11) and write it
 
 Skip any field that already has a real value - never ask the user to re-confirm it. If nothing is blank, say the profile looks complete and suggest a next step.
 
@@ -96,6 +102,8 @@ Skip any field that already has a real value - never ask the user to re-confirm 
 ## Step 2c: Detect reference documents (both modes)
 
 Scan `projects/<name>/` for supporting docs the founder dropped in - any `.md` other than `PROFILE.md`, `LOG.md`, and dated reports (`YYYY-MM-DD-*.md`). For each, infer its role from the filename/contents (brand manifesto, strategy/GTM plan, style guide, ICP research…) and link it under the matching label in the **Reference Documents** section as `@filename`. Only link files that actually exist - never invent one. This is local files only; the founder's external documentation *site* belongs in Links & Channels (Step 2d), not here.
+
+One class of file gets different handling: anything that reads as customer-conversation material - interview notes, call transcripts, `notes-*` capture sheets. Don't link those as reference docs; tell the founder once that `/gtm interviews` will synthesize them into the profile's Customer Evidence, and leave the files where they are.
 
 If none are found, leave the hint text and tell the founder once:
 > "Have a brand manifesto, strategy, or style guide? Drop it into `projects/<name>/` and re-run `/gtm init <name>` - every command will then read and apply it."
@@ -119,10 +127,12 @@ Once you have the website URL, fetch that page and pull any links to documentati
 `PROFILE.md` carries fields the rest of the suite now reads directly: `/gtm copy` reads `Tone`, `Key pain points`, and `Avoid`; `/gtm launch` reads `Primary channel today`, `Current traction`, and `Existing assets`; `/gtm position` reads `Key pain points` and `Secondary audience`. Init is the producer for that contract, but onboarding stays triage, not a form - fill these from what the founder has already said instead of adding questions.
 
 - **MRR** and **Current traction** <- the Q4 revenue band (plus any number the founder volunteered). Write the band to `MRR (optional)`; seed `Current traction` if one was given.
-- **Key pain points** <- the pain already named in the one-liner and ICP answer; lift it into its own field instead of leaving it buried in `ICP`.
+- **Key pain points** <- the pain already named in the one-liner, the ICP answer, and the why-customers-come story (#8); lift it into its own field instead of leaving it buried in `ICP`.
+- **Competitive Alternatives** <- the first part of #7, one per line, keeping the non-product answers ("spreadsheet", "does it by hand", "nothing") - those are real entries, not blanks. Add anything the one-liner implies ("replaces X" names an alternative).
+- **Customer Evidence** <- seed it from #8 only: the verbatim phrase goes under `Customer phrases` and the what-was-going-on story under `Switching triggers`, each tagged `(founder-recalled at init, YYYY-MM-DD)` - a founder's memory is a real signal but secondhand, and a later `/gtm interviews` synthesis replaces recalled entries with sourced ones.
 - **Primary channel today** <- the Q2 acquisition-reality answer (where users come from now). Confirm in one line only if it's ambiguous; never re-ask from scratch.
 - **Tone** <- propose a one-line voice rule from the one-liner and startup type (a one-line rule is all this stage needs) and let the founder correct it in a few words. Leave `Avoid` and `Secondary audience` blank unless the founder volunteers them - downstream skills degrade cleanly on a blank.
-- Leave `Differentiator` and `Key messages` blank by design: `/gtm position` and `/gtm competitors` write those back, so init never asks for what a later command produces. Say this once so the blanks read as deferred, not forgotten.
+- Leave `Differentiator` and `Key messages` blank by design: `/gtm position` and `/gtm competitors` write those back. Likewise `Customer Evidence` beyond the recalled seed: `/gtm interviews` fills it from real conversations. Init never asks for what a later command produces - say this once so the blanks read as deferred, not forgotten.
 
 In update mode, derive into blank fields first and only ask about a blank the derive step can't fill. Never invent a value - a blank the founder hasn't given is correct.
 
@@ -135,6 +145,8 @@ In update mode, derive into blank fields first and only ask about a blank the de
 **Update mode:** edit only the fields that were just answered - leave everything else (notes, AI-researched competitors, cross-references) exactly as is.
 
 For competitors: write user-provided entries under `### User-Added Competitors`, one per line as `- [Name](https://url)` (or `- Name` if no URL). Never touch `### AI-Researched Competitors` - that section is managed by `/gtm competitors`.
+
+For alternatives: write the what-would-they-do-instead answers under `### Competitive Alternatives`, one per line as `- alternative - optional note`. A named product can appear in both lists (it is an alternative and a competitor); the non-product entries appear only here.
 
 For Reference Documents: populate the section from Step 2c - one `@filename` line per detected doc under the matching label, or leave the hint text if none were found.
 
@@ -153,8 +165,8 @@ For Links & Channels: write the documentation URL, key pages, and social profile
 
 After confirming the profile, give a short, stage-aware recommendation of what to run next - based on the founder's Stage tier (from the Step 2a diagnostic), `Main goal`, and `Primary channel today`. Always begin with `/gtm audit` once a page exists - it scores the whole site, feeds every other skill, and every re-audit leads with what changed since the last one (re-audit monthly/quarterly for strategy movement; weekly only to verify shipped fixes). Then follow the tier's sequence:
 
-- **Tier 1 - Validate the Demand:** `/gtm position` -> `/gtm competitors` -> `/gtm copy` -> `/gtm landing` -> `/gtm launch` -> `/gtm outreach` (fold in `/gtm audit` once a page is live). Hold off on paid ads and SEO for now - talk to 10 potential users, protect runway, and focus on manual distribution.
-- **Tier 2 - Find a Channel:** `/gtm audit` -> `/gtm quick` -> `/gtm landing` -> `/gtm copy` -> `/gtm funnel` -> `/gtm pricing` -> `/gtm emails` -> `/gtm outreach` - tighten what converts, find the funnel leaks, get the packaging right, and automate the lifecycle emails while you test channels to find one that reliably brings pipeline.
+- **Tier 1 - Validate the Demand:** `/gtm interviews` -> `/gtm position` -> `/gtm competitors` -> `/gtm copy` -> `/gtm landing` -> `/gtm launch` -> `/gtm outreach` (fold in `/gtm audit` once a page is live; interviews first so positioning starts from customer evidence). Hold off on paid ads and SEO for now - talk to 10 potential users, protect runway, and focus on manual distribution.
+- **Tier 2 - Find a Channel:** `/gtm audit` -> `/gtm quick` -> `/gtm interviews` -> `/gtm landing` -> `/gtm copy` -> `/gtm funnel` -> `/gtm pricing` -> `/gtm emails` -> `/gtm outreach` - tighten what converts, find the funnel leaks, get the packaging right, and automate the lifecycle emails while you test channels to find one that reliably brings pipeline.
 - **Tier 3 - Scale the Channel:** `/gtm audit` (monthly) -> `/gtm funnel` -> `/gtm retention` -> `/gtm emails` (dunning) -> `/gtm pricing` -> `/gtm seo` -> `/gtm geo` -> `/gtm social` -> `/gtm competitors` (continuous) -> `/gtm brand` -> `/gtm ads` (retargeting) - optimize and defend the channel that already works, then document the voice as you scale.
 - **Tier 4-5 - Systematize Growth / Build the Organization:** any command still runs and helps whoever owns execution - the founder or an in-house marketer. It's a lightweight tool, so the real constraint here is time and bandwidth, not marketing knowledge.
 
@@ -164,5 +176,13 @@ Keep this to a few lines - one clear next action, not a menu dump.
 
 - In update mode, never overwrite fields that already have values.
 - Never touch `### AI-Researched Competitors` - that section belongs to `/gtm competitors`.
+- `Customer Evidence` beyond the founder-recalled seed belongs to `/gtm interviews` - init seeds, never synthesizes.
 - Always create and update `PROFILE.md` inside `projects/<name>/`.
 - `LOG.md` is append-only history - add entries, never rewrite or delete past ones (only a `pending` outcome gets updated in place).
+
+## Related Commands
+
+- `/gtm audit` - the first command to run once the profile exists; every re-audit tracks what changed.
+- `/gtm interviews` - turns the customer conversations this intake asks about into the profile's Customer Evidence.
+- `/gtm competitors` - researches and maintains the AI-researched competitor list this intake leaves open.
+- `/gtm position` - writes `Differentiator` and `Key messages` back; init leaves them blank on purpose.
