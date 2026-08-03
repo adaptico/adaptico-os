@@ -1,6 +1,6 @@
 ---
 name: gtm-outreach
-version: 1.1.1
+version: 1.1.2
 description: Cold outbound sequences for /gtm outreach <target> - multi-touch, value-first cold email and LinkedIn DM sequences for founder-led manual outreach to land the first customers. Use when the user wants cold outreach, outbound, cold email, LinkedIn DMs, prospecting messages, or founder-led sales scripts. Also trigger for "write cold emails", "outbound sequence", "LinkedIn outreach", "how do I reach prospects", "cold DM", or "founder sales script".
 ---
 
@@ -21,6 +21,7 @@ You are the cold-outreach engine for `/gtm outreach <target>`. You generate mult
 Run the orchestrator's *Project Resolution* first. With a profile loaded, read `PROFILE.md` and pull the fields that aim the outreach - don't re-derive what's already there:
 - **ICP** and **Secondary audience** - who you're reaching, and the role/seniority that sets the tone and the ask.
 - **Key pain points** - the problem each opener leads with (you sell the problem, not the product).
+- **Customer Evidence** - validated pains and verbatim customer phrases from real conversations (`/gtm interviews` maintains it). When present, open with the customers' own words for the pain - a first line in their language reads like a peer, not a pitch.
 - **Differentiator** and **Key messages** - the value the message offers; lean on `/gtm position` / `/gtm competitors` output if it's in the folder.
 - **Tone** and **Avoid** - the founder's voice every message matches, and the claims to never make.
 - **`brand-voice.md`** (project root, written by `/gtm brand`) - when present, the full voice contract: its word lists and Do/Don't rules shape every message so cold email sounds like the same person as the website. It outranks the one-line `Tone` on conflict.
@@ -236,7 +237,7 @@ Full sequences saved to: YYYY-MM-DD-outreach-sequences.md
 
 ## Cross-Skill Integration
 
-- Reads `PROFILE.md` for ICP, differentiator, key messages, and tone
+- Reads `PROFILE.md` for ICP, customer evidence, differentiator, key messages, and tone
 - If `brand-voice.md` exists (the voice guide `/gtm brand` maintains at the project root), every message writes inside it, so outreach sounds like the same person as the site
 - If a `/gtm position` or `/gtm competitors` report is in the folder, lead the message with that differentiator and angle
 - Pairs with `/gtm emails` (lifecycle): outreach starts the conversation; `emails` takes over once a prospect signs up

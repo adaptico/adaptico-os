@@ -1,6 +1,6 @@
 ---
 name: gtm-copy
-version: 1.4.2
+version: 1.4.3
 description: Website copy analysis and rewriting for /gtm copy <target>. Use when the user wants to score existing copy and get optimized before/after rewrites for headlines, value props, CTAs, or body copy. Also trigger for "improve my copy", "rewrite my headline", "is my copy good", "better value prop", or "punch up this page".
 ---
 
@@ -24,6 +24,7 @@ The user runs `/gtm copy <target>`. Fetch the target page(s), analyze the existi
 
 Before fetching anything, run the orchestrator's *Project Resolution*. With a profile loaded, read `PROFILE.md` and pull the fields that constrain copy - `/gtm init` captured them and `/gtm position` / `/gtm competitors` may have sharpened them, so don't re-derive from the page what's already here:
 - **ICP**, **Secondary audience**, **Key pain points** - who the copy speaks to and the pain it names; these set headline relevance (2.1) and seed the Value Proposition Canvas (2.4).
+- **Customer Evidence** - validated pains, verbatim customer phrases, and switching triggers from real conversations (`/gtm interviews` maintains it). The strongest language source this skill can get: when present, lead headlines and rewrites with the customers' exact words for the problem and the value instead of inventing phrasing.
 - **Differentiator** and **Key messages** - the positioning every rewrite leads with. `/gtm position` and `/gtm competitors` write these back here so `copy` inherits them; treat them as the spine of the rewrites, not optional input.
 - **Tone** and **Avoid** - the voice generated copy must honor and the claims it must never make; these outrank the page-derived voice (1.3) on conflict.
 - **`brand-voice.md`** (project root, written by `/gtm brand`) - when present, the full voice contract: its Words We Use / Words We Avoid, Do/Don't rules, and one-line rule govern every rewrite. It outranks both the profile's one-line `Tone` and the page-derived voice.
@@ -377,6 +378,7 @@ If the founder asked for a red-teamed or critiqued result, run the `gtm-critic` 
 ## Cross-Skill Integration
 
 - With a profile loaded, read `PROFILE.md` first - its `Differentiator` and `Key messages` (set by `/gtm position` / `/gtm competitors`) are the positioning every rewrite should lead with
+- The profile's `Customer Evidence` (maintained by `/gtm interviews`) supplies verbatim customer phrases - when it exists, rewrites reuse the customers' own words over invented language
 - If `brand-voice.md` exists (the voice guide `/gtm brand` maintains at the project root), write inside it: its word lists and Do/Don't rules govern every rewrite; fall back to a dated `*-brand-voice.md` report if only that exists
 - If a `*-gtm-audit.md` exists, reference its ICP Focus and Positioning Clarity scores - the two vectors copy rewrites move
 - If a `*-competitor-report.md` exists, use competitor messaging to inform differentiation
