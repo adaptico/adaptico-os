@@ -79,10 +79,12 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm funnel` | Funnel & activation analysis - find the leaks (trial / PLG) |
 | **Reach & retain** | |
 | `/gtm outreach` | Cold outbound sequences - cold email & LinkedIn DM |
+| `/gtm channel` | Pick the one channel to bet on (Bullseye), with a not-now list |
 | `/gtm emails` | Activation onboarding & dunning (failed-payment recovery) email sequences |
 | `/gtm retention` | Activation + churn defense - cancel-flows and save-offers |
-| `/gtm social` | Founder-led socials: join conversations where buyers are, and an X/LinkedIn calendar |
+| `/gtm social` | Find the live threads your buyers are in, reply well - then a lean X/LinkedIn calendar |
 | **Scale up (later)** | |
+| `/gtm leadmagnet` | Email-capture asset that turns organic traffic into a list |
 | `/gtm seo` | SEO groundwork audit + a when-to-invest verdict (it'll say "not yet" when that's right) |
 | `/gtm geo` | AI-search visibility - get found and cited by ChatGPT, Perplexity, AI Overviews |
 | `/gtm brand` | Brand voice audit + a reusable voice guide (do's & don'ts, copy samples) |

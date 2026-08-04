@@ -1,6 +1,6 @@
 ---
 name: gtm
-version: 1.6.0
+version: 1.7.0
 description: Adaptico OS - the go-to-market operating system for SaaS & AI startup founders. Routes /gtm commands (audit, quick, position, competitors, copy, landing, launch, init). Use whenever the user types /gtm, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
 ---
 
@@ -31,9 +31,11 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourstartup.com`
 | `/gtm pricing <target>` | Pricing page + value-based 3-tier packaging + calculator | `YYYY-MM-DD-pricing.md` |
 | `/gtm funnel <target>` | Funnel and activation analysis (trial / PLG) | `YYYY-MM-DD-funnel-analysis.md` |
 | `/gtm outreach <target>` | Cold outbound sequences (email + LinkedIn DM) | `YYYY-MM-DD-outreach-sequences.md` |
+| `/gtm channel <target>` | Single compounding-channel pick (Bullseye) + not-now list | `YYYY-MM-DD-channel-plan.md` |
 | `/gtm emails <target>` | Lifecycle email sequences (onboarding + dunning) | `YYYY-MM-DD-email-sequences.md` |
 | `/gtm retention <target>` | Activation + churn mechanics (cancel-flow, save-offers) | `YYYY-MM-DD-retention.md` |
-| `/gtm social <target>` | Founder-led social: conversations, replies, and an X/LinkedIn calendar | `YYYY-MM-DD-social-calendar.md` |
+| `/gtm social <target>` | Listening-first social: live-thread triage, drafted replies, lean X/LinkedIn calendar | `YYYY-MM-DD-social-calendar.md` |
+| `/gtm leadmagnet <target>` | Email-capture asset for organic traffic | `YYYY-MM-DD-leadmagnet.md` |
 | `/gtm seo <target>` | SEO groundwork audit + when-to-invest verdict (classic search) | `YYYY-MM-DD-seo-audit.md` |
 | `/gtm geo <target>` | AI-search visibility audit (citability, AI-crawler access, monitoring) | `YYYY-MM-DD-geo-audit.md` |
 | `/gtm brand <target>` | Brand voice analysis + reusable voice guide (chart, do's/don'ts, copy samples) | `YYYY-MM-DD-brand-voice.md` |
@@ -245,7 +247,7 @@ Many skills work together:
 - Re-running `/gtm audit` over time is the progress tracker - the dated reports form the history, and each re-audit leads with the delta since the last one. Cadence: monthly/quarterly for strategy movement, weekly only to verify shipped fixes. (For a polished compiled PDF, that's Pro `report-pdf`.)
 - `/gtm interviews` writes Customer Evidence into `PROFILE.md` - `/gtm position`, `/gtm copy`, and `/gtm outreach` read it automatically when present
 - `/gtm position` sharpens the messaging that `/gtm copy` and `/gtm landing` then apply
-- `/gtm brand` writes `brand-voice.md` into the project folder - the fixed-format voice guide that `/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm pricing`, `/gtm ads`, `/gtm audit`, `/gtm geo`, and `/gtm humanize` read automatically when present
-- The writing commands (`/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm ads`) - and `/gtm pricing` on its page-ready copy - end with the `/gtm humanize` closing pass by default; append `--no-humanize` to any of them to skip it
+- `/gtm brand` writes `brand-voice.md` into the project folder - the fixed-format voice guide that `/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm pricing`, `/gtm ads`, `/gtm audit`, `/gtm geo`, `/gtm leadmagnet`, and `/gtm humanize` read automatically when present
+- The writing commands (`/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm ads`, `/gtm leadmagnet`) - and `/gtm pricing` on its page-ready copy - end with the `/gtm humanize` closing pass by default; append `--no-humanize` to any of them to skip it
 - `/gtm emails` aligns its onboarding sequence to the activation leak `/gtm funnel` finds
 - `/gtm launch` pulls from positioning and competitors to build the playbook

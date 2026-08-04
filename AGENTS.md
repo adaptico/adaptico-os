@@ -80,9 +80,11 @@ Every generated report begins with:
 | `/gtm pricing <target>` | Pricing page + value-based 3-tier packaging + pricing calculator |
 | `/gtm funnel <target>` | Funnel / activation analysis (trial & PLG focus) |
 | `/gtm outreach <target>` | Cold outbound sequences - cold email & LinkedIn DM |
+| `/gtm channel <target>` | Force the single compounding-channel pick (Bullseye), with a 4-week starter plan and a not-now list |
 | `/gtm emails <target>` | Activation onboarding & dunning email sequences |
 | `/gtm retention <target>` | Activation/time-to-value diagnosis + cancel-flow & save-offer mechanics |
-| `/gtm social <target>` | Founder-led social: conversations + replies, plus an X/LinkedIn content calendar |
+| `/gtm social <target>` | Listening-first founder-led social: live ICP threads, triaged replies, then a lean X/LinkedIn calendar |
+| `/gtm leadmagnet <target>` | Email-capture asset to convert organic traffic into an owned list |
 | `/gtm seo <target>` | Founder-sized SEO groundwork audit + a when-to-invest verdict (it'll say "not yet" when that's right) |
 | `/gtm geo <target>` | AI-search visibility (ChatGPT / Perplexity / AI Overviews) - citability, AI-crawler access, evidence-classed monitoring |
 | `/gtm brand <target>` | Brand voice analysis + a reusable voice guide (voice chart, do's/don'ts, copy samples) |
