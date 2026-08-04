@@ -4,6 +4,19 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.15.0]
+
+### Added
+- `/gtm channel` - makes you pick one distribution channel and drop the rest. It scores every candidate against where your ICP actually gathers, the hours you really have each week, how your product gets bought, and how fast the channel compounds. You get one channel, a four-week starter plan, an explicit not-now list for everything rejected, and a kill-or-review date set before you start.
+- `/gtm leadmagnet` - designs the one asset that turns traffic into an email list: picks the format from your ICP's sharpest pain (checklist, template, tool, or teardown), writes the hook and outline, and designs the delivery and capture flow. It ends with a validation checklist you have to pass before building anything.
+
+### Changed
+- `/gtm social` now starts by finding the live threads where your buyers are already asking about the problem, and triages them by fit and recency before drafting any reply. The posting calendar moved to the end and got leaner - replying in someone else's thread reaches an audience before you have one.
+- `/gtm init` puts `/gtm channel` in the Tier 2 sequence it recommends, and `/gtm leadmagnet` in Tier 3.
+
+### Fixed
+- `/gtm social` presented best-posting-time advice as if it were measured data. It's practitioner folklore and now says so - where your own posts actually land beats any chart.
+
 ## [0.14.0]
 
 ### Added
