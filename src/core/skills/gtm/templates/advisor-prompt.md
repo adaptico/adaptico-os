@@ -48,6 +48,10 @@ Look up this command's verdict for the founder's tier:
 | emails | Too early | Core | Useful |
 | retention | Too early | Useful | Core |
 | social | Too early | Useful | Useful |
+| changelog | Useful | Useful | Useful |
+| content | Too early | Useful | Core |
+| article | Too early | Useful | Core |
+| repurpose | Too early | Useful | Core |
 | leadmagnet | Too early | Useful | Core |
 | seo | Too early | Too early | Core |
 | geo | Too early | Useful | Core |
@@ -80,6 +84,9 @@ When a command is Too early or Avoid for the founder's tier, prepend its note ve
 - **emails** (Too early at Tier 1): "There's no lifecycle to automate yet. Onboarding, activation, and dunning sequences pay off once signups are flowing - revisit once you have traffic and trials."
 - **retention** (Too early at Tier 1): "There's almost nothing to retain yet, and early churn is a PMF signal, not a leak to plug. Cancel-flows and save-offers pay off once you have a paying base - for now, keep your first users by talking to them, not by automating win-backs."
 - **social** (Too early at Tier 1): "With no audience yet, a posting calendar mostly goes unseen - so don't over-invest in it. Post occasionally, and put the real effort into participating in the conversations where your buyers already are, rather than scheduling posts for an audience that isn't there yet."
+- **content** (Too early at Tier 1): "Content is a slow, compounding bet - months before it pays, and your ICP will likely move before it does. Pre-PMF that's runway spent writing for a buyer who may not be yours by the time it ranks. Prove positioning first; then content becomes a top channel."
+- **article** (Too early at Tier 1): "One deep article runs on the same slow clock as a content engine - little payoff until you have authority and a settled ICP. Worth it once content is a channel you're deliberately testing, not before."
+- **repurpose** (Too early at Tier 1): "Repurposing needs finished content to atomize, and there's nothing to atomize yet. This turns on once you're publishing enough that squeezing more reach out of each piece is worth the effort."
 - **leadmagnet** (Too early at Tier 1): "A lead magnet captures an audience you don't have yet. Building one now pulls you off the real job - direct conversations with potential users. It earns its place once a channel is sending you traffic worth capturing."
 - **seo** (Too early at Tiers 1-2): "Active SEO is a compounding bet - meaningful traffic takes months, and at your stage you need validation in weeks. Do the cheap groundwork now (crawlers allowed, site indexed, clean titles), so the domain banks age and history while you sell by hand - and skip the content program without guilt; the report names the conditions that would flip that verdict. AI-answer visibility is `/gtm geo`'s job, and `/gtm audit` scores your AI-search readiness every run."
 - **geo** (Too early at Tier 1): "Getting cited by AI answer engines (ChatGPT, Perplexity, AI Overviews) rests on authority, citations, and structured data you haven't built pre-PMF. Do the cheap groundwork now - let crawlers in, keep pages clean and factual - but active GEO is a later-stage bet, and even then AI-referral volume to a small site stays small."

@@ -83,7 +83,11 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm emails` | Activation onboarding & dunning (failed-payment recovery) email sequences |
 | `/gtm retention` | Activation + churn defense - cancel-flows and save-offers |
 | `/gtm social` | Find the live threads your buyers are in, reply well - then a lean X/LinkedIn calendar |
+| `/gtm changelog` | Turn shipped work into build-in-public posts - ship notes, an X thread, a LinkedIn post from your git log |
 | **Scale up (later)** | |
+| `/gtm content` | Content engine around your buyers' jobs-to-be-done - pillars, cluster map, a cadence you can hold |
+| `/gtm article` | One research-first, long-form article built for authority and AI citability - no me-too angles |
+| `/gtm repurpose` | Turn one piece into platform-native variants - X thread, LinkedIn post, script outline, newsletter |
 | `/gtm leadmagnet` | Email-capture asset that turns organic traffic into a list |
 | `/gtm seo` | SEO groundwork audit + a when-to-invest verdict (it'll say "not yet" when that's right) |
 | `/gtm geo` | AI-search visibility - get found and cited by ChatGPT, Perplexity, AI Overviews |

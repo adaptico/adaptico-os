@@ -1,6 +1,6 @@
 ---
 name: gtm-init
-version: 2.0.0
+version: 2.0.1
 description: Set up or update the startup profile (PROFILE.md) that the rest of Adaptico OS uses as context, for /gtm init [name]. Runs a founder-friendly intake - stage diagnostic, ICP and goal, what customers would use instead (competitive alternatives, not just competitor names), why the last customers came looking, what's already been tried - and points existing interview notes at /gtm interviews. Use when the user wants to create, set up, or edit their startup profile, or onboard a new project. Also trigger for "set up my startup", "create a profile", "onboard my project", or "start a new GTM project".
 ---
 
@@ -8,7 +8,6 @@ description: Set up or update the startup profile (PROFILE.md) that the rest of 
 
 You set up (or update) the **startup profile** that the rest of Adaptico OS uses as context. Every profile lives in `projects/<name>/PROFILE.md`.
 
-> **Pro (agency edition):** managing many startups as projects is supported by default. The only difference is the framing and the availability of pro features.
 
 ## When invoked
 
@@ -41,7 +40,7 @@ Before the first question, set expectations in one honest line - say why the int
 > "A heads-up before we start: this intake is about a dozen short questions. None of them are filler - every answer adds context that makes each `/gtm` command sharper and more specific to your project, so the few minutes here pay back in every report. Don't have an answer yet? Say so and we'll move on - a blank is better than a guess."
 
 1. **Website URL** - "What's your startup's URL? (e.g. https://yourstartup.com)"
-2. **One-liner** - "Describe your product in one sentence - what it does and who it's for."
+2. **One-liner** - "Give me the one-sentence version: what does your product do, and for whom?"
 3. **Startup type** - "Which fits best: self-serve SaaS (users sign up and start on their own), sales-led B2B SaaS (you win customers through demos and sales calls), AI/API product, dev tool/infra, or prosumer/mobile app?"
 4. **Stage diagnostic** - a short set of questions that place the founder on the maturity curve (this drives the recommendations). Q1-Q3 are the high-signal questions; Q4 is a revenue cross-check. Ask them all, then derive the tier:
    - **Q1 - Product status:** A) pre-MVP/conceptual; B) MVP live, seeking traction; C) live with a stable paying base.
@@ -167,7 +166,7 @@ After confirming the profile, give a short, stage-aware recommendation of what t
 
 - **Tier 1 - Validate the Demand:** `/gtm interviews` -> `/gtm position` -> `/gtm competitors` -> `/gtm copy` -> `/gtm landing` -> `/gtm launch` -> `/gtm outreach` (fold in `/gtm audit` once a page is live; interviews first so positioning starts from customer evidence). Hold off on paid ads and SEO for now - talk to 10 potential users, protect runway, and focus on manual distribution.
 - **Tier 2 - Find a Channel:** `/gtm audit` -> `/gtm quick` -> `/gtm interviews` -> `/gtm channel` -> `/gtm landing` -> `/gtm copy` -> `/gtm funnel` -> `/gtm pricing` -> `/gtm emails` -> `/gtm outreach` - tighten what converts, find the funnel leaks, get the packaging right, and automate the lifecycle emails while you test channels to find one that reliably brings pipeline.
-- **Tier 3 - Scale the Channel:** `/gtm audit` (monthly) -> `/gtm funnel` -> `/gtm retention` -> `/gtm emails` (dunning) -> `/gtm pricing` -> `/gtm seo` -> `/gtm geo` -> `/gtm social` -> `/gtm leadmagnet` -> `/gtm competitors` (continuous) -> `/gtm brand` -> `/gtm ads` (retargeting) - optimize and defend the channel that already works, then document the voice as you scale.
+- **Tier 3 - Scale the Channel:** `/gtm audit` (monthly) -> `/gtm funnel` -> `/gtm retention` -> `/gtm emails` (dunning) -> `/gtm pricing` -> `/gtm seo` -> `/gtm geo` -> `/gtm social` -> `/gtm content` -> `/gtm article` -> `/gtm repurpose` -> `/gtm leadmagnet` -> `/gtm competitors` (continuous) -> `/gtm brand` -> `/gtm ads` (retargeting) - optimize and defend the channel that already works, then document the voice as you scale.
 - **Tier 4-5 - Systematize Growth / Build the Organization:** any command still runs and helps whoever owns execution - the founder or an in-house marketer. It's a lightweight tool, so the real constraint here is time and bandwidth, not marketing knowledge.
 
 Keep this to a few lines - one clear next action, not a menu dump.

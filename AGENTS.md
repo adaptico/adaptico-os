@@ -84,6 +84,10 @@ Every generated report begins with:
 | `/gtm emails <target>` | Activation onboarding & dunning email sequences |
 | `/gtm retention <target>` | Activation/time-to-value diagnosis + cancel-flow & save-offer mechanics |
 | `/gtm social <target>` | Listening-first founder-led social: live ICP threads, triaged replies, then a lean X/LinkedIn calendar |
+| `/gtm changelog <target>` | Turn shipped work into build-in-public content - ship notes, an X thread, a LinkedIn post from the real git log, never inflated |
+| `/gtm content <target>` | Content engine strategy - positioning-derived pillars, a pillar-and-cluster map, cadence sized to the founder's real hours; production lives in `article` |
+| `/gtm article <target>` | One research-first, long-form article for authority and AI citability - ownable-thesis gate, originality floor, claims cited or marked as opinion |
+| `/gtm repurpose <target>` | Atomize one finished piece into platform-native variants - X thread, LinkedIn post, script outline, newsletter - rewritten, never truncated |
 | `/gtm leadmagnet <target>` | Email-capture asset to convert organic traffic into an owned list |
 | `/gtm seo <target>` | Founder-sized SEO groundwork audit + a when-to-invest verdict (it'll say "not yet" when that's right) |
 | `/gtm geo <target>` | AI-search visibility (ChatGPT / Perplexity / AI Overviews) - citability, AI-crawler access, evidence-classed monitoring |
