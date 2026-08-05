@@ -4,6 +4,20 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.16.0]
+
+### Added
+- `/gtm content` - the editorial plan, built around what your buyers are trying to get done: pillars derived from your positioning, a pillar-and-cluster topic map, and a cadence sized to the hours you actually have. Strategy only - the writing happens in `/gtm article`.
+- `/gtm article` - writes one long-form piece properly: research before any outline, one thesis you can defend, and every factual claim either cited or marked as opinion. Built for authority and getting quoted by AI, not for volume.
+- `/gtm repurpose` - takes one finished piece and rewrites it for each platform: an X thread, a LinkedIn post, a script outline, a newsletter section. Each one is rebuilt to fit the platform and stands on its own - nothing is truncated, and platforms the piece can't honestly feed get skipped.
+- `/gtm changelog` - reads your git log, CHANGELOG, and project log, finds the story in what you actually shipped, and writes ship notes, an X thread, and a LinkedIn post. Every claim traces back to a real commit, so a fix doesn't become a rewrite.
+
+### Changed
+- `/gtm social` hands a finished piece to `/gtm repurpose` instead of drafting the variants itself, and reads your content plan when one exists so the pillars and the calendar work together.
+- `/gtm interviews` runs the humanize pass over the outreach asks, since those get pasted into DMs as they are.
+- `/gtm position` prints a terminal summary at the end of a run.
+- `/gtm init` puts the content engine in the Tier 3 sequence it recommends.
+
 ## [0.15.0]
 
 ### Added
