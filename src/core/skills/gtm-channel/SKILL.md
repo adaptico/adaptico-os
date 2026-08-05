@@ -1,6 +1,6 @@
 ---
 name: gtm-channel
-version: 1.0.1
+version: 1.0.2
 description: Single compounding-channel pick for /gtm channel <target> - forces the choice of ONE distribution channel by scoring every candidate against where the ICP actually gathers, the founder's real weekly hours, how the product is bought, and how fast the channel compounds; outputs one primary channel with a 4-week starter plan, an explicit not-now list for every rejected channel, and a kill/review date set before the work starts. It deletes options, it doesn't add them. Use when the user asks which marketing channel to focus on, where to spend their limited time, or feels spread across five channels with none working. Also trigger for "which channel", "where should I focus", "distribution channel", "traction channel", "spread too thin", "marketing channel strategy", "what channel should I bet on", or "Bullseye".
 ---
 
@@ -100,7 +100,7 @@ Each channel family's loop skeleton and its handoff command live in `references/
 - **What to share:** the numbers most founders hide (MRR, signups, churn, a launch that flopped), the decisions with real stakes (pricing, a feature killed, a pivot considered), the lessons with receipts. What NOT to share: vague motivation, milestones without numbers, anything a customer told you in confidence.
 - **Two post skeletons to start** (templates to fill, not finished copy): a numbers post - "[metric] after [timeframe]: [number]. What moved it: [one specific change]. What didn't: [one honest failure]." - and a decision post - "We almost [decision]. Here's why we didn't: [reasoning with stakes]."
 - **Cadence floor:** 2-3 posts a week plus daily replies beats a daily grind that dies in week 3.
-- **The handoff:** run `/gtm social` for the full system - live thread listening, triaged replies, and the posting calendar in your voice. The kit above is the on-ramp; that command is the engine.
+- **The handoff:** run `/gtm social` for the full system - live thread listening, triaged replies, and the posting calendar in your voice. The kit above is the on-ramp; that command is the engine. And `/gtm changelog` turns each week's shipped work into ready-to-post build-in-public content - the running note file above, drafted for you from the real git log.
 
 ---
 
@@ -184,6 +184,7 @@ Full report: [save path]
 ## Related Commands
 
 - `/gtm social` - the execution engine when the pick is founder-led social or communities: live thread listening, triaged replies, the lean calendar.
+- `/gtm changelog` - when the pick is founder-led social, the weekly content engine: build-in-public posts drawn from what actually shipped.
 - `/gtm outreach` - the execution engine when the pick is cold outbound.
 - `/gtm seo` - the groundwork audit and the honest when-to-invest verdict when SEO is a candidate.
 - `/gtm launch` - the playbook when the pick is a launch-platform push.

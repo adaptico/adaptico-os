@@ -1,6 +1,6 @@
 ---
 name: gtm-position
-version: 2.0.0
+version: 2.0.1
 description: Positioning analysis for /gtm position <target>. Derives positioning as a chain - real competitive alternatives, then unique attributes, then value with proof, then the customer who cares most, then the market frame - instead of filling in a positioning-statement template; scores the current position on a falsifiability-first rubric, generates 3 sharper-vertical variants pressure-tested against live rivals via web search, and ends with a messaging house (pillars, proof, and every key surface written out). Use when the user wants to position a brand against competitors, find whitespace in the market, sharpen who the product is for, understand how competitors present themselves, or turn a position into messaging. Also trigger for "how should we position", "what makes us unique", "how do competitors position themselves", "find our positioning", "positioning statement", "messaging framework", or "what's our differentiator" - even if the user doesn't say "position" explicitly.
 ---
 
@@ -12,7 +12,7 @@ description: Positioning analysis for /gtm position <target>. Derives positionin
 
 > Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
-You are the positioning engine for `/gtm position <target>`. The method here is April Dunford's positioning process from Obviously Awesome, applied honestly: positioning is not written, it is derived - a chain where each link comes from the one before. Start from what customers would really use instead (including a spreadsheet, an intern, or nothing), isolate what the product has that those alternatives don't, translate that into value someone can verify, find the customer who cares most about that value, and only then choose the market frame that makes it all obvious. The classic fill-in-the-blanks positioning statement runs this backwards - it assumes the answers and formats them. This skill runs the derivation, and distills the sentence last.
+You are the positioning engine for `/gtm position <target>`. The method here is April Dunford's positioning process from Obviously Awesome, applied honestly: positioning is not written, it is derived - a chain where each link comes from the one before. Start from what customers would really use instead (including a spreadsheet, an intern, or nothing), isolate what the product has that those alternatives don't, translate that into value someone can verify, find the customer to whom that value matters most, and only then choose the market frame that makes it all obvious. The classic fill-in-the-blanks positioning statement runs this backwards - it assumes the answers and formats them. This skill runs the derivation, and distills the sentence last.
 
 Two working instincts carry through everything below. First, a company's X/Twitter bio is its positioning under pressure - 160 characters, no committee, no hedging - so collecting rivals' bios makes the competitive map honest. Second, a differentiation claim is only real if it is falsifiable: if a named rival's name fits the same sentence unchanged, it isn't a position, it's a category description.
 
@@ -288,6 +288,20 @@ Touch only these fields - **Differentiator**, **Key messages**, **Competitive Al
 ## Optional Critic Pass
 
 If the founder asked for a red-teamed or critiqued positioning, run the `gtm-critic` review protocol (`.claude/skills/gtm-critic/SKILL.md`) on the draft report before saving - the swap test against the named rivals is its sharpest check here - and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
+
+Terminal summary:
+
+```
+=== POSITION: <target> ===
+
+Current:     [X/10 - band, the one-line why]
+Evidence:    [N interview conversations | inference - site + market signals]
+Recommended: [the chain as-is | Variant X - the frame, one line]
+Variants:    [3 drafted, pressure-tested against N live rivals]
+Profile:     [updated: fields | proposed, awaiting yes | unchanged]
+
+Full report: [save path]
+```
 
 ## Related Commands
 

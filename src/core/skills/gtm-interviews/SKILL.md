@@ -1,6 +1,6 @@
 ---
 name: gtm-interviews
-version: 1.0.0
+version: 1.0.2
 description: Customer-conversation engine for /gtm interviews <target>. Two jobs in one command - generate a customer-discovery interview kit (who to talk to, where to find them, questions that surface real past behavior instead of compliments, a per-conversation capture sheet), and synthesize the founder's transcripts or notes into validated pains, verbatim customer quotes, segments, and switching triggers, written back into PROFILE.md so positioning, copy, and outreach start from real customer language. Use when the user wants to talk to users or customers, validate a problem or an idea, prepare for user interviews, or make sense of interview notes. Also trigger for "customer interviews", "user interviews", "talk to customers", "customer discovery", "validate my idea", "interview questions", "discovery questions", "synthesize my interview notes", or "what did my customers actually say".
 ---
 
@@ -76,6 +76,8 @@ Build this from the profile, concretely - name the actual places, not categories
 
 Provide a short outreach message per channel. Rules: ask for advice about the problem, not feedback on the product; name the specific experience that makes them worth talking to ("you posted about X", "you switched off Y"); 15-20 minutes; no selling in the meeting and say so. People talk freely about their problems and clam up when a pitch is coming - the ask must promise the former.
 
+Before the kit saves, run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on these asks only - they get pasted into DMs and emails as-is, and a recruiting message that smells generated never gets a reply. Skip when the founder appends `--no-humanize`.
+
 ### 1.4 How many conversations - the honest math
 
 Put this framing in every kit, because founders either skip talking to users entirely or turn "100 interviews" into a reason to never act:
@@ -119,7 +121,7 @@ Generate 15-20 questions tailored to the profile's problem space (never generic 
 
 **Closing - never with a compliment collector:**
 - "Who else should I talk to who deals with this?"
-- "Is there anything I should have asked about this and didn't?"
+- "What matters here that I haven't asked you about?"
 
 ### 2.3 Traps and recoveries
 
@@ -266,6 +268,7 @@ End every run with this compact block:
 Interviews    [kit | synthesis | both]
 Evidence      [N conversations ingested | none yet - kit generated]
 Patterns      [N validated pains, N alternatives, N switching triggers | n/a]
+Humanize      [N tells stripped from the asks | clean | skipped | n/a - synthesis mode]
 Profile       [updated: fields | offered - declined | no profile loaded]
 Next          [the single next action: run the interviews / synthesize after 5-10 / re-run position on the new language]
 Full report   [save path]

@@ -1,6 +1,6 @@
 ---
 name: gtm-social
-version: 2.0.2
+version: 2.0.3
 description: Listening-first founder-led social for /gtm social <target>: finds the live Reddit, Hacker News, LinkedIn, and X threads where the ICP is talking right now, triages them by fit and recency, drafts targeted replies in the founder's voice - and only then builds a lean X/LinkedIn posting calendar sized to the audience the founder actually has. Use when the user wants a social plan, founder-led distribution, help finding where to engage, or what to post. Also trigger for "social listening", "find the threads", "who's talking about", "where should I engage", "content calendar", "what should I post", "social media plan", "founder content", or "LinkedIn/X posts".
 ---
 
@@ -38,7 +38,7 @@ Before fetching anything, run the orchestrator's *Project Resolution*. With a pr
 - **User-Added** and **AI-Researched competitors** - whose mentions and "alternatives to X" threads to listen for: the highest-intent conversations there are. Read what's in the profile; don't run discovery (that's `/gtm competitors`).
 - **`LOG.md`** (beside the profile) - channels and content already tried. If the log shows weeks of posting into a channel with nothing to show, don't restart it unchanged - shift the weighting toward listening or a different channel and say why.
 - A **previous `YYYY-MM-DD-social-calendar.md`** in the folder - reuse its watchlist and search recipes as the starting source list and note what changed, instead of rebuilding from scratch.
-- Then read any `YYYY-MM-DD-positioning.md`, `YYYY-MM-DD-competitor-report.md`, or `YYYY-MM-DD-channel-plan.md` in the folder and reuse their findings (the POV, the rival list, the channel commitment) rather than re-deriving them.
+- Then read any `YYYY-MM-DD-positioning.md`, `YYYY-MM-DD-competitor-report.md`, `YYYY-MM-DD-channel-plan.md`, or `YYYY-MM-DD-content-plan.md` in the folder and reuse their findings (the POV, the rival list, the channel commitment, the content pillars) rather than re-deriving them.
 
 With no profile loaded, derive what you can from the page and the brand's public social, and note that running `/gtm init` would tailor the plan to the founder's ICP, voice, competitors, and goal.
 
@@ -170,6 +170,8 @@ Anchor posts to 4-5 pillars so the founder is never staring at a blank page:
 
 Feed the pillars from the listening work: the questions that keep appearing in triaged threads are the educational posts; the objections are the opinion posts. Listening is the content research.
 
+When a content plan exists (`YYYY-MM-DD-content-plan.md`, from `/gtm content`), the two layer rather than compete: its positioning-derived pillars supply the topics to post about; the table above stays the post-type mix those topics rotate through.
+
 ### 5.2 Hooks that earn the first line
 
 The first line decides whether the post is read or scrolled past. Adapt these formulas to the founder's real story and numbers - posted literally, with the brackets showing, they read as templates and fall flat.
@@ -187,7 +189,7 @@ The first line decides whether the post is read or scrolled past. Adapt these fo
 **X / Twitter:**
 ```
 "[Contrarian statement]. Let me explain."
-"[Number] things I wish I knew about [topic] [timeframe] ago:"
+"What I'd tell myself about [topic], [timeframe] ago:"
 "Spent [time] on [topic]. Here's what actually worked: 🧵"
 "Hot take: [bold, defensible claim]"
 "You don't need [common thing]. You need [better thing]. Here's why:"
@@ -218,7 +220,7 @@ DAY 1 (Mon):
 
 ### 5.4 Repurposing
 
-Turn one substantial piece (a blog post, a launch, a lesson) into a week of posts: an X thread of the key takeaways, a LinkedIn post on the single best insight, 2-3 standalone quotes of the most quotable lines, and one engagement question drawn from it. Reshare the best performer 2-4 weeks later with a fresh angle.
+When a substantial piece exists (a blog post, a launch, a lesson), don't draft its social variants here - run `/gtm repurpose` on it: that command rebuilds the piece into platform-native variants (X thread, LinkedIn post, script outline, newsletter section), each written to stand alone. This calendar's job is the slotting: spread the variants across the week's pillar slots (they fill Educational and Build-in-public days well), one platform per day, and re-share the best performer 3-4 weeks later with a fresh hook - watching replies and profile clicks, not impressions.
 
 ---
 
@@ -305,6 +307,8 @@ Full plan:   [save path]
 - `/gtm brand` - writes `brand-voice.md`, the voice contract every reply and post here is drafted inside.
 - `/gtm competitors` - the rival list whose mentions and "alternatives to" threads are the highest-intent listening targets.
 - `/gtm position` - the point of view the replies and posts carry; run it if the differentiation angle is still fuzzy.
+- `/gtm repurpose` - turns one finished piece into the platform-native variants this calendar slots; Phase 5.4 is the handoff.
+- `/gtm changelog` - turns shipped work into the posts that fill the build-in-public slots, drawn from the real git log.
 - `/gtm leadmagnet` - once replies drive profile clicks, the capture asset that turns attention into an owned list.
 - `/gtm copy` - the site messaging the profile clicks land on; keep it saying what the replies say.
 - `/gtm launch` - line the calendar up to amplify a launch window when one exists.
