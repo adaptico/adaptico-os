@@ -4,6 +4,16 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.17.0]
+
+### Added
+- Type `/gtm` followed by your actual situation instead of a command - "launched two weeks ago and signups are flat", "30 trial users but nobody converts". It reads your profile and log first, then either recommends a short sequence and runs the first step, tells you plainly that no command covers what you asked, or asks the one question that decides the route. It won't improvise work that a command exists to do.
+
+### Changed
+- `LOG.md` is now split into fixed sections - strategy, site, launches, outreach, content, social, email, ads, general - so "what have we already tried on outreach" is one section to read instead of the whole file. A long section can be rolled up into a summary line once it passes about 25 entries.
+- Every command writes one line to the log when it finishes, naming the report it saved. Your history builds itself instead of depending on you remembering to write it down, and the next command reads it before recommending anything.
+- The working unit is called a project throughout, not a startup. "Startup" now only appears where it means the audience.
+
 ## [0.16.0]
 
 ### Added
