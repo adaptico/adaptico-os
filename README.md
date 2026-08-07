@@ -4,9 +4,9 @@
 
 # Adaptico OS - the go-to-market operating system for SaaS and AI founders
 
-Plug your startup into Claude Code and get a real go-to-market team on the command line. Adaptico OS audits your marketing, sharpens your positioning, fixes your conversion, writes your copy, plans your launch, and tracks your competitors - tuned specifically for **early-stage SaaS and AI startup founders**.
+Plug your project into Claude Code and get a real go-to-market team on the command line. Adaptico OS audits your marketing, sharpens your positioning, fixes your conversion, writes your copy, plans your launch, and tracks your competitors - tuned specifically for **early-stage SaaS and AI startup founders**.
 
-It's more than a set of skills - it's an orchestrator that puts a whole team of specialists on your startup and runs them in parallel if needed. Install it, run `/gtm init` once, and you've got a GTM advisor that already knows your product. Built for technical founders shipping modern software.
+It's more than a set of skills - it's an orchestrator that puts a whole team of specialists on your project and runs them in parallel if needed. Install it, run `/gtm init` once, and you've got a GTM advisor that already knows your product. Built for technical founders shipping modern software.
 
 ---
 
@@ -30,7 +30,7 @@ Every run saves a dated report you can work through, and every re-audit opens wi
 # 1. Install the skills into your project
 curl -fsSL https://raw.githubusercontent.com/adaptico/adaptico-os/main/install.sh | bash
 
-# 2. Open Claude Code in your project and set up your startup
+# 2. Open Claude Code in your repo and set up your project
 /gtm init
 
 # 3. Run it
@@ -61,7 +61,8 @@ After installing, restart Claude Code so it picks up the new skills.
 | Command | What it does |
 |---------|-------------|
 | **Start here** | |
-| `/gtm init` | Set up your startup profile (`PROFILE.md`) - do this first |
+| `/gtm init` | Set up your project profile (`PROFILE.md`) - do this first |
+| `/gtm <your situation>` | Not sure what to run? Describe where you are in plain words - get a short command sequence and one concrete next action |
 | `/gtm audit` | Full GTM audit with parallel agents + composite score; re-audits lead with what changed |
 | `/gtm quick` | 60-second snapshot - top wins and fixes |
 | `/gtm critic` | Red-team any report or draft - ranked findings, the one fix that matters most |
@@ -94,7 +95,7 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm brand` | Brand voice audit + a reusable voice guide (do's & don'ts, copy samples) |
 | `/gtm ads` | Should-you-run-ads verdict + CAC/break-even math + a first real ad test - paste-ready copy, you press go |
 
-Point any command at a URL (`/gtm audit https://example.com`), or pass a saved project's name (`/gtm audit my-startup`) to skip retyping the URL. With a single project set up, running a command bare just uses it.
+Point any command at a URL (`/gtm audit https://example.com`), or pass a saved project's name (`/gtm audit my-project`) to skip retyping the URL. With a single project set up, running a command bare just uses it.
 
 ---
 
