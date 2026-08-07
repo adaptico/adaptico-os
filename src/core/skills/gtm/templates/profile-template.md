@@ -1,11 +1,11 @@
-# [Startup Name] - Profile
+# [Project Name] - Profile
 
-> Your startup profile. Adaptico OS reads this for context on every `/gtm` command. Keep it short and honest.
+> Your project profile. Adaptico OS reads this for context on every `/gtm` command. Keep it short and honest.
 
 ## Identity
 - **Website:** https://
 - **One-liner:** *One sentence - what the product does and who it's for.*
-- **Startup type:** *self-serve SaaS (users sign up on their own) · sales-led B2B SaaS (won through demos and sales calls) · AI/API product · dev tool/infra · prosumer/mobile app*
+- **Project type:** *self-serve SaaS (users sign up on their own) · sales-led B2B SaaS (won through demos and sales calls) · AI/API product · dev tool/infra · prosumer/mobile app*
 - **Stage:** *Your tier, set by `/gtm init` from a short diagnostic. One of: Tier 1 - Validate the Demand · Tier 2 - Find a Channel · Tier 3 - Scale the Channel · Tier 4 - Systematize Growth · Tier 5 - Build the Organization.*
 - **MRR (optional):** *Rough monthly recurring revenue, if useful - a secondary signal only, not how Adaptico OS places your stage.*
 
@@ -63,5 +63,5 @@
 ## Context & notes
 - **Primary channel today:** *Where users come from now (Twitter, SEO, outbound, PH, word of mouth…).*
 - **Existing assets:** *Landing page, blog, email list size, social following, etc.*
-- **GTM log:** `LOG.md` beside this profile holds the dated history of what was tried and what happened - commands read it before recommending.
+- **GTM log:** `LOG.md` beside this profile holds the dated, per-channel history of what was tried and what happened - every command run appends its outcome line there, and commands read it before recommending.
 - **Notes:**

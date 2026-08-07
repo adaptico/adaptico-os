@@ -1,6 +1,6 @@
 ---
 name: gtm-audit
-version: 2.1.1
+version: 2.2.0
 description: Full go-to-market marketing audit for /gtm audit <target>. Runs up to 5 parallel audit subagents with machine-validated outputs and produces a scored, date-stamped report that leads with what changed since the last audit - and never invents a number. Use when the user wants a full marketing/GTM audit, an overall website marketing review, or a composite GTM score. Also trigger for "audit my site", "review my marketing", "how's my GTM", "full marketing teardown", or "score my website".
 ---
 
@@ -30,15 +30,15 @@ The user runs `/gtm audit <target>`. This is the flagship command of the entire 
 
 Run the orchestrator's *Project Resolution* first to locate the target's project folder, then read its `PROFILE.md` if one is present. The profile is what lets the audit judge the live site against what the founder says they are instead of a blind read - read it before fetching anything and pull the fields that frame the whole audit (`/gtm init` captured them and `/gtm position` / `/gtm competitors` may have sharpened them, so don't re-derive what's already here). This context is passed into every subagent in Phase 2:
 
-- **Startup type** - sets the business type directly (skip re-detection in 1.2).
+- **Project type** - sets the business type directly (skip re-detection in 1.2).
 - **Stage** tier and **Main goal** - decide which findings lead in synthesis (Phase 3), how `gtm-strategy` judges channel stage-fit, and which `/gtm` moves to recommend at the end.
 - **ICP**, **Secondary audience**, **Key pain points** - the audience the site must speak to; the scoring bar for `gtm-content`'s ICP Focus vector.
 - **Differentiator** and **Key messages** - the positioning the site is supposed to lead with. `gtm-content` and `gtm-competitive` check the live page against this: a gap between the founder's stated positioning and what the homepage actually says is a high-value finding (the site is under-selling its own angle).
 - **User-Added** and **AI-Researched competitors** - feed `gtm-competitive` so Positioning Clarity is judged against the real rivals instead of guesses. Run the orchestrator's *Competitor Resolution Protocol* to load them; read what's there, don't run full discovery.
 - **Primary channel today** and **Existing assets** - the backbone of `gtm-strategy`'s Channel Concentration vector, and what lets `gtm-conversion` judge the hero for message match against the traffic source.
-- **Revenue model / stage signals** - whether the startup is pre-revenue decides if the Revenue Quality vector runs at all (Phase 1.4).
+- **Revenue model / stage signals** - whether the project is pre-revenue decides if the Revenue Quality vector runs at all (Phase 1.4).
 - **Tone** and **Avoid** - the voice every rewrite must honor and the claims the site must never make.
-- **`LOG.md`** (beside the profile) - the dated history of what was tried and what happened. Pass it to `gtm-strategy` and `gtm-competitive`: a channel the log shows was tried and abandoned is never re-recommended without addressing why it failed the first time.
+- **`LOG.md`** (beside the profile) - the dated, per-channel-sectioned history of what was tried and what happened; read it here, before anything is fetched. Pass it to `gtm-strategy` and `gtm-competitive`, and hold the closing recommendations (Recommended Next Moves) against it: a channel the log shows was tried and abandoned is never re-recommended without addressing why it failed the first time, and a move the log shows working is built on, not rediscovered.
 - **The baseline** - find the most recent prior `*-gtm-audit.md` in the folder (an earlier date, or an earlier run today with a lower `-N` suffix - same-day re-runs are real baselines) and any `*-critique.md` reviewing an audit. These drive the delta headline (Phase 3.5) and the critic gate's carried-over Criticals (Phase 3.6).
 
 **No profile loaded?** *Project Resolution* runs first and has already settled where this run goes - it offers to set the site up as a new project, or files it as a competitor of an existing project or a one-off. Don't re-ask here: if a profile came back, use it; if not (a one-off), run the audit untailored - derive what you can from the page, run business-type detection (1.2), and note once in the report that running `/gtm init` would tailor future runs to the founder's ICP, positioning, and goal.
@@ -115,7 +115,7 @@ Compare what discovery found on the live site against the profile's **ICP**, **D
 > 2. **The site is current** - the profile is outdated; I'll update PROFILE.md to match the site before scoring"
 
 - **Option 1** → proceed; the mismatch is scored and led with, as today.
-- **Option 2** → update the profile's ICP / Key messages to what the site shows (confirm the exact new wording with the founder), append a dated entry to `LOG.md` ("profile reconciled to live site before audit"), then run the audit against the updated profile.
+- **Option 2** → update the profile's ICP / Key messages to what the site shows (confirm the exact new wording with the founder), append a dated entry to `LOG.md` ("profile reconciled to live site before audit", under Strategy & positioning), then run the audit against the updated profile.
 - **No answer** (a scheduled or unattended run) → proceed as option 1, and open the executive summary with the conflict: state that the score assumes the profile is current, and that reconciling PROFILE.md (or re-running after choosing option 2) is the first move if the site is the truth.
 
 This check fires only on a direct contradiction - a site that merely *under-sells* the profile's positioning (weak, vague, missing the differentiator) is a normal finding, not a conflict, and never triggers the question.
@@ -222,7 +222,7 @@ Write the final report to `YYYY-MM-DD-gtm-audit.md` in the project folder (see t
 
 ```markdown
 # Marketing Audit: [Business Name]
-**Startup:** [business name or domain]
+**Project:** [business name or domain]
 **Website:** [url]
 **Date:** [current date]
 **Business Type:** [detected type]
@@ -355,7 +355,7 @@ and are named; otherwise High/Med/Low with reasoning.]
 
 ## Recommended Next Moves
 
-[3-5 prioritized `/gtm` commands for THIS startup, from its lowest vectors,
+[3-5 prioritized `/gtm` commands for THIS project, from its lowest vectors,
 tier, and goal - one sentence each on why. See the mapping below.]
 
 ---
@@ -379,7 +379,7 @@ In addition to the file, display a condensed summary in the terminal:
 ```
 === GTM AUDIT COMPLETE ===
 
-Startup: [name] ([type])
+Project: [name] ([type])
 URL: [url]
 GTM Score: [X]/100 (Grade: [letter])   [±Δ since YYYY-MM-DD | "first audit - no baseline"]
 [Coverage: N of 7 vectors - <skipped vector>: <short reason>   - only when partial]
@@ -488,13 +488,15 @@ Keep it exactly that simple - no other channels, no extra payload.
 
 ---
 
-## Closing Check-in (after the report is saved)
+## Log the Run, Then the Closing Check-in (after the report is saved)
 
-The report is already complete and saved before this - nothing waits on an answer. As the very last line of the run, ask once, lightly:
+**Log the run first.** Append the audit's own line to the project's `LOG.md` (fixed format, under its Strategy & positioning section): the report filename and the concrete result - composite score, grade, and the delta since the baseline when one exists (e.g. `ran full audit (see 2026-07-07-gtm-audit.md) -> GTM score 72/100 (B), up from 68`). A partial composite is logged as partial. This line is what makes the next run's delta and the advisor's memory work; skip it only on a one-off run with no project folder.
+
+**Then the check-in.** The report is already complete and saved before this - nothing waits on an answer. As the very last line of the run, ask once, lightly:
 
 > "Anything you tried since the last audit that the site doesn't show - ads, outreach, a launch, pricing changes - or feedback you heard? One line and I'll add it to LOG.md; otherwise we're done."
 
-If an answer comes, append each item to the project's `LOG.md` in the log's fixed format (dated, `founder` as the actor). If nothing comes back - a scheduled or unattended run simply ends here - that's the expected outcome, not an error: the question costs nothing to leave unanswered.
+If an answer comes, append each item to the project's `LOG.md` in the log's fixed format (dated, `founder` as the actor, filed under the section its channel belongs to - a launch under Launches, an ad test under Paid ads). If nothing comes back - a scheduled or unattended run simply ends here - that's the expected outcome, not an error: the question costs nothing to leave unanswered.
 
 ---
 
@@ -514,7 +516,7 @@ If an answer comes, append each item to the project's `LOG.md` in the log's fixe
 
 ## Recommended Next Moves (always include)
 
-End every audit - both in the saved report and in the terminal summary - with a short, prioritized list of what to do next, tailored to the startup's **type** and **stage** (from `PROFILE.md` if present, otherwise inferred). Recommend specific `/gtm` commands first. Use this mapping as a starting point, not a script:
+End every audit - both in the saved report and in the terminal summary - with a short, prioritized list of what to do next, tailored to the project's **type** and **stage** (from `PROFILE.md` if present, otherwise inferred). Recommend specific `/gtm` commands first. Use this mapping as a starting point, not a script:
 
 - **Weak Positioning Clarity** → `/gtm position`, `/gtm competitors`
 - **Weak ICP Focus** → `/gtm position`, `/gtm copy`
@@ -528,7 +530,7 @@ End every audit - both in the saved report and in the terminal summary - with a 
 
 `/gtm ads` is deliberately absent from this map: no weak vector is fixed by buying traffic, so ads enters only through its own readiness gate - and typically at Tier 3, once the funnel demonstrably converts.
 
-Pick the 3-5 highest-leverage moves for *this* startup based on its lowest vectors and stage. Keep it concrete - name the command and one sentence on why.
+Pick the 3-5 highest-leverage moves for *this* project based on its lowest vectors and stage. Keep it concrete - name the command and one sentence on why. Hold the list against `LOG.md` (Phase 0) before it ships: a move the log shows already failed is only recommended with what should be different this time, and a `pending` log entry past its review date gets surfaced ahead of new work.
 
 ## Related Commands
 

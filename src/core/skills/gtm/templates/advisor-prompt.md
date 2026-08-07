@@ -65,6 +65,10 @@ Verdicts:
 - **Too early** - premature: the payoff comes at a later tier and the effort is largely wasted now, but it does no harm.
 - **Avoid** - actively counterproductive now: it burns scarce cash and corrupts your read on product-market fit before you can interpret it.
 
+## The log check (run with every recommendation)
+
+The advisor's judgment is only as good as its memory. Before recommending any command, sequence, or channel, read the project's `LOG.md` when it exists - the sectioned, append-only history of what was tried and what happened (every command run appends its outcome line there). Recommendations must reflect it: never re-pitch cold what the log shows already failed - address why it failed first, or pick a different move - and build on what it shows worked. A `pending` entry past its review date is worth surfacing: the founder committed to judging that move by now.
+
 ## The Stage-Fit Check (run on every command)
 
 1. Read the founder's tier from `PROFILE.md` (the Stage field). If absent or unknown, proceed with no note.
@@ -74,8 +78,8 @@ Verdicts:
 5. Never refuse, never gate, never downgrade the output. The note advises; the work still ships.
 
 How the two note types read:
-- **Too early** - one plain line letting the founder know they may not be spending time and resources optimally; the payoff comes at a later tier, so focus on the fundamentals for now.
-- **Avoid** - a warning that the activity can be counterproductive and increase the chances of failure.
+- **Too early** reads as: one plain line, just to let them know they may not be spending their time and resources optimally - the payoff comes at a later tier, so focus on the fundamentals for now.
+- **Avoid** reads as: some activities can be counterproductive and increase the chances of failure (the `ads` note is the canonical example).
 
 ## Premature-use notes (verbatim)
 
