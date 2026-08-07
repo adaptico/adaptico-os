@@ -1,6 +1,6 @@
 ---
 name: gtm-launch
-version: 1.3.1
+version: 1.4.0
 description: Launch playbook for /gtm launch <target>. Use when the user wants a week-by-week launch plan for Product Hunt, Hacker News, or X, with templates, checklists, and metrics. Also trigger for "plan my launch", "Product Hunt launch", "launch playbook", "how do I launch", or "launch checklist".
 ---
 
@@ -36,7 +36,7 @@ If a profile exists but the founder hasn't said which they want, ask once; if no
 - **Launch goal** ← `Main goal (next 30 days)` and `90-day direction` if set (sharpen to this launch if needed)
 - **Channels & assets** ← `Primary channel today`, `Existing assets` (list size, following), `Links & Channels` social profiles
 - **Existing customers/users** ← `Current traction`, `Existing assets`
-- **Startup type** ← `Startup type` (drives the launch-type choice in Step 2)
+- **Project type** ← `Project type` (drives the launch-type choice in Step 2)
 - **Positioning** ← `Differentiator` and `Key messages` (set by `/gtm position` or `/gtm competitors`) - reuse these for the Week 1-2 positioning statement instead of writing one from scratch
 - **Competitors** ← run the orchestrator's *Competitor Resolution Protocol*; use them for the "why us vs alternatives" content in launch week
 - Also read any `Reference Documents` (strategy, brand manifesto) and honor them as source of truth.
@@ -522,6 +522,10 @@ On yes, edit `projects/<name>/PROFILE.md` surgically:
 - **Already holds the founder's wording** - don't overwrite; show the current value beside your proposed change and take the lightest action that fits: leave it if it still holds, the smallest sharpening edit if improvable, a full replacement only if the launch genuinely changed the goal.
 
 Touch only the two fields above; leave competitors, differentiator, links, and everything else exactly as they are.
+
+## Log the Run
+
+After the playbook is saved (and the profile offer answered), append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Launches` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with the launch date when the result lands later. Example: `- 2026-07-07 · /gtm launch · launch playbook for <channel> (see 2026-07-07-launch-playbook.md) -> pending - launch day 2026-07-21`. The launch-day numbers land later as the founder's own line under `## Launches`. Skip this in brainstorm mode or when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ## Key Principles
 - Every recommendation should be tied to the user's specific product, audience, and resources. Generic advice is useless.

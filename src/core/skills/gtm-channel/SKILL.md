@@ -1,6 +1,6 @@
 ---
 name: gtm-channel
-version: 1.0.2
+version: 1.1.0
 description: Single compounding-channel pick for /gtm channel <target> - forces the choice of ONE distribution channel by scoring every candidate against where the ICP actually gathers, the founder's real weekly hours, how the product is bought, and how fast the channel compounds; outputs one primary channel with a 4-week starter plan, an explicit not-now list for every rejected channel, and a kill/review date set before the work starts. It deletes options, it doesn't add them. Use when the user asks which marketing channel to focus on, where to spend their limited time, or feels spread across five channels with none working. Also trigger for "which channel", "where should I focus", "distribution channel", "traction channel", "spread too thin", "marketing channel strategy", "what channel should I bet on", or "Bullseye".
 ---
 
@@ -34,7 +34,7 @@ The user runs `/gtm channel <target>`, where `<target>` is a URL, a saved projec
 Run the orchestrator's *Project Resolution*. With a profile loaded, read `PROFILE.md` and pull what frames the decision:
 
 - **ICP**, **Secondary audience**, and **Key pain points** - the habitat evidence starts here: where do these specific people gather, and where do they describe this pain?
-- **Startup type** and **Main goal** - the type narrows which channels can plausibly reach the buyer; the goal names what the channel must produce (signups, demos, list growth).
+- **Project type** and **Main goal** - the type narrows which channels can plausibly reach the buyer; the goal names what the channel must produce (signups, demos, list growth).
 - **Stage** tier and **MRR (optional)** - a pre-PMF founder testing a formal channel is early (the stage-fit note will say so); a founder with a working channel needs defense and depth, not novelty.
 - **Primary channel today** and **Current traction** - where users actually come from now. A channel already producing is scoring evidence of the strongest kind, and often the right answer is to feed it properly instead of chasing a new one.
 - **Existing assets** and **Links & Channels** - a half-built audience, an email list, or a dormant blog changes the arithmetic: partial assets lower a channel's startup cost.
@@ -89,7 +89,7 @@ Two situations that change the tone, not the rule:
 
 ## Phase 4: The 4-Week Starter Plan
 
-A week-by-week plan for the picked channel only, sized so the weekly workload never exceeds the founder's stated hours. Week 1 is setup and verification (accounts, watchlists, groundwork - plus habitat confirmation when the thin-evidence rule fired); weeks 2-4 run the channel's repeatable weekly loop. Every week names its **leading indicators** - the early signals worth logging (replies earned, profile clicks, list signups, demos booked, posts indexed), not just the lagging signups - and ends with one line appended to `LOG.md` so the review date has data to read.
+A week-by-week plan for the picked channel only, sized so the weekly workload never exceeds the founder's stated hours. Week 1 is setup and verification (accounts, watchlists, groundwork - plus habitat confirmation when the thin-evidence rule fired); weeks 2-4 run the channel's repeatable weekly loop. Every week names its **leading indicators** - the early signals worth logging (replies earned, profile clicks, list signups, demos booked, posts indexed), not just the lagging signups - and ends with one line appended to `LOG.md`, under the picked channel's own section in the log's map, so the review date has data to read.
 
 Each channel family's loop skeleton and its handoff command live in `references/channel-menu.md`. The plan in the report is concrete: this founder's hours, this ICP's communities, this product's angle - not the skeleton restated.
 
@@ -124,7 +124,7 @@ A real calendar date, computed from today: **4 weeks out** by default, **2 weeks
 - **Continue** - signal is real but small: same channel, one deliberate adjustment, new date.
 - **Double down** - the channel is producing: raise the hours, and only now consider what `/gtm leadmagnet` could capture from the traffic.
 
-One honest caveat, in the report: four weeks reads a fast channel (outreach, communities, founder-led social) but only proves *consistency* in a slow one (SEO, content) - for slow channels the review date checks that the groundwork shipped and the leading indicators (indexing, impressions) moved, not that customers arrived. Log the outcome in `LOG.md` either way; a dead channel, documented, is the cheapest insurance against re-trying it in six months.
+One honest caveat, in the report: four weeks reads a fast channel (outreach, communities, founder-led social) but only proves *consistency* in a slow one (SEO, content) - for slow channels the review date checks that the groundwork shipped and the leading indicators (indexing, impressions) moved, not that customers arrived. Log the outcome in `LOG.md` either way - under its `## Strategy & positioning` section (the channel verdict is a strategy call), updating this run's `pending` line in place; a dead channel, documented, is the cheapest insurance against re-trying it in six months.
 
 ---
 
@@ -134,7 +134,7 @@ Save to `YYYY-MM-DD-channel-plan.md` where *Project Resolution* puts it (never o
 
 ```markdown
 # Channel Plan - One Bet
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL analyzed]
 **Date:** YYYY-MM-DD
 **The pick:** [channel] - test runs until [kill/review date]
@@ -149,7 +149,7 @@ Save to `YYYY-MM-DD-channel-plan.md` where *Project Resolution* puts it (never o
 [Every channel family from the menu with its one-line plausible/implausible verdict - proof nothing was skipped by temperament.]
 
 ## The 4-Week Starter Plan
-[Week-by-week, hours per week <= stated capacity, leading indicators per week, the LOG.md line to append. Week 1 = setup/verification.]
+[Week-by-week, hours per week <= stated capacity, leading indicators per week, the LOG.md line to append and its section per the log's map. Week 1 = setup/verification.]
 
 ### Build-in-Public Starter Kit
 [Only when the pick is founder-led social: premise, setup, what to share / not share, the two post skeletons, cadence floor, handoff to /gtm social.]
@@ -178,6 +178,12 @@ Deleted:     [N channels to the not-now list]
 Next move:   [the handoff command for the picked channel]
 Full report: [save path]
 ```
+
+---
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run decided (naming the report file) and the outcome: `pending` with the kill/review date, updated in place when the verdict lands. Example: `- 2026-07-07 · /gtm channel · picked founder-led social as the one compounding channel (see 2026-07-07-channel-plan.md) -> pending - kill/review 2026-08-04`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: gtm-retention
-version: 1.0.2
+version: 1.1.0
 description: Activation and early-churn diagnosis for /gtm retention <target> - maps signup to first value, commits the founder to ONE activation metric, prioritizes first-90-days fixes over late-stage retention tricks, and designs the churn defenses (cancel flow, save offers, failed-payment recovery posture). Use when the user wants to reduce churn, fix trial retention or activation, or design a cancel flow. Also trigger for "users churn", "trials go dead", "nobody comes back", "cancel flow", "save offer", "stop churn", "failed payments", "keep users", or "retention plan".
 ---
 
@@ -33,7 +33,7 @@ The user runs `/gtm retention <target>`, where `<target>` is a URL, a saved proj
 
 Before fetching anything, run the orchestrator's *Project Resolution*. With a profile loaded, read `PROFILE.md` and pull the fields that frame the diagnosis - `/gtm init` captured them, so don't re-derive from the page what's already here:
 
-- **Startup type** and **Stage** - the type points to the likely activation moment (1.3) and billing model; the stage sets the emphasis (pre-PMF churn is a signal to study, not yet a leak to automate away - see Phase 2.1).
+- **Project type** and **Stage** - the type points to the likely activation moment (1.3) and billing model; the stage sets the emphasis (pre-PMF churn is a signal to study, not yet a leak to automate away - see Phase 2.1).
 - **Main goal** and the **activation milestone** - if the profile already names an activation milestone, Phase 1.3 starts from it and pressure-tests it rather than inventing a rival.
 - **ICP** and **Key pain points** - first value must relieve a named pain for a named reader; a time-to-value verdict is meaningless without them.
 - **Pricing / billing model** - trial vs freemium, card-required or not, monthly vs annual (from the profile or the live pricing page). This decides which churn mechanics apply and when renewal risk concentrates.
@@ -102,9 +102,9 @@ A qualifying metric is:
 - **Time-bounded** - "within 7 days of signup", not open-ended. The window makes the rate readable week to week.
 - **Not a vanity event** - logins, opens, clicks, and page views measure presence, not value. A metric that can rise while users get nothing done is an anchor pointed at sand.
 
-Candidate shapes by startup type (keep consistent with the funnel map's activation column):
+Candidate shapes by project type (keep consistent with the funnel map's activation column):
 
-| Startup type | Activation metric shape |
+| Project type | Activation metric shape |
 |---|---|
 | PLG / self-serve SaaS | First core action completed (first project created, first report run) within 7 days |
 | AI / API product | First successful API call or first useful output within 3 days |
@@ -259,10 +259,10 @@ Write the full output to the resolved output path as `YYYY-MM-DD-retention.md` (
 
 ```markdown
 # Retention & Activation Diagnosis: [Business Name]
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL analyzed]
 **Date:** [current date]
-**Startup type:** [type]
+**Project type:** [type]
 **Activation metric:** [the ONE metric - event + time bound, or "proposed: ..." if unconfirmed]
 **Evidence:** [X] observed · [Y] founder-provided · [Z] inferred
 **Scope:** public surfaces plus what the founder shared - churn and usage data not shared is reconstructed from benchmarks and labeled inferred
@@ -330,6 +330,12 @@ Top 3 fixes:
 
 Full diagnosis saved to: YYYY-MM-DD-retention.md
 ```
+
+---
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run committed or designed (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm retention · set the activation metric + cancel-flow mechanics (see 2026-07-07-retention.md) -> activation metric committed, pending - 90-day read`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: gtm-interviews
-version: 1.0.2
+version: 1.1.0
 description: Customer-conversation engine for /gtm interviews <target>. Two jobs in one command - generate a customer-discovery interview kit (who to talk to, where to find them, questions that surface real past behavior instead of compliments, a per-conversation capture sheet), and synthesize the founder's transcripts or notes into validated pains, verbatim customer quotes, segments, and switching triggers, written back into PROFILE.md so positioning, copy, and outreach start from real customer language. Use when the user wants to talk to users or customers, validate a problem or an idea, prepare for user interviews, or make sense of interview notes. Also trigger for "customer interviews", "user interviews", "talk to customers", "customer discovery", "validate my idea", "interview questions", "discovery questions", "synthesize my interview notes", or "what did my customers actually say".
 ---
 
@@ -45,7 +45,7 @@ With a profile loaded, read `PROFILE.md` and treat its claims as hypotheses to t
 - **ICP** and **Key pain points** - the founder's current guess at who hurts and how. The kit exists to check it; the synthesis will confirm, sharpen, or contradict it.
 - **Competitive Alternatives** and the competitor sections - what the founder believes people use instead. Conversations regularly reveal the real alternative is a spreadsheet, an intern, or doing nothing.
 - **Stage** tier and **Main goal** - a pre-launch founder validates the problem; a founder with users also interviews for activation blockers and switching triggers.
-- **One-liner** and **Startup type** - context for who to recruit and where they gather.
+- **One-liner** and **Project type** - context for who to recruit and where they gather.
 - **Customer Evidence** - what earlier rounds already established. New synthesis extends it; it never silently replaces it.
 
 Also read `LOG.md` (what outreach or launches already happened - past signups and churned users are the warmest interview pool) and any earlier `YYYY-MM-DD-interview-synthesis.md` reports (lead the new synthesis with what changed since the last one).
@@ -147,7 +147,7 @@ Save the kit as `YYYY-MM-DD-interview-kit.md` with the standard report header:
 
 ```markdown
 # Customer Interview Kit
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL]
 **Date:** YYYY-MM-DD
 
@@ -203,7 +203,7 @@ Save as `YYYY-MM-DD-interview-synthesis.md`:
 
 ```markdown
 # Interview Synthesis
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL]
 **Date:** YYYY-MM-DD
 **Evidence base:** [N] conversations ([types]), [dates covered] - [firm / directional]
@@ -257,6 +257,12 @@ On yes, edit surgically:
 - **Competitive Alternatives** - append alternatives the founder hadn't listed; never delete their entries.
 - **ICP / Key pain points** - founder-owned fields: show current value beside the proposed edit, apply only what they approve, keep their wording wherever it already matches the evidence. Tag additions `(from interviews, YYYY-MM-DD, N conversations)`.
 - Touch nothing else - `Differentiator` belongs to `/gtm position`, competitors to `/gtm competitors`.
+
+---
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Kit mode example: `- 2026-07-07 · /gtm interviews · interview kit saved (see 2026-07-07-interview-kit.md) -> pending - synthesis after interviews`. Synthesis mode example: `- 2026-07-07 · /gtm interviews · synthesized 9 interviews into Customer Evidence (see 2026-07-07-interview-synthesis.md) -> 6 validated pains, 3 switching triggers`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

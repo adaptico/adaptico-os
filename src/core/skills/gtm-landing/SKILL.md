@@ -1,6 +1,6 @@
 ---
 name: gtm-landing
-version: 1.3.2
+version: 1.4.0
 description: Landing page conversion-rate-optimization teardown for /gtm landing <target>. Use when the user wants a section-by-section CRO review of a landing or signup page with prioritized fixes. Also trigger for "optimize my landing page", "CRO review", "why isn't my page converting", "improve signups", or "landing page teardown".
 ---
 
@@ -29,7 +29,7 @@ Before fetching the page, run the orchestrator's *Project Resolution*. With a pr
 - **User-Added** and **AI-Researched competitors** - the alternatives a visitor is weighing; use them to sharpen Objection Handling (Section 5) and the comparison-with-alternatives check. Read what's already in the profile - don't run full discovery (that's `/gtm competitors`).
 - **Primary channel today** and **Existing assets** - where the page's traffic comes from; the hero is judged for message match against this source (Section 1).
 - **Tone** and **Avoid** - the voice every rewrite and A/B-test copy must honor, and the claims the page must never make.
-- **Startup type**, **Stage**, and **Main goal** - frame the read: startup type sets the expected Page Type and benchmark (Step 1), and the goal is the conversion the teardown optimizes toward.
+- **Project type**, **Stage**, and **Main goal** - frame the read: project type sets the expected Page Type and benchmark (Step 1), and the goal is the conversion the teardown optimizes toward.
 - Then read any `YYYY-MM-DD-positioning.md`, `YYYY-MM-DD-competitor-report.md`, or `YYYY-MM-DD-gtm-audit.md` in the folder for detail.
 
 With no profile loaded, derive what you can from the page; *Project Resolution* will have offered to set one up, and running `/gtm init` would tailor the teardown to the founder's ICP, positioning, and goal.
@@ -365,6 +365,10 @@ Write the report to the resolved output path as `YYYY-MM-DD-landing-cro.md` (see
 ## Optional Critic Pass
 
 If the founder asked for a red-teamed or critiqued teardown, run the `gtm-critic` review protocol (`.claude/skills/gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm landing · CRO teardown of the signup page (see 2026-07-07-landing-cro.md) -> 9 prioritized fixes, 3 in the hero`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ## Key Principles
 - Always tie recommendations to REVENUE IMPACT. Don't just say "change the button color" -- say "changing the CTA button to a contrasting color typically increases clicks 15-30%, which at your current traffic could mean X more conversions per month."

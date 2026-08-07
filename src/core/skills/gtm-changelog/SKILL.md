@@ -1,6 +1,6 @@
 ---
 name: gtm-changelog
-version: 1.0.2
+version: 1.1.0
 description: Build-in-public content from real shipped work for /gtm changelog <target>. Reads the founder's git log, CHANGELOG, and project LOG.md, finds the story in what actually shipped, and produces three assets: user-facing ship notes, an X thread, and a LinkedIn post - framing the engineering decisions as narrative, never inflating a fix into a rewrite. Every claim traces to a real commit or changelog entry. Use when the user wants to share what they shipped, write a changelog post, or turn recent commits into content. Also trigger for "what did I ship this week", "build in public post", "write my release notes", "ship notes", "turn my commits into a post", or "changelog content".
 ---
 
@@ -31,7 +31,7 @@ Run the orchestrator's *Project Resolution* for context and output location, the
 Run the orchestrator's *Project Resolution*. With a profile loaded, read `PROFILE.md` and pull what frames the content:
 
 - **ICP** - the reader the ship notes translate for: what each change lets *them* do, in their vocabulary.
-- **Main goal** and **Startup type** - the CTA (try the feature, start a trial, follow the build) and how technical the framing can be.
+- **Main goal** and **Project type** - the CTA (try the feature, start a trial, follow the build) and how technical the framing can be.
 - **Tone** and **Avoid** - the register, and the claims that never ship.
 - **The voice source, in priority order:** `brand-voice.md` in the project folder (the guide `/gtm brand` maintains), else `PROFILE.md` `Tone` / `Avoid`, else plain founder register.
 - **`LOG.md`** - marketing context worth weaving in (a launch that landed, a channel being tested), and any prior build-in-public posts' reception.
@@ -109,8 +109,8 @@ Write the full output to the resolved output path as `YYYY-MM-DD-changelog-post.
 
 ```markdown
 # Build-in-Public Pack: [window, e.g. 2026-06-22 - 2026-07-06]
-**Startup:** [name or domain]
-**Website:** [startup URL]
+**Project:** [name or domain]
+**Website:** [project URL]
 **Repo:** [repo name/path read]
 **Date:** YYYY-MM-DD
 **Window:** [since last pack | last 14 days | since <tag> | founder-set]
@@ -155,6 +155,12 @@ Humanize:   [N tells stripped | clean | skipped]
 Post order: [ship notes on site -> thread -> LinkedIn, spread 2-3 days]
 Full pack:  [save path]
 ```
+
+---
+
+## Log the Run
+
+After the pack is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Social` section - what this run produced (naming the pack file) and the outcome: a concrete result, or `pending` with a review date when it lands after posting. Example: `- 2026-07-07 · /gtm changelog · ship notes + X thread + LinkedIn post from git log (see 2026-07-07-changelog-post.md) -> pending - reception after posting`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

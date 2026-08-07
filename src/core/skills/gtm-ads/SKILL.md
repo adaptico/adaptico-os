@@ -1,6 +1,6 @@
 ---
 name: gtm-ads
-version: 2.0.1
+version: 2.1.0
 description: Paid-ads readiness gate and first real ad test for /gtm ads <target>. Runs a "should you run ads at all" check against stage and unit economics before any creative work - a not-yet verdict names the exact numbers that would flip it; when the gate passes, picks one platform by intent, sizes the smallest readable test budget with kill criteria set before spend, and writes paste-ready ad copy in the picked platform's format (bundled CAC/break-even calculator). It plans and writes only - it never connects to an ad account or launches campaigns; the founder pastes the copy into Ads Manager. Use when the user wants to run, plan, or budget paid ads, write ad copy, or asks whether ads are worth it yet. Also trigger for "should I run ads", "Google Ads", "Meta ads", "LinkedIn ads", "write me an ad", "ad copy", "paid acquisition", "PPC", "ad budget", or "ad variations".
 ---
 
@@ -41,7 +41,7 @@ Run the orchestrator's *Project Resolution*. With a profile loaded, read `PROFIL
 - **Stage** tier - the input to the stage-fit note and the gate's demand-validation check (1.1).
 - **ICP** and **Key pain points** - the audience the platform pick targets and the pain the hooks lead with.
 - **Differentiator** and **Key messages** - the claims the ad angles are built from; ads invent no new positioning.
-- **Startup type** and **Main goal** - the type informs the platform pick (4.2); the goal names the conversion action every ad drives toward.
+- **Project type** and **Main goal** - the type informs the platform pick (4.2); the goal names the conversion action every ad drives toward.
 - **Tone** and **Avoid** - the voice, and the claims that must never appear (ad platforms reject overclaims; the Avoid list is a compliance input here).
 - **User-Added / AI-Researched competitors** - the rivals whose public ad presence Phase 4 checks as channel evidence.
 - **Primary channel today** and **Current traction** - existing traffic decides whether retargeting is available, and traction feeds the gate's demand-validation check.
@@ -148,7 +148,7 @@ A conversion event, verified end to end (test-fire it and see it land in the pla
 
 ### 3.5 Duration and discipline
 
-Run at least two full weeks (day-of-week swings are real), and don't edit the campaign mid-test - significant edits reset the platform's learning and blur the read. Log the test's setup and its outcome in `LOG.md` either way; a dead channel, documented, is worth almost as much as a live one.
+Run at least two full weeks (day-of-week swings are real), and don't edit the campaign mid-test - significant edits reset the platform's learning and blur the read. Log the test's setup and its outcome in `LOG.md` either way, under its `## Paid ads` section; a dead channel, documented, is worth almost as much as a live one.
 
 ---
 
@@ -201,7 +201,7 @@ Save to `YYYY-MM-DD-ads-plan.md` where *Project Resolution* puts it (never overw
 
 ```markdown
 # Paid Ads Plan [Ready | Not Yet]
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL analyzed]
 **Date:** YYYY-MM-DD
 **Verdict:** [Ready - test protocol + creative below | Not yet - the numbers that flip it below]
@@ -252,6 +252,12 @@ Humanize:        [N tells stripped | clean | skipped | n/a]
 Top move:        [the single next action]
 Full report:     [save path]
 ```
+
+---
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Paid ads` section - what this run decided (naming the report file) and the outcome: the verdict with its flip number, or, when the gate passes, the test spec with its kill date as the pending review. Example: `- 2026-07-07 · /gtm ads · ads readiness gate (see 2026-07-07-ads-plan.md) -> verdict: not yet - flips at 500 visits/mo organic`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

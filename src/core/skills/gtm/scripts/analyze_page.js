@@ -872,7 +872,7 @@ async function main() {
   if (!positional.length) {
     console.log(JSON.stringify({
       usage: "node analyze_page.js <url> [--out <file>]",
-      example: "node analyze_page.js https://yourstartup.com --out page.json",
+      example: "node analyze_page.js https://yourproject.com --out page.json",
       description: "Analyzes a webpage for marketing effectiveness; --out writes the full JSON to a file and prints only a one-line summary",
     }, null, 2));
     return;

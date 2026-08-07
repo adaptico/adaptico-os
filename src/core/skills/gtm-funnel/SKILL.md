@@ -1,6 +1,6 @@
 ---
 name: gtm-funnel
-version: 1.2.5
+version: 1.3.0
 description: Funnel and activation analysis for /gtm funnel <target>: maps the public funnel (landing, pricing, signup) and works with the founder on the post-signup path to first value. Use when the user wants to find funnel drop-off/leaks or improve trial-to-paid and PLG activation. Also trigger for "fix my funnel", "where am I losing users", "activation rate", "trial conversion", or "funnel leaks".
 ---
 
@@ -23,7 +23,7 @@ The user runs `/gtm funnel <target>`. Run *Project Resolution* and gather contex
 ## Phase 0: Gather Context
 
 Before fetching anything, run the orchestrator's *Project Resolution*. With a profile loaded, read `PROFILE.md` and pull the fields that frame the teardown - `/gtm init` captured them, and `/gtm position` / `/gtm competitors` may have sharpened them, so don't re-derive from the page what's already here:
-- **Startup type**, **Stage**, and **Main goal** - the type points to the funnel shape and activation moment (1.1) and the benchmark (3.3); the goal is the conversion the whole funnel optimizes toward.
+- **Project type**, **Stage**, and **Main goal** - the type points to the funnel shape and activation moment (1.1) and the benchmark (3.3); the goal is the conversion the whole funnel optimizes toward.
 - **Primary channel today**, **Existing assets**, and **Current traction** - where the traffic comes from; this anchors the traffic-source mix in the metrics (3.1) and the Traffic Source Alignment (5.2) instead of guessing it.
 - **ICP** and **Key pain points** - who moves through the funnel; the relevance bar for the Clarity and Motivation scores (2.1).
 - **Differentiator** and **Key messages** - the positioning the funnel pages (hero, pricing value-framing) should lead with.
@@ -48,9 +48,9 @@ Treat whatever the founder gives as the source of truth for the post-signup step
 
 ### 1.1 Identify the Funnel Shape
 
-Adaptico OS is built for software startups, so default to the SaaS activation funnel - landing -> signup -> onboarding -> activation -> paid - and adjust the shape to the **Startup type** from Phase 0 (confirm it against the live site). The point of this table is the **activation column**: the single moment a new user first gets real value. That moment, not the purchase, is where early software funnels are won or lost.
+Adaptico OS is built for software startups, so default to the SaaS activation funnel - landing -> signup -> onboarding -> activation -> paid - and adjust the shape to the **Project type** from Phase 0 (confirm it against the live site). The point of this table is the **activation column**: the single moment a new user first gets real value. That moment, not the purchase, is where early software funnels are won or lost.
 
-| Startup type | Funnel shape | Activation (first value) | Key metric |
+| Project type | Funnel shape | Activation (first value) | Key metric |
 |---|---|---|---|
 | **PLG / self-serve SaaS** | Landing -> Signup -> Onboarding -> Activation -> Paid | First core action completed (first project created, first report run) | Trial-to-paid rate |
 | **Sales-led B2B SaaS** | Landing -> Demo request -> Call -> Trial / POC -> Close | Qualified demo booked, then value shown in the POC | Demo-to-close rate |
@@ -365,7 +365,7 @@ Write the full output to the resolved output path as `YYYY-MM-DD-funnel-analysis
 # Funnel Analysis: [Business Name]
 **URL:** [url]
 **Date:** [current date]
-**Startup Type:** [type]
+**Project Type:** [type]
 **Funnel Shape:** [landing -> ... -> paid]
 **Activation Moment:** [the single first-value action]
 **Evidence:** [X] observed · [Y] founder-provided · [Z] inferred
@@ -465,6 +465,12 @@ Top 3 Fixes:
 
 Full analysis saved to: YYYY-MM-DD-funnel-analysis.md
 ```
+
+---
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run mapped or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm funnel · traced the signup-to-activation funnel (see 2026-07-07-funnel-analysis.md) -> biggest leak: post-signup empty state`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

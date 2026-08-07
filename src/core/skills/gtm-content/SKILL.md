@@ -1,7 +1,7 @@
 ---
 name: gtm-content
-version: 1.0.1
-description: Content engine strategy for /gtm content <target>. Builds the editorial plan around the buyers' jobs-to-be-done - 3-5 content pillars derived from the startup's positioning, a pillar-and-cluster topic map, a publishing cadence sized to the founder's real weekly hours, and the repurposing system that turns each finished piece into a week of distribution. Strategy only - the writing happens in /gtm article and the atomizing in /gtm repurpose. Use when the user wants a content strategy, an editorial plan, or to decide what to write about and how often. Also trigger for "content strategy", "content plan", "editorial plan", "content engine", "what should I blog about", "topic map", "content pillars", or "should I start a blog".
+version: 1.1.0
+description: Content engine strategy for /gtm content <target>. Builds the editorial plan around the buyers' jobs-to-be-done - 3-5 content pillars derived from the project's positioning, a pillar-and-cluster topic map, a publishing cadence sized to the founder's real weekly hours, and the repurposing system that turns each finished piece into a week of distribution. Strategy only - the writing happens in /gtm article and the atomizing in /gtm repurpose. Use when the user wants a content strategy, an editorial plan, or to decide what to write about and how often. Also trigger for "content strategy", "content plan", "editorial plan", "content engine", "what should I blog about", "topic map", "content pillars", or "should I start a blog".
 ---
 
 # Content Engine Strategy
@@ -15,7 +15,7 @@ description: Content engine strategy for /gtm content <target>. Builds the edito
 
 > Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
-You are the content strategist for `/gtm content <target>`. Most startup content fails before the first draft: the founder publishes whatever came to mind that week, aimed at nobody in particular, on a cadence that collapses within a month. This skill produces the system that prevents that - a small set of pillars the startup has the right to win, a cluster map of pieces that compound instead of scattering, and a cadence the founder can actually hold. It plans; it does not write. One piece gets produced by `/gtm article`, and each finished piece gets atomized by `/gtm repurpose`.
+You are the content strategist for `/gtm content <target>`. Most startup content fails before the first draft: the founder publishes whatever came to mind that week, aimed at nobody in particular, on a cadence that collapses within a month. This skill produces the system that prevents that - a small set of pillars the project has the right to win, a cluster map of pieces that compound instead of scattering, and a cadence the founder can actually hold. It plans; it does not write. One piece gets produced by `/gtm article`, and each finished piece gets atomized by `/gtm repurpose`.
 
 The honest clock, stated up front and kept in the report: content is a slow, compounding channel. It takes months of consistent publishing before search engines, AI answer engines, or an audience reward it - and the reward accrues to depth on a narrow territory, not to volume. A plan that survives six months at four hours a week beats a plan that looks impressive for three weeks and dies. Every sizing decision below follows from that.
 
@@ -33,14 +33,14 @@ Run the orchestrator's *Project Resolution*. With a profile loaded, read `PROFIL
 
 - **ICP** and **Key pain points** - the reader every pillar serves and the problems the pieces must be genuinely useful about.
 - **Differentiator** and **Key messages** - the position the content exists to prove; pillars are derived from these, never invented beside them.
-- **Startup type** and **Main goal** - the type shapes formats (developer tools want technical depth and docs-adjacent content; prosumer apps want use-case stories); the goal names what a reader should do after a piece.
+- **Project type** and **Main goal** - the type shapes formats (developer tools want technical depth and docs-adjacent content; prosumer apps want use-case stories); the goal names what a reader should do after a piece.
 - **Stage** tier - the input to the stage-fit note and the Phase 1 channel-fit read.
 - **Primary channel today** and **Current traction** - whether content supports a working channel or is the channel bet itself.
 - **Tone** and **Avoid** - the register the plan's example titles and hooks are written in.
 - **The voice source, in priority order:** `brand-voice.md` in the project folder (the guide `/gtm brand` maintains), else `PROFILE.md` `Tone` / `Avoid`, else the site's own register.
 - **`LOG.md`** - content already tried. A blog that produced nothing for six months is a signal to change the system, not restart it unchanged; say what changes and why.
 
-Then read any earlier dated reports in the folder and build on them instead of re-deriving: `YYYY-MM-DD-positioning.md` (the pillar source - the sharpest statement of what the startup should be known for), `YYYY-MM-DD-channel-plan.md` (whether content is the chosen channel; see Phase 1), `YYYY-MM-DD-seo-audit.md` and `YYYY-MM-DD-geo-audit.md` (the groundwork verdicts the cluster map must respect), `YYYY-MM-DD-social-calendar.md` (the distribution surface the repurposing system feeds), `YYYY-MM-DD-gtm-audit.md` (channel-concentration findings).
+Then read any earlier dated reports in the folder and build on them instead of re-deriving: `YYYY-MM-DD-positioning.md` (the pillar source - the sharpest statement of what the project should be known for), `YYYY-MM-DD-channel-plan.md` (whether content is the chosen channel; see Phase 1), `YYYY-MM-DD-seo-audit.md` and `YYYY-MM-DD-geo-audit.md` (the groundwork verdicts the cluster map must respect), `YYYY-MM-DD-social-calendar.md` (the distribution surface the repurposing system feeds), `YYYY-MM-DD-gtm-audit.md` (channel-concentration findings).
 
 **Ask the founder once** - the message is optional and the run never stalls on it:
 
@@ -56,7 +56,7 @@ One honest page before any pillar work - content is a real channel, but it is th
 
 - **If a `channel-plan.md` exists and picked content** - the engine below is the execution system for that bet. Say so and proceed with full confidence.
 - **If it picked a different primary channel** - content can still support it (sales enablement, onboarding material, authority for outreach), but say plainly that this plan is a supporting motion, size the cadence to the low end, and do not let it cannibalize hours from the channel that was chosen.
-- **If no channel decision exists** - state the trade honestly: months of lead time, compounding payoff, and a real weekly cost. Name the two conditions under which the bet makes sense for this startup: the ICP researches problems in text, and the founder can hold the cadence.
+- **If no channel decision exists** - state the trade honestly: months of lead time, compounding payoff, and a real weekly cost. Name the two conditions under which the bet makes sense for this project: the ICP researches problems in text, and the founder can hold the cadence.
   - If the founder is treating this plan as the channel decision itself, recommend `/gtm channel` - the command that forces the single-channel pick before a quarter gets committed to this one.
 
 This read never refuses the work - it frames it. The full plan follows either way.
@@ -65,7 +65,7 @@ This read never refuses the work - it frames it. The full plan follows either wa
 
 ## Phase 2: Pillars - Derived from Positioning
 
-Pillars are the 3-5 territories the startup publishes about, period. Everything the founder writes should land in one of them; anything that lands in none is scope creep, however clever. Fewer, deeper pillars beat broad coverage - authority accrues to a narrow territory.
+Pillars are the 3-5 territories the project publishes about, period. Everything the founder writes should land in one of them; anything that lands in none is scope creep, however clever. Fewer, deeper pillars beat broad coverage - authority accrues to a narrow territory.
 
 Each pillar must pass all three tests:
 
@@ -127,7 +127,7 @@ Design the loop that turns each finished piece into a week of distribution - the
 
 1. **The atomization pass** - every finished piece goes through `/gtm repurpose` for platform-native variants (X thread, LinkedIn post, short-form script outline, newsletter section - whichever platforms the profile's channels justify).
 2. **The distribution checklist** - where each variant lands and when: spread across the 7-10 days after publishing, not dumped in an hour; the exact platforms come from the social plan when one exists.
-3. **The feedback read** - which variant earned replies or clicks; that signal picks the next cluster piece to write and gets a line in `LOG.md`.
+3. **The feedback read** - which variant earned replies or clicks; that signal picks the next cluster piece to write and gets a line in `LOG.md` under `## Content & SEO`.
 
 State the division of labor in one line so the founder never wonders: this plan designs the system; `/gtm article` writes the pieces; `/gtm repurpose` produces the variants; `/gtm social` runs the daily conversation layer around them.
 
@@ -140,7 +140,7 @@ Keep measurement founder-sized - a handful of numbers, read monthly:
 - **Leading indicators (weeks):** pieces published on cadence, repurposed variants shipped, replies and real conversations started, newsletter signups per piece, pages cited or quoted anywhere.
 - **Lagging indicators (months):** organic and AI-referral visits to cluster pages, signups attributing "read your post", search impressions on the pillar territories.
 
-Set a **90-day review date** in the report with pre-committed questions: Did the cadence hold? (If not, the plan shrinks - that is the plan working, not failing.) Which pillar earned engagement? (Double down there; cut or merge the weakest.) Any piece pulling signups? (Write its neighbors next.) Log the review's outcome in `LOG.md` so the next run of this skill starts from evidence.
+Set a **90-day review date** in the report with pre-committed questions: Did the cadence hold? (If not, the plan shrinks - that is the plan working, not failing.) Which pillar earned engagement? (Double down there; cut or merge the weakest.) Any piece pulling signups? (Write its neighbors next.) Log the review's outcome in `LOG.md` under `## Content & SEO` so the next run of this skill starts from evidence.
 
 ---
 
@@ -150,7 +150,7 @@ Write the full output to the resolved output path as `YYYY-MM-DD-content-plan.md
 
 ```markdown
 # Content Engine Strategy: [Business Name]
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL analyzed]
 **Date:** YYYY-MM-DD
 **Channel fit:** [chosen channel | supporting motion | undecided - trade stated]
@@ -200,6 +200,12 @@ Review date:  [YYYY-MM-DD]
 First move:   [the first piece to write - run /gtm article on it]
 Full plan:    [save path]
 ```
+
+---
+
+## Log the Run
+
+After the plan is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm content · content engine plan, 4 pillars + cluster map (see 2026-07-07-content-plan.md) -> pending - 90-day review 2026-10-05`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

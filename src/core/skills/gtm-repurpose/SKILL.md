@@ -1,6 +1,6 @@
 ---
 name: gtm-repurpose
-version: 1.0.2
+version: 1.1.0
 description: Platform-native repurposing for /gtm repurpose <target>. Takes one finished piece the founder already published or drafted - an article, a launch post, a talk - and rewrites it into variants built for each platform: an X thread, a LinkedIn post, a short-form video script outline, and a newsletter section. Each variant is rewritten for the platform's native shape, never truncated, stands alone without the original, and goes through the humanize pass; platforms the piece can't feed honestly get skipped, not filled. Use when the user wants to multiply one finished piece across platforms. Also trigger for "repurpose this", "turn this post into a thread", "atomize this article", "make social posts from my blog post", "content atomization", or "squeeze more out of this piece".
 ---
 
@@ -102,7 +102,7 @@ A short schedule, not a second calendar (the posting rhythm belongs to `/gtm soc
 - **Spread, don't dump.** The variants cover 7-10 days after the original publishes: thread early while the piece is fresh, LinkedIn mid-week when its audience is on, newsletter with the next regular send, video whenever produced.
 - **One platform per day** at most - the same insight landing everywhere simultaneously reads as a campaign, not a person.
 - **Re-share note:** the best-performing variant earns a re-run 3-4 weeks later with a fresh hook; name which signal to watch (replies and profile clicks, not impressions).
-- **Log it:** one `LOG.md` line per variant posted, so the next repurposing run knows what worked.
+- **Log it:** one `LOG.md` line per variant posted, under `## Content & SEO`, so the next repurposing run knows what worked.
 
 ---
 
@@ -118,8 +118,8 @@ Write the full output to the resolved output path as `YYYY-MM-DD-repurpose.md` (
 
 ```markdown
 # Repurpose Pack: [Source Piece Title]
-**Startup:** [name or domain]
-**Website:** [startup URL]
+**Project:** [name or domain]
+**Website:** [project URL]
 **Source:** [URL, file, or "pasted draft"]
 **Date:** YYYY-MM-DD
 **Variants:** [N produced, M skipped]
@@ -162,6 +162,12 @@ Humanize:   [N tells stripped | clean | skipped]
 Schedule:   [day 1 thread -> day 3 LinkedIn -> ...]
 Full pack:  [save path]
 ```
+
+---
+
+## Log the Run
+
+After the pack is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm repurpose · atomized <piece> into 4 platform variants (see 2026-07-07-repurpose.md) -> pending - engagement read after posting`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

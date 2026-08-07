@@ -1,6 +1,6 @@
 ---
 name: gtm-social
-version: 2.0.3
+version: 2.1.0
 description: Listening-first founder-led social for /gtm social <target>: finds the live Reddit, Hacker News, LinkedIn, and X threads where the ICP is talking right now, triages them by fit and recency, drafts targeted replies in the founder's voice - and only then builds a lean X/LinkedIn posting calendar sized to the audience the founder actually has. Use when the user wants a social plan, founder-led distribution, help finding where to engage, or what to post. Also trigger for "social listening", "find the threads", "who's talking about", "where should I engage", "content calendar", "what should I post", "social media plan", "founder content", or "LinkedIn/X posts".
 ---
 
@@ -34,7 +34,7 @@ Before fetching anything, run the orchestrator's *Project Resolution*. With a pr
 - **Tone** and **Avoid** - the voice every reply and post must match (this is a voice-heavy skill), and what the brand never says.
 - **`brand-voice.md`** (project root, written by `/gtm brand`) - when present, the full voice contract for every reply and post: word lists, Do/Don't rules, signature phrases. It outranks the one-line `Tone` on conflict.
 - **Primary channel today**, **Existing assets**, and **Links & Channels** (social profiles) - the platforms the founder is already on and the audience size; this sets the listening-vs-calendar weighting (no audience -> replies are the work; an established following -> the calendar earns more investment).
-- **Startup type**, **Stage**, and **Main goal** - the type points to which communities the buyers gather in; the stage sets the weighting; the goal is what the work drives toward (replies, profile clicks, signups).
+- **Project type**, **Stage**, and **Main goal** - the type points to which communities the buyers gather in; the stage sets the weighting; the goal is what the work drives toward (replies, profile clicks, signups).
 - **User-Added** and **AI-Researched competitors** - whose mentions and "alternatives to X" threads to listen for: the highest-intent conversations there are. Read what's in the profile; don't run discovery (that's `/gtm competitors`).
 - **`LOG.md`** (beside the profile) - channels and content already tried. If the log shows weeks of posting into a channel with nothing to show, don't restart it unchanged - shift the weighting toward listening or a different channel and say why.
 - A **previous `YYYY-MM-DD-social-calendar.md`** in the folder - reuse its watchlist and search recipes as the starting source list and note what changed, instead of rebuilding from scratch.
@@ -48,7 +48,7 @@ With no profile loaded, derive what you can from the page and the brand's public
 
 ## Phase 1: Where Your Buyers Already Are
 
-Map the channels to the founder's **Startup type** and **ICP**, then pick where to **listen and reply** (borrow other people's audiences) and where to **post** (build your own). For most software the fastest-converting channels are text communities - Reddit, Hacker News, LinkedIn, X - where a written reply stands on its own. That is not a rule: some products genuinely have buyers on Instagram, YouTube, or TikTok. The narrower caution is not to start posting on a visual network just to be present - those formats take real production effort and a native angle this tool doesn't generate. Default to Reddit + Hacker News + LinkedIn for listening and X + LinkedIn for posting, adjust to where the profile says the buyers actually are, and commit to a visual network only if the audience is clearly there and the founder can invest in it.
+Map the channels to the founder's **Project type** and **ICP**, then pick where to **listen and reply** (borrow other people's audiences) and where to **post** (build your own). For most software the fastest-converting channels are text communities - Reddit, Hacker News, LinkedIn, X - where a written reply stands on its own. That is not a rule: some products genuinely have buyers on Instagram, YouTube, or TikTok. The narrower caution is not to start posting on a visual network just to be present - those formats take real production effort and a native angle this tool doesn't generate. Default to Reddit + Hacker News + LinkedIn for listening and X + LinkedIn for posting, adjust to where the profile says the buyers actually are, and commit to a visual network only if the audience is clearly there and the founder can invest in it.
 
 | Channel | Role | Who's there | What works | Cadence |
 |---|---|---|---|---|
@@ -145,7 +145,7 @@ Make it a 15-20 minute habit, not a project - the report's recipes and watchlist
 
 - **Daily:** run the saved recipes, triage what's new with the Phase 3 checks, post 1-3 genuinely useful replies.
 - **Weekly target:** roughly 5-15 quality replies - enough to compound, few enough to keep every one specific.
-- **Track:** replies posted, upvotes/likes earned, profile clicks, DMs started, and signups you can attribute (a "saw your comment" mention or a tracked link). Reply engagement and profile clicks are the leading indicators; signups are the lagging one. Log the week's line in `LOG.md`.
+- **Track:** replies posted, upvotes/likes earned, profile clicks, DMs started, and signups you can attribute (a "saw your comment" mention or a tracked link). Reply engagement and profile clicks are the leading indicators; signups are the lagging one. Log the week's line in `LOG.md`, under its `## Social` section.
 - **Rewrite before you post.** Every drafted reply is a starting point - put it in your own words, with a real and specific example, before sending. Your specifics are what earn the click.
 
 At Tier 1-2 (little or no audience), this ritual is the bulk of the work. The calendar below stays lean until your posts start landing with a real audience.
@@ -230,7 +230,7 @@ Write the full output to the resolved output path as `YYYY-MM-DD-social-calendar
 
 ```markdown
 # Founder-Led Social Plan
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL analyzed]
 **Date:** YYYY-MM-DD
 **Listening channels:** [e.g. Reddit, Hacker News, LinkedIn]
@@ -240,7 +240,7 @@ Write the full output to the resolved output path as `YYYY-MM-DD-social-calendar
 ---
 
 ## Channel Strategy
-[Where the buyers are; each channel's role - listening vs posting - and why, tied to the ICP and startup type]
+[Where the buyers are; each channel's role - listening vs posting - and why, tied to the ICP and project type]
 
 ## Live Threads & Triage
 
@@ -298,6 +298,12 @@ Humanize:    [N tells stripped | clean | skipped]
 
 Full plan:   [save path]
 ```
+
+---
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Social` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm social · triaged live threads + drafted replies, lean calendar (see 2026-07-07-social-calendar.md) -> pending - weekly engagement line`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

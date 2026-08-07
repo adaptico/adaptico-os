@@ -1,6 +1,6 @@
 ---
 name: gtm-copy
-version: 1.4.3
+version: 1.5.0
 description: Website copy analysis and rewriting for /gtm copy <target>. Use when the user wants to score existing copy and get optimized before/after rewrites for headlines, value props, CTAs, or body copy. Also trigger for "improve my copy", "rewrite my headline", "is my copy good", "better value prop", or "punch up this page".
 ---
 
@@ -28,7 +28,7 @@ Before fetching anything, run the orchestrator's *Project Resolution*. With a pr
 - **Differentiator** and **Key messages** - the positioning every rewrite leads with. `/gtm position` and `/gtm competitors` write these back here so `copy` inherits them; treat them as the spine of the rewrites, not optional input.
 - **Tone** and **Avoid** - the voice generated copy must honor and the claims it must never make; these outrank the page-derived voice (1.3) on conflict.
 - **`brand-voice.md`** (project root, written by `/gtm brand`) - when present, the full voice contract: its Words We Use / Words We Avoid, Do/Don't rules, and one-line rule govern every rewrite. It outranks both the profile's one-line `Tone` and the page-derived voice.
-- **Startup type**, **Stage**, and **Main goal** - frame the read; a Tier 1 founder needs copy that wins a first persona, not category-defining prose.
+- **Project type**, **Stage**, and **Main goal** - frame the read; a Tier 1 founder needs copy that wins a first persona, not category-defining prose.
 - Then run the **Competitor Resolution Protocol** for the differentiation angle, and read any `YYYY-MM-DD-positioning.md` or `YYYY-MM-DD-competitor-report.md` in the folder for detail.
 
 With no profile loaded, derive what you can from the page; *Project Resolution* will have offered to set one up, and running `/gtm init` would sharpen the rewrites.
@@ -372,6 +372,12 @@ Skip the pass entirely when the founder appends `--no-humanize` to the command.
 ## Optional Critic Pass
 
 If the founder asked for a red-teamed or critiqued result, run the `gtm-critic` review protocol (`.claude/skills/gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
+
+---
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm copy · rewrote homepage copy, 12 before/after pairs (see 2026-07-07-copy-suggestions.md) -> copy score 58/100, pending - re-score after fixes ship`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

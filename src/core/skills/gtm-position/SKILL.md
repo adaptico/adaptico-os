@@ -1,6 +1,6 @@
 ---
 name: gtm-position
-version: 2.0.1
+version: 2.1.0
 description: Positioning analysis for /gtm position <target>. Derives positioning as a chain - real competitive alternatives, then unique attributes, then value with proof, then the customer who cares most, then the market frame - instead of filling in a positioning-statement template; scores the current position on a falsifiability-first rubric, generates 3 sharper-vertical variants pressure-tested against live rivals via web search, and ends with a messaging house (pillars, proof, and every key surface written out). Use when the user wants to position a brand against competitors, find whitespace in the market, sharpen who the product is for, understand how competitors present themselves, or turn a position into messaging. Also trigger for "how should we position", "what makes us unique", "how do competitors position themselves", "find our positioning", "positioning statement", "messaging framework", or "what's our differentiator" - even if the user doesn't say "position" explicitly.
 ---
 
@@ -26,7 +26,7 @@ Follow the standard *Project Resolution* from the main orchestrator:
   - **Competitive Alternatives** - what customers would do without the product. This is the chain's first link; the competitor list alone is not it.
   - **ICP**, **Secondary audience**, **Key pain points** - the founder's hypothesis for who cares; Step 6 confirms or sharpens it.
   - **Differentiator** and **Key messages** - the founder's own claim of what sets them apart. A positioning hypothesis to score and test, not a settled answer.
-  - **One-liner**, **Startup type**, **Stage** tier, and **Main goal** - frame the read (a Tier 1 founder needs a position that wins a first segment, not a category-defining stance).
+  - **One-liner**, **Project type**, **Stage** tier, and **Main goal** - frame the read (a Tier 1 founder needs a position that wins a first segment, not a category-defining stance).
   - **Tone** and **Avoid** - constraints every line of messaging must respect.
   - Then run the **Competitor Resolution Protocol** from the orchestrator to load competitor data, and read any recent `/gtm competitors` report and `YYYY-MM-DD-interview-synthesis.md` in the project folder for detail you'd otherwise re-fetch.
 - **With no profile loaded**: fetch the homepage (and one more page if it's thin - see Step 3) to understand the brand's category, audience, and what they currently say about themselves. Competitor resolution is done inline in Step 2.
@@ -181,7 +181,7 @@ Save to the project folder as `YYYY-MM-DD-positioning.md`. Never overwrite an ex
 
 ```markdown
 # Positioning Analysis
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL]
 **Date:** YYYY-MM-DD
 **Competitors Analyzed:** [count]
@@ -302,6 +302,10 @@ Profile:     [updated: fields | proposed, awaiting yes | unchanged]
 
 Full report: [save path]
 ```
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm position · set new positioning + messaging house (see 2026-07-07-positioning.md) -> scored 7/10, pending - review after next audit`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ## Related Commands
 

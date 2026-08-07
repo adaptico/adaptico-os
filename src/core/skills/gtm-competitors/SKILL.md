@@ -1,6 +1,6 @@
 ---
 name: gtm-competitors
-version: 1.2.4
+version: 1.3.0
 description: Competitive intelligence for /gtm competitors <target>. Use when the user wants to identify competitors, analyze rival marketing and positioning, or find differentiation gaps and steal-worthy tactics. Also trigger for "who are my competitors", "analyze my competition", "competitive analysis", "how do rivals market", or "where can we differentiate".
 ---
 
@@ -30,7 +30,7 @@ Before doing any discovery, check whether competitors are already known. With a 
 
 Collect all entries from both sections as your **seed list**. In Phase 1, start from this list and expand it rather than starting from scratch. Competitors already in the seed list do not need to be re-discovered, but do still need to be fully analyzed if they haven't been profiled yet.
 
-Also read the rest of the profile so the analysis is tailored, not generic: the target's `Website`, `Startup type`, `ICP`, `Key pain points`, `Differentiator`, `Key messages`, `Main goal`, and any `Links & Channels` key pages. These frame the comparison (the target fills its own column in every matrix) and are the baseline the closing write-back compares its findings against, so it can sharpen them surgically rather than overwrite.
+Also read the rest of the profile so the analysis is tailored, not generic: the target's `Website`, `Project type`, `ICP`, `Key pain points`, `Differentiator`, `Key messages`, `Main goal`, and any `Links & Channels` key pages. These frame the comparison (the target fills its own column in every matrix) and are the baseline the closing write-back compares its findings against, so it can sharpen them surgically rather than overwrite.
 
 If both sections are empty and the user hasn't already been asked (via the orchestrator's Competitor Resolution Protocol), offer to proceed with full discovery or ask the user to provide starting names.
 
@@ -594,6 +594,12 @@ On yes, edit `projects/<name>/PROFILE.md` surgically, never wholesale:
 - Either way, show the current value beside your proposed edit and get approval before writing.
 
 Touch only the fields you offered above; the competitor list is handled in the section above, and everything else - goal, links, notes - stays exactly as it is.
+
+---
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm competitors · mapped 6 rivals, wrote AI-researched list to PROFILE.md (see 2026-07-07-competitor-report.md) -> 3 differentiation gaps found`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

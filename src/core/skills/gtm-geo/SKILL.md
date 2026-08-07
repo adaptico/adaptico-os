@@ -1,6 +1,6 @@
 ---
 name: gtm-geo
-version: 1.0.3
+version: 1.1.0
 description: AI-search visibility audit for /gtm geo <target> - get found and cited by ChatGPT, Perplexity, and Google AI Overviews. Audits citability (extractable value prop, quotable passages, Q&A content), AI-crawler access in robots.txt, server-rendered visibility, runs an evidence-based llms.txt reality check, maps brand-mention groundwork, and sets up monitoring where every claim is labeled observed, inferred, or unknown - never a fabricated zero. Use when the user asks about AI search or being recommended by AI assistants. Also trigger for "get cited by ChatGPT", "AI Overviews", "Perplexity", "AI search visibility", "GEO", "AEO", "LLM SEO", or "does AI know my product". For classic Google-ranking work, route to gtm-seo instead.
 ---
 
@@ -36,7 +36,7 @@ The user runs `/gtm geo <target>`, where `<target>` is a URL, a saved project na
 With a profile loaded, read `PROFILE.md` and pull what frames this audit - the monitoring query set (Phase 5) is built from these fields, so read them before fetching anything:
 
 - **ICP** and **Key pain points** - the questions real buyers ask an assistant; monitoring queries are phrased in their words, not the founder's.
-- **Startup type** and **category** language - "when someone asks an assistant for the best [category], is this product named?" requires knowing the category the founder claims.
+- **Project type** and **category** language - "when someone asks an assistant for the best [category], is this product named?" requires knowing the category the founder claims.
 - **Differentiator** and **Key messages** - what a *correct* citation should say; a wrong description in an AI answer is its own finding.
 - **User-Added / AI-Researched competitors** - the rivals whose citations you capture in Phase 5 (who gets named when you don't).
 - **Stage** and **Main goal** - frame how much of Phase 4's mention-earning to recommend now versus later.
@@ -156,7 +156,7 @@ The audit ends with a baseline measurement the founder can re-run monthly. The d
 
 **Stochastic honesty:** one run is one sample - answers vary between re-asks of the same engine. Label single observations as single-run; call something a trend only across dated re-runs of the locked set. Never average what you didn't measure.
 
-Write the dated table into the report and append a one-line summary to `LOG.md` in the log's fixed format (date, engines checked, cited/absent counts, biggest change). Monthly cadence; re-running daily measures noise.
+Write the dated table into the report and append a one-line summary to `LOG.md` in the log's fixed format, under its `## Content & SEO` section (date, engines checked, cited/absent counts, biggest change). Monthly cadence; re-running daily measures noise.
 
 ## The Plan (closing section of every run)
 
@@ -192,7 +192,7 @@ Write the report to the resolved output path as `YYYY-MM-DD-geo-audit.md` (see t
 
 ```markdown
 # AI-Search Visibility (GEO) Audit
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL analyzed]
 **Date:** YYYY-MM-DD
 **AI-Search Readiness:** X/100 (4-signal snapshot; off-site visibility reported as evidence below, never scored)
@@ -249,6 +249,10 @@ Monitoring:  [N of M queries cited (single-run) | baseline set - N cells unknown
 Top move:    [the single next action]
 Full report: [save path]
 ```
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm geo · AI-search visibility audit (see 2026-07-07-geo-audit.md) -> cited on 1 of 3 engines checked`. Phase 5's monitoring summary is this same line - one line per run, its outcome carrying the cited/absent read. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ## Key Principles
 

@@ -1,6 +1,6 @@
 ---
 name: gtm-leadmagnet
-version: 1.0.1
+version: 1.1.0
 description: Lead magnet design for /gtm leadmagnet <target> - designs the one email-capture asset that turns a channel's traffic into an owned list: picks the format by the ICP's sharpest pain (checklist, template, tool, or teardown), writes the hook and outline, designs the delivery and capture flow, and ends with a validation checklist the founder passes before building anything. Use when the user wants a lead magnet, gated content, or a way to grow an email list from the traffic they already have. Also trigger for "lead magnet", "email capture", "grow my list", "gated content", "free checklist", "free template", "opt-in offer", "downloadable", or "what should I offer to get emails".
 ---
 
@@ -32,7 +32,7 @@ The user runs `/gtm leadmagnet <target>`, where `<target>` is a URL, a saved pro
 Run the orchestrator's *Project Resolution*. With a profile loaded, read `PROFILE.md` and pull what frames the design:
 
 - **ICP** and **Key pain points** - the format decision (Phase 2) runs directly on these; the asset solves one named pain, phrased the way the ICP phrases it.
-- **Startup type**, **Stage**, and **Main goal** - the type shapes what the founder can credibly package; the stage feeds the Phase 1 honesty check; the goal names what a captured email should eventually convert into.
+- **Project type**, **Stage**, and **Main goal** - the type shapes what the founder can credibly package; the stage feeds the Phase 1 honesty check; the goal names what a captured email should eventually convert into.
 - **Primary channel today**, **Current traction**, and **Links & Channels** - the traffic source the asset serves. A lead magnet without a feeding channel is a landing page for an empty room.
 - **Differentiator** and **Key messages** - the asset should demonstrate the same expertise the product sells, so consuming it builds the case for the product.
 - **Tone** and **Avoid** - the voice of every title, hook, and capture line.
@@ -122,7 +122,7 @@ The checklist that gates the build. Each item passes, fails, or stays **open** -
 3. **Traffic named.** The specific channel that will put eyeballs on the offer, and a rough monthly number (founder-provided or inferred, labeled). "We'll promote it everywhere" fails this item.
 4. **Destination named.** The welcome email exists (or is scheduled), and the founder can say what the list gets monthly. Silence after capture fails this item.
 5. **Effort matches evidence.** Hours of build on inferred pain; days only on demonstrated pull. An asset that wants a week of building needs items 1 and 2 passed hard first.
-6. **Success line pre-committed.** A capture-rate expectation and a subscriber count at a named review date (default: 4 weeks after shipping), written down now, logged to `LOG.md` when the date arrives - so the asset gets judged by a number chosen before hope got involved.
+6. **Success line pre-committed.** A capture-rate expectation and a subscriber count at a named review date (default: 4 weeks after shipping), written down now, logged to `LOG.md` under `## Content & SEO` when the date arrives - so the asset gets judged by a number chosen before hope got involved.
 
 ---
 
@@ -132,7 +132,7 @@ Save to `YYYY-MM-DD-leadmagnet.md` where *Project Resolution* puts it (never ove
 
 ```markdown
 # Lead Magnet Design
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL analyzed]
 **Date:** YYYY-MM-DD
 **The asset:** [format] - "[recommended title]"
@@ -177,6 +177,12 @@ Full report: [save path]
 ## Humanize Closing Pass (default)
 
 Before saving, run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on the ship-ready copy only - the title options, the one-line pitch, the capture-page copy, and the thank-you line. A capture form fronted by AI-sounding copy reads as a spam trap and kills the trade. Leave the checklist, tables, and reasoning sections untouched; add the pass's one-line summary to the terminal output. Skip the pass when the founder appends `--no-humanize`.
+
+---
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm leadmagnet · designed email-capture asset <format> (see 2026-07-07-leadmagnet.md) -> pending - capture-rate review 2026-08-04`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

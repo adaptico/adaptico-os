@@ -1,6 +1,6 @@
 ---
 name: gtm-brand
-version: 1.3.5
+version: 1.4.0
 description: Brand voice analysis and guidelines for /gtm brand <target>. Audits the live voice (formal/casual, technical/simple, archetype, consistency) and produces a reusable voice guide: voice chart, do's and don'ts, messaging hierarchy, and on-brand copy samples - distilled into a brand-voice.md the writing commands (copy, copyedit, social, outreach, emails, pricing, ads, leadmagnet, content, article, repurpose, changelog, audit, geo, humanize) read automatically. Use when the user wants to define, analyze, or document their brand voice, tone, and messaging, or keep copy consistent. Also trigger for "what's our brand voice", "brand guidelines", "tone of voice", "how should we sound", or "make our copy consistent".
 ---
 
@@ -35,7 +35,7 @@ Before analyzing source material, run the orchestrator's *Project Resolution*. W
 - **Differentiator** and **Key messages** - the positioning the voice must carry; the Messaging Hierarchy (Step 8) builds from these rather than inventing a tagline from scratch.
 - **ICP** and **Secondary audience** - who the voice must resonate with; sets the bar for the Technical-Simple dimension (Step 2) and archetype fit (Step 4).
 - **User-Added** and **AI-Researched competitors** - the set for the Competitor Voice Comparison (Step 6). Resolve them with the orchestrator's *Competitor Resolution Protocol* (read what's in the profile rather than guessing rivals); if both sections are empty, that protocol decides whether to add, research, or skip.
-- **Startup type**, **Stage**, and **Main goal** - frame the archetype the brand should aim for and the consistency that matters at this stage.
+- **Project type**, **Stage**, and **Main goal** - frame the archetype the brand should aim for and the consistency that matters at this stage.
 
 Then read any `YYYY-MM-DD-positioning.md`, `YYYY-MM-DD-competitor-report.md`, `YYYY-MM-DD-copy-suggestions.md`, or `YYYY-MM-DD-gtm-audit.md` already in the folder and reuse their findings - the chosen position and key messages (Step 8), the competitor voices (Step 6), and live-copy/content evidence (Steps 1-7) - rather than re-deriving them.
 
@@ -381,7 +381,7 @@ Write the report to the resolved output path as `YYYY-MM-DD-brand-voice.md` (see
 # Brand Voice Guidelines: [Brand Name]
 **Website:** [URL]
 **Date:** YYYY-MM-DD
-**Startup type:** [type]
+**Project type:** [type]
 **Primary archetype:** [archetype]
 
 ---
@@ -611,6 +611,12 @@ On yes, edit `projects/<name>/PROFILE.md` surgically, never wholesale:
 - Either way, show the current value beside your proposed edit and get approval before writing.
 
 Touch only `Tone` / `Avoid` (and the Reference Documents link if you added a doc); leave `Differentiator` / `Key messages` to `/gtm position` and `/gtm competitors`, and everything else exactly as it is. The compact fields matter even with `brand-voice.md` written: they are what the other commands fall back on in projects where the guide is later removed, and what `/gtm init`-only projects run on before a brand run exists.
+
+---
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm brand · distilled voice guide to brand-voice.md (see 2026-07-07-brand-voice.md) -> voice chain active for writing commands`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

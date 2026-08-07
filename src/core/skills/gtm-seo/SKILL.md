@@ -1,6 +1,6 @@
 ---
 name: gtm-seo
-version: 2.0.2
+version: 2.1.0
 description: Founder-sized classic-search (SEO) audit for /gtm seo <target>. Checks the cheap groundwork - crawlability, indexing, titles, headings, internal links - with exact fixes, then delivers an explicit "when to invest in active SEO" verdict tied to the founder's stage, including permission to skip it for now. Use when the user wants an SEO audit or asks about Google rankings, indexing, organic traffic, or on-page SEO. Also trigger for "SEO audit", "improve my rankings", "why am I not on Google", "keyword gaps", or "should I do SEO yet". For AI-answer visibility (ChatGPT, Perplexity, AI Overviews), route to gtm-geo instead.
 ---
 
@@ -34,7 +34,7 @@ With a profile loaded, read `PROFILE.md` and pull the fields that frame the audi
 
 - **ICP** and **Key pain points** - the searcher. Every title, heading, and intent call in Phases 2-3 is judged against what this person actually types into a search box.
 - **Differentiator** and **Key messages** - the words worth being found for; they seed the primary-query picks in Phase 3.
-- **Startup type**, **Stage**, and **Main goal** - the verdict inputs. Stage drives Phase 4's answer; the goal decides which pages matter most.
+- **Project type**, **Stage**, and **Main goal** - the verdict inputs. Stage drives Phase 4's answer; the goal decides which pages matter most.
 - **User-Added / AI-Researched competitors** - context for the verdict (a rival visibly compounding on search content is a flip condition in Phase 4).
 - **`LOG.md`** - if the founder already tried content/SEO work, the verdict must address what happened to it, not start from zero.
 
@@ -156,7 +156,7 @@ Write the report to the resolved output path as `YYYY-MM-DD-seo-audit.md` (see t
 
 ```markdown
 # SEO Groundwork Audit
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL analyzed]
 **Date:** YYYY-MM-DD
 **Groundwork Score:** X/100 [capped by N Critical finding(s) - uncapped Y] (method: pass-share, stated above)
@@ -164,7 +164,7 @@ Write the report to the resolved output path as `YYYY-MM-DD-seo-audit.md` (see t
 
 ## The Verdict
 [Phase 4 in full: the tier-tied answer, what active SEO would mean for this
-startup, the flip conditions, and - on a skip - the explicit permission with
+project, the flip conditions, and - on a skip - the explicit permission with
 the reasoning. The specialist-boundary line closes the section.]
 
 ## Fix List (do these in order)
@@ -200,6 +200,10 @@ Top fixes:   [the 2-3 highest effort-to-impact moves]
 
 Full report: [save path]
 ```
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm seo · SEO groundwork audit (see 2026-07-07-seo-audit.md) -> verdict: groundwork only, revisit at Tier 3`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ## Key Principles
 

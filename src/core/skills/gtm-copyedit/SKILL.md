@@ -1,6 +1,6 @@
 ---
 name: gtm-copyedit
-version: 1.0.2
+version: 1.1.0
 description: Line edit of a draft the founder wrote, for /gtm copyedit <target> - an email, a post, a doc, or page copy. A checklist-driven edit pass: front-load the point, tighten sentences, swap jargon for plain English, cut filler, keep the writer's voice (via the project voice guide), and report the cut percentage; ends with the anti-AI humanize pass. Use when the user wants their own draft edited, tightened, or clarified without losing their voice. Also trigger for "edit this draft", "tighten this up", "line-edit this", "make this clearer", "proofread this post", or "cut this down".
 ---
 
@@ -127,7 +127,7 @@ For a short pasted draft (under ~150 words), output terminal-only unless the fou
 
 ```markdown
 # Line Edit
-**Startup:** [name, if known]
+**Project:** [name, if known]
 **Draft:** [source file, or "pasted draft"] - [type: email / post / page copy / doc]
 **Date:** YYYY-MM-DD
 **Spine:** [the point, the reader, the action - one line]
@@ -167,6 +167,12 @@ Humanize:    [N tells stripped | clean | skipped]
 
 [Edited draft, or the save path]
 ```
+
+---
+
+## Log the Run
+
+After the edit is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run edited (naming the saved file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm copyedit · line-edited the founder's onboarding email draft (see 2026-07-07-copyedit.md) -> cut 22%, one ask per email`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

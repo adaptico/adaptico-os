@@ -1,6 +1,6 @@
 ---
 name: gtm-article
-version: 1.0.1
+version: 1.1.0
 description: One research-first, long-form article for /gtm article <target>. Produces a single piece properly - research before any outline, one ownable thesis the founder can defend, an originality floor that rejects me-too angles, every factual claim cited or explicitly marked as opinion, then the humanize and critic passes before the piece saves. Built for durable topical authority and AI-answer citability, not content-mill volume. Use when the user wants to write a blog post, article, guide, or long-form piece. Also trigger for "write an article", "write a blog post", "long-form content", "write a guide about", "draft a post on", or "thought leadership piece".
 ---
 
@@ -35,7 +35,7 @@ Run the orchestrator's *Project Resolution*. With a profile loaded, read `PROFIL
 
 - **ICP** and **Key pain points** - the reader, and the vocabulary the piece must use (their words for the problem, not the product's).
 - **Differentiator** and **Key messages** - the position the piece should quietly prove; an article that could sit on a rival's blog unchanged is failing this before it starts.
-- **Startup type** and **Main goal** - the type sets the technical depth; the goal shapes the CTA.
+- **Project type** and **Main goal** - the type sets the technical depth; the goal shapes the CTA.
 - **Tone** and **Avoid** - the register, and the claims that never appear.
 - **The voice source, in priority order:** `brand-voice.md` in the project folder (the guide `/gtm brand` maintains), else `PROFILE.md` `Tone` / `Avoid`, else the site's own register.
 - **`LOG.md`** - pieces already published and how they did; don't rewrite what exists, and build on what worked.
@@ -150,7 +150,7 @@ Write the full output to the resolved output path as `YYYY-MM-DD-article.md` (se
 
 ```markdown
 # Article: [Working Title]
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL analyzed]
 **Date:** YYYY-MM-DD
 **Pillar:** [from the content plan | standalone]
@@ -192,6 +192,12 @@ Critic:       [clean | N resolved, M dismissed]
 Next move:    [publish, then run /gtm repurpose on it | pursue proposed angle]
 Full piece:   [save path]
 ```
+
+---
+
+## Log the Run
+
+After the piece is saved (both passes done), append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm article · wrote long-form piece on <thesis> (see 2026-07-07-article.md) -> originality 6/7, pending - publish + indexing`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

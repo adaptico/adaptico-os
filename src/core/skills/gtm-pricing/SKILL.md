@@ -1,6 +1,6 @@
 ---
 name: gtm-pricing
-version: 1.0.3
+version: 1.1.0
 description: Pricing page audit and value-based packaging design for /gtm pricing <target>. Challenges cost-plus pricing, anchors price to revenue gained or costs saved with an offer-strength check, designs 3 tiers with an honestly-badged anchored middle and annual-discount math (bundled calculator), and tears down or drafts the pricing page - FAQ with the AI-data-privacy answer, objection handling. Use when the user wants to set, raise, audit, or restructure pricing, packaging, or the offer. Also trigger for "how much should I charge", "price my product", "pricing page review", "design my tiers", "annual discount", or "am I charging too little".
 ---
 
@@ -33,7 +33,7 @@ State the chosen mode in the report header. A "contact us"-only page for a clear
 
 Run the orchestrator's *Project Resolution*. With a profile loaded, read `PROFILE.md` and pull what frames the pricing work:
 
-- **Startup type** - the packaging default differs: PLG/self-serve SaaS (tiered seats or usage), AI/API product (usage-based value metric, inference costs that make unit margin non-optional), dev tool (free tier expectations run high), sales-led B2B (public tiers plus a talk-to-us tier).
+- **Project type** - the packaging default differs: PLG/self-serve SaaS (tiered seats or usage), AI/API product (usage-based value metric, inference costs that make unit margin non-optional), dev tool (free tier expectations run high), sales-led B2B (public tiers plus a talk-to-us tier).
 - **Stage** tier and **Main goal** - frames how much packaging machinery is appropriate (see the stage note below).
 - **ICP** and **Key pain points** - who pays, and what the pain costs them. Phase 1's value math is computed for this buyer, not an average one.
 - **Differentiator** and **Key messages** - the value story the price hangs on; the pricing page must carry it.
@@ -207,7 +207,7 @@ Save to `YYYY-MM-DD-pricing.md` where *Project Resolution* puts it (never overwr
 
 ```markdown
 # Pricing & Packaging [Audit | Design]
-**Startup:** [name or domain]
+**Project:** [name or domain]
 **Website:** [URL analyzed]
 **Date:** YYYY-MM-DD
 **Mode:** [audit - live page torn down | design - packaging from scratch]
@@ -257,6 +257,12 @@ Humanize:    [N tells stripped | clean | skipped]
 Top move:    [the single highest-leverage change]
 Full report: [save path]
 ```
+
+---
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run built or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm pricing · built 3-tier value-based packaging (see 2026-07-07-pricing.md) -> pending - founder ships the new pricing page`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

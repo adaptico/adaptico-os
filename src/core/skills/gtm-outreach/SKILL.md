@@ -1,6 +1,6 @@
 ---
 name: gtm-outreach
-version: 1.1.2
+version: 1.2.0
 description: Cold outbound sequences for /gtm outreach <target> - multi-touch, value-first cold email and LinkedIn DM sequences for founder-led manual outreach to land the first customers. Use when the user wants cold outreach, outbound, cold email, LinkedIn DMs, prospecting messages, or founder-led sales scripts. Also trigger for "write cold emails", "outbound sequence", "LinkedIn outreach", "how do I reach prospects", "cold DM", or "founder sales script".
 ---
 
@@ -25,9 +25,9 @@ Run the orchestrator's *Project Resolution* first. With a profile loaded, read `
 - **Differentiator** and **Key messages** - the value the message offers; lean on `/gtm position` / `/gtm competitors` output if it's in the folder.
 - **Tone** and **Avoid** - the founder's voice every message matches, and the claims to never make.
 - **`brand-voice.md`** (project root, written by `/gtm brand`) - when present, the full voice contract: its word lists and Do/Don't rules shape every message so cold email sounds like the same person as the website. It outranks the one-line `Tone` on conflict.
-- **Startup type** - sets the default channel (Phase 1) and the buyer.
+- **Project type** - sets the default channel (Phase 1) and the buyer.
 - **Main goal** - the conversation each sequence is trying to start (a reply, a problem confirmed, a first call).
-- **`LOG.md`** (beside the profile) - what's already been tried. If it shows past outreach - a channel tested, an angle that flopped, a segment already contacted - don't repeat it cold: change the angle or the audience and say why. After a campaign, results belong back in the log (dated, with numbers) so the next run starts smarter.
+- **`LOG.md`** (beside the profile) - what's already been tried. If it shows past outreach - a channel tested, an angle that flopped, a segment already contacted - don't repeat it cold: change the angle or the audience and say why. After a campaign, results belong back in the log (dated, with numbers, under its `## Outreach` section) so the next run starts smarter.
 
 With no profile loaded, ask for the product, the ICP, and the one problem it solves, and note that `/gtm init` would tailor this to the founder's ICP and positioning.
 
@@ -37,7 +37,7 @@ With no profile loaded, ask for the product, the ICP, and the one problem it sol
 
 ### 1.1 Choose the channel from the ICP
 
-Channel is downstream of who the buyer is. Pick from `Startup type` and `ICP`, default as below, and say which you chose and why:
+Channel is downstream of who the buyer is. Pick from `Project type` and `ICP`, default as below, and say which you chose and why:
 
 | ICP / product | Lead channel | Why |
 |---|---|---|
@@ -234,6 +234,10 @@ Channel: [chosen] - [one-line why]
 Reminder: every [slot] needs a real, verified detail before you send.
 Full sequences saved to: YYYY-MM-DD-outreach-sequences.md
 ```
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Outreach` section - what this run produced (naming the report file) and the outcome: a concrete result, or `pending` with a review date when replies land later. Example: `- 2026-07-07 · /gtm outreach · cold email + LinkedIn sequences for [segment] (see 2026-07-07-outreach-sequences.md) -> pending - replies after send`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ## Cross-Skill Integration
 

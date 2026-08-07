@@ -1,6 +1,6 @@
 ---
 name: gtm-emails
-version: 1.3.2
+version: 1.4.0
 description: Lifecycle email sequences for /gtm emails <target> - the activation onboarding and dunning (failed-payment recovery) emails a product sends its own users. Use when the user wants onboarding, activation, welcome, trial, or dunning email sequences. Also trigger for "write my onboarding emails", "welcome sequence", "activation drip", "trial onboarding emails", "dunning emails", "failed payment recovery", or "lifecycle emails".
 ---
 
@@ -32,7 +32,7 @@ Before fetching anything, run the orchestrator's *Project Resolution*. With a pr
 - **Tone** and **Avoid** - the voice every email must match (this skill's "emails must match brand voice" rule), and the claims they must never make.
 - **`brand-voice.md`** (project root, written by `/gtm brand`) - when present, the full voice contract: word lists, Do/Don't rules, and sample lines that keep onboarding and dunning emails sounding like the product they come from. It outranks the one-line `Tone` on conflict.
 - **Main goal** and the **activation milestone** - the "aha" action onboarding drives toward (first project created, first API call, data connected, first report run). If the profile doesn't name it, infer it from the product and confirm in one line.
-- **Startup type** and **Stage** - the type sets the benchmark (5.1) and the likely billing model; the stage sets emphasis (Tier 2 onboarding and activation; Tier 3 adds dunning and win-back).
+- **Project type** and **Stage** - the type sets the benchmark (5.1) and the likely billing model; the stage sets emphasis (Tier 2 onboarding and activation; Tier 3 adds dunning and win-back).
 - **Pricing / billing model** - trial vs freemium, card-required or not, plan tiers (from the profile or the live pricing page). This frames the dunning sequence and trial-expiry timing.
 - **Primary channel today**, **Existing assets**, and **Current traction** - where signups come from (seeds the source segmentation in 4.1) and the numbers available for social proof.
 
@@ -261,7 +261,7 @@ Write the full output to the resolved output path as `YYYY-MM-DD-email-sequences
 ```markdown
 # Lifecycle Email Sequences: [Product Name]
 **Date:** [current date]
-**Startup type:** [type]
+**Project type:** [type]
 **Activation milestone:** [the "aha" action]
 **Sequences generated:** [list]
 
@@ -327,6 +327,12 @@ Targets:
 
 Full sequences saved to: YYYY-MM-DD-email-sequences.md
 ```
+
+---
+
+## Log the Run
+
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Email & lifecycle` section - what this run produced (naming the report file) and the outcome: a concrete result, or `pending` with a review date when it lands later. Example: `- 2026-07-07 · /gtm emails · onboarding + dunning sequences (see 2026-07-07-email-sequences.md) -> pending - sequence live date`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 
