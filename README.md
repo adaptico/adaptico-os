@@ -26,20 +26,32 @@ Every run saves a dated report you can work through, and every re-audit opens wi
 
 ## Quick start
 
-```bash
-# 1. Install the skills into your project
-curl -fsSL https://raw.githubusercontent.com/adaptico/adaptico-os/main/install.sh | bash
+Inside Claude Code, install the plugin - two lines, no shell script to run:
 
-# 2. Open Claude Code in your repo and set up your project
-/gtm init
-
-# 3. Run it
-/gtm audit
-/gtm position
-/gtm landing
+```
+/plugin marketplace add adaptico/adaptico-os
+/plugin install adaptico-os
 ```
 
-Or install manually:
+Then point it at your project:
+
+```
+/gtm init       # set up your project profile - do this first
+/gtm audit      # score your go-to-market
+/gtm position   # sharpen your positioning
+```
+
+## Other ways to install
+
+**Any other agent - Cursor, Codex, Windsurf, Gemini CLI:**
+
+```bash
+npx skills add adaptico/adaptico-os
+```
+
+This installs the skills into your agent's skills directory. (The audit's 5 parallel agents are a Claude Code feature - they come with the plugin and installer paths.)
+
+**Inspect or customize first - clone, read, then install:**
 
 ```bash
 git clone https://github.com/adaptico/adaptico-os.git
@@ -51,6 +63,8 @@ cd adaptico-os
 # Windows:
 bash install.sh
 ```
+
+This copies the skills and audit agents into `.claude/` in the directory you run it from - per-project, easy to read before you run it, easy to edit after. The installer lists exactly what it installed. The plugin updates itself with each release; copied installs update by re-running the installer (the orchestrator tells you when you're behind).
 
 After installing, restart Claude Code so it picks up the new skills.
 
@@ -100,7 +114,25 @@ Point any command at a URL (`/gtm audit https://example.com`), or pass a saved p
 ---
 
 
+## One-line install
+
+Prefer not to clone first? This pipes the installer straight to bash, so read it before you trust it - the clone path above lets you inspect everything first:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/adaptico/adaptico-os/main/install.sh | bash
+```
+
+---
+
 ## Uninstall
+
+Plugin install:
+
+```
+/plugin uninstall adaptico-os
+```
+
+Copied install (from the cloned repo):
 
 ```bash
 # macOS / Linux

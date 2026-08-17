@@ -32,7 +32,7 @@ adaptico-os/
 
 ## How a Founder Uses It
 
-1. Install the skills (`./install.sh`) into their own workspace.
+1. Install the skills into their own workspace - as the Claude Code plugin (recommended), via `npx skills add`, or with `./install.sh` from a clone (the README's install section documents the full order).
 2. Run `/gtm init` to create a `projects/<project-name>/PROFILE.md` describing their project (URL, type, stage, ICP, goal, competitors), plus a `LOG.md` history of what's been tried and what happened - every command run appends its outcome line to it, in per-channel sections.
 3. Run commands against their own site — e.g. `/gtm audit`, `/gtm position`, `/gtm landing`.
 4. Reports save to the project directory (`projects/<project-name>/`) with a `YYYY-MM-DD-` prefix.
