@@ -7,19 +7,19 @@ All notable changes to Adaptico OS are documented here. The format follows
 ## [0.18.0]
 
 ### Added
-- Plugin install. The repo is a Claude Code plugin marketplace containing one plugin:
+- Install as a Claude Code plugin:
   ```
   /plugin marketplace add adaptico/adaptico-os
   /plugin install adaptico-os
   ```
-  Claude Code updates plugin installs on each release.
-- Update check for copied installs. Runs on the first `/gtm` command of a session, after that command's output is saved. Compares installed skill versions against `skills.json` in this repo and prints one line if two or more skills, or the orchestrator, are behind. Plugin installs skip the check. A failed fetch is silent.
+  Plugin installs update themselves whenever a new version comes out.
+- If you installed with the script instead, Adaptico OS now tells you when your copy is out of date. It checks once per session, on your first `/gtm` command and only after that command has finished its work, then adds one line saying how many skills are behind and how to update. If it can't reach GitHub it says nothing.
 
 ### Changed
-- README install order is now: plugin, `npx skills add` (Cursor, Codex, Windsurf, Gemini CLI), clone and run `install.sh`, curl one-liner.
+- The README shows the plugin first, then `npx skills add` for other agents (Cursor, Codex, Windsurf, Gemini CLI), then cloning the repo, then the curl one-liner.
 
 ### Fixed
-- Cross-skill references used `.claude/skills/...` paths, which exist only in a copied install. They now use paths relative to the referencing skill and resolve under plugin and skills-directory installs.
+- Skills pointed at each other using paths that only exist when you install with the script, so those pointers were broken for anyone using the plugin. They now work with every install method.
 
 ## [0.17.0]
 
