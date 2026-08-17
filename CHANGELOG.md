@@ -4,6 +4,23 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.18.0]
+
+### Added
+- Plugin install. The repo is a Claude Code plugin marketplace containing one plugin:
+  ```
+  /plugin marketplace add adaptico/adaptico-os
+  /plugin install adaptico-os
+  ```
+  Claude Code updates plugin installs on each release.
+- Update check for copied installs. Runs on the first `/gtm` command of a session, after that command's output is saved. Compares installed skill versions against `skills.json` in this repo and prints one line if two or more skills, or the orchestrator, are behind. Plugin installs skip the check. A failed fetch is silent.
+
+### Changed
+- README install order is now: plugin, `npx skills add` (Cursor, Codex, Windsurf, Gemini CLI), clone and run `install.sh`, curl one-liner.
+
+### Fixed
+- Cross-skill references used `.claude/skills/...` paths, which exist only in a copied install. They now use paths relative to the referencing skill and resolve under plugin and skills-directory installs.
+
 ## [0.17.0]
 
 ### Added
