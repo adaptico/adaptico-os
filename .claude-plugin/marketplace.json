@@ -1,0 +1,16 @@
+{
+  "name": "adaptico-os",
+  "description": "Go-to-market operating system for SaaS and AI startup founders - audit, positioning, copy, launch, pricing, and channel help that plugs into your own project.",
+  "owner": { "name": "Adaptico" },
+  "plugins": [
+    {
+      "name": "adaptico-os",
+      "source": "./",
+      "description": "Go-to-market operating system for SaaS and AI startup founders - audit, positioning, copy, launch, pricing, and channel help that plugs into your own project.",
+      "category": "marketing",
+      "homepage": "https://adaptico.digital",
+      "repository": "https://github.com/adaptico/adaptico-os",
+      "license": "MIT"
+    }
+  ]
+}
