@@ -1,6 +1,6 @@
 ---
 name: gtm-interviews
-version: 1.1.0
+version: 1.1.1
 description: Customer-conversation engine for /gtm interviews <target>. Two jobs in one command - generate a customer-discovery interview kit (who to talk to, where to find them, questions that surface real past behavior instead of compliments, a per-conversation capture sheet), and synthesize the founder's transcripts or notes into validated pains, verbatim customer quotes, segments, and switching triggers, written back into PROFILE.md so positioning, copy, and outreach start from real customer language. Use when the user wants to talk to users or customers, validate a problem or an idea, prepare for user interviews, or make sense of interview notes. Also trigger for "customer interviews", "user interviews", "talk to customers", "customer discovery", "validate my idea", "interview questions", "discovery questions", "synthesize my interview notes", or "what did my customers actually say".
 ---
 
@@ -10,7 +10,7 @@ description: Customer-conversation engine for /gtm interviews <target>. Two jobs
 >
 > Stage-fit (`interviews`): Tier 1 Core · Tier 2 Core · Tier 3 Useful. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the customer-conversation engine for `/gtm interviews <target>`. Everything else in this suite reads a website; this command feeds on something better - what real people said when the founder actually talked to them. It does two jobs: it builds the kit for conversations that haven't happened yet, and it turns the notes from conversations that have into evidence the rest of the suite can use.
 
@@ -76,7 +76,7 @@ Build this from the profile, concretely - name the actual places, not categories
 
 Provide a short outreach message per channel. Rules: ask for advice about the problem, not feedback on the product; name the specific experience that makes them worth talking to ("you posted about X", "you switched off Y"); 15-20 minutes; no selling in the meeting and say so. People talk freely about their problems and clam up when a pitch is coming - the ask must promise the former.
 
-Before the kit saves, run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on these asks only - they get pasted into DMs and emails as-is, and a recruiting message that smells generated never gets a reply. Skip when the founder appends `--no-humanize`.
+Before the kit saves, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on these asks only - they get pasted into DMs and emails as-is, and a recruiting message that smells generated never gets a reply. Skip when the founder appends `--no-humanize`.
 
 ### 1.4 How many conversations - the honest math
 
@@ -262,7 +262,7 @@ On yes, edit surgically:
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Kit mode example: `- 2026-07-07 · /gtm interviews · interview kit saved (see 2026-07-07-interview-kit.md) -> pending - synthesis after interviews`. Synthesis mode example: `- 2026-07-07 · /gtm interviews · synthesized 9 interviews into Customer Evidence (see 2026-07-07-interview-synthesis.md) -> 6 validated pains, 3 switching triggers`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Kit mode example: `- 2026-07-07 · /gtm interviews · interview kit saved (see 2026-07-07-interview-kit.md) -> pending - synthesis after interviews`. Synthesis mode example: `- 2026-07-07 · /gtm interviews · synthesized 9 interviews into Customer Evidence (see 2026-07-07-interview-synthesis.md) -> 6 validated pains, 3 switching triggers`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

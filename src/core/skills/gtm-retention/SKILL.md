@@ -1,6 +1,6 @@
 ---
 name: gtm-retention
-version: 1.1.0
+version: 1.1.1
 description: Activation and early-churn diagnosis for /gtm retention <target> - maps signup to first value, commits the founder to ONE activation metric, prioritizes first-90-days fixes over late-stage retention tricks, and designs the churn defenses (cancel flow, save offers, failed-payment recovery posture). Use when the user wants to reduce churn, fix trial retention or activation, or design a cancel flow. Also trigger for "users churn", "trials go dead", "nobody comes back", "cancel flow", "save offer", "stop churn", "failed payments", "keep users", or "retention plan".
 ---
 
@@ -13,7 +13,7 @@ description: Activation and early-churn diagnosis for /gtm retention <target> - 
 > "There's almost nothing to retain yet, and early churn is a PMF signal, not a leak to plug. Cancel-flows and save-offers pay off once you have a paying base - for now, keep your first users by talking to them, not by automating win-backs."
 > Then generate the work anyway - never refuse.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the retention engine for `/gtm retention <target>`. For an early software product, retention is not won with loyalty schemes and win-back blasts - it is decided in the first days of a user's life, in the gap between signup and the first time the product proves itself. Subscription retention analyses (ProfitWell, now part of Paddle) consistently put 60-70% of SaaS churn inside the customer's first 90 days: most churn is an onboarding problem before it is a product problem. So this skill works front-to-back: first the time-to-value teardown and the one activation metric worth committing to, then a first-90-days defense plan, and only then the mechanics at the exit door - cancel flow, save offers, and the failed-payment posture.
 
@@ -244,7 +244,7 @@ Every recommendation names its evidence label (observed / founder-provided / inf
 
 A retention plan is advice the founder will act on for months - red-team it before it ships:
 
-1. Assemble the complete draft report, then run the `gtm-critic` review protocol (`.claude/skills/gtm-critic/SKILL.md`, Phases 1-3 - including its `critic_lint.js` deterministic pass) against the draft.
+1. Assemble the complete draft report, then run the `gtm-critic` review protocol (`../gtm-critic/SKILL.md`, Phases 1-3 - including its `critic_lint.js` deterministic pass) against the draft.
 2. Attack hardest where this skill is most tempted to overreach: an activation metric the product can't log today, churn mechanics premature for the founder's stage, a benchmark presented as the founder's own number, advice that contradicts `PROFILE.md` or what `LOG.md` shows was already tried, and any save-offer math that trains cancel-for-a-discount behavior.
 3. Fold the fixes in: resolve every Critical and the Majors you can before saving; keep a one-line note for anything dismissed and why.
 4. Disclose the outcome in the report header: "Critic pass: clean" or "Critic pass: N finding(s) resolved, M dismissed".
@@ -335,7 +335,7 @@ Full diagnosis saved to: YYYY-MM-DD-retention.md
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run committed or designed (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm retention · set the activation metric + cancel-flow mechanics (see 2026-07-07-retention.md) -> activation metric committed, pending - 90-day read`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run committed or designed (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm retention · set the activation metric + cancel-flow mechanics (see 2026-07-07-retention.md) -> activation metric committed, pending - 90-day read`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

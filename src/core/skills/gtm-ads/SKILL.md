@@ -1,6 +1,6 @@
 ---
 name: gtm-ads
-version: 2.1.0
+version: 2.1.2
 description: Paid-ads readiness gate and first real ad test for /gtm ads <target>. Runs a "should you run ads at all" check against stage and unit economics before any creative work - a not-yet verdict names the exact numbers that would flip it; when the gate passes, picks one platform by intent, sizes the smallest readable test budget with kill criteria set before spend, and writes paste-ready ad copy in the picked platform's format (bundled CAC/break-even calculator). It plans and writes only - it never connects to an ad account or launches campaigns; the founder pastes the copy into Ads Manager. Use when the user wants to run, plan, or budget paid ads, write ad copy, or asks whether ads are worth it yet. Also trigger for "should I run ads", "Google Ads", "Meta ads", "LinkedIn ads", "write me an ad", "ad copy", "paid acquisition", "PPC", "ad budget", or "ad variations".
 ---
 
@@ -13,7 +13,9 @@ description: Paid-ads readiness gate and first real ad test for /gtm ads <target
 > "Running paid acquisition before validating organic PMF is dangerous - B2B SaaS CAC runs $150-$500 per customer, and bought clicks corrupt your read on real demand. Run funnel and audit first to confirm your funnel converts the traffic you already have."
 > Then generate the work anyway - never refuse.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+
+> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), the scripts sit beside this skill - resolve each path relative to this skill's own folder before running.
 
 You are the paid-acquisition engine for `/gtm ads <target>`. Most ads tooling assumes the decision to spend has already been made and starts optimizing from there. This skill starts one step earlier, at the question the founder is actually asking: is buying traffic the right move for this business right now? Sometimes the most valuable ads deliverable is a well-argued "not yet" with the exact numbers that would change it - that answer costs nothing and can save a runway.
 
@@ -163,7 +165,7 @@ With real site traffic (even a few thousand visitors a month), retargeting warm 
 - **Search (demand capture)** - people already type the problem or the category into a search box. If that volume exists, capture beats interruption: intent arrives pre-formed and the click is closest to a decision. Signal to check: real search phrasings for the problem, the category, and "X alternative" - if the founder can't name what a buyer would search, search can't work yet.
 - **Social (demand generation)** - no one searches for the category yet (new category, or the pain is latent). The ad has to interrupt and create the intent. Costs more failures to find a working angle; the creative carries everything.
 
-Within social, pick by ICP and price: **LinkedIn** when the buyer is targetable by job title/industry and the price supports an expensive click (run the max-CAC number first); **Meta** for broader B2C/prosumer price points; **X** for developer and technical audiences, judged on resonance more than CPA. Platform formats and first-test structures live in `.claude/skills/gtm-ads/references/platform-formats.md`.
+Within social, pick by ICP and price: **LinkedIn** when the buyer is targetable by job title/industry and the price supports an expensive click (run the max-CAC number first); **Meta** for broader B2C/prosumer price points; **X** for developer and technical audiences, judged on resonance more than CPA. Platform formats and first-test structures live in `references/platform-formats.md`.
 
 Then check the public ad libraries (reference file, last section): rivals sustaining spend on a platform for months is evidence the channel can work in this category - absence of any rival spend is a caution flag on the whole channel, not an opportunity signal.
 
@@ -191,7 +193,7 @@ The ad's promise must be the landing page's headline promise - a click that land
 
 ### 5.4 Humanize pass
 
-Before saving, run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on the ship-ready ad copy only - headlines, descriptions, primary text, post copy. Numbers, prices, and offer terms stay literal after the pass. Report the pass in one line; skip it when the founder appends `--no-humanize`.
+Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on the ship-ready ad copy only - headlines, descriptions, primary text, post copy. Numbers, prices, and offer terms stay literal after the pass. Report the pass in one line; skip it when the founder appends `--no-humanize`.
 
 ---
 
@@ -257,7 +259,7 @@ Full report:     [save path]
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Paid ads` section - what this run decided (naming the report file) and the outcome: the verdict with its flip number, or, when the gate passes, the test spec with its kill date as the pending review. Example: `- 2026-07-07 · /gtm ads · ads readiness gate (see 2026-07-07-ads-plan.md) -> verdict: not yet - flips at 500 visits/mo organic`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Paid ads` section - what this run decided (naming the report file) and the outcome: the verdict with its flip number, or, when the gate passes, the test spec with its kill date as the pending review. Example: `- 2026-07-07 · /gtm ads · ads readiness gate (see 2026-07-07-ads-plan.md) -> verdict: not yet - flips at 500 visits/mo organic`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

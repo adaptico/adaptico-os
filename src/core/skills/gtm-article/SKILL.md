@@ -1,6 +1,6 @@
 ---
 name: gtm-article
-version: 1.1.0
+version: 1.1.1
 description: One research-first, long-form article for /gtm article <target>. Produces a single piece properly - research before any outline, one ownable thesis the founder can defend, an originality floor that rejects me-too angles, every factual claim cited or explicitly marked as opinion, then the humanize and critic passes before the piece saves. Built for durable topical authority and AI-answer citability, not content-mill volume. Use when the user wants to write a blog post, article, guide, or long-form piece. Also trigger for "write an article", "write a blog post", "long-form content", "write a guide about", "draft a post on", or "thought leadership piece".
 ---
 
@@ -13,7 +13,7 @@ description: One research-first, long-form article for /gtm article <target>. Pr
 > "One deep article runs on the same slow clock as a content engine - little payoff until you have authority and a settled ICP. Worth it once content is a channel you're deliberately testing, not before."
 > Then generate the work anyway - never refuse.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the long-form writing engine for `/gtm article <target>`. The internet does not need another article - it needs the founder's article: the one carrying something only this founder can say, defensible from real experience, with claims a reader can check. Generic AI-written posts are now free to produce, which is exactly why they earn nothing; search engines, AI answer engines, and human readers all reward the piece that adds something to the record. So this skill spends most of its effort before the draft: research first, then a thesis gate and an originality floor that are allowed to say "this angle is not worth writing" - and to propose the sharper one that is.
 
@@ -131,11 +131,11 @@ Write the full piece from the outline, in the voice source from Phase 0. The dis
 
 ### 6.1 Humanize pass
 
-Run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on the full article text - it strips the hard AI tells, enforces the voice source, and tightens the prose. Citations, numbers, and quoted material stay literal. Skip only when the founder appends `--no-humanize`.
+Run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on the full article text - it strips the hard AI tells, enforces the voice source, and tightens the prose. Citations, numbers, and quoted material stay literal. Skip only when the founder appends `--no-humanize`.
 
 ### 6.2 Critic pass
 
-1. Assemble the finished piece, then run the `gtm-critic` review protocol (`.claude/skills/gtm-critic/SKILL.md`, Phases 1-3 - including its `critic_lint.js` deterministic pass) against it.
+1. Assemble the finished piece, then run the `gtm-critic` review protocol (`../gtm-critic/SKILL.md`, Phases 1-3 - including its `critic_lint.js` deterministic pass) against it.
 2. Attack hardest where this skill is most tempted to overreach: an originality scorecard graded generously, a "cited" claim whose source doesn't actually say that, a thesis the body never defends, the counter-argument stated weakly to be beaten easily, and voice drift from the Phase 0 source.
 3. Fold the fixes in: resolve every Critical and the Majors you can before saving; keep a one-line note for anything dismissed and why.
 4. Disclose both passes in the report header: "Humanize: N tells stripped | clean | skipped" and "Critic pass: clean | N resolved, M dismissed".
@@ -197,7 +197,7 @@ Full piece:   [save path]
 
 ## Log the Run
 
-After the piece is saved (both passes done), append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm article · wrote long-form piece on <thesis> (see 2026-07-07-article.md) -> originality 6/7, pending - publish + indexing`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the piece is saved (both passes done), append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm article · wrote long-form piece on <thesis> (see 2026-07-07-article.md) -> originality 6/7, pending - publish + indexing`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

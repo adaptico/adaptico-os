@@ -1,6 +1,6 @@
 ---
 name: gtm-init
-version: 2.1.0
+version: 2.1.1
 description: Set up or update the project profile (PROFILE.md) that the rest of Adaptico OS uses as context, for /gtm init [name]. Runs a founder-friendly intake - stage diagnostic, ICP and goal, what customers would use instead (competitive alternatives, not just competitor names), why the last customers came looking, what's already been tried - and points existing interview notes at /gtm interviews. Use when the user wants to create, set up, or edit their project profile, or onboard a new project. Also trigger for "set up my startup", "create a profile", "onboard my project", or "start a new GTM project".
 ---
 
@@ -71,7 +71,7 @@ Q1-Q3 lead; Q3 maps to a route behind the scenes (the founder never sees these l
 - **Tier 3 - Scale the Channel** - one channel works but it's manual and fragile; traffic or retention is the bottleneck. Optimize, automate, and defend it.
 - **Tier 4 - Systematize Growth / Tier 5 - Build the Organization** - sound business, founder-led growth stalling, time is the real constraint (typically $10k+ MRR). The tools still run, but there's no tier-specific playbook here yet.
 
-**Write the attempts to `LOG.md`:** a log entry is only useful with a date and an outcome, so if the founder named attempts without them, ask once more - briefly, all together: "Roughly when was each of those - month-level or 'about three months ago' is fine - and what came of them?" One follow-up is the cap; don't interrogate. Convert relative answers to approximate absolute dates with a `?` ("about three months ago" -> `2026-04?`). Then write one line per attempt to `projects/<name>/LOG.md` in the log's fixed format, each under the section its channel belongs to per the log's own section map (a launch under Launches, cold email under Outreach), oldest first within each section - creating the file from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) if it doesn't exist. Attempts never go into `PROFILE.md`; the profile points to the log.
+**Write the attempts to `LOG.md`:** a log entry is only useful with a date and an outcome, so if the founder named attempts without them, ask once more - briefly, all together: "Roughly when was each of those - month-level or 'about three months ago' is fine - and what came of them?" One follow-up is the cap; don't interrogate. Convert relative answers to approximate absolute dates with a `?` ("about three months ago" -> `2026-04?`). Then write one line per attempt to `projects/<name>/LOG.md` in the log's fixed format, each under the section its channel belongs to per the log's own section map (a launch under Launches, cold email under Outreach), oldest first within each section - creating the file from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) if it doesn't exist. Attempts never go into `PROFILE.md`; the profile points to the log.
 
 ---
 

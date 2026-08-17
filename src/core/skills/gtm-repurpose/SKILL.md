@@ -1,7 +1,7 @@
 ---
 name: gtm-repurpose
-version: 1.1.0
-description: Platform-native repurposing for /gtm repurpose <target>. Takes one finished piece the founder already published or drafted - an article, a launch post, a talk - and rewrites it into variants built for each platform: an X thread, a LinkedIn post, a short-form video script outline, and a newsletter section. Each variant is rewritten for the platform's native shape, never truncated, stands alone without the original, and goes through the humanize pass; platforms the piece can't feed honestly get skipped, not filled. Use when the user wants to multiply one finished piece across platforms. Also trigger for "repurpose this", "turn this post into a thread", "atomize this article", "make social posts from my blog post", "content atomization", or "squeeze more out of this piece".
+version: 1.1.2
+description: Platform-native repurposing for /gtm repurpose <target>. Takes one finished piece the founder already published or drafted - an article, a launch post, a talk - and rewrites it into variants built for each platform - an X thread, a LinkedIn post, a short-form video script outline, and a newsletter section. Each variant is rewritten for the platform's native shape, never truncated, stands alone without the original, and goes through the humanize pass; platforms the piece can't feed honestly get skipped, not filled. Use when the user wants to multiply one finished piece across platforms. Also trigger for "repurpose this", "turn this post into a thread", "atomize this article", "make social posts from my blog post", "content atomization", or "squeeze more out of this piece".
 ---
 
 # Repurpose - One Piece, Platform-Native Variants
@@ -13,7 +13,7 @@ description: Platform-native repurposing for /gtm repurpose <target>. Takes one 
 > "Repurposing needs finished content to atomize, and there's nothing to atomize yet. This turns on once you're publishing enough that squeezing more reach out of each piece is worth the effort."
 > Then generate the work anyway - never refuse.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the repurposing engine for `/gtm repurpose <target>`. A founder who publishes one good piece and moves on has paid for a week of distribution and collected a day of it. This skill collects the rest: it takes one finished piece and rebuilds its substance for each platform's native shape - not the copy-paste-and-trim that reads as exactly what it is, but variants a native reader of each platform would engage with never having seen the original.
 
@@ -108,7 +108,7 @@ A short schedule, not a second calendar (the posting rhythm belongs to `/gtm soc
 
 ## Phase 4: Humanize Closing Pass (default)
 
-Run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on every variant - these are ship-ready posts, and machine-sounding social copy is the fastest way to be scrolled past. The pass strips the hard AI tells, enforces the voice source from Phase 0, and tightens each variant; numbers and quoted lines from the source piece stay literal. Report the pass in one line per variant; skip entirely when the founder appends `--no-humanize`.
+Run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on every variant - these are ship-ready posts, and machine-sounding social copy is the fastest way to be scrolled past. The pass strips the hard AI tells, enforces the voice source from Phase 0, and tightens each variant; numbers and quoted lines from the source piece stay literal. Report the pass in one line per variant; skip entirely when the founder appends `--no-humanize`.
 
 ---
 
@@ -167,7 +167,7 @@ Full pack:  [save path]
 
 ## Log the Run
 
-After the pack is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm repurpose · atomized <piece> into 4 platform variants (see 2026-07-07-repurpose.md) -> pending - engagement read after posting`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the pack is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm repurpose · atomized <piece> into 4 platform variants (see 2026-07-07-repurpose.md) -> pending - engagement read after posting`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

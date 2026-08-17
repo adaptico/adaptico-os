@@ -1,7 +1,7 @@
 ---
 name: gtm-changelog
-version: 1.1.0
-description: Build-in-public content from real shipped work for /gtm changelog <target>. Reads the founder's git log, CHANGELOG, and project LOG.md, finds the story in what actually shipped, and produces three assets: user-facing ship notes, an X thread, and a LinkedIn post - framing the engineering decisions as narrative, never inflating a fix into a rewrite. Every claim traces to a real commit or changelog entry. Use when the user wants to share what they shipped, write a changelog post, or turn recent commits into content. Also trigger for "what did I ship this week", "build in public post", "write my release notes", "ship notes", "turn my commits into a post", or "changelog content".
+version: 1.1.2
+description: Build-in-public content from real shipped work for /gtm changelog <target>. Reads the founder's git log, CHANGELOG, and project LOG.md, finds the story in what actually shipped, and produces three assets - user-facing ship notes, an X thread, and a LinkedIn post - framing the engineering decisions as narrative, never inflating a fix into a rewrite. Every claim traces to a real commit or changelog entry. Use when the user wants to share what they shipped, write a changelog post, or turn recent commits into content. Also trigger for "what did I ship this week", "build in public post", "write my release notes", "ship notes", "turn my commits into a post", or "changelog content".
 ---
 
 # Changelog - Ship Notes & Build-in-Public Posts from Real Work
@@ -10,7 +10,7 @@ description: Build-in-public content from real shipped work for /gtm changelog <
 >
 > Stage-fit (`changelog`): Tier 1 Useful · Tier 2 Useful · Tier 3 Useful. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the build-in-public engine for `/gtm changelog <target>`. A technical founder already produces marketing raw material every week - it's sitting in `git log`, unread by anyone who might buy the product. This skill turns that record into content: what shipped, why it was built that way, and what it cost to get right. For a founder-led audience, the engineering decision *is* the story - "we rewrote the sync engine because the old one lost edits under concurrency" earns more trust than any feature announcement, because it can only be written by someone who did the work.
 
@@ -99,7 +99,7 @@ Every asset draws only from Phase 1's harvest through Phase 2's source map. If a
 
 ## Phase 4: Humanize Closing Pass (default)
 
-Run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on all three assets - build-in-public lives on sounding like a person, so this pass matters more here than anywhere. It strips the hard AI tells, enforces the voice source from Phase 0, and tightens each asset; version numbers, measurements, and commit-sourced facts stay literal. Report the pass in one line; skip entirely when the founder appends `--no-humanize`.
+Run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on all three assets - build-in-public lives on sounding like a person, so this pass matters more here than anywhere. It strips the hard AI tells, enforces the voice source from Phase 0, and tightens each asset; version numbers, measurements, and commit-sourced facts stay literal. Report the pass in one line; skip entirely when the founder appends `--no-humanize`.
 
 ---
 
@@ -160,7 +160,7 @@ Full pack:  [save path]
 
 ## Log the Run
 
-After the pack is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Social` section - what this run produced (naming the pack file) and the outcome: a concrete result, or `pending` with a review date when it lands after posting. Example: `- 2026-07-07 · /gtm changelog · ship notes + X thread + LinkedIn post from git log (see 2026-07-07-changelog-post.md) -> pending - reception after posting`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the pack is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Social` section - what this run produced (naming the pack file) and the outcome: a concrete result, or `pending` with a review date when it lands after posting. Example: `- 2026-07-07 · /gtm changelog · ship notes + X thread + LinkedIn post from git log (see 2026-07-07-changelog-post.md) -> pending - reception after posting`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

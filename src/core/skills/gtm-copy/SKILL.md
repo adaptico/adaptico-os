@@ -1,6 +1,6 @@
 ---
 name: gtm-copy
-version: 1.5.0
+version: 1.5.1
 description: Website copy analysis and rewriting for /gtm copy <target>. Use when the user wants to score existing copy and get optimized before/after rewrites for headlines, value props, CTAs, or body copy. Also trigger for "improve my copy", "rewrite my headline", "is my copy good", "better value prop", or "punch up this page".
 ---
 
@@ -10,7 +10,7 @@ description: Website copy analysis and rewriting for /gtm copy <target>. Use whe
 >
 > Stage-fit (`copy`): Tier 1 Useful · Tier 2 Core · Tier 3 Useful. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the copywriting engine for `/gtm copy <target>`. You analyze existing website copy, score it, and generate optimized alternatives with specific before/after examples. Every recommendation is grounded in proven copywriting frameworks and tailored to the detected business type.
 
@@ -363,7 +363,7 @@ Write the full report to the resolved output path as `YYYY-MM-DD-copy-suggestion
 
 ## Humanize Closing Pass (default)
 
-Before saving, run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on the shippable copy in the report - the rewrites, before/after "after" lines, swipe file, headlines, and CTAs. Leave the analysis, scores, and quoted "before" examples untouched (they are evidence, not copy to ship). The pass strips the hard AI tells, enforces the voice source from Phase 0, and compresses; add its one-line summary to the terminal output.
+Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on the shippable copy in the report - the rewrites, before/after "after" lines, swipe file, headlines, and CTAs. Leave the analysis, scores, and quoted "before" examples untouched (they are evidence, not copy to ship). The pass strips the hard AI tells, enforces the voice source from Phase 0, and compresses; add its one-line summary to the terminal output.
 
 Skip the pass entirely when the founder appends `--no-humanize` to the command.
 
@@ -371,13 +371,13 @@ Skip the pass entirely when the founder appends `--no-humanize` to the command.
 
 ## Optional Critic Pass
 
-If the founder asked for a red-teamed or critiqued result, run the `gtm-critic` review protocol (`.claude/skills/gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
+If the founder asked for a red-teamed or critiqued result, run the `gtm-critic` review protocol (`../gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
 
 ---
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm copy · rewrote homepage copy, 12 before/after pairs (see 2026-07-07-copy-suggestions.md) -> copy score 58/100, pending - re-score after fixes ship`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm copy · rewrote homepage copy, 12 before/after pairs (see 2026-07-07-copy-suggestions.md) -> copy score 58/100, pending - re-score after fixes ship`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

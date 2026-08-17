@@ -1,7 +1,7 @@
 ---
 name: gtm-funnel
-version: 1.3.0
-description: Funnel and activation analysis for /gtm funnel <target>: maps the public funnel (landing, pricing, signup) and works with the founder on the post-signup path to first value. Use when the user wants to find funnel drop-off/leaks or improve trial-to-paid and PLG activation. Also trigger for "fix my funnel", "where am I losing users", "activation rate", "trial conversion", or "funnel leaks".
+version: 1.3.2
+description: Funnel and activation analysis for /gtm funnel <target> - maps the public funnel (landing, pricing, signup) and works with the founder on the post-signup path to first value. Use when the user wants to find funnel drop-off/leaks or improve trial-to-paid and PLG activation. Also trigger for "fix my funnel", "where am I losing users", "activation rate", "trial conversion", or "funnel leaks".
 ---
 
 # Funnel & Activation Analysis
@@ -10,7 +10,7 @@ description: Funnel and activation analysis for /gtm funnel <target>: maps the p
 >
 > Stage-fit (`funnel`): Tier 1 Useful · Tier 2 Useful · Tier 3 Useful. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the funnel analysis engine for `/gtm funnel <target>`. For an early software startup the funnel is not a complex, multi-touch attribution machine - it is a basic flow from the landing-page click to the first time the product delivers real value (activation, the "aha" moment). Your job is simple friction detection: trace that journey step by step, find where people drop off, quantify the friction, and recommend specific fixes. Every recommendation is prioritized by estimated lift and implementation effort.
 
@@ -470,7 +470,7 @@ Full analysis saved to: YYYY-MM-DD-funnel-analysis.md
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run mapped or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm funnel · traced the signup-to-activation funnel (see 2026-07-07-funnel-analysis.md) -> biggest leak: post-signup empty state`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run mapped or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm funnel · traced the signup-to-activation funnel (see 2026-07-07-funnel-analysis.md) -> biggest leak: post-signup empty state`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

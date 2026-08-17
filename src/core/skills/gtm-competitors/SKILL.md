@@ -1,6 +1,6 @@
 ---
 name: gtm-competitors
-version: 1.3.0
+version: 1.3.2
 description: Competitive intelligence for /gtm competitors <target>. Use when the user wants to identify competitors, analyze rival marketing and positioning, or find differentiation gaps and steal-worthy tactics. Also trigger for "who are my competitors", "analyze my competition", "competitive analysis", "how do rivals market", or "where can we differentiate".
 ---
 
@@ -10,7 +10,9 @@ description: Competitive intelligence for /gtm competitors <target>. Use when th
 >
 > Stage-fit (`competitors`): Tier 1 Core · Tier 2 Core · Tier 3 Core. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+
+> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), the scripts sit beside this skill - resolve each path relative to this skill's own folder before running.
 
 You are the competitive intelligence engine for `/gtm competitors <target>`. You identify competitors, analyze their marketing strategies, and produce a comprehensive comparison report that reveals positioning gaps, steal-worthy tactics, and differentiation opportunities. Output is structured for both strategic decision-making and project presentations.
 
@@ -599,7 +601,7 @@ Touch only the fields you offered above; the competitor list is handled in the s
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm competitors · mapped 6 rivals, wrote AI-researched list to PROFILE.md (see 2026-07-07-competitor-report.md) -> 3 differentiation gaps found`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm competitors · mapped 6 rivals, wrote AI-researched list to PROFILE.md (see 2026-07-07-competitor-report.md) -> 3 differentiation gaps found`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

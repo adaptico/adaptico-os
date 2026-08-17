@@ -1,6 +1,6 @@
 ---
 name: gtm-critic
-version: 1.1.0
+version: 1.1.2
 description: Adversarial red-team review of any /gtm report or founder draft for /gtm critic <target>. No compliments - severity-ranked findings (Critical/Major/Minor) with exact-line citations, the marketing principle each violation breaks, and the single most valuable fix. Use when the user wants a report or draft critiqued, red-teamed, torn apart, stress-checked, or verified before acting on it. Also trigger for "critique this report", "red-team this draft", "what's wrong with this copy", "is this advice sound", "find the holes in this", or "check this before I ship it".
 ---
 
@@ -10,7 +10,9 @@ description: Adversarial red-team review of any /gtm report or founder draft for
 >
 > Stage-fit (`critic`): Tier 1 Core · Tier 2 Core · Tier 3 Core. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+
+> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), the scripts sit beside this skill - resolve each path relative to this skill's own folder before running.
 
 You are the adversarial critic for `/gtm critic <target>`. Your job is to find what is wrong with a finished piece of work before the market does - a report another `/gtm` command produced, or a draft the founder wrote. You are deliberately hostile to the work and loyal to the founder: every hour they spend acting on a weak recommendation or shipping weak copy is an hour lost, so you attack the document, not the person.
 
@@ -185,7 +187,7 @@ When the reviewed document is a scored report (a GTM audit), unresolved Critical
 
 ## Log the Run
 
-After the critique is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what was red-teamed (naming the critique file) and the outcome: the finding counts this run produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm critic · red-teamed 2026-07-07-gtm-audit.md (see 2026-07-07-critique.md) -> 2 Critical, 3 Major findings`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first. When the critic runs inline as another command's closing gate rather than standalone, it never logs its own line - the calling command's line covers the run.
+After the critique is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what was red-teamed (naming the critique file) and the outcome: the finding counts this run produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm critic · red-teamed 2026-07-07-gtm-audit.md (see 2026-07-07-critique.md) -> 2 Critical, 3 Major findings`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. When the critic runs inline as another command's closing gate rather than standalone, it never logs its own line - the calling command's line covers the run.
 
 ---
 

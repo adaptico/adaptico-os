@@ -1,6 +1,6 @@
 ---
 name: gtm-outreach
-version: 1.2.0
+version: 1.2.1
 description: Cold outbound sequences for /gtm outreach <target> - multi-touch, value-first cold email and LinkedIn DM sequences for founder-led manual outreach to land the first customers. Use when the user wants cold outreach, outbound, cold email, LinkedIn DMs, prospecting messages, or founder-led sales scripts. Also trigger for "write cold emails", "outbound sequence", "LinkedIn outreach", "how do I reach prospects", "cold DM", or "founder sales script".
 ---
 
@@ -10,7 +10,7 @@ description: Cold outbound sequences for /gtm outreach <target> - multi-touch, v
 >
 > Stage-fit (`outreach`): Tier 1 Core · Tier 2 Core · Tier 3 Useful. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the cold-outreach engine for `/gtm outreach <target>`. You generate multi-touch, value-first outreach sequences - cold email and LinkedIn DM - for a founder doing manual, founder-led sales to land the first customers. This is the "do things that don't scale" motion: a handful of well-researched, personal messages a day, not an automated blast.
 
@@ -182,7 +182,7 @@ What the copy can't control is your sending setup. Before a campaign, that's you
 
 ## Humanize Closing Pass (default)
 
-Before saving, run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on every drafted message - subjects, bodies, DMs, and the breakup. It enforces Phase 4 deterministically (the lint script catches what a writing pass misses), applies the voice source from Phase 0, and tightens each touch. Two outreach-specific rules:
+Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on every drafted message - subjects, bodies, DMs, and the breakup. It enforces Phase 4 deterministically (the lint script catches what a writing pass misses), applies the voice source from Phase 0, and tightens each touch. Two outreach-specific rules:
 
 - The bracketed personalization slots (`[one real, recent thing you verified about them]`) are this skill's design, not unfilled-placeholder tells - the pass keeps them exactly as written.
 - The length caps stand: after the pass, an opener email is still under ~80 words and a DM under ~150 characters.
@@ -237,7 +237,7 @@ Full sequences saved to: YYYY-MM-DD-outreach-sequences.md
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Outreach` section - what this run produced (naming the report file) and the outcome: a concrete result, or `pending` with a review date when replies land later. Example: `- 2026-07-07 · /gtm outreach · cold email + LinkedIn sequences for [segment] (see 2026-07-07-outreach-sequences.md) -> pending - replies after send`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Outreach` section - what this run produced (naming the report file) and the outcome: a concrete result, or `pending` with a review date when replies land later. Example: `- 2026-07-07 · /gtm outreach · cold email + LinkedIn sequences for [segment] (see 2026-07-07-outreach-sequences.md) -> pending - replies after send`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ## Cross-Skill Integration
 

@@ -1,7 +1,7 @@
 ---
 name: gtm-brand
-version: 1.4.0
-description: Brand voice analysis and guidelines for /gtm brand <target>. Audits the live voice (formal/casual, technical/simple, archetype, consistency) and produces a reusable voice guide: voice chart, do's and don'ts, messaging hierarchy, and on-brand copy samples - distilled into a brand-voice.md the writing commands (copy, copyedit, social, outreach, emails, pricing, ads, leadmagnet, content, article, repurpose, changelog, audit, geo, humanize) read automatically. Use when the user wants to define, analyze, or document their brand voice, tone, and messaging, or keep copy consistent. Also trigger for "what's our brand voice", "brand guidelines", "tone of voice", "how should we sound", or "make our copy consistent".
+version: 1.4.3
+description: Brand voice analysis and guidelines for /gtm brand <target>. Audits the live voice (formal/casual, technical/simple, archetype, consistency) and produces a reusable voice guide - voice chart, do's and don'ts, messaging hierarchy, and on-brand copy samples - distilled into a brand-voice.md the writing commands (copy, copyedit, social, outreach, emails, pricing, ads, leadmagnet, content, article, repurpose, changelog, audit, geo, humanize) read automatically. Use when the user wants to define, analyze, or document their brand voice, tone, and messaging, or keep copy consistent. Also trigger for "what's our brand voice", "brand guidelines", "tone of voice", "how should we sound", or "make our copy consistent".
 ---
 
 # Brand Voice Analysis and Guidelines Generation
@@ -13,7 +13,9 @@ description: Brand voice analysis and guidelines for /gtm brand <target>. Audits
 > "A brand book (voice, tone, messaging) is a scale concern, not a survival one - it's wasted while your ICP is still moving. A one-line voice rule is plenty for now."
 > Then generate the work anyway - never refuse.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+
+> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), the scripts sit beside this skill - resolve each path relative to this skill's own folder before running.
 
 ## Skill Purpose
 Analyze a brand's voice, tone, and messaging across all available channels and generate a comprehensive brand voice guidelines document. This skill examines how a brand communicates, identifies patterns and inconsistencies, and produces actionable guidelines that any writer or marketer can follow to maintain brand consistency.
@@ -616,7 +618,7 @@ Touch only `Tone` / `Avoid` (and the Reference Documents link if you added a doc
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm brand · distilled voice guide to brand-voice.md (see 2026-07-07-brand-voice.md) -> voice chain active for writing commands`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm brand · distilled voice guide to brand-voice.md (see 2026-07-07-brand-voice.md) -> voice chain active for writing commands`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

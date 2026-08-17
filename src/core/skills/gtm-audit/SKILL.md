@@ -1,6 +1,6 @@
 ---
 name: gtm-audit
-version: 2.2.0
+version: 2.2.3
 description: Full go-to-market marketing audit for /gtm audit <target>. Runs up to 5 parallel audit subagents with machine-validated outputs and produces a scored, date-stamped report that leads with what changed since the last audit - and never invents a number. Use when the user wants a full marketing/GTM audit, an overall website marketing review, or a composite GTM score. Also trigger for "audit my site", "review my marketing", "how's my GTM", "full marketing teardown", or "score my website".
 ---
 
@@ -10,7 +10,9 @@ description: Full go-to-market marketing audit for /gtm audit <target>. Runs up 
 >
 > Stage-fit (`audit`): Tier 1 Core · Tier 2 Core · Tier 3 Core. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+
+> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), the scripts sit beside this skill - resolve each path relative to this skill's own folder before running.
 
 You are the full marketing audit engine for `/gtm audit <target>`. You launch the audit subagents whose signals exist on this site, validate their outputs, and produce a unified, date-stamped report (`YYYY-MM-DD-gtm-audit.md`). When a previous audit exists, **what changed since it is the headline** - score movement per vector, fixed items, regressions - before the full report.
 
@@ -126,6 +128,8 @@ This check fires only on a direct contradiction - a site that merely *under-sell
 
 Launch the subagents from the 1.4 run plan simultaneously. Each subagent receives the business type, page map, fetched content, analyzer JSON, its skip decisions, and the **profile context from Phase 0** (ICP, pain points, stated Differentiator and Key messages, the competitor list, primary channel, tone/avoid, stage, goal, and the `LOG.md` history). Subagents judge the site against that context rather than re-deriving it. (With no profile loaded, they fall back to deriving from the page.)
 
+Install note: in a plugin install these agents carry the plugin prefix (`adaptico-os:gtm-content`) - launch them under whichever form the session lists. If the session lists no audit agents at all (a skills-CLI install copies skills only, on any agent - the audit agents ship with the plugin and installer paths), run each vector's analysis inline in this session instead and name that fallback in the report header.
+
 Each agent's file defines its rubric, its provenance rule, and its **output contract**: a single JSON block with its vector score(s) or skip reasons, severity-ranked findings with verbatim evidence, and named `data_gaps`.
 
 ### 2.1 Validate Every Agent's Output (before synthesis)
@@ -209,7 +213,7 @@ If no prior audit exists, the section is one line: "First audit - no baseline ye
 
 Every audit passes through the adversarial critic before it saves - this is the report's quality gate, not an opt-in:
 
-1. Assemble the complete draft report, then run the `gtm-critic` review protocol (`.claude/skills/gtm-critic/SKILL.md`, Phases 1-3 - including its `critic_lint.js` deterministic pass) against the draft.
+1. Assemble the complete draft report, then run the `gtm-critic` review protocol (`../gtm-critic/SKILL.md`, Phases 1-3 - including its `critic_lint.js` deterministic pass) against the draft.
 2. **Fix what the gate catches**: apply unambiguous Major/Minor fixes directly to the draft (an uncited number gets its source or gets cut; a generic paragraph gets specific or gets cut).
 3. **Count what stands**: unresolved Critical findings - plus Criticals from any prior `*-critique.md` in the folder that this run has not resolved - feed the score script as `--criticals N`. One or more caps the composite at 69 (grade C).
 4. **Disclose the gate** in the report header and Score Breakdown: "Critic gate: clean" or "Critic gate: capped by N unresolved Critical finding(s): [one-line each]", with the uncapped value shown beside the capped score.

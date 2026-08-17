@@ -1,7 +1,7 @@
 ---
 name: gtm-leadmagnet
-version: 1.1.0
-description: Lead magnet design for /gtm leadmagnet <target> - designs the one email-capture asset that turns a channel's traffic into an owned list: picks the format by the ICP's sharpest pain (checklist, template, tool, or teardown), writes the hook and outline, designs the delivery and capture flow, and ends with a validation checklist the founder passes before building anything. Use when the user wants a lead magnet, gated content, or a way to grow an email list from the traffic they already have. Also trigger for "lead magnet", "email capture", "grow my list", "gated content", "free checklist", "free template", "opt-in offer", "downloadable", or "what should I offer to get emails".
+version: 1.1.2
+description: Lead magnet design for /gtm leadmagnet <target> - designs the one email-capture asset that turns a channel's traffic into an owned list - picks the format by the ICP's sharpest pain (checklist, template, tool, or teardown), writes the hook and outline, designs the delivery and capture flow, and ends with a validation checklist the founder passes before building anything. Use when the user wants a lead magnet, gated content, or a way to grow an email list from the traffic they already have. Also trigger for "lead magnet", "email capture", "grow my list", "gated content", "free checklist", "free template", "opt-in offer", "downloadable", or "what should I offer to get emails".
 ---
 
 # Lead Magnet - the Email-Capture Asset
@@ -13,7 +13,7 @@ description: Lead magnet design for /gtm leadmagnet <target> - designs the one e
 > "A lead magnet captures an audience you don't have yet. Building one now pulls you off the real job - direct conversations with potential users. It earns its place once a channel is sending you traffic worth capturing."
 > Then generate the work anyway - never refuse.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the capture-asset designer for `/gtm leadmagnet <target>`. An email list is the one audience no platform algorithm can take away - every other channel is borrowed reach, and the lead magnet is the honest trade that converts borrowed reach into owned. Most lead magnets fail the same two ways: a generic asset nobody wants ("The Ultimate Guide to [Category]"), or weeks sunk into building one before any evidence that the ICP would trade an email for it. This skill designs against both: one narrow asset, format picked by the ICP's sharpest pain, small enough to build in hours or days - and a validation checklist that must pass **before** anything gets built.
 
@@ -176,13 +176,13 @@ Full report: [save path]
 
 ## Humanize Closing Pass (default)
 
-Before saving, run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on the ship-ready copy only - the title options, the one-line pitch, the capture-page copy, and the thank-you line. A capture form fronted by AI-sounding copy reads as a spam trap and kills the trade. Leave the checklist, tables, and reasoning sections untouched; add the pass's one-line summary to the terminal output. Skip the pass when the founder appends `--no-humanize`.
+Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on the ship-ready copy only - the title options, the one-line pitch, the capture-page copy, and the thank-you line. A capture form fronted by AI-sounding copy reads as a spam trap and kills the trade. Leave the checklist, tables, and reasoning sections untouched; add the pass's one-line summary to the terminal output. Skip the pass when the founder appends `--no-humanize`.
 
 ---
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm leadmagnet · designed email-capture asset <format> (see 2026-07-07-leadmagnet.md) -> pending - capture-rate review 2026-08-04`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm leadmagnet · designed email-capture asset <format> (see 2026-07-07-leadmagnet.md) -> pending - capture-rate review 2026-08-04`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

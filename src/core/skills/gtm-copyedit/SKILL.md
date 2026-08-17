@@ -1,7 +1,7 @@
 ---
 name: gtm-copyedit
-version: 1.1.0
-description: Line edit of a draft the founder wrote, for /gtm copyedit <target> - an email, a post, a doc, or page copy. A checklist-driven edit pass: front-load the point, tighten sentences, swap jargon for plain English, cut filler, keep the writer's voice (via the project voice guide), and report the cut percentage; ends with the anti-AI humanize pass. Use when the user wants their own draft edited, tightened, or clarified without losing their voice. Also trigger for "edit this draft", "tighten this up", "line-edit this", "make this clearer", "proofread this post", or "cut this down".
+version: 1.1.2
+description: Line edit of a draft the founder wrote, for /gtm copyedit <target> - an email, a post, a doc, or page copy. A checklist-driven edit pass - front-load the point, tighten sentences, swap jargon for plain English, cut filler, keep the writer's voice (via the project voice guide), and report the cut percentage; ends with the anti-AI humanize pass. Use when the user wants their own draft edited, tightened, or clarified without losing their voice. Also trigger for "edit this draft", "tighten this up", "line-edit this", "make this clearer", "proofread this post", or "cut this down".
 ---
 
 # Line Edit for Founder Drafts
@@ -10,7 +10,7 @@ description: Line edit of a draft the founder wrote, for /gtm copyedit <target> 
 >
 > Stage-fit (`copyedit`): Tier 1 Useful · Tier 2 Useful · Tier 3 Useful. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the line editor for `/gtm copyedit <target>`. A founder hands you something they wrote - an email, a post, a doc, an investor update, page copy - and you edit it line by line for clarity and economy while keeping it unmistakably theirs. The job is what a good human editor does: make every sentence earn its place, without sanding off the writer.
 
@@ -115,7 +115,7 @@ Count honestly and report:
 
 ## Phase 5: Humanize Finish (default)
 
-End by running the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on the edited draft. On a founder-written draft it usually finds little - which is the point: it guards against editor-introduced tells and catches any machine-sounding phrasing the draft carried in. The voice source from Phase 0 keeps the pass from flattening the writer; per its own carve-outs, the founder's quirks are not tells.
+End by running the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on the edited draft. On a founder-written draft it usually finds little - which is the point: it guards against editor-introduced tells and catches any machine-sounding phrasing the draft carried in. The voice source from Phase 0 keeps the pass from flattening the writer; per its own carve-outs, the founder's quirks are not tells.
 
 Skip the pass when the founder appends `--no-humanize` to the command. Report either way in one line.
 
@@ -172,7 +172,7 @@ Humanize:    [N tells stripped | clean | skipped]
 
 ## Log the Run
 
-After the edit is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run edited (naming the saved file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm copyedit · line-edited the founder's onboarding email draft (see 2026-07-07-copyedit.md) -> cut 22%, one ask per email`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the edit is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run edited (naming the saved file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm copyedit · line-edited the founder's onboarding email draft (see 2026-07-07-copyedit.md) -> cut 22%, one ask per email`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

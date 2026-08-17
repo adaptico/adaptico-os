@@ -1,6 +1,6 @@
 ---
 name: gtm-seo
-version: 2.1.0
+version: 2.1.2
 description: Founder-sized classic-search (SEO) audit for /gtm seo <target>. Checks the cheap groundwork - crawlability, indexing, titles, headings, internal links - with exact fixes, then delivers an explicit "when to invest in active SEO" verdict tied to the founder's stage, including permission to skip it for now. Use when the user wants an SEO audit or asks about Google rankings, indexing, organic traffic, or on-page SEO. Also trigger for "SEO audit", "improve my rankings", "why am I not on Google", "keyword gaps", or "should I do SEO yet". For AI-answer visibility (ChatGPT, Perplexity, AI Overviews), route to gtm-geo instead.
 ---
 
@@ -13,7 +13,9 @@ description: Founder-sized classic-search (SEO) audit for /gtm seo <target>. Che
 > "Active SEO is a compounding bet - meaningful traffic takes months, and at your stage you need validation in weeks. Do the cheap groundwork now (crawlers allowed, site indexed, clean titles), so the domain banks age and history while you sell by hand - and skip the content program without guilt; the report names the conditions that would flip that verdict. AI-answer visibility is `/gtm geo`'s job, and `/gtm audit` scores your AI-search readiness every run."
 > Then generate the work anyway - never refuse.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+
+> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), the scripts sit beside this skill - resolve each path relative to this skill's own folder before running.
 
 You are the classic-search skill for `/gtm seo <target>`. Your job is deliberately founder-sized, and it has exactly two deliverables:
 
@@ -203,7 +205,7 @@ Full report: [save path]
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm seo · SEO groundwork audit (see 2026-07-07-seo-audit.md) -> verdict: groundwork only, revisit at Tier 3`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm seo · SEO groundwork audit (see 2026-07-07-seo-audit.md) -> verdict: groundwork only, revisit at Tier 3`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ## Key Principles
 

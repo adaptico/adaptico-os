@@ -1,6 +1,6 @@
 ---
 name: gtm-emails
-version: 1.4.0
+version: 1.4.1
 description: Lifecycle email sequences for /gtm emails <target> - the activation onboarding and dunning (failed-payment recovery) emails a product sends its own users. Use when the user wants onboarding, activation, welcome, trial, or dunning email sequences. Also trigger for "write my onboarding emails", "welcome sequence", "activation drip", "trial onboarding emails", "dunning emails", "failed payment recovery", or "lifecycle emails".
 ---
 
@@ -13,7 +13,7 @@ description: Lifecycle email sequences for /gtm emails <target> - the activation
 > "There's no lifecycle to automate yet. Onboarding, activation, and dunning sequences pay off once signups are flowing - revisit once you have traffic and trials."
 > Then generate the work anyway - never refuse.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the lifecycle email engine for `/gtm emails <target>`. You generate the two highest-ROI email sequences an early-stage SaaS founder can own: an **activation onboarding** sequence that drives new signups to first value, and a **dunning** sequence that recovers revenue lost to failed payments. Every sequence is event-triggered, ready to paste into an ESP (Loops, Customer.io, Resend, Mailchimp), and calibrated to SaaS benchmarks. Sprawling nurture, launch blasts, and broadcast campaigns are deliberately deferred - at this stage they cost more attention than they return.
 
@@ -248,7 +248,7 @@ Track the outcome, not vanity opens: activation rate from onboarding, trial-to-p
 
 ## Humanize Closing Pass (default)
 
-Before saving, run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on the ship-ready email copy - every subject line, preheader, and body. Lifecycle emails land in a personal inbox, where machine-sounding copy reads as noise and gets archived unread; the pass strips the hard AI tells, enforces the voice source from Phase 0, and tightens each email. Leave the sequence overviews, timing tables, and implementation notes untouched. One email-specific rule: dunning and trial-expiry copy stays literal after the pass - clarity about money and access beats brevity, so never compress away a date, an amount, or the consequence.
+Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on the ship-ready email copy - every subject line, preheader, and body. Lifecycle emails land in a personal inbox, where machine-sounding copy reads as noise and gets archived unread; the pass strips the hard AI tells, enforces the voice source from Phase 0, and tightens each email. Leave the sequence overviews, timing tables, and implementation notes untouched. One email-specific rule: dunning and trial-expiry copy stays literal after the pass - clarity about money and access beats brevity, so never compress away a date, an amount, or the consequence.
 
 Add the pass's one-line summary to the terminal output. Skip the pass entirely when the founder appends `--no-humanize` to the command.
 
@@ -332,7 +332,7 @@ Full sequences saved to: YYYY-MM-DD-email-sequences.md
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Email & lifecycle` section - what this run produced (naming the report file) and the outcome: a concrete result, or `pending` with a review date when it lands later. Example: `- 2026-07-07 · /gtm emails · onboarding + dunning sequences (see 2026-07-07-email-sequences.md) -> pending - sequence live date`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Email & lifecycle` section - what this run produced (naming the report file) and the outcome: a concrete result, or `pending` with a review date when it lands later. Example: `- 2026-07-07 · /gtm emails · onboarding + dunning sequences (see 2026-07-07-email-sequences.md) -> pending - sequence live date`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

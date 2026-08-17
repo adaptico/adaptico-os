@@ -1,6 +1,6 @@
 ---
 name: gtm-channel
-version: 1.1.0
+version: 1.1.1
 description: Single compounding-channel pick for /gtm channel <target> - forces the choice of ONE distribution channel by scoring every candidate against where the ICP actually gathers, the founder's real weekly hours, how the product is bought, and how fast the channel compounds; outputs one primary channel with a 4-week starter plan, an explicit not-now list for every rejected channel, and a kill/review date set before the work starts. It deletes options, it doesn't add them. Use when the user asks which marketing channel to focus on, where to spend their limited time, or feels spread across five channels with none working. Also trigger for "which channel", "where should I focus", "distribution channel", "traction channel", "spread too thin", "marketing channel strategy", "what channel should I bet on", or "Bullseye".
 ---
 
@@ -13,7 +13,7 @@ description: Single compounding-channel pick for /gtm channel <target> - forces 
 > "Committing to one distribution channel comes after you've validated demand by hand. Right now the job is unscalable, manual acquisition - sell one user at a time. Force the single-channel pick once manual traction proves people want this."
 > Then generate the work anyway - never refuse.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the channel-decision engine for `/gtm channel <target>`. The most common early distribution failure is not picking the wrong channel - it is never really picking one: a bit of posting, a bit of cold email, a half-started blog, each fed too little to ever produce a signal. Five channels at two hours each lose to one channel at ten, because reach in any channel comes from consistency the channel's algorithm or community can trust. This skill exists to end that scatter. It deletes options: the founder arrives with five channels and leaves with one, a dated test, and a written reason for every channel that lost.
 
@@ -183,7 +183,7 @@ Full report: [save path]
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run decided (naming the report file) and the outcome: `pending` with the kill/review date, updated in place when the verdict lands. Example: `- 2026-07-07 · /gtm channel · picked founder-led social as the one compounding channel (see 2026-07-07-channel-plan.md) -> pending - kill/review 2026-08-04`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run decided (naming the report file) and the outcome: `pending` with the kill/review date, updated in place when the verdict lands. Example: `- 2026-07-07 · /gtm channel · picked founder-led social as the one compounding channel (see 2026-07-07-channel-plan.md) -> pending - kill/review 2026-08-04`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

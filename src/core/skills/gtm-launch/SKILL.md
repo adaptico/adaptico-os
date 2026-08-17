@@ -1,6 +1,6 @@
 ---
 name: gtm-launch
-version: 1.4.0
+version: 1.4.1
 description: Launch playbook for /gtm launch <target>. Use when the user wants a week-by-week launch plan for Product Hunt, Hacker News, or X, with templates, checklists, and metrics. Also trigger for "plan my launch", "Product Hunt launch", "launch playbook", "how do I launch", or "launch checklist".
 ---
 
@@ -10,7 +10,7 @@ description: Launch playbook for /gtm launch <target>. Use when the user wants a
 >
 > Stage-fit (`launch`): Tier 1 Core · Tier 2 Useful · Tier 3 Useful. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 ## Skill Purpose
 Generate a complete, week-by-week launch playbook for any product, service, or feature launch. This skill produces a tactical plan with templates, checklists, email sequences, social posts, and metrics tracking -- everything needed to execute a successful launch.
@@ -525,7 +525,7 @@ Touch only the two fields above; leave competitors, differentiator, links, and e
 
 ## Log the Run
 
-After the playbook is saved (and the profile offer answered), append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Launches` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with the launch date when the result lands later. Example: `- 2026-07-07 · /gtm launch · launch playbook for <channel> (see 2026-07-07-launch-playbook.md) -> pending - launch day 2026-07-21`. The launch-day numbers land later as the founder's own line under `## Launches`. Skip this in brainstorm mode or when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the playbook is saved (and the profile offer answered), append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Launches` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with the launch date when the result lands later. Example: `- 2026-07-07 · /gtm launch · launch playbook for <channel> (see 2026-07-07-launch-playbook.md) -> pending - launch day 2026-07-21`. The launch-day numbers land later as the founder's own line under `## Launches`. Skip this in brainstorm mode or when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ## Key Principles
 - Every recommendation should be tied to the user's specific product, audience, and resources. Generic advice is useless.

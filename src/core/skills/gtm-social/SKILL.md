@@ -1,7 +1,7 @@
 ---
 name: gtm-social
-version: 2.1.0
-description: Listening-first founder-led social for /gtm social <target>: finds the live Reddit, Hacker News, LinkedIn, and X threads where the ICP is talking right now, triages them by fit and recency, drafts targeted replies in the founder's voice - and only then builds a lean X/LinkedIn posting calendar sized to the audience the founder actually has. Use when the user wants a social plan, founder-led distribution, help finding where to engage, or what to post. Also trigger for "social listening", "find the threads", "who's talking about", "where should I engage", "content calendar", "what should I post", "social media plan", "founder content", or "LinkedIn/X posts".
+version: 2.1.2
+description: Listening-first founder-led social for /gtm social <target> - finds the live Reddit, Hacker News, LinkedIn, and X threads where the ICP is talking right now, triages them by fit and recency, drafts targeted replies in the founder's voice - and only then builds a lean X/LinkedIn posting calendar sized to the audience the founder actually has. Use when the user wants a social plan, founder-led distribution, help finding where to engage, or what to post. Also trigger for "social listening", "find the threads", "who's talking about", "where should I engage", "content calendar", "what should I post", "social media plan", "founder content", or "LinkedIn/X posts".
 ---
 
 # Founder-Led Social: Listen, Reply, Then Post
@@ -13,7 +13,7 @@ description: Listening-first founder-led social for /gtm social <target>: finds 
 > "With no audience yet, a posting calendar mostly goes unseen - so don't over-invest in it. Post occasionally, and put the real effort into participating in the conversations where your buyers already are, rather than scheduling posts for an audience that isn't there yet."
 > Then generate the work anyway - never refuse.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the founder-led social engine for `/gtm social <target>`. An early software startup usually has few or no followers, so a posting calendar mostly publishes to an empty room. What works with zero followers is borrowing rooms that are already full: the Reddit, Hacker News, LinkedIn, and X threads where the buyers are describing the exact pain the product solves, right now. So this skill works in that order - **listen first**: find the live threads, triage them by fit and recency, and draft specific, genuinely useful replies in the founder's voice. Only then does it build the posting calendar, kept deliberately lean and sized to the audience the founder actually has. As real followers accumulate, the calendar becomes the bigger, compounding asset - the weighting shifts with the stage, but the listening never stops paying.
 
@@ -275,7 +275,7 @@ Write the full output to the resolved output path as `YYYY-MM-DD-social-calendar
 
 ## Humanize Closing Pass (default)
 
-Before saving, run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on the ship-ready text in the plan - the drafted replies and every calendar post. Nothing gets a founder's account ignored faster than replies that read machine-written, so the pass strips the hard AI tells, enforces the voice source from Phase 0, and tightens each draft. Leave the strategy sections, watchlist, and search recipes untouched; add the pass's one-line summary to the terminal output.
+Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on the ship-ready text in the plan - the drafted replies and every calendar post. Nothing gets a founder's account ignored faster than replies that read machine-written, so the pass strips the hard AI tells, enforces the voice source from Phase 0, and tightens each draft. Leave the strategy sections, watchlist, and search recipes untouched; add the pass's one-line summary to the terminal output.
 
 Skip the pass entirely when the founder appends `--no-humanize` to the command.
 
@@ -303,7 +303,7 @@ Full plan:   [save path]
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Social` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm social · triaged live threads + drafted replies, lean calendar (see 2026-07-07-social-calendar.md) -> pending - weekly engagement line`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Social` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm social · triaged live threads + drafted replies, lean calendar (see 2026-07-07-social-calendar.md) -> pending - weekly engagement line`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

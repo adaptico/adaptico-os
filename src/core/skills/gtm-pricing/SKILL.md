@@ -1,6 +1,6 @@
 ---
 name: gtm-pricing
-version: 1.1.0
+version: 1.1.2
 description: Pricing page audit and value-based packaging design for /gtm pricing <target>. Challenges cost-plus pricing, anchors price to revenue gained or costs saved with an offer-strength check, designs 3 tiers with an honestly-badged anchored middle and annual-discount math (bundled calculator), and tears down or drafts the pricing page - FAQ with the AI-data-privacy answer, objection handling. Use when the user wants to set, raise, audit, or restructure pricing, packaging, or the offer. Also trigger for "how much should I charge", "price my product", "pricing page review", "design my tiers", "annual discount", or "am I charging too little".
 ---
 
@@ -10,7 +10,9 @@ description: Pricing page audit and value-based packaging design for /gtm pricin
 >
 > Stage-fit (`pricing`): Tier 1 Useful · Tier 2 Core · Tier 3 Core. Appropriate at every served tier - generate with no stage note.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+
+> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), the scripts sit beside this skill - resolve each path relative to this skill's own folder before running.
 
 You are the pricing engine for `/gtm pricing <target>`. Pricing is the highest-leverage lever most founders never pull: every point of price flows straight to margin, yet the default is to copy a rival's number or add a margin to costs and never touch it again. Your job is to anchor the price to the value the product creates - revenue gained, costs cut, hours saved - and to package it so the pricing page sells instead of just listing numbers.
 
@@ -170,7 +172,7 @@ The judgments - what each tier holds, what the price should be, whether the spre
 
 ## Phase 4: The Pricing Page (teardown or skeleton)
 
-Grade the live page (audit mode) or draft the skeleton (design mode) against the checklist in `.claude/skills/gtm-pricing/references/pricing-heuristics.md` section 1. The load-bearing items:
+Grade the live page (audit mode) or draft the skeleton (design mode) against the checklist in `references/pricing-heuristics.md` section 1. The load-bearing items:
 
 - **Public prices** for a self-serve product; a talk-to-us tier alongside is fine, "contact us" alone is a finding.
 - **Three tiers, one highlighted, honest badge** (2.3).
@@ -195,7 +197,7 @@ Then the founder-facing objection table (report only, not page copy) from the ba
 
 ## Phase 6: Humanize Pass & Shipping
 
-Before saving, run the `gtm-humanize` closing pass (`.claude/skills/gtm-humanize/SKILL.md`) on the ship-ready page copy only - tier names and customer lines, CTA labels, the FAQ answers, any before/after rewrites; the pass strips machine tells and enforces the voice source from Phase 0. Leave the analysis, tables, and math untouched. One pricing-specific rule: numbers, billing terms, and limits stay literal after the pass - clarity about money beats brevity, so never compress away an amount, a term, or a consequence. Report the pass in one line; skip it when the founder appends `--no-humanize`.
+Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on the ship-ready page copy only - tier names and customer lines, CTA labels, the FAQ answers, any before/after rewrites; the pass strips machine tells and enforces the voice source from Phase 0. Leave the analysis, tables, and math untouched. One pricing-specific rule: numbers, billing terms, and limits stay literal after the pass - clarity about money beats brevity, so never compress away an amount, a term, or a consequence. Report the pass in one line; skip it when the founder appends `--no-humanize`.
 
 A price change is one of the highest-stakes things a founder ships. Recommend running `/gtm critic` on this report before acting on it, and close the report with the one-week version: the smallest honest step (often: publish the annual toggle, add the FAQ, fix the badge) versus the full repackage, so the founder can start without a rebuild.
 
@@ -262,7 +264,7 @@ Full report: [save path]
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run built or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm pricing · built 3-tier value-based packaging (see 2026-07-07-pricing.md) -> pending - founder ships the new pricing page`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run built or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm pricing · built 3-tier value-based packaging (see 2026-07-07-pricing.md) -> pending - founder ships the new pricing page`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 

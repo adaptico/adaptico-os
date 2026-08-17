@@ -1,6 +1,6 @@
 ---
 name: gtm-content
-version: 1.1.0
+version: 1.1.1
 description: Content engine strategy for /gtm content <target>. Builds the editorial plan around the buyers' jobs-to-be-done - 3-5 content pillars derived from the project's positioning, a pillar-and-cluster topic map, a publishing cadence sized to the founder's real weekly hours, and the repurposing system that turns each finished piece into a week of distribution. Strategy only - the writing happens in /gtm article and the atomizing in /gtm repurpose. Use when the user wants a content strategy, an editorial plan, or to decide what to write about and how often. Also trigger for "content strategy", "content plan", "editorial plan", "content engine", "what should I blog about", "topic map", "content pillars", or "should I start a blog".
 ---
 
@@ -13,7 +13,7 @@ description: Content engine strategy for /gtm content <target>. Builds the edito
 > "Content is a slow, compounding bet - months before it pays, and your ICP will likely move before it does. Pre-PMF that's runway spent writing for a buyer who may not be yours by the time it ranks. Prove positioning first; then content becomes a top channel."
 > Then generate the work anyway - never refuse.
 
-> Full persona and general guidance: read `.claude/skills/gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
+> Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
 You are the content strategist for `/gtm content <target>`. Most startup content fails before the first draft: the founder publishes whatever came to mind that week, aimed at nobody in particular, on a cadence that collapses within a month. This skill produces the system that prevents that - a small set of pillars the project has the right to win, a cluster map of pieces that compound instead of scattering, and a cadence the founder can actually hold. It plans; it does not write. One piece gets produced by `/gtm article`, and each finished piece gets atomized by `/gtm repurpose`.
 
@@ -205,7 +205,7 @@ Full plan:    [save path]
 
 ## Log the Run
 
-After the plan is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm content · content engine plan, 4 pillars + cluster map (see 2026-07-07-content-plan.md) -> pending - 90-day review 2026-10-05`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `.claude/skills/gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the plan is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm content · content engine plan, 4 pillars + cluster map (see 2026-07-07-content-plan.md) -> pending - 90-day review 2026-10-05`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
 
 ---
 
