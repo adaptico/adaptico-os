@@ -1,6 +1,6 @@
 ---
 name: gtm
-version: 1.9.0
+version: 1.10.2
 description: Adaptico OS - the go-to-market operating system for SaaS & AI startup founders. Routes /gtm commands (audit, quick, position, competitors, copy, landing, launch, init) - and accepts a plain-language situation ("here's where I am / what's happening") which it answers with a recommended command sequence ending in one concrete next action. Use whenever the user types /gtm, asks what to do next on go-to-market, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
 ---
 
@@ -93,7 +93,7 @@ With a profile loaded, tailor the analysis - reference the stated goal, ICP, aud
 Then read every doc linked in the profile's **Reference Documents** section (the `@filename` entries in the same project folder) and treat it as source of truth: a brand manifesto governs voice and messaging; a strategy doc steers priorities. If a linked file is missing, note it and continue.
 Also read `LOG.md` in the project folder when it exists - the dated, append-only history of what was tried and what happened, split into fixed per-channel sections (the founder's attempts and Adaptico OS command runs share it; the file documents its own format). Read it before recommending - the section for the work at hand plus a scan of the rest: don't re-pitch cold what the log shows already failed (address why it failed first, or pick a different move), and build on what it shows worked.
 
-**The log write-back (every command):** when a command finishes a run against a project, it appends ONE line for that run to `LOG.md`, in the log's fixed format, under the section the log's own section map names for it - what was done (naming the saved report) and the outcome (a concrete result the run produced, or `pending` with a review date). Keep the line short - a few words and the numbers, never sentences; every command reads this file, so its size is a cost every run pays. Rules: a pass invoked inside another command (a closing polish, an inline review) never logs its own line - only the top-level command does; `/gtm quick` never logs a line, even inside a project (a 60-second read-only snapshot, not an intervention), and one-off runs outside a project write nothing (no project, no log); never rewrite or delete past entries - only a `pending` outcome is updated in place when its result lands. If the log predates the sections, add the section headings from `.claude/skills/gtm/templates/log-template.md` once and move the existing lines under them unchanged; if `LOG.md` is missing entirely, create it from that template before appending. Close the terminal output with the exact line appended (e.g. `Logged: - 2026-07-07 · /gtm copy · rewrote hero + CTAs (see report) -> pending`), so a run that skipped the write-back is visible at a glance.
+**The log write-back (every command):** when a command finishes a run against a project, it appends ONE line for that run to `LOG.md`, in the log's fixed format, under the section the log's own section map names for it - what was done (naming the saved report) and the outcome (a concrete result the run produced, or `pending` with a review date). Keep the line short - a few words and the numbers, never sentences; every command reads this file, so its size is a cost every run pays. Rules: a pass invoked inside another command (a closing polish, an inline review) never logs its own line - only the top-level command does; `/gtm quick` never logs a line, even inside a project (a 60-second read-only snapshot, not an intervention), and one-off runs outside a project write nothing (no project, no log); never rewrite or delete past entries - only a `pending` outcome is updated in place when its result lands. If the log predates the sections, add the section headings from `templates/log-template.md` once and move the existing lines under them unchanged; if `LOG.md` is missing entirely, create it from that template before appending. Close the terminal output with the exact line appended (e.g. `Logged: - 2026-07-07 · /gtm copy · rewrote hero + CTAs (see report) -> pending`), so a run that skipped the write-back is visible at a glance.
 With no profile loaded (a one-off), run untailored and note once in the output that `/gtm init` would tailor future runs to the founder's ICP, positioning, and goal.
 
 ## Routing Logic
@@ -131,6 +131,8 @@ This is the flagship command. It launches **5 parallel subagents** (skipping any
 4. **gtm-technical** agent → AI-Search Readiness vector (crawler access, extractable copy, structure, server-rendered visibility) + the unscored evidence backbone: technical facts, cross-vector verification
 5. **gtm-strategy** agent → Channel Concentration + Revenue Quality vectors
 
+In a plugin install the agents carry the plugin prefix (`adaptico-os:gtm-content`) - launch them under whichever form the session lists.
+
 **Scoring Methodology (GTM Score 0-100):**
 | Vector | Weight | What It Measures |
 |--------|--------|------------------|
@@ -152,10 +154,12 @@ Fast 60-second assessment. Do NOT launch subagents. Instead:
 4. Keep output under 30 lines
 
 ### Project Setup (`/gtm init [name]`)
-Route to `.claude/skills/gtm-init/SKILL.md`. Do not run Project Resolution for this command - init creates or updates a project directly (it accepts a project name, a URL, or both) and owns that setup itself.
+Route to `../gtm-init/SKILL.md`. Do not run Project Resolution for this command - init creates or updates a project directly (it accepts a project name, a URL, or both) and owns that setup itself.
 
 ### Individual Commands
-For all other commands (`/gtm copy`, `/gtm landing`, etc.), route to the corresponding sub-skill in `.claude/skills/gtm-<command>/SKILL.md`.
+For all other commands (`/gtm copy`, `/gtm landing`, etc.), route to the corresponding sub-skill in `../gtm-<command>/SKILL.md`.
+
+**Install-agnostic paths:** sibling skills, shared templates, and references across this suite are addressed relative to the skill naming them (`../gtm-<name>/SKILL.md`, `../gtm/templates/...`, own `references/...`), so they resolve the same under every install - the per-project copy in `.claude/skills/`, a plugin in Claude Code's cache, or another agent's skills directory. The bundled `node` scripts are the exception: a shell runs them from your project directory, so each script-running skill keeps the `.claude/skills/...` path for the copy install and carries a one-line note on resolving it when that path is absent (a plugin install, or another agent's skills directory). (The update-check below is deliberately copy-install-only - it keys on the `.claude/skills/` layout to decide whether to run at all.)
 
 ## Project Type Detection
 
@@ -281,3 +285,21 @@ Many skills work together:
 - `/gtm emails` aligns its onboarding sequence to the activation leak `/gtm funnel` finds
 - `/gtm launch` pulls from positioning and competitors to build the playbook
 - Every command run against a project appends one outcome line to the project's `LOG.md` (the write-back in *Step 4 - Inject context*); `/gtm audit` and the Stage-Fit advisor read the log first, so recommendations reflect what was already tried and what happened
+
+## Update Check (once per session, never blocking)
+
+Adaptico OS installs two ways, and only one needs this check:
+- **Plugin install** - Claude Code updates the plugin automatically with each release. Skip this section entirely.
+- **Per-project copy** (`install.sh`, or a skills CLI) - updates are manual, so check once per session.
+
+Which is this? A per-project copy has `.claude/skills/gtm/SKILL.md` in the project directory. If that file is absent (this skill is running from a plugin or another agent's skills directory), skip.
+
+The check runs on the FIRST `/gtm` command of a session only, and only AFTER that command's deliverable is finished and saved - it must never delay, block, or replace the requested work:
+1. Fetch `https://raw.githubusercontent.com/adaptico/adaptico-os/main/skills.json` - the public version index (`{"skills": {"<name>": "<version>", ...}}`).
+2. Read the installed versions in one pass: `grep -m1 "^version:" .claude/skills/*/SKILL.md`.
+3. Compare. **Meaningfully behind** = the `gtm` orchestrator itself is behind the index, or 2 or more installed skills are. Anything less: stay silent.
+4. When meaningfully behind, append ONE closing line to the terminal output, in this shape with the real numbers:
+   `Update available: [N] of [M] installed skills are behind the public release - update with git pull && ./install.sh from your adaptico-os clone, or npx skills add adaptico/adaptico-os.`
+5. If the fetch fails or the file doesn't parse, skip silently - no retry, no mention, done for this session.
+
+Never modify installed files yourself, never re-check within a session, and never repeat the nudge once shown.
