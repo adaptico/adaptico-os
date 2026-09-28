@@ -44,6 +44,7 @@ Look up this command's verdict for the founder's tier:
 | pricing | Useful | Core | Core |
 | funnel | Useful | Useful | Useful |
 | outreach | Core | Core | Useful |
+| pitch | Core | Core | Useful |
 | channel | Too early | Core | Core |
 | emails | Too early | Core | Useful |
 | retention | Too early | Useful | Core |
@@ -53,6 +54,7 @@ Look up this command's verdict for the founder's tier:
 | article | Too early | Useful | Core |
 | repurpose | Too early | Useful | Core |
 | leadmagnet | Too early | Useful | Core |
+| vs | Too early | Useful | Core |
 | seo | Too early | Too early | Core |
 | geo | Too early | Useful | Core |
 | brand | Too early | Too early | Useful |
@@ -75,7 +77,7 @@ The advisor's judgment is only as good as its memory. Before recommending any co
 2. Look up this command's verdict for that tier in the matrix above.
 3. **Core** or **Useful** - proceed with no note.
 4. **Too early** or **Avoid** - prepend one honest "Strategic Advisor Note" (a blockquote, immediately after the report header) saying why it is premature for this tier and what to do first, then generate the full requested work anyway.
-5. Never refuse, never gate, never downgrade the output. The note advises; the work still ships.
+5. Never downgrade the output, never gate, never refuse. The note advises; the work still ships.
 
 How the two note types read:
 - **Too early** reads as: one plain line, just to let them know they may not be spending their time and resources optimally - the payoff comes at a later tier, so focus on the fundamentals for now.
@@ -92,6 +94,7 @@ When a command is Too early or Avoid for the founder's tier, prepend its note ve
 - **article** (Too early at Tier 1): "One deep article runs on the same slow clock as a content engine - little payoff until you have authority and a settled ICP. Worth it once content is a channel you're deliberately testing, not before."
 - **repurpose** (Too early at Tier 1): "Repurposing needs finished content to atomize, and there's nothing to atomize yet. This turns on once you're publishing enough that squeezing more reach out of each piece is worth the effort."
 - **leadmagnet** (Too early at Tier 1): "A lead magnet captures an audience you don't have yet. Building one now pulls you off the real job - direct conversations with potential users. It earns its place once a channel is sending you traffic worth capturing."
+- **vs** (Too early at Tier 1): "Comparison and alternatives pages convert well, but they need buyers actively evaluating you against a named rival, plus the search traffic to find them. Pre-PMF you have neither. Nail positioning first; build the vs page once people are comparing you to someone."
 - **seo** (Too early at Tiers 1-2): "Active SEO is a compounding bet - meaningful traffic takes months, and at your stage you need validation in weeks. Do the cheap groundwork now (crawlers allowed, site indexed, clean titles), so the domain banks age and history while you sell by hand - and skip the content program without guilt; the report names the conditions that would flip that verdict. AI-answer visibility is `/gtm geo`'s job, and `/gtm audit` scores your AI-search readiness every run."
 - **geo** (Too early at Tier 1): "Getting cited by AI answer engines (ChatGPT, Perplexity, AI Overviews) rests on authority, citations, and structured data you haven't built pre-PMF. Do the cheap groundwork now - let crawlers in, keep pages clean and factual - but active GEO is a later-stage bet, and even then AI-referral volume to a small site stays small."
 - **brand** (Too early at Tiers 1-2): "A brand book (voice, tone, messaging) is a scale concern, not a survival one - it's wasted while your ICP is still moving. A one-line voice rule is plenty for now."

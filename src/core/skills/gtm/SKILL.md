@@ -1,7 +1,7 @@
 ---
 name: gtm
-version: 1.10.2
-description: Adaptico OS - the go-to-market operating system for SaaS & AI startup founders. Routes /gtm commands (audit, quick, position, competitors, copy, landing, launch, init) - and accepts a plain-language situation ("here's where I am / what's happening") which it answers with a recommended command sequence ending in one concrete next action. Use whenever the user types /gtm, asks what to do next on go-to-market, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
+version: 1.10.4
+description: Adaptico OS - the go-to-market operating system for SaaS & AI startup founders. Routes all /gtm commands (init, audit, position, competitors, launch, pitch, vs, and more) - and accepts a plain-language situation ("here's where I am / what's happening") which it answers with a recommended command sequence ending in one concrete next action. Use whenever the user types /gtm, asks what to do next on go-to-market, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
 ---
 
 # Adaptico OS - Main Orchestrator
@@ -32,6 +32,7 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourproject.com`
 | `/gtm pricing <target>` | Pricing page + value-based 3-tier packaging + calculator | `YYYY-MM-DD-pricing.md` |
 | `/gtm funnel <target>` | Funnel and activation analysis (trial / PLG) | `YYYY-MM-DD-funnel-analysis.md` |
 | `/gtm outreach <target>` | Cold outbound sequences (email + LinkedIn DM) | `YYYY-MM-DD-outreach-sequences.md` |
+| `/gtm pitch <target>` | Sales kit for a specific conversation (one-pager, objection doc, demo script, battlecard) | `YYYY-MM-DD-pitch-kit.md` |
 | `/gtm channel <target>` | Single compounding-channel pick (Bullseye) + not-now list | `YYYY-MM-DD-channel-plan.md` |
 | `/gtm emails <target>` | Lifecycle email sequences (onboarding + dunning) | `YYYY-MM-DD-email-sequences.md` |
 | `/gtm retention <target>` | Activation + churn mechanics (cancel-flow, save-offers) | `YYYY-MM-DD-retention.md` |
@@ -41,6 +42,7 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourproject.com`
 | `/gtm article <target>` | One research-first, long-form article | `YYYY-MM-DD-article.md` |
 | `/gtm repurpose <target>` | Atomize one piece into platform-native variants | `YYYY-MM-DD-repurpose.md` |
 | `/gtm leadmagnet <target>` | Email-capture asset for organic traffic | `YYYY-MM-DD-leadmagnet.md` |
+| `/gtm vs <target>` | Comparison / alternatives pages for your own site (alternatives, you-vs-rival, A-vs-B) | `YYYY-MM-DD-vs-page.md` |
 | `/gtm seo <target>` | SEO groundwork audit + when-to-invest verdict (classic search) | `YYYY-MM-DD-seo-audit.md` |
 | `/gtm geo <target>` | AI-search visibility audit (citability, AI-crawler access, monitoring) | `YYYY-MM-DD-geo-audit.md` |
 | `/gtm brand <target>` | Brand voice analysis + reusable voice guide (chart, do's/don'ts, copy samples) | `YYYY-MM-DD-brand-voice.md` |
@@ -93,7 +95,7 @@ With a profile loaded, tailor the analysis - reference the stated goal, ICP, aud
 Then read every doc linked in the profile's **Reference Documents** section (the `@filename` entries in the same project folder) and treat it as source of truth: a brand manifesto governs voice and messaging; a strategy doc steers priorities. If a linked file is missing, note it and continue.
 Also read `LOG.md` in the project folder when it exists - the dated, append-only history of what was tried and what happened, split into fixed per-channel sections (the founder's attempts and Adaptico OS command runs share it; the file documents its own format). Read it before recommending - the section for the work at hand plus a scan of the rest: don't re-pitch cold what the log shows already failed (address why it failed first, or pick a different move), and build on what it shows worked.
 
-**The log write-back (every command):** when a command finishes a run against a project, it appends ONE line for that run to `LOG.md`, in the log's fixed format, under the section the log's own section map names for it - what was done (naming the saved report) and the outcome (a concrete result the run produced, or `pending` with a review date). Keep the line short - a few words and the numbers, never sentences; every command reads this file, so its size is a cost every run pays. Rules: a pass invoked inside another command (a closing polish, an inline review) never logs its own line - only the top-level command does; `/gtm quick` never logs a line, even inside a project (a 60-second read-only snapshot, not an intervention), and one-off runs outside a project write nothing (no project, no log); never rewrite or delete past entries - only a `pending` outcome is updated in place when its result lands. If the log predates the sections, add the section headings from `templates/log-template.md` once and move the existing lines under them unchanged; if `LOG.md` is missing entirely, create it from that template before appending. Close the terminal output with the exact line appended (e.g. `Logged: - 2026-07-07 · /gtm copy · rewrote hero + CTAs (see report) -> pending`), so a run that skipped the write-back is visible at a glance.
+**The log write-back (every command):** when a command finishes a run against a project, it appends ONE line for that run to `LOG.md`, in the log's fixed format, under the section the log's own section map names for it - what was done (naming the saved report) and the outcome (a concrete result the run produced, or `pending` with a review date). Keep the line short - a few words and the numbers, never sentences; every command reads this file, so its size is a cost every run pays. Rules: a pass invoked inside another command (a closing polish, an inline review) never logs its own line - only the top-level command does; `/gtm quick` never logs a line, even inside a project (a 60-second read-only snapshot, not an intervention), and one-off runs outside a project write nothing (no project, no log); never rewrite or delete past entries - only a `pending` outcome is updated in place when its result lands. If the log predates the sections, add the section headings from `templates/log-template.md` once and move the existing lines under them unchanged; if `LOG.md` is missing entirely, create it from that template before appending. Close the terminal output with the exact line appended (e.g. `Logged: - 2026-07-07 · /gtm copy · rewrote hero + CTAs (see 2026-07-07-copy-suggestions.md) -> pending`), so a run that skipped the write-back is visible at a glance.
 With no profile loaded (a one-off), run untailored and note once in the output that `/gtm init` would tailor future runs to the founder's ICP, positioning, and goal.
 
 ## Routing Logic
@@ -115,7 +117,7 @@ Anything that sounds like work a `/gtm` command exists to do (copy, a plan, a te
 
 **3. For a situation, answer in this fixed shape (terminal only, no report file):**
 - **The read** - one or two lines: the situation as understood, tied to the founder's tier and what the log already shows. State the assumption if one was made.
-- **The sequence** - 2-5 commands in order, one why-line each, derived from the tier's sequence and the Skill-to-tier matrix in `templates/advisor-prompt.md`, bent to the founder's Main goal and `LOG.md` history. Stage gates are explicit: when a step should wait on evidence, name the evidence ("`/gtm emails` once signups actually flow"). A command the matrix rates Too early or Avoid for the tier enters the sequence only with its one-line honesty note; a move the log shows already failed enters only with what would be different this time.
+- **The sequence** - 2-5 commands in order, one why-line each, derived from the tier's recommended sequence (in `../gtm-init/SKILL.md` Step 5) and the Skill-to-tier matrix (in `templates/advisor-prompt.md`), bent to the founder's Main goal and `LOG.md` history. Stage gates are explicit: when a step should wait on evidence, name the evidence ("`/gtm emails` once signups actually flow"). A command the matrix rates Too early or Avoid for the tier enters the sequence only with its one-line honesty note; a move the log shows already failed enters only with what would be different this time.
 - **One concrete next action** - always the last line: the exact first command, ready to run (`/gtm landing acme`), and an offer to run it now.
 
 **4. Never leave a dead end.** A gap or a clarify also ends with the one next action available - the closest command, or the single question.
@@ -174,7 +176,7 @@ If the product clearly is **not** software (local business, pure e-commerce, ser
 
 ## Competitor Resolution Protocol
 
-This protocol applies whenever a `PROFILE.md` or `BRIEF.md` is loaded, for any command that uses competitor data (`/gtm competitors`, `/gtm position`, `/gtm audit`, `/gtm copy`). Run it after loading that file.
+This protocol applies whenever a `PROFILE.md` or `BRIEF.md` is loaded, for any command that uses competitor data (`/gtm competitors`, `/gtm position`, `/gtm audit`, `/gtm copy`, `/gtm brand`, `/gtm launch`). Run it after loading that file.
 
 (Below, "the profile" means `PROFILE.md` loaded from the project directory.)
 
@@ -278,10 +280,10 @@ These rules apply to every command in this suite, including inline operations li
 Many skills work together:
 - `/gtm audit` calls all subagents → produces the comprehensive, scored report everything else builds on; it folds in any `*-competitor-report.md` already in the folder
 - Re-running `/gtm audit` over time is the progress tracker - the dated reports form the history, and each re-audit leads with the delta since the last one. Cadence: monthly/quarterly for strategy movement, weekly only to verify shipped fixes. (For a polished compiled PDF, that's Pro `report-pdf`.)
-- `/gtm interviews` writes Customer Evidence into `PROFILE.md` - `/gtm position`, `/gtm copy`, and `/gtm outreach` read it automatically when present
+- `/gtm interviews` writes Customer Evidence into `PROFILE.md` - `/gtm position`, `/gtm copy`, `/gtm outreach`, `/gtm pitch`, and `/gtm vs` read it automatically when present
 - `/gtm position` sharpens the messaging that `/gtm copy` and `/gtm landing` then apply
-- `/gtm brand` writes `brand-voice.md` into the project folder - the fixed-format voice guide that `/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm pricing`, `/gtm ads`, `/gtm audit`, `/gtm geo`, `/gtm leadmagnet`, `/gtm changelog`, `/gtm content`, `/gtm article`, `/gtm repurpose`, and `/gtm humanize` read automatically when present
-- The writing commands (`/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm ads`, `/gtm leadmagnet`, `/gtm article`, `/gtm repurpose`, `/gtm changelog`, `/gtm interviews`) - and `/gtm pricing` on its page-ready copy - end with the `/gtm humanize` closing pass by default; append `--no-humanize` to any of them to skip it
+- `/gtm brand` writes `brand-voice.md` into the project folder - the fixed-format voice guide that `/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm pricing`, `/gtm ads`, `/gtm audit`, `/gtm geo`, `/gtm leadmagnet`, `/gtm changelog`, `/gtm content`, `/gtm article`, `/gtm repurpose`, `/gtm pitch`, `/gtm vs`, and `/gtm humanize` read automatically when present
+- The writing commands (`/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm ads`, `/gtm leadmagnet`, `/gtm article`, `/gtm repurpose`, `/gtm changelog`, `/gtm interviews`) - plus `/gtm pricing` on its page-ready copy, `/gtm pitch` on its one-pager and spoken lines, and `/gtm vs` on its page prose - end with the `/gtm humanize` closing pass by default; append `--no-humanize` to any of them to skip it
 - `/gtm emails` aligns its onboarding sequence to the activation leak `/gtm funnel` finds
 - `/gtm launch` pulls from positioning and competitors to build the playbook
 - Every command run against a project appends one outcome line to the project's `LOG.md` (the write-back in *Step 4 - Inject context*); `/gtm audit` and the Stage-Fit advisor read the log first, so recommendations reflect what was already tried and what happened
@@ -296,7 +298,7 @@ Which is this? A per-project copy has `.claude/skills/gtm/SKILL.md` in the proje
 
 The check runs on the FIRST `/gtm` command of a session only, and only AFTER that command's deliverable is finished and saved - it must never delay, block, or replace the requested work:
 1. Fetch `https://raw.githubusercontent.com/adaptico/adaptico-os/main/skills.json` - the public version index (`{"skills": {"<name>": "<version>", ...}}`).
-2. Read the installed versions in one pass: `grep -m1 "^version:" .claude/skills/*/SKILL.md`.
+2. Read the installed versions in one pass: `grep -m1 "^version:" .claude/skills/gtm*/SKILL.md` - the `gtm*` glob scopes this to Adaptico's own skills (the `gtm` orchestrator and its `gtm-` commands), so other skills installed alongside them never inflate the count.
 3. Compare. **Meaningfully behind** = the `gtm` orchestrator itself is behind the index, or 2 or more installed skills are. Anything less: stay silent.
 4. When meaningfully behind, append ONE closing line to the terminal output, in this shape with the real numbers:
    `Update available: [N] of [M] installed skills are behind the public release - update with git pull && ./install.sh from your adaptico-os clone, or npx skills add adaptico/adaptico-os.`

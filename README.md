@@ -94,6 +94,7 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm funnel` | Funnel & activation analysis - find the leaks (trial / PLG) |
 | **Reach & retain** | |
 | `/gtm outreach` | Cold outbound sequences - cold email & LinkedIn DM |
+| `/gtm pitch` | Sales kit for a specific call - one-pager, objection doc, discovery-first demo script + a battlecard against a named rival |
 | `/gtm channel` | Pick the one channel to bet on (Bullseye), with a not-now list |
 | `/gtm emails` | Activation onboarding & dunning (failed-payment recovery) email sequences |
 | `/gtm retention` | Activation + churn defense - cancel-flows and save-offers |
@@ -104,6 +105,7 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm article` | One research-first, long-form article built for authority and AI citability - no me-too angles |
 | `/gtm repurpose` | Turn one piece into platform-native variants - X thread, LinkedIn post, script outline, newsletter |
 | `/gtm leadmagnet` | Email-capture asset that turns organic traffic into a list |
+| `/gtm vs` | Comparison / alternatives pages for your own site - high-intent buyers close to a decision |
 | `/gtm seo` | SEO groundwork audit + a when-to-invest verdict (it'll say "not yet" when that's right) |
 | `/gtm geo` | AI-search visibility - get found and cited by ChatGPT, Perplexity, AI Overviews |
 | `/gtm brand` | Brand voice audit + a reusable voice guide (do's & don'ts, copy samples) |
