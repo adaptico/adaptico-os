@@ -4,6 +4,15 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.19.0]
+
+### Added
+- `/gtm pitch` - gets you ready for one specific sales call. A one-pager to send afterwards, the objections that buyer is likely to raise with an answer for each, a demo script that opens with questions about their situation instead of a feature tour, and a cheat sheet for when they name a competitor.
+- `/gtm vs` - writes the comparison pages buyers read before they ever contact you: "alternative to X", "best [category] alternatives", and "you vs X", each tied to the search phrase it targets. Facts about a rival come only from their own pricing page or docs, with the date, and the rival gets credit where it is genuinely better.
+
+### Changed
+- Every command that writes to your project log now shows that line in the terminal, so you can see what was recorded without opening the file.
+
 ## [0.18.0]
 
 ### Added
