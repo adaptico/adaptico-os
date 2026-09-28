@@ -1,6 +1,6 @@
 ---
 name: gtm-geo
-version: 1.1.1
+version: 1.1.2
 description: AI-search visibility audit for /gtm geo <target> - get found and cited by ChatGPT, Perplexity, and Google AI Overviews. Audits citability (extractable value prop, quotable passages, Q&A content), AI-crawler access in robots.txt, server-rendered visibility, runs an evidence-based llms.txt reality check, maps brand-mention groundwork, and sets up monitoring where every claim is labeled observed, inferred, or unknown - never a fabricated zero. Use when the user asks about AI search or being recommended by AI assistants. Also trigger for "get cited by ChatGPT", "AI Overviews", "Perplexity", "AI search visibility", "GEO", "AEO", "LLM SEO", or "does AI know my product". For classic Google-ranking work, route to gtm-seo instead.
 ---
 
@@ -11,7 +11,6 @@ description: AI-search visibility audit for /gtm geo <target> - get found and ci
 > Stage-fit (`geo`): Tier 1 Too early · Tier 2 Useful · Tier 3 Core. If the founder's tier
 > (from PROFILE.md) makes this Too early or Avoid, prepend this note verbatim:
 > "Getting cited by AI answer engines (ChatGPT, Perplexity, AI Overviews) rests on authority, citations, and structured data you haven't built pre-PMF. Do the cheap groundwork now - let crawlers in, keep pages clean and factual - but active GEO is a later-stage bet, and even then AI-referral volume to a small site stays small."
-> Then generate the work anyway - never refuse.
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
@@ -252,7 +251,7 @@ Full report: [save path]
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm geo · AI-search visibility audit (see 2026-07-07-geo-audit.md) -> cited on 1 of 3 engines checked`. Phase 5's monitoring summary is this same line - one line per run, its outcome carrying the cited/absent read. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm geo · AI-search visibility audit (see 2026-07-07-geo-audit.md) -> cited on 1 of 3 engines checked`. Phase 5's monitoring summary is this same line - one line per run, its outcome carrying the cited/absent read. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ## Key Principles
 

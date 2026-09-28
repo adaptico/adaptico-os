@@ -1,6 +1,6 @@
 ---
 name: gtm-humanize
-version: 1.1.2
+version: 1.1.4
 description: Terminal anti-AI pass for /gtm humanize <target> - strips the tells that make a draft read machine-written (hype vocabulary, stock phrases, "it's not X, it's Y" pivots, em-dash overuse, chatbot residue), then enforces the founder's voice and compresses. Runs standalone on pasted text or a file, and as the default closing pass for the writing commands. Use when the user wants a draft to sound human before it ships. Also trigger for "humanize this", "make this sound human", "this sounds like AI", "strip the AI tells", "de-AI this draft", or "make it sound like me".
 ---
 
@@ -12,14 +12,14 @@ description: Terminal anti-AI pass for /gtm humanize <target> - strips the tells
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
-> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), the scripts sit beside this skill - resolve each path relative to this skill's own folder before running.
+> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), each script lives in the skill folder named in its path - a sibling skill's, or this skill's own - within the same skills directory; resolve it there before running.
 
 You are the anti-AI writing pass for `/gtm humanize <target>`. Your job is to take a finished draft and make it read like a specific person wrote it: strip the machine tells, restore the founder's voice, and cut the padding. Readers delete copy that smells generated - cold emails get flagged, posts get scrolled past, and a founder's credibility erodes one "seamless" at a time.
 
 The pass runs two ways:
 
 - **Standalone** - the founder points it at any draft: pasted text, a file, or a project's latest report.
-- **Closing pass** - the writing commands (`copy`, `copyedit`, `social`, `outreach`, `emails`, `ads`, `article`, `repurpose`, `changelog`) run it on their outward-facing draft copy before saving, by default; `pricing` runs it on its page-ready copy, `leadmagnet` on its ship-ready capture copy, and `interviews` on its recruiting asks the same way. Appending `--no-humanize` to any of those commands skips it.
+- **Closing pass** - the writing commands (`copy`, `copyedit`, `social`, `outreach`, `emails`, `ads`, `article`, `repurpose`, `changelog`) run it on their outward-facing draft copy before saving, by default; `pricing` runs it on its page-ready copy, `leadmagnet` on its ship-ready capture copy, `interviews` on its recruiting asks, `pitch` on its one-pager and spoken lines, and `vs` on its page copy the same way. Appending `--no-humanize` to any of those commands skips it.
 
 Three rules frame everything below:
 
@@ -175,7 +175,7 @@ When a writing command runs this pass on its draft before saving:
 
 ## Log the Run
 
-**Standalone only.** When the pass ran standalone on a founder's draft inside a project, append one line for this run to the project's `LOG.md` after saving, in the log's fixed format, under its `## General` section - what was humanized (naming the saved file) and the concrete result. Example: `- 2026-07-07 · /gtm humanize · humanized launch-email draft (see 2026-07-07-humanized.md) -> stripped 9 hard tells, cut 15%`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+**Standalone only.** When the pass ran standalone on a founder's draft inside a project, append one line for this run to the project's `LOG.md` after saving, in the log's fixed format, under its `## General` section - what was humanized (naming the saved file) and the concrete result. Example: `- 2026-07-07 · /gtm humanize · humanized launch-email draft (see 2026-07-07-humanized.md) -> stripped 9 hard tells, cut 15%`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 As the closing pass inside another writing command, never append a line - the calling command's own log line covers the run.
 
@@ -186,4 +186,4 @@ As the closing pass inside another writing command, never append a line - the ca
 - `/gtm copyedit` - the full line edit for clarity and economy on a founder-written draft; it ends with this pass.
 - `/gtm critic` - grades substance and strategy; this pass fixes how the text reads, the critic finds what it gets wrong.
 - `/gtm brand` - writes the `brand-voice.md` guide this pass enforces.
-- `/gtm copy`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm pricing`, `/gtm ads`, `/gtm leadmagnet`, `/gtm article`, `/gtm repurpose`, `/gtm changelog`, `/gtm interviews` - the writing commands that end with this pass by default.
+- `/gtm copy`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm pricing`, `/gtm ads`, `/gtm leadmagnet`, `/gtm article`, `/gtm repurpose`, `/gtm changelog`, `/gtm interviews`, `/gtm pitch`, `/gtm vs` - the writing commands that end with this pass by default.

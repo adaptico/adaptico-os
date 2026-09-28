@@ -1,6 +1,6 @@
 ---
 name: gtm-channel
-version: 1.1.1
+version: 1.1.2
 description: Single compounding-channel pick for /gtm channel <target> - forces the choice of ONE distribution channel by scoring every candidate against where the ICP actually gathers, the founder's real weekly hours, how the product is bought, and how fast the channel compounds; outputs one primary channel with a 4-week starter plan, an explicit not-now list for every rejected channel, and a kill/review date set before the work starts. It deletes options, it doesn't add them. Use when the user asks which marketing channel to focus on, where to spend their limited time, or feels spread across five channels with none working. Also trigger for "which channel", "where should I focus", "distribution channel", "traction channel", "spread too thin", "marketing channel strategy", "what channel should I bet on", or "Bullseye".
 ---
 
@@ -11,7 +11,6 @@ description: Single compounding-channel pick for /gtm channel <target> - forces 
 > Stage-fit (`channel`): Tier 1 Too early · Tier 2 Core · Tier 3 Core. If the founder's tier
 > (from PROFILE.md) makes this Too early or Avoid, prepend this note verbatim:
 > "Committing to one distribution channel comes after you've validated demand by hand. Right now the job is unscalable, manual acquisition - sell one user at a time. Force the single-channel pick once manual traction proves people want this."
-> Then generate the work anyway - never refuse.
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
@@ -183,7 +182,7 @@ Full report: [save path]
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run decided (naming the report file) and the outcome: `pending` with the kill/review date, updated in place when the verdict lands. Example: `- 2026-07-07 · /gtm channel · picked founder-led social as the one compounding channel (see 2026-07-07-channel-plan.md) -> pending - kill/review 2026-08-04`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run decided (naming the report file) and the outcome: `pending` with the kill/review date, updated in place when the verdict lands. Example: `- 2026-07-07 · /gtm channel · picked founder-led social as the one compounding channel (see 2026-07-07-channel-plan.md) -> pending - kill/review 2026-08-04`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 

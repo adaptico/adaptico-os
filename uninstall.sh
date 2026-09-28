@@ -1,5 +1,5 @@
 #!/bin/bash
-# Adaptico OS — Uninstaller (core)
+# Adaptico OS - Uninstaller (core)
 # Removes the core skills/agents that src/core/ provides, derived dynamically so it
 # stays in sync with the sources. Leaves any non-core skills untouched.
 set -e

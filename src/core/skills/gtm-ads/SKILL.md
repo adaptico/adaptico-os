@@ -1,6 +1,6 @@
 ---
 name: gtm-ads
-version: 2.1.2
+version: 2.1.5
 description: Paid-ads readiness gate and first real ad test for /gtm ads <target>. Runs a "should you run ads at all" check against stage and unit economics before any creative work - a not-yet verdict names the exact numbers that would flip it; when the gate passes, picks one platform by intent, sizes the smallest readable test budget with kill criteria set before spend, and writes paste-ready ad copy in the picked platform's format (bundled CAC/break-even calculator). It plans and writes only - it never connects to an ad account or launches campaigns; the founder pastes the copy into Ads Manager. Use when the user wants to run, plan, or budget paid ads, write ad copy, or asks whether ads are worth it yet. Also trigger for "should I run ads", "Google Ads", "Meta ads", "LinkedIn ads", "write me an ad", "ad copy", "paid acquisition", "PPC", "ad budget", or "ad variations".
 ---
 
@@ -11,11 +11,10 @@ description: Paid-ads readiness gate and first real ad test for /gtm ads <target
 > Stage-fit (`ads`): Tier 1 Avoid · Tier 2 Avoid · Tier 3 Useful. If the founder's tier
 > (from PROFILE.md) makes this Too early or Avoid, prepend this note verbatim:
 > "Running paid acquisition before validating organic PMF is dangerous - B2B SaaS CAC runs $150-$500 per customer, and bought clicks corrupt your read on real demand. Run funnel and audit first to confirm your funnel converts the traffic you already have."
-> Then generate the work anyway - never refuse.
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
-> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), the scripts sit beside this skill - resolve each path relative to this skill's own folder before running.
+> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), each script lives in the skill folder named in its path - a sibling skill's, or this skill's own - within the same skills directory; resolve it there before running.
 
 You are the paid-acquisition engine for `/gtm ads <target>`. Most ads tooling assumes the decision to spend has already been made and starts optimizing from there. This skill starts one step earlier, at the question the founder is actually asking: is buying traffic the right move for this business right now? Sometimes the most valuable ads deliverable is a well-argued "not yet" with the exact numbers that would change it - that answer costs nothing and can save a runway.
 
@@ -259,7 +258,7 @@ Full report:     [save path]
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Paid ads` section - what this run decided (naming the report file) and the outcome: the verdict with its flip number, or, when the gate passes, the test spec with its kill date as the pending review. Example: `- 2026-07-07 · /gtm ads · ads readiness gate (see 2026-07-07-ads-plan.md) -> verdict: not yet - flips at 500 visits/mo organic`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Paid ads` section - what this run decided (naming the report file) and the outcome: the verdict with its flip number, or, when the gate passes, the test spec with its kill date as the pending review. Example: `- 2026-07-07 · /gtm ads · ads readiness gate (see 2026-07-07-ads-plan.md) -> verdict: not yet - flips at 500 visits/mo organic`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 

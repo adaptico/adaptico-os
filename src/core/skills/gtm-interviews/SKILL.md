@@ -1,7 +1,7 @@
 ---
 name: gtm-interviews
-version: 1.1.1
-description: Customer-conversation engine for /gtm interviews <target>. Two jobs in one command - generate a customer-discovery interview kit (who to talk to, where to find them, questions that surface real past behavior instead of compliments, a per-conversation capture sheet), and synthesize the founder's transcripts or notes into validated pains, verbatim customer quotes, segments, and switching triggers, written back into PROFILE.md so positioning, copy, and outreach start from real customer language. Use when the user wants to talk to users or customers, validate a problem or an idea, prepare for user interviews, or make sense of interview notes. Also trigger for "customer interviews", "user interviews", "talk to customers", "customer discovery", "validate my idea", "interview questions", "discovery questions", "synthesize my interview notes", or "what did my customers actually say".
+version: 1.1.3
+description: Customer-conversation engine for /gtm interviews <target>. Two jobs in one command - generate a customer-discovery interview kit (who to talk to, where to find them, questions that surface real past behavior instead of compliments, a per-conversation capture sheet), and synthesize the founder's transcripts or notes into validated pains, verbatim customer quotes, segments, and switching triggers, written back into PROFILE.md so positioning, copy, outreach, pitch, and vs start from real customer language. Use when the user wants to talk to users or customers, validate a problem or an idea, prepare for user interviews, or make sense of interview notes. Also trigger for "customer interviews", "user interviews", "talk to customers", "customer discovery", "validate my idea", "interview questions", "discovery questions", "synthesize my interview notes", or "what did my customers actually say".
 ---
 
 # Customer Interviews - Kit & Synthesis
@@ -235,7 +235,7 @@ and the value - the raw material for copy, positioning, and outreach]
 
 ## What to do with this
 [3-5 moves: profile updates below, which commands to re-run on the new language
-(/gtm position, /gtm copy, /gtm outreach), what the next round of interviews should probe]
+(/gtm position, /gtm copy, /gtm outreach, /gtm pitch, /gtm vs), what the next round of interviews should probe]
 ```
 
 ---
@@ -262,7 +262,7 @@ On yes, edit surgically:
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Kit mode example: `- 2026-07-07 · /gtm interviews · interview kit saved (see 2026-07-07-interview-kit.md) -> pending - synthesis after interviews`. Synthesis mode example: `- 2026-07-07 · /gtm interviews · synthesized 9 interviews into Customer Evidence (see 2026-07-07-interview-synthesis.md) -> 6 validated pains, 3 switching triggers`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Kit mode example: `- 2026-07-07 · /gtm interviews · interview kit saved (see 2026-07-07-interview-kit.md) -> pending - synthesis after interviews`. Synthesis mode example: `- 2026-07-07 · /gtm interviews · synthesized 9 interviews into Customer Evidence (see 2026-07-07-interview-synthesis.md) -> 6 validated pains, 3 switching triggers`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 

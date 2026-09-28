@@ -1,6 +1,6 @@
 ---
 name: gtm-social
-version: 2.1.2
+version: 2.1.3
 description: Listening-first founder-led social for /gtm social <target> - finds the live Reddit, Hacker News, LinkedIn, and X threads where the ICP is talking right now, triages them by fit and recency, drafts targeted replies in the founder's voice - and only then builds a lean X/LinkedIn posting calendar sized to the audience the founder actually has. Use when the user wants a social plan, founder-led distribution, help finding where to engage, or what to post. Also trigger for "social listening", "find the threads", "who's talking about", "where should I engage", "content calendar", "what should I post", "social media plan", "founder content", or "LinkedIn/X posts".
 ---
 
@@ -11,7 +11,6 @@ description: Listening-first founder-led social for /gtm social <target> - finds
 > Stage-fit (`social`): Tier 1 Too early · Tier 2 Useful · Tier 3 Useful. If the founder's tier
 > (from PROFILE.md) makes this Too early or Avoid, prepend this note verbatim:
 > "With no audience yet, a posting calendar mostly goes unseen - so don't over-invest in it. Post occasionally, and put the real effort into participating in the conversations where your buyers already are, rather than scheduling posts for an audience that isn't there yet."
-> Then generate the work anyway - never refuse.
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
@@ -303,7 +302,7 @@ Full plan:   [save path]
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Social` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm social · triaged live threads + drafted replies, lean calendar (see 2026-07-07-social-calendar.md) -> pending - weekly engagement line`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Social` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm social · triaged live threads + drafted replies, lean calendar (see 2026-07-07-social-calendar.md) -> pending - weekly engagement line`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: gtm-leadmagnet
-version: 1.1.2
+version: 1.1.3
 description: Lead magnet design for /gtm leadmagnet <target> - designs the one email-capture asset that turns a channel's traffic into an owned list - picks the format by the ICP's sharpest pain (checklist, template, tool, or teardown), writes the hook and outline, designs the delivery and capture flow, and ends with a validation checklist the founder passes before building anything. Use when the user wants a lead magnet, gated content, or a way to grow an email list from the traffic they already have. Also trigger for "lead magnet", "email capture", "grow my list", "gated content", "free checklist", "free template", "opt-in offer", "downloadable", or "what should I offer to get emails".
 ---
 
@@ -11,7 +11,6 @@ description: Lead magnet design for /gtm leadmagnet <target> - designs the one e
 > Stage-fit (`leadmagnet`): Tier 1 Too early · Tier 2 Useful · Tier 3 Core. If the founder's tier
 > (from PROFILE.md) makes this Too early or Avoid, prepend this note verbatim:
 > "A lead magnet captures an audience you don't have yet. Building one now pulls you off the real job - direct conversations with potential users. It earns its place once a channel is sending you traffic worth capturing."
-> Then generate the work anyway - never refuse.
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
@@ -182,7 +181,7 @@ Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) 
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm leadmagnet · designed email-capture asset <format> (see 2026-07-07-leadmagnet.md) -> pending - capture-rate review 2026-08-04`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm leadmagnet · designed email-capture asset <format> (see 2026-07-07-leadmagnet.md) -> pending - capture-rate review 2026-08-04`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 

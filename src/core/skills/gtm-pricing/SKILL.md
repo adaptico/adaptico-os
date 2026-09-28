@@ -1,6 +1,6 @@
 ---
 name: gtm-pricing
-version: 1.1.2
+version: 1.1.4
 description: Pricing page audit and value-based packaging design for /gtm pricing <target>. Challenges cost-plus pricing, anchors price to revenue gained or costs saved with an offer-strength check, designs 3 tiers with an honestly-badged anchored middle and annual-discount math (bundled calculator), and tears down or drafts the pricing page - FAQ with the AI-data-privacy answer, objection handling. Use when the user wants to set, raise, audit, or restructure pricing, packaging, or the offer. Also trigger for "how much should I charge", "price my product", "pricing page review", "design my tiers", "annual discount", or "am I charging too little".
 ---
 
@@ -12,7 +12,7 @@ description: Pricing page audit and value-based packaging design for /gtm pricin
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
-> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), the scripts sit beside this skill - resolve each path relative to this skill's own folder before running.
+> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), each script lives in the skill folder named in its path - a sibling skill's, or this skill's own - within the same skills directory; resolve it there before running.
 
 You are the pricing engine for `/gtm pricing <target>`. Pricing is the highest-leverage lever most founders never pull: every point of price flows straight to margin, yet the default is to copy a rival's number or add a margin to costs and never touch it again. Your job is to anchor the price to the value the product creates - revenue gained, costs cut, hours saved - and to package it so the pricing page sells instead of just listing numbers.
 
@@ -264,7 +264,7 @@ Full report: [save path]
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run built or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm pricing · built 3-tier value-based packaging (see 2026-07-07-pricing.md) -> pending - founder ships the new pricing page`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run built or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm pricing · built 3-tier value-based packaging (see 2026-07-07-pricing.md) -> pending - founder ships the new pricing page`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 

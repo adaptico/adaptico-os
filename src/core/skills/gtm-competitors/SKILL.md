@@ -1,6 +1,6 @@
 ---
 name: gtm-competitors
-version: 1.3.2
+version: 1.3.4
 description: Competitive intelligence for /gtm competitors <target>. Use when the user wants to identify competitors, analyze rival marketing and positioning, or find differentiation gaps and steal-worthy tactics. Also trigger for "who are my competitors", "analyze my competition", "competitive analysis", "how do rivals market", or "where can we differentiate".
 ---
 
@@ -12,7 +12,7 @@ description: Competitive intelligence for /gtm competitors <target>. Use when th
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
-> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), the scripts sit beside this skill - resolve each path relative to this skill's own folder before running.
+> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), each script lives in the skill folder named in its path - a sibling skill's, or this skill's own - within the same skills directory; resolve it there before running.
 
 You are the competitive intelligence engine for `/gtm competitors <target>`. You identify competitors, analyze their marketing strategies, and produce a comprehensive comparison report that reveals positioning gaps, steal-worthy tactics, and differentiation opportunities. Output is structured for both strategic decision-making and project presentations.
 
@@ -342,27 +342,12 @@ For each viable differentiation angle, provide:
 
 ### 4.3 Alternative Page Strategy
 
-Recommend creating "[Competitor] Alternative" pages:
+From this analysis, name which rivals warrant a comparison or "alternatives" page on the target's own site - the ones buyers actively weigh the target against, where the search intent ("[competitor] alternative", "[target] vs [competitor]") is bottom-of-funnel and converts. This is a scoping call, not a page draft - for each rival worth a page, note:
 
-**For each major competitor, outline:**
-```
-PAGE: [Target Brand] vs [Competitor Name]
-URL: /vs/[competitor-name] or /alternatives/[competitor-name]
+- **Rival and format** - the competitor the page targets, and the shape that fits: a single "[rival] alternative" page, a head-to-head "[target] vs [rival]", or a category "best [X] alternatives" list.
+- **The honest hook** - the real reason a best-fit buyer picks the target over this rival, and where the rival is genuinely the better call (a comparison page only converts if it credits that).
 
-Headline: "Looking for a [Competitor] alternative? Here's why [X] teams chose [Target] instead."
-
-Sections:
-  1. Quick comparison table (features, pricing, ratings)
-  2. Where [Target] wins (3-4 advantages with evidence)
-  3. Where [Competitor] wins (honest, builds trust)
-  4. Who [Target] is best for (ideal customer profile)
-  5. Customer switching stories (testimonials from switchers)
-  6. Migration guide or switching offer
-  7. FAQ about switching
-  8. CTA: "Try [Target] free" or "See how [Target] compares"
-```
-
-**SEO value:** These pages target high-intent search queries like "[competitor] alternatives" and "[target] vs [competitor]" which are bottom-of-funnel searches.
+Hand this rival shortlist to `/gtm vs`, which owns the comparison-page build: the four page formats with their URL slugs and target keywords, the competitor-claims fact-check gate (every rival claim sourced and dated), and the conversion framing. Scope the pages here; build them there - don't draft the full page in this report.
 
 ### 4.4 Switching Narrative Development
 
@@ -601,7 +586,7 @@ Touch only the fields you offered above; the competitor list is handled in the s
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm competitors · mapped 6 rivals, wrote AI-researched list to PROFILE.md (see 2026-07-07-competitor-report.md) -> 3 differentiation gaps found`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm competitors · mapped 6 rivals, wrote AI-researched list to PROFILE.md (see 2026-07-07-competitor-report.md) -> 3 differentiation gaps found`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 
@@ -610,4 +595,4 @@ After the report is saved, append one line for this run to the project's `LOG.md
 - Check `PROFILE.md` for user-added competitors and the target's own context before starting discovery (Phase 0)
 - After analysis, offer to write the competitor list and key findings back to PROFILE.md (`### AI-Researched Competitors`, plus `Differentiator` and audience fields)
 - If a marketing audit report exists in the project folder, reference competitive positioning scores from it
-- Suggest follow-up: `/gtm position` for positioning strategy, `/gtm copy` for differentiated messaging
+- Suggest follow-up: `/gtm position` for positioning strategy, `/gtm vs` to build the comparison/alternatives pages this analysis scopes (§4.3), `/gtm pitch` to arm a sales conversation with a battlecard against a named rival, `/gtm copy` for differentiated messaging

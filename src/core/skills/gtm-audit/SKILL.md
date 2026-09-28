@@ -1,6 +1,6 @@
 ---
 name: gtm-audit
-version: 2.2.3
+version: 2.2.5
 description: Full go-to-market marketing audit for /gtm audit <target>. Runs up to 5 parallel audit subagents with machine-validated outputs and produces a scored, date-stamped report that leads with what changed since the last audit - and never invents a number. Use when the user wants a full marketing/GTM audit, an overall website marketing review, or a composite GTM score. Also trigger for "audit my site", "review my marketing", "how's my GTM", "full marketing teardown", or "score my website".
 ---
 
@@ -12,7 +12,7 @@ description: Full go-to-market marketing audit for /gtm audit <target>. Runs up 
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
-> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), the scripts sit beside this skill - resolve each path relative to this skill's own folder before running.
+> **Bundled scripts:** the `node .claude/skills/...` commands below assume the per-project copy path. When that path doesn't exist (a plugin install, or another agent's skills directory), each script lives in the skill folder named in its path - a sibling skill's, or this skill's own - within the same skills directory; resolve it there before running.
 
 You are the full marketing audit engine for `/gtm audit <target>`. You launch the audit subagents whose signals exist on this site, validate their outputs, and produce a unified, date-stamped report (`YYYY-MM-DD-gtm-audit.md`). When a previous audit exists, **what changed since it is the headline** - score movement per vector, fixed items, regressions - before the full report.
 
@@ -494,7 +494,7 @@ Keep it exactly that simple - no other channels, no extra payload.
 
 ## Log the Run, Then the Closing Check-in (after the report is saved)
 
-**Log the run first.** Append the audit's own line to the project's `LOG.md` (fixed format, under its Strategy & positioning section): the report filename and the concrete result - composite score, grade, and the delta since the baseline when one exists (e.g. `ran full audit (see 2026-07-07-gtm-audit.md) -> GTM score 72/100 (B), up from 68`). A partial composite is logged as partial. This line is what makes the next run's delta and the advisor's memory work; skip it only on a one-off run with no project folder.
+**Log the run first.** Append the audit's own line to the project's `LOG.md` (in the log's fixed format, under its `## Strategy & positioning` section): the report filename and the concrete result - composite score, grade, and the delta since the baseline when one exists (e.g. `- 2026-07-07 · /gtm audit · ran full audit (see 2026-07-07-gtm-audit.md) -> GTM score 72/100 (B), up from 68`). A partial composite is logged as partial. This line is what makes the next run's delta and the advisor's memory work; skip it only on a one-off run with no project folder. If the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Echo that line to the terminal prefixed `Logged:` when you write it, so the write-back is visible before the check-in below.
 
 **Then the check-in.** The report is already complete and saved before this - nothing waits on an answer. As the very last line of the run, ask once, lightly:
 

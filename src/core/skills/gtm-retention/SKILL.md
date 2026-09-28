@@ -1,6 +1,6 @@
 ---
 name: gtm-retention
-version: 1.1.1
+version: 1.1.2
 description: Activation and early-churn diagnosis for /gtm retention <target> - maps signup to first value, commits the founder to ONE activation metric, prioritizes first-90-days fixes over late-stage retention tricks, and designs the churn defenses (cancel flow, save offers, failed-payment recovery posture). Use when the user wants to reduce churn, fix trial retention or activation, or design a cancel flow. Also trigger for "users churn", "trials go dead", "nobody comes back", "cancel flow", "save offer", "stop churn", "failed payments", "keep users", or "retention plan".
 ---
 
@@ -11,7 +11,6 @@ description: Activation and early-churn diagnosis for /gtm retention <target> - 
 > Stage-fit (`retention`): Tier 1 Too early · Tier 2 Useful · Tier 3 Core. If the founder's tier
 > (from PROFILE.md) makes this Too early or Avoid, prepend this note verbatim:
 > "There's almost nothing to retain yet, and early churn is a PMF signal, not a leak to plug. Cancel-flows and save-offers pay off once you have a paying base - for now, keep your first users by talking to them, not by automating win-backs."
-> Then generate the work anyway - never refuse.
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
@@ -335,7 +334,7 @@ Full diagnosis saved to: YYYY-MM-DD-retention.md
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run committed or designed (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm retention · set the activation metric + cancel-flow mechanics (see 2026-07-07-retention.md) -> activation metric committed, pending - 90-day read`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run committed or designed (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm retention · set the activation metric + cancel-flow mechanics (see 2026-07-07-retention.md) -> activation metric committed, pending - 90-day read`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 

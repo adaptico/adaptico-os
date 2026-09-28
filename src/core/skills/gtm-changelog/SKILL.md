@@ -1,6 +1,6 @@
 ---
 name: gtm-changelog
-version: 1.1.2
+version: 1.1.3
 description: Build-in-public content from real shipped work for /gtm changelog <target>. Reads the founder's git log, CHANGELOG, and project LOG.md, finds the story in what actually shipped, and produces three assets - user-facing ship notes, an X thread, and a LinkedIn post - framing the engineering decisions as narrative, never inflating a fix into a rewrite. Every claim traces to a real commit or changelog entry. Use when the user wants to share what they shipped, write a changelog post, or turn recent commits into content. Also trigger for "what did I ship this week", "build in public post", "write my release notes", "ship notes", "turn my commits into a post", or "changelog content".
 ---
 
@@ -160,7 +160,7 @@ Full pack:  [save path]
 
 ## Log the Run
 
-After the pack is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Social` section - what this run produced (naming the pack file) and the outcome: a concrete result, or `pending` with a review date when it lands after posting. Example: `- 2026-07-07 · /gtm changelog · ship notes + X thread + LinkedIn post from git log (see 2026-07-07-changelog-post.md) -> pending - reception after posting`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the pack is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Social` section - what this run produced (naming the pack file) and the outcome: a concrete result, or `pending` with a review date when it lands after posting. Example: `- 2026-07-07 · /gtm changelog · ship notes + X thread + LinkedIn post from git log (see 2026-07-07-changelog-post.md) -> pending - reception after posting`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 

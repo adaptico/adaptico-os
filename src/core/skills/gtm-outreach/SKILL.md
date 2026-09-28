@@ -1,6 +1,6 @@
 ---
 name: gtm-outreach
-version: 1.2.1
+version: 1.2.3
 description: Cold outbound sequences for /gtm outreach <target> - multi-touch, value-first cold email and LinkedIn DM sequences for founder-led manual outreach to land the first customers. Use when the user wants cold outreach, outbound, cold email, LinkedIn DMs, prospecting messages, or founder-led sales scripts. Also trigger for "write cold emails", "outbound sequence", "LinkedIn outreach", "how do I reach prospects", "cold DM", or "founder sales script".
 ---
 
@@ -237,7 +237,7 @@ Full sequences saved to: YYYY-MM-DD-outreach-sequences.md
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Outreach` section - what this run produced (naming the report file) and the outcome: a concrete result, or `pending` with a review date when replies land later. Example: `- 2026-07-07 · /gtm outreach · cold email + LinkedIn sequences for [segment] (see 2026-07-07-outreach-sequences.md) -> pending - replies after send`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Outreach` section - what this run produced (naming the report file) and the outcome: a concrete result, or `pending` with a review date when replies land later. Example: `- 2026-07-07 · /gtm outreach · cold email + LinkedIn sequences for [segment] (see 2026-07-07-outreach-sequences.md) -> pending - replies after send`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ## Cross-Skill Integration
 
@@ -245,4 +245,5 @@ After the report is saved, append one line for this run to the project's `LOG.md
 - If `brand-voice.md` exists (the voice guide `/gtm brand` maintains at the project root), every message writes inside it, so outreach sounds like the same person as the site
 - If a `/gtm position` or `/gtm competitors` report is in the folder, lead the message with that differentiator and angle
 - Pairs with `/gtm emails` (lifecycle): outreach starts the conversation; `emails` takes over once a prospect signs up
+- Once outreach books the conversation, `/gtm pitch` arms it - the one-pager, objection doc, demo script, and battlecard for that specific call
 - Suggest `/gtm position` first if the differentiator is fuzzy - a sharp angle is what makes a cold message land

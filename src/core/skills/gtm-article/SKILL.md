@@ -1,6 +1,6 @@
 ---
 name: gtm-article
-version: 1.1.1
+version: 1.1.2
 description: One research-first, long-form article for /gtm article <target>. Produces a single piece properly - research before any outline, one ownable thesis the founder can defend, an originality floor that rejects me-too angles, every factual claim cited or explicitly marked as opinion, then the humanize and critic passes before the piece saves. Built for durable topical authority and AI-answer citability, not content-mill volume. Use when the user wants to write a blog post, article, guide, or long-form piece. Also trigger for "write an article", "write a blog post", "long-form content", "write a guide about", "draft a post on", or "thought leadership piece".
 ---
 
@@ -11,7 +11,6 @@ description: One research-first, long-form article for /gtm article <target>. Pr
 > Stage-fit (`article`): Tier 1 Too early · Tier 2 Useful · Tier 3 Core. If the founder's tier
 > (from PROFILE.md) makes this Too early or Avoid, prepend this note verbatim:
 > "One deep article runs on the same slow clock as a content engine - little payoff until you have authority and a settled ICP. Worth it once content is a channel you're deliberately testing, not before."
-> Then generate the work anyway - never refuse.
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
@@ -197,7 +196,7 @@ Full piece:   [save path]
 
 ## Log the Run
 
-After the piece is saved (both passes done), append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm article · wrote long-form piece on <thesis> (see 2026-07-07-article.md) -> originality 6/7, pending - publish + indexing`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the piece is saved (both passes done), append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm article · wrote long-form piece on <thesis> (see 2026-07-07-article.md) -> originality 6/7, pending - publish + indexing`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 

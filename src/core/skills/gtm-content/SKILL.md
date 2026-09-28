@@ -1,6 +1,6 @@
 ---
 name: gtm-content
-version: 1.1.1
+version: 1.1.2
 description: Content engine strategy for /gtm content <target>. Builds the editorial plan around the buyers' jobs-to-be-done - 3-5 content pillars derived from the project's positioning, a pillar-and-cluster topic map, a publishing cadence sized to the founder's real weekly hours, and the repurposing system that turns each finished piece into a week of distribution. Strategy only - the writing happens in /gtm article and the atomizing in /gtm repurpose. Use when the user wants a content strategy, an editorial plan, or to decide what to write about and how often. Also trigger for "content strategy", "content plan", "editorial plan", "content engine", "what should I blog about", "topic map", "content pillars", or "should I start a blog".
 ---
 
@@ -11,7 +11,6 @@ description: Content engine strategy for /gtm content <target>. Builds the edito
 > Stage-fit (`content`): Tier 1 Too early · Tier 2 Useful · Tier 3 Core. If the founder's tier
 > (from PROFILE.md) makes this Too early or Avoid, prepend this note verbatim:
 > "Content is a slow, compounding bet - months before it pays, and your ICP will likely move before it does. Pre-PMF that's runway spent writing for a buyer who may not be yours by the time it ranks. Prove positioning first; then content becomes a top channel."
-> Then generate the work anyway - never refuse.
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
@@ -205,7 +204,7 @@ Full plan:    [save path]
 
 ## Log the Run
 
-After the plan is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm content · content engine plan, 4 pillars + cluster map (see 2026-07-07-content-plan.md) -> pending - 90-day review 2026-10-05`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the plan is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm content · content engine plan, 4 pillars + cluster map (see 2026-07-07-content-plan.md) -> pending - 90-day review 2026-10-05`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 

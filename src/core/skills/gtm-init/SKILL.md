@@ -1,6 +1,6 @@
 ---
 name: gtm-init
-version: 2.1.1
+version: 2.1.3
 description: Set up or update the project profile (PROFILE.md) that the rest of Adaptico OS uses as context, for /gtm init [name]. Runs a founder-friendly intake - stage diagnostic, ICP and goal, what customers would use instead (competitive alternatives, not just competitor names), why the last customers came looking, what's already been tried - and points existing interview notes at /gtm interviews. Use when the user wants to create, set up, or edit their project profile, or onboard a new project. Also trigger for "set up my startup", "create a profile", "onboard my project", or "start a new GTM project".
 ---
 
@@ -157,7 +157,7 @@ For Links & Channels: write the documentation URL, key pages, and social profile
 
 - **New profile:** report the `PROFILE.md` path and suggest `/gtm audit` as the first command (it runs against the profile's website automatically).
 - **Update mode:** summarize what changed, then suggest the most relevant next command (e.g. if competitors were added, suggest `/gtm position`).
-- **Log the run:** append one line for this run to `projects/<name>/LOG.md` (fixed format, under Strategy & positioning) - what happened and the concrete result, e.g. `- 2026-07-07 · /gtm init · profile created, Stage set to Tier 2 -> baseline in place` or `... · profile updated (ICP, competitors filled) -> up to date`. This is in addition to the founder-attempt lines from Step 2a, which land in their own sections.
+- **Log the run:** append one line for this run to `projects/<name>/LOG.md` (fixed format, under Strategy & positioning) - what happened and the concrete result, e.g. `- 2026-07-07 · /gtm init · profile created, Stage set to Tier 2 -> baseline in place` or `... · profile updated (ICP, competitors filled) -> up to date`. This is in addition to the founder-attempt lines from Step 2a, which land in their own sections. Echo the run line to the terminal prefixed `Logged:` so the write-back is visible.
 
 ---
 
@@ -165,9 +165,9 @@ For Links & Channels: write the documentation URL, key pages, and social profile
 
 After confirming the profile, give a short, stage-aware recommendation of what to run next - based on the founder's Stage tier (from the Step 2a diagnostic), `Main goal`, and `Primary channel today`. Always begin with `/gtm audit` once a page exists - it scores the whole site, feeds every other skill, and every re-audit leads with what changed since the last one (re-audit monthly/quarterly for strategy movement; weekly only to verify shipped fixes). Then follow the tier's sequence:
 
-- **Tier 1 - Validate the Demand:** `/gtm interviews` -> `/gtm position` -> `/gtm competitors` -> `/gtm copy` -> `/gtm landing` -> `/gtm launch` -> `/gtm outreach` (fold in `/gtm audit` once a page is live; interviews first so positioning starts from customer evidence). Hold off on paid ads and SEO for now - talk to 10 potential users, protect runway, and focus on manual distribution.
-- **Tier 2 - Find a Channel:** `/gtm audit` -> `/gtm quick` -> `/gtm interviews` -> `/gtm channel` -> `/gtm landing` -> `/gtm copy` -> `/gtm funnel` -> `/gtm pricing` -> `/gtm emails` -> `/gtm outreach` - tighten what converts, find the funnel leaks, get the packaging right, and automate the lifecycle emails while you test channels to find one that reliably brings pipeline.
-- **Tier 3 - Scale the Channel:** `/gtm audit` (monthly) -> `/gtm funnel` -> `/gtm retention` -> `/gtm emails` (dunning) -> `/gtm pricing` -> `/gtm seo` -> `/gtm geo` -> `/gtm social` -> `/gtm content` -> `/gtm article` -> `/gtm repurpose` -> `/gtm leadmagnet` -> `/gtm competitors` (continuous) -> `/gtm brand` -> `/gtm ads` (retargeting) - optimize and defend the channel that already works, then document the voice as you scale.
+- **Tier 1 - Validate the Demand:** `/gtm interviews` -> `/gtm position` -> `/gtm competitors` -> `/gtm copy` -> `/gtm landing` -> `/gtm launch` -> `/gtm outreach` -> `/gtm pitch` (fold in `/gtm audit` once a page is live; interviews first so positioning starts from customer evidence; pitch arms the conversations outreach books). Hold off on paid ads and SEO for now - talk to 10 potential users, protect runway, and focus on manual distribution.
+- **Tier 2 - Find a Channel:** `/gtm audit` -> `/gtm quick` -> `/gtm interviews` -> `/gtm channel` -> `/gtm landing` -> `/gtm copy` -> `/gtm funnel` -> `/gtm pricing` -> `/gtm emails` -> `/gtm outreach` -> `/gtm pitch` - tighten what converts, find the funnel leaks, get the packaging right, and automate the lifecycle emails while you test channels to find one that reliably brings pipeline.
+- **Tier 3 - Scale the Channel:** `/gtm audit` (monthly) -> `/gtm funnel` -> `/gtm retention` -> `/gtm emails` (dunning) -> `/gtm pricing` -> `/gtm seo` -> `/gtm geo` -> `/gtm social` -> `/gtm content` -> `/gtm article` -> `/gtm repurpose` -> `/gtm leadmagnet` -> `/gtm vs` -> `/gtm competitors` (continuous) -> `/gtm brand` -> `/gtm ads` (retargeting) - optimize and defend the channel that already works, then document the voice as you scale.
 - **Tier 4-5 - Systematize Growth / Build the Organization:** any command still runs and helps whoever owns execution - the founder or an in-house marketer. It's a lightweight tool, so the real constraint here is time and bandwidth, not marketing knowledge.
 
 Keep this to a few lines - one clear next action, not a menu dump.

@@ -1,6 +1,6 @@
 ---
 name: gtm-emails
-version: 1.4.1
+version: 1.4.2
 description: Lifecycle email sequences for /gtm emails <target> - the activation onboarding and dunning (failed-payment recovery) emails a product sends its own users. Use when the user wants onboarding, activation, welcome, trial, or dunning email sequences. Also trigger for "write my onboarding emails", "welcome sequence", "activation drip", "trial onboarding emails", "dunning emails", "failed payment recovery", or "lifecycle emails".
 ---
 
@@ -11,7 +11,6 @@ description: Lifecycle email sequences for /gtm emails <target> - the activation
 > Stage-fit (`emails`): Tier 1 Too early · Tier 2 Core · Tier 3 Useful. If the founder's tier
 > (from PROFILE.md) makes this Too early or Avoid, prepend this note verbatim:
 > "There's no lifecycle to automate yet. Onboarding, activation, and dunning sequences pay off once signups are flowing - revisit once you have traffic and trials."
-> Then generate the work anyway - never refuse.
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
@@ -332,7 +331,7 @@ Full sequences saved to: YYYY-MM-DD-email-sequences.md
 
 ## Log the Run
 
-After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Email & lifecycle` section - what this run produced (naming the report file) and the outcome: a concrete result, or `pending` with a review date when it lands later. Example: `- 2026-07-07 · /gtm emails · onboarding + dunning sequences (see 2026-07-07-email-sequences.md) -> pending - sequence live date`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Email & lifecycle` section - what this run produced (naming the report file) and the outcome: a concrete result, or `pending` with a review date when it lands later. Example: `- 2026-07-07 · /gtm emails · onboarding + dunning sequences (see 2026-07-07-email-sequences.md) -> pending - sequence live date`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 

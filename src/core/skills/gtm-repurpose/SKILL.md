@@ -1,6 +1,6 @@
 ---
 name: gtm-repurpose
-version: 1.1.2
+version: 1.1.3
 description: Platform-native repurposing for /gtm repurpose <target>. Takes one finished piece the founder already published or drafted - an article, a launch post, a talk - and rewrites it into variants built for each platform - an X thread, a LinkedIn post, a short-form video script outline, and a newsletter section. Each variant is rewritten for the platform's native shape, never truncated, stands alone without the original, and goes through the humanize pass; platforms the piece can't feed honestly get skipped, not filled. Use when the user wants to multiply one finished piece across platforms. Also trigger for "repurpose this", "turn this post into a thread", "atomize this article", "make social posts from my blog post", "content atomization", or "squeeze more out of this piece".
 ---
 
@@ -11,7 +11,6 @@ description: Platform-native repurposing for /gtm repurpose <target>. Takes one 
 > Stage-fit (`repurpose`): Tier 1 Too early · Tier 2 Useful · Tier 3 Core. If the founder's tier
 > (from PROFILE.md) makes this Too early or Avoid, prepend this note verbatim:
 > "Repurposing needs finished content to atomize, and there's nothing to atomize yet. This turns on once you're publishing enough that squeezing more reach out of each piece is worth the effort."
-> Then generate the work anyway - never refuse.
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
@@ -167,7 +166,7 @@ Full pack:  [save path]
 
 ## Log the Run
 
-After the pack is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm repurpose · atomized <piece> into 4 platform variants (see 2026-07-07-repurpose.md) -> pending - engagement read after posting`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first.
+After the pack is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Content & SEO` section - what this run produced or decided (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm repurpose · atomized <piece> into 4 platform variants (see 2026-07-07-repurpose.md) -> pending - engagement read after posting`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ---
 
