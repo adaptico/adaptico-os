@@ -1,6 +1,6 @@
 ---
 name: gtm
-version: 1.10.4
+version: 1.10.5
 description: Adaptico OS - the go-to-market operating system for SaaS & AI startup founders. Routes all /gtm commands (init, audit, position, competitors, launch, pitch, vs, and more) - and accepts a plain-language situation ("here's where I am / what's happening") which it answers with a recommended command sequence ending in one concrete next action. Use whenever the user types /gtm, asks what to do next on go-to-market, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
 ---
 
@@ -282,8 +282,8 @@ Many skills work together:
 - Re-running `/gtm audit` over time is the progress tracker - the dated reports form the history, and each re-audit leads with the delta since the last one. Cadence: monthly/quarterly for strategy movement, weekly only to verify shipped fixes. (For a polished compiled PDF, that's Pro `report-pdf`.)
 - `/gtm interviews` writes Customer Evidence into `PROFILE.md` - `/gtm position`, `/gtm copy`, `/gtm outreach`, `/gtm pitch`, and `/gtm vs` read it automatically when present
 - `/gtm position` sharpens the messaging that `/gtm copy` and `/gtm landing` then apply
-- `/gtm brand` writes `brand-voice.md` into the project folder - the fixed-format voice guide that `/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm pricing`, `/gtm ads`, `/gtm audit`, `/gtm geo`, `/gtm leadmagnet`, `/gtm changelog`, `/gtm content`, `/gtm article`, `/gtm repurpose`, `/gtm pitch`, `/gtm vs`, and `/gtm humanize` read automatically when present
-- The writing commands (`/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm ads`, `/gtm leadmagnet`, `/gtm article`, `/gtm repurpose`, `/gtm changelog`, `/gtm interviews`) - plus `/gtm pricing` on its page-ready copy, `/gtm pitch` on its one-pager and spoken lines, and `/gtm vs` on its page prose - end with the `/gtm humanize` closing pass by default; append `--no-humanize` to any of them to skip it
+- `/gtm brand` writes `brand-voice.md` into the project folder - the fixed-format voice guide that `/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm pricing`, `/gtm ads`, `/gtm audit`, `/gtm geo`, `/gtm leadmagnet`, `/gtm changelog`, `/gtm content`, `/gtm article`, `/gtm repurpose`, `/gtm pitch`, `/gtm vs`, `/gtm landing`, and `/gtm humanize` read automatically when present
+- The writing commands (`/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm ads`, `/gtm leadmagnet`, `/gtm article`, `/gtm repurpose`, `/gtm changelog`, `/gtm interviews`) - plus `/gtm pricing` on its page-ready copy, `/gtm pitch` on its one-pager and spoken lines, `/gtm vs` on its page prose, and `/gtm landing` on its report's shippable copy - end with the `/gtm humanize` closing pass by default; append `--no-humanize` to any of them to skip it
 - `/gtm emails` aligns its onboarding sequence to the activation leak `/gtm funnel` finds
 - `/gtm launch` pulls from positioning and competitors to build the playbook
 - Every command run against a project appends one outcome line to the project's `LOG.md` (the write-back in *Step 4 - Inject context*); `/gtm audit` and the Stage-Fit advisor read the log first, so recommendations reflect what was already tried and what happened

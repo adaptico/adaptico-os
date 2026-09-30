@@ -1,18 +1,18 @@
 {
-  "updated": "2026-09-25",
+  "updated": "2026-09-30",
   "skills": {
-    "gtm": "1.10.4",
+    "gtm": "1.10.5",
     "gtm-init": "2.1.3",
     "gtm-audit": "2.2.5",
     "gtm-critic": "1.1.4",
     "gtm-interviews": "1.1.3",
-    "gtm-position": "2.1.3",
+    "gtm-position": "2.1.4",
     "gtm-competitors": "1.3.4",
     "gtm-launch": "1.4.3",
-    "gtm-copy": "1.5.2",
+    "gtm-copy": "1.6.2",
     "gtm-copyedit": "1.1.3",
-    "gtm-humanize": "1.1.4",
-    "gtm-landing": "1.4.2",
+    "gtm-humanize": "1.1.5",
+    "gtm-landing": "1.5.3",
     "gtm-pricing": "1.1.4",
     "gtm-funnel": "1.3.3",
     "gtm-outreach": "1.2.3",
@@ -29,7 +29,7 @@
     "gtm-vs": "1.0.2",
     "gtm-seo": "2.1.4",
     "gtm-geo": "1.1.2",
-    "gtm-brand": "1.4.5",
+    "gtm-brand": "1.4.6",
     "gtm-ads": "2.1.5"
   }
 }
