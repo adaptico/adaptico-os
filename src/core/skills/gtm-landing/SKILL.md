@@ -1,6 +1,6 @@
 ---
 name: gtm-landing
-version: 1.4.2
+version: 1.5.3
 description: Landing page conversion-rate-optimization teardown for /gtm landing <target>. Use when the user wants a section-by-section CRO review of a landing or signup page with prioritized fixes. Also trigger for "optimize my landing page", "CRO review", "why isn't my page converting", "improve signups", or "landing page teardown".
 ---
 
@@ -29,6 +29,7 @@ Before fetching the page, run the orchestrator's *Project Resolution*. With a pr
 - **User-Added** and **AI-Researched competitors** - the alternatives a visitor is weighing; use them to sharpen Objection Handling (Section 5) and the comparison-with-alternatives check. Read what's already in the profile - don't run full discovery (that's `/gtm competitors`).
 - **Primary channel today** and **Existing assets** - where the page's traffic comes from; the hero is judged for message match against this source (Section 1).
 - **Tone** and **Avoid** - the voice every rewrite and A/B-test copy must honor, and the claims the page must never make.
+- **`brand-voice.md`** (project root, written by `/gtm brand`) - when present, the voice contract: the replacement hero and any rewritten copy are written inside its rules. It outranks the profile's one-line `Tone`.
 - **Project type**, **Stage**, and **Main goal** - frame the read: project type sets the expected Page Type and benchmark (Step 1), and the goal is the conversion the teardown optimizes toward.
 - Then read any `YYYY-MM-DD-positioning.md`, `YYYY-MM-DD-competitor-report.md`, or `YYYY-MM-DD-gtm-audit.md` in the folder for detail.
 
@@ -69,7 +70,14 @@ Analyze each section in order. Score each section 1-10 and provide specific find
 #### Section 1: Hero Section (Weight: 25%)
 The first screen a visitor sees. This is where 80% of conversion decisions begin.
 
-**Message match comes first:** a hero converts relative to its traffic source. If visitors arrive from a specific ad, an HN/PH/X launch post, or a docs link (`Primary channel today` from Phase 0), the headline must mirror that promise - a broken scent trail between source and page is the most common, highest-yield miss, and a generic homepage used as a launch landing page is the classic example.
+**Message match comes first:** a hero converts relative to its traffic source. If visitors arrive from a specific ad, an HN/PH/X launch post, or a docs link (`Primary channel today` from Phase 0), the headline must mirror that promise - a broken scent trail between source and page is the most common, highest-yield miss, and a generic homepage used as a launch landing page is the classic example. Give it an explicit verdict against the Phase 0 source: **Match** (the hero echoes the source's promise and its words), **Partial** (same topic, different words - the visitor has to translate), or **Break** (the hero answers a different question than the click asked). On Partial or Break, the fix is a source-matched hero rewrite, and it outranks every other hero fix. Match the promise and intent, not just the keywords.
+
+**The hero rubric (grade this before anything else).** The hero earns the scroll only if a first-time visitor can answer three questions from the first screen alone. Grade each Pass / Partial / Fail:
+- **What is it?** The product category and what it does, in plain words - not a slogan. ("Error tracking for Rails apps", not "Ship with confidence.")
+- **Who is it for?** A named reader can tell in one line that this is for them, not for everyone. A hero aimed at everyone lands with no one.
+- **Why care / why this?** One concrete reason to keep reading instead of leaving - the payoff, and what makes it better than the alternative they'd otherwise reach for.
+
+Any **Fail**, or two or more **Partial**, means the hero is failing its one job. Write a replacement hero - headline + subhead - that answers all three in the Phase 0 voice source (`brand-voice.md`, or the profile's `Tone`), and lead the teardown with it. This is the single highest-leverage fix on the page. If message match also failed, it is one rewrite, not two: mirror the source's promise and answer the three questions in it.
 
 **Checklist:**
 - [ ] Message match: headline mirrors the promise of wherever the traffic comes from (ad, launch post, docs link) - no scent break between source and page
@@ -148,6 +156,8 @@ How the page presents what the product/service includes.
 Bad: "AI-powered analytics dashboard"
 Good: "See exactly which campaigns drive revenue -- AI analyzes your data so you don't have to"
 
+**The developer-page tell:** pages built by technical founders over-index on what was hard to build - the stack, the architecture, feature minutiae - and bury what the buyer gets. Naming the stack is proof material for a technical ICP, not a value proposition. When the teardown finds spec-first feature sections, rewrite the 2-3 worst mini-headlines inline (before/after, spec to outcome) and route the full sections to `/gtm copy`.
+
 #### Section 5: Objection Handling (Weight: 10%)
 How the page addresses reasons a visitor might NOT convert.
 
@@ -199,6 +209,15 @@ The bottom of the page and supporting elements.
 - [ ] Copyright and legal information present
 - [ ] Social media links (only if they support conversion, not distract)
 
+#### Placement Scan: CTA + Social Proof (cross-section)
+The seven sections above judge whether the CTA and the proof are good; this pass judges whether they are in the right place. Walk the page top to bottom and mark exact inject-here points, keyed to the real sections you found:
+
+- **CTA cadence.** A visitor should never scroll more than ~1.5 screens without the primary action in view. Mark every stretch that goes cold - after the hero, after each value beat, beside the pricing or plan block, at the page foot - and name the section each repeat CTA belongs in ("repeat the primary CTA directly under the three-benefits row").
+- **Proof beside the ask.** Every CTA wants a proof cue within a glance - a metric, a logo row, a one-line testimonial. Flag each CTA that stands alone and say what to move next to it.
+- **Proof beside the claim it backs.** Match each load-bearing claim to its evidence and sit them together: the headline metric wants its stat alongside, the "secure" claim wants the badge, the ROI promise wants the testimonial that names a number. Flag bold claims floating with no evidence in view.
+
+Output an ordered inject-here list ("Inject a one-line testimonial beside the hero CTA", "Repeat the CTA under the pricing table") - specific to this page's sections, not generic advice.
+
 ### Step 3: Copy Scoring
 Score the overall page copy on 5 dimensions (1-10 each):
 
@@ -210,8 +229,16 @@ Score the overall page copy on 5 dimensions (1-10 each):
 
 Calculate the Copy Score: average of all 5 dimensions, multiplied by 10 for a score out of 100.
 
-### Step 4: Form Optimization Audit
-If the page has a form, evaluate:
+### Step 4: Signup-Flow Craft (field-level)
+The signup form is where intent turns into an account, and it leaks more than any other element. Work it at the field level, not just "shorten the form."
+
+**Field-by-field friction scan.** For every field, ask one question: is this needed to reach first value, or can it be deferred, inferred, or dropped? Each field is a reason to abandon, but count matters less than necessity - the test for a field on the signup screen is that the product cannot deliver first value without it. Company size, phone, "how did you hear about us" move to after activation or an enrichment step.
+
+**Single-step vs multi-step.** Few fields and a low-effort ask (email + password, or SSO) - keep it one step; a second page just adds a click. Many fields, or a higher-effort ask - break it into steps with a visible progress indicator and put the easiest field first, so the visitor is already moving before the effort shows. Never paginate a form that fits on one short screen. (This is a fit-to-context judgment call - length, complexity, intent - not a default that multi-step always wins.)
+
+**Progressive commitment.** Ask for the smallest commitment that unblocks the next step, then escalate only after the visitor has felt value. Email or SSO first; profile details, team invites, and billing after the aha, not before it. Where the model allows, don't ask for a card before first value - a no-card trial gets far more signups into the product; a card-required trial filters hard for intent (fewer signups, higher trial-to-paid), which is a deliberate trade, not a default.
+
+Then check the mechanics of whatever fields remain:
 
 | Element | Best Practice |
 |---|---|
@@ -276,7 +303,7 @@ Format each test as a hypothesis:
 10. Adding a chatbot or live chat widget
 
 ### Step 8: Heat Map Interpretation Guidance
-Even without actual heat map data, provide guidance on:
+Even without actual heat map data, provide guidance on the following - as hypotheses about where to look, never as observed behavior (label them so, and invent no data):
 
 - **Expected attention zones** based on page layout
 - **F-pattern vs Z-pattern** reading based on content density
@@ -299,7 +326,7 @@ Write the report to the resolved output path as `YYYY-MM-DD-landing-cro.md` (see
 ## Overall CRO Score: [X/100]
 
 ## Page Type: [identified type]
-## Current Estimated Conversion Rate: [estimate based on findings]
+## Current Estimated Conversion Rate: [a hedged range off the Step 1 page-type benchmark, nudged by the findings - a heuristic read, not a measured number; label it as such]
 ## Target Conversion Rate: [realistic improvement target]
 
 ---
@@ -307,11 +334,12 @@ Write the report to the resolved output path as `YYYY-MM-DD-landing-cro.md` (see
 ## Section-by-Section Analysis
 
 ### 1. Hero Section [Score: X/10]
+**Hero rubric:** What it is [Pass/Partial/Fail] · Who it's for [Pass/Partial/Fail] · Why care [Pass/Partial/Fail]  |  **Message match:** [Match/Partial/Break]
 **Findings:**
 - [specific observations]
 
 **Fixes (Priority: HIGH/MEDIUM/LOW):**
-- [specific, actionable recommendations]
+- [specific, actionable recommendations; when the rubric or message match fails, include the replacement hero - headline + subhead]
 
 [Repeat for all 7 sections]
 
@@ -328,8 +356,13 @@ Write the report to the resolved output path as `YYYY-MM-DD-landing-cro.md` (see
 
 ---
 
-## Form Audit
-[findings and recommendations]
+## CTA + Social-Proof Placement
+[ordered inject-here list: where to repeat the CTA, where to move proof beside the ask and beside the claim it backs]
+
+---
+
+## Signup-Flow Audit
+[field-by-field friction scan, single- vs multi-step verdict, progressive-commitment findings, and the form-mechanics table findings]
 
 ---
 
@@ -362,6 +395,10 @@ Write the report to the resolved output path as `YYYY-MM-DD-landing-cro.md` (see
 [Text-based wireframe descriptions of current vs recommended layout]
 ```
 
+## Humanize Closing Pass (default)
+
+Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on the shippable copy in the report only - the replacement hero, rewritten headlines and CTA text, and the copy inside A/B test hypotheses; the pass strips machine tells and enforces the voice source from Phase 0 (`brand-voice.md`, or the profile's `Tone`). Leave the teardown itself untouched - scores, findings, checklists, and quoted page copy are evidence, not copy to ship. Report the pass in one line; skip it entirely when the founder appends `--no-humanize` to the command.
+
 ## Optional Critic Pass
 
 If the founder asked for a red-teamed or critiqued teardown, run the `gtm-critic` review protocol (`../gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
@@ -377,3 +414,10 @@ After the report is saved, append one line for this run to the project's `LOG.md
 - Reference industry benchmarks so the founder/team understands where they stand.
 - If you have access to the page via browser tools, take screenshots and reference specific elements.
 - If the user has run `/gtm audit` previously, incorporate those findings into the CRO analysis for a more complete picture.
+
+## Related Commands
+
+- `/gtm copy` - rewrites the page's copy line by line; run it when the teardown flags more than the hero.
+- `/gtm funnel` - traces what happens after the click, from signup to first value; this teardown stops at the form.
+- `/gtm position` - sharpens the differentiator and key messages the hero should lead with.
+- `/gtm audit` - the full-site composite score; this teardown goes deeper on one page.
