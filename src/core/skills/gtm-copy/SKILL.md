@@ -1,6 +1,6 @@
 ---
 name: gtm-copy
-version: 1.5.2
+version: 1.6.2
 description: Website copy analysis and rewriting for /gtm copy <target>. Use when the user wants to score existing copy and get optimized before/after rewrites for headlines, value props, CTAs, or body copy. Also trigger for "improve my copy", "rewrite my headline", "is my copy good", "better value prop", or "punch up this page".
 ---
 
@@ -103,9 +103,9 @@ Evaluate the primary headline against these criteria:
 - **Differentiation (0-10):** Does it set this business apart from competitors?
 - **Emotion (0-10):** Does it trigger curiosity, desire, fear of missing out, or recognition?
 
-### 2.2 Headline Formulas
+### 2.2 Copywriting Formula Reference
 
-Use these proven frameworks to generate alternative headlines:
+These proven frameworks generate alternative headlines and back every rewrite in Phase 3 - each before/after names the formula it applies, so the recommendation reads as craft, not taste. Use the four templates below for headlines and openers, and the reference table beneath them for body, feature, and CTA copy:
 
 **PAS (Problem-Agitate-Solve):**
 ```
@@ -141,7 +141,18 @@ Urgent: [Why act now?]
 Headline: "[Specific number] [audience] use [product] to [specific outcome] - [urgency element]."
 ```
 
-Generate 5-10 headline alternatives using these frameworks.
+Generate 10 headline alternatives using these frameworks.
+
+Beyond the four headline templates above, these back body, feature, and CTA rewrites. Every before/after in Phase 3 names the one it applies:
+
+| Formula | Shape | Best for |
+|---------|-------|----------|
+| **FAB** (Feature - Advantage - Benefit) | Name the feature, what it does, then the outcome the reader gets | Turning a feature list into benefit copy |
+| **PASTOR** (Problem - Amplify - Story/Solution - Transformation - Offer - Response) | A persuasion arc from pain, through proof, to the ask | Body sections, long landing pages, About |
+| **Rule of One** (one reader, one idea, one promise, one CTA) | Each block does one job for one person | Cutting a page that tries to say five things at once |
+| **4 Cs** (Clear, Concise, Compelling, Credible) | A line-level pass, not a template | The final gut-check on any rewritten line |
+
+Feature-to-benefit is the workhorse: lead with what the reader gets, then name the feature that delivers it - "See which campaigns make money - attribution runs on your own raw event data", not "AI-powered analytics dashboard".
 
 ### 2.3 Full Copy Scoring Rubric
 
@@ -171,6 +182,28 @@ PROOF: [What evidence supports the claims?]
 ```
 
 If any element is missing or weak in the current copy, flag it.
+
+### 2.5 Per-Line Rubric: Visual / Falsifiable / Uniquely-Ours
+
+The page score (2.3) diagnoses the whole page; this rubric is the rewrite gate, applied line by line. Grade every *shippable* line - the H1, the subhead, each section headline, each CTA, and the two or three load-bearing body lines - on three dimensions, 1-5 each:
+
+| Dimension | 1 (fails) | 5 (wins) | The test |
+|-----------|-----------|----------|----------|
+| **Visual** | An abstraction the reader can't picture ("innovative solutions", "streamline your workflow") | A concrete thing they can see - a number, an object, a named outcome, a scene ("resolve a ticket in under 2 minutes") | Could the reader draw it? |
+| **Falsifiable** | A claim no one could disagree with, so it carries no information ("powerful and easy", "the best way to grow") | A claim that could be proven false, so it says something ("cuts support tickets 40%", "deploys in one command") | Could a skeptic check it and find it wrong? |
+| **Uniquely-Ours** | Category boilerplate any rival could paste onto their own page | Names the actual mechanism, proof, or edge - true of us and not of them | Does it survive the swap test below? |
+
+Line score = V + F + U, out of 15. Any line under ~10/15, or with any single dimension at 1-2, goes on the rewrite list. Record each line's score so the before/after can show the lift.
+
+**The swap test (this is how Uniquely-Ours is scored).** Take the line and put a competitor's name in as the subject - use the rivals from the profile's competitor sections (*Competitor Resolution Protocol*); with none listed, use a plausible category rival. If the line still reads as true and on-brand for them with nothing else changed, it auto-fails: cap Uniquely-Ours at 1-2 and flag the line for rewrite no matter how it scored elsewhere. A headline a competitor can wear unchanged is describing the category, not the product. The fix always runs the same direction - add the specific mechanism, proof, or outcome only this product can claim.
+
+### 2.6 Trigger Density
+
+A "trigger" is a word or detail that makes the reader feel the stakes - a specific number, a loss avoided, a curiosity gap, a named outcome, a proof cue. Copy with none reads like a spec sheet; copy that stacks them reads like hype and stops being believed.
+
+The rule is one earned trigger per line. Specificity is the strongest trigger, so a concrete number is usually the trigger itself - it needs no adjective in front of it. Stacking hype words ("revolutionary, powerful, seamless, game-changing") is the tell of copy that has nothing specific to say: each added adjective lowers believability and trips the humanize pass. Under-triggered lines fail the other way - pure feature, no stake, so the reader can't feel why it matters.
+
+Check every rewritten line: exactly one dominant trigger, earned by a concrete detail or a proof point, never by an adjective. Two or more competing triggers - cut to the strongest. Zero - add the stake, or the outcome the feature buys. The humanize closing pass owns the hype-vocabulary half of this; this check owns the "is there one real trigger, and only one" half.
 
 ---
 
@@ -258,21 +291,26 @@ Analyze every CTA on the page:
 
 ### 3.3 Before/After Examples
 
-For every recommendation, provide a concrete before/after:
+For every recommendation, provide a concrete before/after. Carry the line's rubric score (2.5) through the pair and tag the formula (2.2) the rewrite applies - the rubric delta *is* the reason the rewrite wins, so the WHY writes itself:
 
 ```
 BEFORE (Current):
   "We provide innovative solutions for businesses."
+  Rubric: Visual 1 · Falsifiable 1 · Uniquely-Ours 1  (3/15) - fails the swap test
 
 AFTER (Recommended):
-  "Cut your customer support tickets by 40% - AI-powered responses
-   that resolve issues in under 2 minutes."
+  "Cut your support tickets 40% - AI answers resolve the routine ones
+   in under 2 minutes."
+  Rubric: Visual 5 · Falsifiable 5 · Uniquely-Ours 4  (14/15)
+  Formula: PAS - names the pain (ticket volume), then the solve; the
+  agitate step drops out at headline length.
 
-WHY: The "before" is vague and generic. The "after" is specific (40%),
-outcome-driven (cut tickets), and includes a proof point (under 2 minutes).
+WHY: the before is category boilerplate a rival could paste unchanged; the
+after is checkable (40%, 2 minutes), paints a picture, and lets one earned
+trigger - the 40% - carry the line instead of an adjective.
 ```
 
-Generate at least 5 before/after pairs covering:
+Every pair carries the `Rubric:` lines and the `Formula:` tag; the WHY points at the dimension that moved. Generate at least 5 before/after pairs covering:
 1. Primary headline
 2. Subheadline
 3. Primary CTA
@@ -310,6 +348,8 @@ Copy Score: X/50 (X/100)
   Emotion:     X/10 █████░░░░░
   Action:      X/10 ████████░░
 
+Lines flagged for rewrite: N of M  (swap-test fails: K)
+
 Top 3 Copy Fixes:
   1. [fix with before/after]
   2. [fix with before/after]
@@ -337,6 +377,9 @@ Write the full report to the resolved output path as `YYYY-MM-DD-copy-suggestion
 ## Score Breakdown
 [Full scoring rubric with justifications]
 
+## Line-by-Line Rubric
+[Each shippable line scored Visual / Falsifiable / Uniquely-Ours (X/15); lines under ~10/15 or failing the swap test flagged for rewrite]
+
 ## Value Proposition Analysis
 [Value proposition canvas with gaps identified]
 
@@ -350,7 +393,7 @@ Write the full report to the resolved output path as `YYYY-MM-DD-copy-suggestion
 [Every CTA analyzed with recommendations]
 
 ## Before/After Examples
-[At least 5 before/after pairs]
+[At least 5 before/after pairs, each carrying its Rubric score delta and the Formula applied]
 
 ## Swipe File
 [All headline, subheadline, CTA, and meta alternatives]
@@ -363,7 +406,7 @@ Write the full report to the resolved output path as `YYYY-MM-DD-copy-suggestion
 
 ## Humanize Closing Pass (default)
 
-Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on the shippable copy in the report - the rewrites, before/after "after" lines, swipe file, headlines, and CTAs. Leave the analysis, scores, and quoted "before" examples untouched (they are evidence, not copy to ship). The pass strips the hard AI tells, enforces the voice source from Phase 0, and compresses; add its one-line summary to the terminal output.
+Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on the shippable copy in the report - the rewrites, before/after "after" lines, swipe file, headlines, and CTAs. Leave the analysis, scores, and quoted "before" examples untouched (they are evidence, not copy to ship). By this point every shippable line has already cleared the per-line rubric (2.5) and the one-earned-trigger check (2.6); this pass is the final voice-and-tells gate on top of that. The pass strips the hard AI tells, enforces the voice source from Phase 0, and compresses; add its one-line summary to the terminal output.
 
 Skip the pass entirely when the founder appends `--no-humanize` to the command.
 
