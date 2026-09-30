@@ -8,8 +8,9 @@ All notable changes to Adaptico OS are documented here. The format follows
 
 ### Changed
 - `/gtm landing` grades the first screen before anything else: can a stranger tell what it is, who it's for, and why to care. A hero that fails gets a replacement headline and subhead. It also flags sections that talk about how the product was built instead of what the buyer gets, marks where the signup button and the proof should repeat down the page, and goes through the signup form field by field - needed now, or can it wait.
-- `/gtm copy` scores each key line on your page: can the reader picture it, could it be proven wrong, and could a competitor have written it word for word. Lines that fail get rewritten, and each rewrite names the copywriting formula it used.
+- `/gtm copy` scores each key line on your page: can the reader picture it, could it be proven wrong, and could a competitor have written it word for word. Lines that fail get rewritten, and each rewrite shows the score before and after and names the copywriting formula it used. Every rewritten line is held to one concrete detail instead of a stack of adjectives.
 - `/gtm position` names a funded competitor already selling to a segment and counts it against that segment, since you can't outspend them on distribution.
+- `/gtm landing` gives its conversion-rate estimate as a range based on typical rates for that kind of page, instead of a single number.
 - `/gtm landing` now writes inside your project's voice guide and ends with the humanize pass, like the other writing commands.
 
 ## [0.19.0]
