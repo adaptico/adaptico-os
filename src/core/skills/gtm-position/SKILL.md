@@ -1,6 +1,6 @@
 ---
 name: gtm-position
-version: 2.1.3
+version: 2.1.4
 description: Positioning analysis for /gtm position <target>. Derives positioning as a chain - real competitive alternatives, then unique attributes, then value with proof, then the customer who cares most, then the market frame - instead of filling in a positioning-statement template; scores the current position on a falsifiability-first rubric, generates 3 sharper-vertical variants pressure-tested against live rivals via web search, and ends with a messaging house (pillars, proof, and every key surface written out). Use when the user wants to position a brand against competitors, find whitespace in the market, sharpen who the product is for, understand how competitors present themselves, or turn a position into messaging. Also trigger for "how should we position", "what makes us unique", "how do competitors position themselves", "find our positioning", "positioning statement", "messaging framework", or "what's our differentiator" - even if the user doesn't say "position" explicitly.
 ---
 
@@ -131,7 +131,7 @@ Build the positioning the way the framework demands - in order, each link from t
 
 **4. The customer who cares most.** Not everyone who could use the product - the segment for whom the value above is urgent. Describe them actionably: role, situation, and the trigger that puts them in motion (from the switching triggers in Customer Evidence when present). If the derived best-fit customer differs from the profile's ICP, surface the difference explicitly - that finding is worth more than the rest of the report.
 
-**5. The market frame.** Choose the category that makes the value obvious to that customer. Test at least two candidate frames: the obvious category (win it by being sharper), a subcategory of it (narrow the comparison set), or an adjacent category where the strengths sit at the center. For each candidate, ask: who does the buyer compare us to inside this frame, what price does the frame teach them to expect, and does the frame make our unique value the point or a footnote? Pick the one that does the most work; name what it costs (every frame invites some unflattering comparison).
+**5. The market frame.** Choose the category that makes the value obvious to that customer. Test at least two candidate frames: the obvious category (win it by being sharper), a subcategory of it (narrow the comparison set), or an adjacent category where the strengths sit at the center. For each candidate, ask: who does the buyer compare us to inside this frame, what price does the frame teach them to expect, and does the frame make our unique value the point or a footnote? Pick the one that does the most work; name what it costs (every frame invites some unflattering comparison). If a candidate frame's honest comparison set includes a funded incumbent who can outspend the founder on distribution, name them and count it against the frame - a broad frame is often just a decision to fight someone else's budget.
 
 **6. Trend - optional, and careful.** Layer a trend on top only when it is true of the product and helps the target customer get why it matters now. A trend without category clarity confuses more than it excites - the framework's own warning. Never lead with the trend; never force one.
 
@@ -139,7 +139,7 @@ Build the positioning the way the framework demands - in order, each link from t
 
 ## Step 7: Three Sharper-Vertical Variants
 
-The chain in Step 6 is the honest read of today's position. Now generate three variants, each answering: what does this positioning become if the brand commits to a narrower, better-fit customer? Sharper verticals - an industry, a role, a use-case, a company shape - not three rewordings of the same stance. Each variant must change the customer or the frame, never just the adjectives.
+The chain in Step 6 is the honest read of today's position. Now generate three variants, each answering: what does this positioning become if the brand commits to a narrower, better-fit customer? Sharper verticals - an industry, a role, a use-case, a company shape - not three rewordings of the same stance. Each variant must change the customer or the frame, never just the adjectives. Generate the variants even when the founder is attached to the broad position - staying horizontal means competing with incumbents on distribution spend, and the variants are the honest test of what narrowing would buy.
 
 For each variant, re-derive the chain compactly - narrowing the customer changes every other link:
 
@@ -150,7 +150,7 @@ For each variant, re-derive the chain compactly - narrowing the customer changes
 - **The frame:** the category label this segment shops in
 - **The line:** one sentence + a 3-7 word tagline
 - **Rubric score:** score the variant as drafted on the Step 5 rubric (label it "as drafted" - it hasn't shipped)
-- **Risk:** what makes this vertical hard to own (proof gaps, a rival with a head start, market too small)
+- **Risk:** what makes this vertical hard to own (proof gaps, a rival with a head start, market too small, an incumbent already selling to this segment with a distribution budget the founder can't match)
 - **Whitespace check:** the pressure-test result below
 
 ### Pressure-test every variant against the live market
