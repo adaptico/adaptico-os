@@ -15,6 +15,9 @@ All notable changes to Adaptico OS are documented here. The format follows
 - `/gtm init` adds `/gtm analytics` to all three stage sequences it recommends.
 - The README lists what's inside - commands, audit agents, calculators - and the named frameworks the skills use.
 
+### Fixed
+- The five audit agents now register under their own names, so `/gtm audit` launches them directly instead of working around a missing file header. Thanks to [@aviscido](https://github.com/aviscido) for the fix ([#1](https://github.com/adaptico/adaptico-os/pull/1)).
+
 ## [0.20.0]
 
 ### Changed
