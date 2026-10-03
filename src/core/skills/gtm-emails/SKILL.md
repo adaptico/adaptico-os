@@ -1,6 +1,6 @@
 ---
 name: gtm-emails
-version: 1.4.2
+version: 1.4.3
 description: Lifecycle email sequences for /gtm emails <target> - the activation onboarding and dunning (failed-payment recovery) emails a product sends its own users. Use when the user wants onboarding, activation, welcome, trial, or dunning email sequences. Also trigger for "write my onboarding emails", "welcome sequence", "activation drip", "trial onboarding emails", "dunning emails", "failed payment recovery", or "lifecycle emails".
 ---
 
@@ -342,6 +342,7 @@ After the report is saved, append one line for this run to the project's `LOG.md
 - If `brand-voice.md` exists (the voice guide `/gtm brand` maintains at the project root), match all email copy to it; fall back to a dated `*-brand-voice.md` report if only that exists
 - If a `*-funnel-analysis.md` exists, align the onboarding sequence to the activation step the funnel flags as the leak
 - If a `*-retention.md` exists (from `/gtm retention`), anchor the onboarding sequence to its committed activation metric and match the dunning sequence to its failed-payment posture (retries, grace period, pause-not-delete)
+- If a `*-analytics-setup.md` exists (from `/gtm analytics`), anchor to the same committed activation metric, and use its event spec for the activation-status branching - gating sends on the milestone only works once the product logs it
 - Suggest follow-up: `/gtm copy` to tighten the in-product and page copy these emails point to
 - Suggest follow-up: `/gtm funnel` to find the activation leak the onboarding sequence should target
 - Suggest follow-up: `/gtm retention` for the mechanics around these sequences - the activation metric, cancel flow, and save offers the emails plug into

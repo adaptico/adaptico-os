@@ -1,6 +1,6 @@
 ---
 name: gtm-funnel
-version: 1.3.3
+version: 1.3.4
 description: Funnel and activation analysis for /gtm funnel <target> - maps the public funnel (landing, pricing, signup) and works with the founder on the post-signup path to first value. Use when the user wants to find funnel drop-off/leaks or improve trial-to-paid and PLG activation. Also trigger for "fix my funnel", "where am I losing users", "activation rate", "trial conversion", or "funnel leaks".
 ---
 
@@ -28,7 +28,7 @@ Before fetching anything, run the orchestrator's *Project Resolution*. With a pr
 - **ICP** and **Key pain points** - who moves through the funnel; the relevance bar for the Clarity and Motivation scores (2.1).
 - **Differentiator** and **Key messages** - the positioning the funnel pages (hero, pricing value-framing) should lead with.
 - **User-Added** and **AI-Researched competitors** - the alternatives a visitor is weighing before they commit; use them to frame the pricing-page objections (2.2) and, where useful, to compare your signup-to-activation flow against how a rival gets a new user to first value. Read what's already in the profile - don't run full discovery (that's `/gtm competitors`).
-- Then read any `YYYY-MM-DD-positioning.md`, `YYYY-MM-DD-competitor-report.md`, `YYYY-MM-DD-landing-cro.md`, or `YYYY-MM-DD-gtm-audit.md` in the folder and reuse their findings (conversion scores, positioning, competitor funnels) rather than re-deriving them.
+- Then read any `YYYY-MM-DD-positioning.md`, `YYYY-MM-DD-competitor-report.md`, `YYYY-MM-DD-landing-cro.md`, `YYYY-MM-DD-analytics-setup.md`, or `YYYY-MM-DD-gtm-audit.md` in the folder and reuse their findings (conversion scores, positioning, competitor funnels, the instrumented activation metric and events) rather than re-deriving them.
 
 With no profile loaded, derive what you can from the page and ask the user for traffic numbers, and note that running `/gtm init` would tailor the analysis to the founder's stage, channel, goal, and competitor set.
 
@@ -193,7 +193,7 @@ Score the activation step on the same five dimensions as every other page (2.1),
 
 ### 3.1 Key Funnel Metrics
 
-Estimate these from the page if there are no analytics; ask the founder for any real numbers. The spine is three conversions - signup, activation, paid - not a chain of sales-qualified stages.
+Estimate these from the page if there are no analytics; ask the founder for any real numbers - and when nothing is instrumented yet, note that `/gtm analytics` stands up the events so the next funnel read runs on real numbers. The spine is three conversions - signup, activation, paid - not a chain of sales-qualified stages.
 
 ```
 FUNNEL METRICS
@@ -479,6 +479,7 @@ After the report is saved, append one line for this run to the project's `LOG.md
 - If a `YYYY-MM-DD-gtm-audit.md` exists, reuse its conversion score rather than re-deriving it.
 - If a `YYYY-MM-DD-positioning.md` or `YYYY-MM-DD-competitor-report.md` exists, use the positioning and the competitor funnels to frame the comparison.
 - If a `YYYY-MM-DD-landing-cro.md` exists, fold its hero and CTA findings into the top-of-funnel step rather than repeating them.
+- If a `YYYY-MM-DD-analytics-setup.md` exists, use its committed activation metric and event spec as the funnel's activation column and ask for the numbers those events have produced; with nothing instrumented, suggest `/gtm analytics` so the next funnel read runs on real numbers instead of estimates.
 - Suggest follow-up: `/gtm landing` for a deep CRO teardown of the worst-scoring page, and `/gtm copy` to rewrite the leaking pages.
 - For the onboarding/activation and dunning email sequences this analysis points to, run `/gtm emails`.
 - For the post-signup slice this map flags - committing to one activation metric, the first-90-days plan, and the cancel-flow / save-offer / failed-payment mechanics - run `/gtm retention`; it goes deep where this map goes wide, and it reuses this report's activation section rather than re-deriving it.

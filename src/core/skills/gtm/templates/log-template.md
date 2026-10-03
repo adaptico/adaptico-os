@@ -21,7 +21,7 @@
 > | Section | What lands there |
 > |---|---|
 > | Strategy & positioning | `/gtm init`, `/gtm audit`, `/gtm critic`, `/gtm interviews`, `/gtm position`, `/gtm competitors`, `/gtm channel`, `/gtm brand` - and founder pivots, positioning changes, strategy calls |
-> | Site & conversion | `/gtm copy`, `/gtm copyedit`, `/gtm landing`, `/gtm funnel`, `/gtm pricing`, `/gtm retention` - and site or pricing changes shipped by hand |
+> | Site & conversion | `/gtm analytics`, `/gtm copy`, `/gtm copyedit`, `/gtm landing`, `/gtm funnel`, `/gtm pricing`, `/gtm retention` - and site or pricing changes shipped by hand, plus the weekly numbers line the analytics habit appends |
 > | Launches | `/gtm launch` - and every launch or directory submission, with its numbers |
 > | Outreach | `/gtm outreach`, `/gtm pitch` - and every outbound campaign: channel, volume, replies, meetings |
 > | Content & SEO | `/gtm content`, `/gtm article`, `/gtm repurpose`, `/gtm leadmagnet`, `/gtm vs`, `/gtm seo`, `/gtm geo` - and pieces published, rankings earned, AI-engine citations |

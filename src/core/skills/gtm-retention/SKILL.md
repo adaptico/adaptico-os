@@ -1,6 +1,6 @@
 ---
 name: gtm-retention
-version: 1.1.2
+version: 1.1.4
 description: Activation and early-churn diagnosis for /gtm retention <target> - maps signup to first value, commits the founder to ONE activation metric, prioritizes first-90-days fixes over late-stage retention tricks, and designs the churn defenses (cancel flow, save offers, failed-payment recovery posture). Use when the user wants to reduce churn, fix trial retention or activation, or design a cancel flow. Also trigger for "users churn", "trials go dead", "nobody comes back", "cancel flow", "save offer", "stop churn", "failed payments", "keep users", or "retention plan".
 ---
 
@@ -20,6 +20,7 @@ Where this sits among the neighboring commands, so the jobs stay distinct:
 
 - **`/gtm funnel`** maps the whole path from landing click to paid and scores every step. This skill starts where that map narrows: the signup-to-value gap and the paid lifecycle after it - and it ends in commitments the funnel map doesn't make (one activation metric, a 90-day plan, cancel mechanics).
 - **`/gtm emails`** writes the sequences - activation onboarding and dunning. This skill decides what those sequences anchor to (the activation metric) and the recovery posture around them. It never drafts sequence copy.
+- **`/gtm analytics`** instruments the activation metric this skill commits to - the event spec, the shortlist around it, and the weekly numbers habit. This skill decides and pressure-tests what the metric is; analytics makes it measurable.
 - **`/gtm audit`** scores Activation & Time-to-Value as one vector of the composite; this is that vector's deep dive.
 
 ## When This Skill Is Invoked
@@ -111,7 +112,7 @@ Candidate shapes by project type (keep consistent with the funnel map's activati
 | Sales-led B2B SaaS | Value shown in the POC - first workflow completed during the pilot |
 | Prosumer / mobile app | First real win inside session one; second session within 7 days |
 
-State the chosen metric as one sentence: "[X]% of new signups [do the event] within [N] days." Once the founder confirms it, suggest recording it in `PROFILE.md` as the activation milestone (one line, via `/gtm init` or a direct edit) so `/gtm emails`, `/gtm funnel`, and future audits all anchor to the same event.
+State the chosen metric as one sentence: "[X]% of new signups [do the event] within [N] days." Once the founder confirms it, suggest recording it in `PROFILE.md` as the activation milestone (one line, via `/gtm init` or a direct edit) so `/gtm analytics`, `/gtm emails`, `/gtm funnel`, and future audits all anchor to the same event.
 
 ---
 
@@ -342,5 +343,6 @@ After the report is saved, append one line for this run to the project's `LOG.md
 
 - `/gtm funnel` - the full-funnel map this skill deep-dives from; run it first when you don't yet know where the leak is.
 - `/gtm emails` - writes the activation onboarding and dunning sequences this plan anchors; run it right after this to produce the assets.
+- `/gtm analytics` - instruments the activation metric and the small event set around it.
 - `/gtm critic` - the adversarial review this skill runs as its closing pass; run it standalone for a full critique document.
 - `/gtm audit` - scores Activation & Time-to-Value as one vector of the composite; this report feeds its next run.

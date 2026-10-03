@@ -1,6 +1,6 @@
 ---
 name: gtm-launch
-version: 1.4.3
+version: 1.4.4
 description: Launch playbook for /gtm launch <target>. Use when the user wants a week-by-week launch plan for Product Hunt, Hacker News, or X, with templates, checklists, and metrics. Also trigger for "plan my launch", "Product Hunt launch", "launch playbook", "how do I launch", or "launch checklist".
 ---
 
@@ -77,7 +77,7 @@ Select the primary launch strategy based on the user's context:
 - [ ] Define launch positioning statement: "For [TARGET] who [PROBLEM], [PRODUCT] is a [CATEGORY] that [KEY BENEFIT]. Unlike [ALTERNATIVE], we [DIFFERENTIATOR]." With a profile loaded, build this from the profile's `Differentiator` and `Key messages` (set by `/gtm position` / `/gtm competitors`) - refine the established position, don't reinvent it.
 - [ ] Create launch one-pager (internal alignment doc)
 - [ ] Set up landing page / waitlist page
-- [ ] Set up analytics and tracking (UTM parameters, conversion goals, event tracking)
+- [ ] Set up analytics and tracking (UTM parameters, conversion goals, event tracking) - `/gtm analytics` defines the activation metric and event spec to build from
 - [ ] Create launch-specific email list/segment
 - [ ] Draft all email sequences (see Email Templates below)
 - [ ] Brief design team on visual assets needed
