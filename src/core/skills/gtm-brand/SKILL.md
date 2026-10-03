@@ -1,6 +1,6 @@
 ---
 name: gtm-brand
-version: 1.4.6
+version: 1.4.7
 description: Brand voice analysis and guidelines for /gtm brand <target>. Audits the live voice (formal/casual, technical/simple, archetype, consistency) and produces a reusable voice guide - voice chart, do's and don'ts, messaging hierarchy, and on-brand copy samples - distilled into a brand-voice.md the writing commands (copy, copyedit, social, outreach, emails, pricing, ads, leadmagnet, content, article, repurpose, changelog, audit, geo, pitch, vs, landing, humanize) read automatically. Use when the user wants to define, analyze, or document their brand voice, tone, and messaging, or keep copy consistent. Also trigger for "what's our brand voice", "brand guidelines", "tone of voice", "how should we sound", or "make our copy consistent".
 ---
 
@@ -70,7 +70,7 @@ The richest voice surfaces are usually the ones you can't fetch, so ask for them
 
 Founder-provided material can be pasted inline or dropped into the project folder and linked under the profile's **Reference Documents** (the orchestrator reads those automatically) - parse it the same as a fetched page.
 
-**Label every observation** by where it came from - **public** (fetched), **founder-provided** (pasted or uploaded), or **inferred** (your best read from a public signal) - so the founder knows which parts are grounded in real copy and which are reconstruction. This matters most in the Consistency Audit (Step 7): when the founder hasn't shared in-product or email samples, don't claim consistency across those channels - say what's missing.
+**Label every observation** by where it came from - **observed** (fetched), **founder-provided** (pasted or uploaded), or **inferred** (your best read from a public signal) - so the founder knows which parts are grounded in real copy and which are reconstruction. This matters most in the Consistency Audit (Step 7): when the founder hasn't shared in-product or email samples, don't claim consistency across those channels - say what's missing.
 
 Use browser tools or the bundled page analyzer (`node .claude/skills/gtm/scripts/analyze_page.js <url>`) to fetch public pages. If a fetch fails, use the orchestrator's *Web Fetching Fallback Protocol*.
 
