@@ -80,6 +80,7 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm audit` | Full GTM audit with parallel agents + composite score; re-audits lead with what changed |
 | `/gtm quick` | 60-second snapshot - top wins and fixes |
 | `/gtm critic` | Red-team any report or draft - ranked findings, the one fix that matters most |
+| `/gtm analytics` | Minimum-viable measurement - one activation metric, the 5-7 events that matter, and an attribution sanity check |
 | **Research & position** | |
 | `/gtm interviews` | Interview kit + synthesis - turn what customers actually said into evidence your positioning and copy start from |
 | `/gtm position` | Positioning chain + messaging house - scored, pressure-tested against live rivals; includes a quick competitor scan |
@@ -112,6 +113,41 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm ads` | Should-you-run-ads verdict + CAC/break-even math + a first real ad test - paste-ready copy, you press go |
 
 Point any command at a URL (`/gtm audit https://example.com`), or pass a saved project's name (`/gtm audit my-project`) to skip retyping the URL. With a single project set up, running a command bare just uses it.
+
+---
+
+## What's inside
+
+- **31 commands** - one focused specialist each, from positioning and conversion to launch, retention, and measurement
+- **5 audit agents** - the parallel team `/gtm audit` sends across your site at once
+- **1 orchestrator** - routes every command and carries your project context so each one already knows your product
+- **2 calculators** - deterministic math for pricing and ads, so those numbers are computed, not guessed
+
+---
+
+## Frameworks inside
+
+- *Obviously Awesome* positioning (April Dunford)
+- Positioning maps
+- Jobs-to-be-Done (Clayton Christensen)
+- The Mom Test (Rob Fitzpatrick)
+- The Value Equation, from *$100M Offers* (Alex Hormozi)
+- The Value Proposition Canvas (Alexander Osterwalder)
+- Product-Led Growth
+- Pirate Metrics / AARRR (Dave McClure)
+- The Bullseye framework, from *Traction* (Gabriel Weinberg & Justin Mares)
+- AIDA (E. St. Elmo Lewis)
+- Problem-Agitate-Solve (PAS)
+- Before-After-Bridge
+- The Rule of One (Joanna Wiebe)
+- The 4U headline test (Michael Masterson)
+- The principles of influence (Robert Cialdini)
+- Loss aversion and anchoring (Daniel Kahneman & Amos Tversky)
+- Topic clusters (HubSpot)
+- E-E-A-T, from Google's Search Quality Rater Guidelines
+- Brand archetypes (after Carl Jung)
+- SWOT analysis
+- Impact/effort prioritization
 
 ---
 
