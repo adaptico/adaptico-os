@@ -1,6 +1,6 @@
 ---
 name: gtm
-version: 1.10.5
+version: 1.10.8
 description: Adaptico OS - the go-to-market operating system for SaaS & AI startup founders. Routes all /gtm commands (init, audit, position, competitors, launch, pitch, vs, and more) - and accepts a plain-language situation ("here's where I am / what's happening") which it answers with a recommended command sequence ending in one concrete next action. Use whenever the user types /gtm, asks what to do next on go-to-market, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
 ---
 
@@ -21,6 +21,7 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourproject.com`
 | `/gtm audit <target>` | Full GTM audit (5 parallel subagents) | `YYYY-MM-DD-gtm-audit.md` |
 | `/gtm quick <target>` | 60-second GTM snapshot | Terminal only |
 | `/gtm critic <target>` | Adversarial red-team of a saved report or draft (target: a file, pasted text, or a project name - not a URL) | `YYYY-MM-DD-critique.md` |
+| `/gtm analytics <target>` | Minimum-viable measurement setup - one activation metric, a 5-7 event shortlist, attribution sanity | `YYYY-MM-DD-analytics-setup.md` |
 | `/gtm interviews <target>` | Customer interview kit + synthesis of notes into profile evidence | `YYYY-MM-DD-interview-kit.md` / `YYYY-MM-DD-interview-synthesis.md` |
 | `/gtm position <target>` | Positioning chain, scorecard, vertical variants + messaging house | `YYYY-MM-DD-positioning.md` |
 | `/gtm competitors <target>` | Competitive intelligence analysis | `YYYY-MM-DD-competitor-report.md` |
@@ -285,6 +286,7 @@ Many skills work together:
 - `/gtm brand` writes `brand-voice.md` into the project folder - the fixed-format voice guide that `/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm pricing`, `/gtm ads`, `/gtm audit`, `/gtm geo`, `/gtm leadmagnet`, `/gtm changelog`, `/gtm content`, `/gtm article`, `/gtm repurpose`, `/gtm pitch`, `/gtm vs`, `/gtm landing`, and `/gtm humanize` read automatically when present
 - The writing commands (`/gtm copy`, `/gtm copyedit`, `/gtm social`, `/gtm outreach`, `/gtm emails`, `/gtm ads`, `/gtm leadmagnet`, `/gtm article`, `/gtm repurpose`, `/gtm changelog`, `/gtm interviews`) - plus `/gtm pricing` on its page-ready copy, `/gtm pitch` on its one-pager and spoken lines, `/gtm vs` on its page prose, and `/gtm landing` on its report's shippable copy - end with the `/gtm humanize` closing pass by default; append `--no-humanize` to any of them to skip it
 - `/gtm emails` aligns its onboarding sequence to the activation leak `/gtm funnel` finds
+- `/gtm retention` defines the ONE activation metric (saved to `PROFILE.md` as the activation milestone); `/gtm analytics` instruments it plus the event shortlist around it and appends the weekly numbers to `LOG.md`, so `/gtm emails`, `/gtm funnel`, and re-audits read real numbers instead of estimates
 - `/gtm launch` pulls from positioning and competitors to build the playbook
 - Every command run against a project appends one outcome line to the project's `LOG.md` (the write-back in *Step 4 - Inject context*); `/gtm audit` and the Stage-Fit advisor read the log first, so recommendations reflect what was already tried and what happened
 

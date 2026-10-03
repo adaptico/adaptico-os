@@ -12,6 +12,7 @@
     "./src/core/skills/gtm-init",
     "./src/core/skills/gtm-audit",
     "./src/core/skills/gtm-critic",
+    "./src/core/skills/gtm-analytics",
     "./src/core/skills/gtm-interviews",
     "./src/core/skills/gtm-position",
     "./src/core/skills/gtm-competitors",
