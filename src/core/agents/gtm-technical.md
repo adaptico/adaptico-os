@@ -1,6 +1,6 @@
 ---
 name: gtm-technical
-description: "Technical marketing analysis specialist for a /gtm audit. The evidence backbone - verifies page contents, crawlability, tracking, and structured data, and reports the Technical Foundations findings. Owns no scored vector. Dispatched by the gtm-audit skill."
+description: "Technical marketing analysis specialist for a /gtm audit. Owns the AI-Search Readiness vector - whether AI crawlers can reach the pages and extract a clear answer from them. Also the evidence backbone: verifies page contents, crawlability, tracking, and structured data for the other vectors, and reports the unscored Technical Foundations findings. Dispatched by the gtm-audit skill."
 ---
 
 # GTM Technical Analysis Subagent
