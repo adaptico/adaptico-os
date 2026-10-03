@@ -4,6 +4,17 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.21.0]
+
+### Added
+- `/gtm analytics` - sets up the measurement an early product actually needs: one activation metric (the same one `/gtm retention` picked, if you ran it), the 5-7 events worth tracking with the question each one answers, a check that your signup sources are counted right, and a weekly habit of writing the numbers into your project log. You set the tracking up yourself, in whatever analytics tool you already use.
+
+### Changed
+- `/gtm retention` picks the activation metric and `/gtm analytics` sets up the tracking for it. `/gtm emails` and `/gtm funnel` also use the event list an analytics run leaves.
+- When `/gtm audit` has to score Activation with no tracking to go on, it sends you to `/gtm analytics` first.
+- `/gtm init` adds `/gtm analytics` to all three stage sequences it recommends.
+- The README lists what's inside - commands, audit agents, calculators - and the named frameworks the skills use.
+
 ## [0.20.0]
 
 ### Changed
