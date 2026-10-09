@@ -4,6 +4,27 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.22.0]
+
+### Changed
+- `/gtm critic` flags, and `/gtm humanize` rewrites, more stock moves: openers that promise a point instead of making it ("here's the thing"), questions answered in the next breath ("The best part? It's free."), lines that tell you to be impressed, and "serves as a" where "is" would do. `/gtm critic` also flags claims credited to unnamed studies or experts.
+- `/gtm critic` and `/gtm humanize` also catch more forms of "it's not X, it's Y": the same contrast with any subject, not just "it" ("Pricing isn't the hard part. It's the packaging."), "Not because it's cheaper. Because it's better.", and lists like "Not this. Not that."
+- `/gtm humanize` rewrites more of what reads machine-written beyond stock phrases: runs of short fragments ("No setup. No waiting. Just results."), colon reveals ("The kicker: it costs nothing."), sentences that only announce an insight is coming, and flattery of the reader in a reply or a post's opening line. It also swaps a metaphor for the plain word where one exists, and trims adjectives stacked for their sound.
+- `/gtm humanize` no longer cuts every draft by at least 15%. How much it cuts follows the padding it finds, so a tight draft you wrote loses little and a padded one loses more.
+- `/gtm humanize` now rewrites quoted lines that read machine-written, like any other line; it still leaves a deliberate before/after example as it is.
+- `/gtm humanize` can match your voice from a writing sample you paste in, and its report now says where the cuts came from and lists anything it deliberately left in.
+- When `/gtm critic` flags a quoted line - one that starts with `>` - it marks it as a quote, so a line copied from someone else's page counts against that page, not your draft. On a document that quotes a lot of outside copy, it can skip quoted lines altogether.
+- A `/gtm critic` review of an audit says its score cap applies to the next audit run; the saved audit keeps its score.
+
+### Added
+- `/gtm humanize --check` lists the AI tells in a draft - each with its line number and a short fix - and rewrites nothing. It takes pasted text, a file, or a project's latest report.
+
+### Fixed
+- Text typed in Word or on a phone often has curly apostrophes (it’s instead of it's). `/gtm critic` and `/gtm humanize` missed phrases like "it's not X, it's Y" typed that way; they catch them now.
+- `/gtm humanize` cut "honestly," everywhere, even from a story told in your own voice ("Honestly, I was terrified."). It now cuts it only when it leads into a pitch or an ask.
+- `/gtm critic` and `/gtm humanize` flag "The best part?" only when it opens a sentence, so a real question like "What was the best part?" passes.
+- `/gtm critic` and `/gtm humanize` no longer flag "harness" on its own, so "test harness" passes; "harness the power of" still counts.
+
 ## [0.21.0]
 
 ### Added
