@@ -1,6 +1,6 @@
 ---
 name: gtm-copyedit
-version: 1.1.3
+version: 1.1.4
 description: Line edit of a draft the founder wrote, for /gtm copyedit <target> - an email, a post, a doc, or page copy. A checklist-driven edit pass - front-load the point, tighten sentences, swap jargon for plain English, cut filler, keep the writer's voice (via the project voice guide), and report the cut percentage; ends with the anti-AI humanize pass. Use when the user wants their own draft edited, tightened, or clarified without losing their voice. Also trigger for "edit this draft", "tighten this up", "line-edit this", "make this clearer", "proofread this post", or "cut this down".
 ---
 
@@ -178,7 +178,7 @@ After the edit is saved, append one line for this run to the project's `LOG.md`,
 
 ## Related Commands
 
-- `/gtm humanize` - the anti-AI pass this edit ends with; run it alone when the draft only needs the tells stripped.
+- `/gtm humanize` - the anti-AI pass this edit ends with; run it alone when the draft only needs the tells stripped, or with `--check` to see them listed without any rewrite.
 - `/gtm copy` - rewrites the live site's copy; point it at pages, point this at drafts.
 - `/gtm critic` - grades what the draft claims; this skill only edits how it reads.
 - `/gtm brand` - writes the `brand-voice.md` guide this edit preserves the voice against.

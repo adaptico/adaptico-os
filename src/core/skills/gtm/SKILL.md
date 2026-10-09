@@ -1,6 +1,6 @@
 ---
 name: gtm
-version: 1.10.8
+version: 1.10.9
 description: Adaptico OS - the go-to-market operating system for SaaS & AI startup founders. Routes all /gtm commands (init, audit, position, competitors, launch, pitch, vs, and more) - and accepts a plain-language situation ("here's where I am / what's happening") which it answers with a recommended command sequence ending in one concrete next action. Use whenever the user types /gtm, asks what to do next on go-to-market, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
 ---
 
@@ -28,7 +28,7 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourproject.com`
 | `/gtm launch <target>` | Generate launch playbook (Product Hunt / HN / X) | `YYYY-MM-DD-launch-playbook.md` |
 | `/gtm copy <target>` | Generate optimized copy for any page | `YYYY-MM-DD-copy-suggestions.md` |
 | `/gtm copyedit <target>` | Line-edit a draft for clarity, preserving voice | `YYYY-MM-DD-copyedit.md` |
-| `/gtm humanize <target>` | Strip AI-tells from a draft | `YYYY-MM-DD-humanized.md` |
+| `/gtm humanize <target>` | Strip AI-tells from a draft, or list them (`--check`) without rewriting | `YYYY-MM-DD-humanized.md` / terminal only with `--check` |
 | `/gtm landing <target>` | Landing page CRO analysis | `YYYY-MM-DD-landing-cro.md` |
 | `/gtm pricing <target>` | Pricing page + value-based 3-tier packaging + calculator | `YYYY-MM-DD-pricing.md` |
 | `/gtm funnel <target>` | Funnel and activation analysis (trial / PLG) | `YYYY-MM-DD-funnel-analysis.md` |

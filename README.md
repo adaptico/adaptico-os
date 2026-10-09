@@ -89,7 +89,7 @@ After installing, restart Claude Code so it picks up the new skills.
 | `/gtm launch` | Launch playbook (Product Hunt / Hacker News / X) |
 | `/gtm copy` | Before/after copy rewrites for any page |
 | `/gtm copyedit` | Tighten your own draft for clarity while keeping your voice |
-| `/gtm humanize` | Strip the AI-tells out of any draft before it ships |
+| `/gtm humanize` | Strip the AI-tells out of any draft before it ships, or list them with `--check` and change nothing |
 | `/gtm landing` | Landing page CRO, tuned for SaaS signup/trial flows |
 | `/gtm pricing` | Pricing page + value-based packaging, with a pricing calculator |
 | `/gtm funnel` | Funnel & activation analysis - find the leaks (trial / PLG) |
