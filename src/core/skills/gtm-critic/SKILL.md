@@ -1,6 +1,6 @@
 ---
 name: gtm-critic
-version: 1.1.4
+version: 1.2.4
 description: Adversarial red-team review of any /gtm report or founder draft for /gtm critic <target>. No compliments - severity-ranked findings (Critical/Major/Minor) with exact-line citations, the marketing principle each violation breaks, and the single most valuable fix. Use when the user wants a report or draft critiqued, red-teamed, torn apart, stress-checked, or verified before acting on it. Also trigger for "critique this report", "red-team this draft", "what's wrong with this copy", "is this advice sound", "find the holes in this", or "check this before I ship it".
 ---
 
@@ -56,7 +56,7 @@ Before the adversarial read, run the bundled lint script on the document:
 node .claude/skills/gtm-critic/scripts/critic_lint.js <file>
 ```
 
-It deterministically flags: banned hype/AI-tell words, stock AI-slop phrases, "it's not X, it's Y" cliche constructions, and em-dash overuse. Same input, same findings, every run.
+It deterministically flags four families, same input, same findings, every run: banned hype and AI-tell words; AI-slop phrases - stock filler, openers that announce a point instead of making it ("here's the thing", "what nobody tells you"), verbs that stand in for "is" ("serves as a"), lines that tell the reader to be impressed ("let that sink in", a standalone "Period."), and questions the next words answer ("Honestly? ...", "The catch? ..."); the "it's not X, it's Y" pivot in its common shapes, including the forms with no article ("that isn't X, it's Y", "the question isn't X. It's Y", "not because X. Because Y", "stops being X and starts Y") and negative lists ("Not X. Not Y."); and em-dash overuse. Curly apostrophes match like straight ones. Lines inside ``` fences are skipped, since reports put deliberately bad before-copy there (`--include-fenced` scans them). Quote lines (starting with `>`) are scanned, since reports and drafts also use `>` for their own callouts and list items; a hit there prints as `(quote line)`, and when the line quotes someone else's copy the hit is evidence about that source (`--skip-quotes` skips quote lines when a document quotes outside copy at length).
 
 Treat its output as **leads, not verdicts**. Verify each hit in context before it becomes a finding - a banned word inside a "before" example is the example's point, not a violation; a slop phrase in a quote from the founder's own site is evidence for the producing skill to fix, not a defect of the report that quoted it. Confirmed hits usually land as Minor findings (language polish) unless they sit in a headline, CTA, or other load-bearing line - there they can be Major.
 
@@ -165,7 +165,7 @@ Save as `YYYY-MM-DD-critique.md` where *Project Resolution* puts it (the project
 | [section] | PASS / FAIL | [the argument made against it, one line] |
 
 ## Score Impact
-[Only when the subject is a scored report. State: "N unresolved Critical finding(s): the composite score is capped until they are resolved. Re-run the score with:
+[Only when the subject is a scored report. State: "N unresolved Critical finding(s): the next audit run caps the composite score until they are resolved (this saved audit's score is unchanged). Re-run the score with:
 `node .claude/skills/gtm/scripts/gtm_score.js --positioning X --icp X --conversion X --activation X --channel X --geo X --revenue X --criticals N`
 (a vector the audit skipped or reported degraded keeps its literal `skipped`/`degraded` value). The next full audit applies the cap in its saved report." Omit this section entirely for unscored documents.]
 
