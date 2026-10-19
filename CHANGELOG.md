@@ -4,6 +4,25 @@ All notable changes to Adaptico OS are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.23.0]
+
+### Changed
+- `/gtm audit` now checks each draft report for mistakes twice before saving it. The session running the audit has your fetched pages, so it catches claims they don't back up; a separate agent that didn't write the report catches places where the report contradicts itself. The audit fixes what both checks find, so fewer wrong claims reach your report, and the "Critic gate" line in the report header says what each check found. This adds one agent to every audit run.
+- `/gtm audit` now shows on the score line when unresolved Critical findings hold your score at 69: "69/100 (Grade: C - capped from 82 by 1 Critical finding)". It does this in the report, the terminal, Telegram and the log, so nobody reads 69 as what the site earned. When either run was capped, a re-audit compares the scores before the cap, so a cap being added or removed doesn't look like your site got better or worse.
+- `/gtm audit` now says when a re-audit's score moved without anything changing. The same pages can score a few points differently from one run to the next. When nothing on your site, in your profile or in your log explains a move, the audit labels it "variation between runs" instead of progress or a regression, and a "Checked against the baseline" line shows what it compared.
+- `/gtm audit` remembers which one to trust when your site and your profile disagree about who the product is for. It saves your answer to the log and reuses it on later audits instead of asking again, until the site or the profile changes.
+- `/gtm funnel`, `/gtm landing` and `/gtm emails` no longer estimate your conversion rates or predict how much each fix will raise them. Where there's no measured rate, the report says "not measured yet", each fix gets a High / Medium / Low impact with the reason, and revenue scenarios use only your own numbers. Reference figures name their publisher, year and what was measured - Unbounce 2024, ChartMogul 2026, Lenny Rachitsky's 2022 activation survey.
+- `/gtm landing` checks page speed against Google's Core Web Vitals - the main content should appear within 2.5 seconds - and reports a speed only when there is a real measurement. It also prints a summary in the terminal after saving: CRO score, hero checks, section scores and the top three fixes.
+- `/gtm emails` judges each sequence by clicks and by what it's for - activations for onboarding, recovered payments for dunning - instead of open rates. Apple Mail loads every email's images whether or not anyone reads it, which makes open rates look higher than they are. Subject-line tests are judged on clicks too.
+- `/gtm ads`, `/gtm retention`, `/gtm leadmagnet` and `/gtm launch` drop several figures nobody could trace to a source, such as "$150-$500 per customer" for ads. They say it in words instead: "customers won through ads often cost a few hundred dollars or more each". `/gtm ads` quotes Meta's own figures for ad text length and the learning phase.
+- `/gtm audit` treats a page title over about 60 characters or a meta description over about 160 as a minor finding at most: Google sets no length limit and cuts both to fit the screen. A missing title or description is still a finding.
+- The competitors, copy, launch, outreach, brand, landing, funnel and emails reports open with the same Project / Website / Date header as the other reports.
+
+### Fixed
+- The README's clone instructions ran the installer inside the clone, so the skills went into the clone instead of your project, and the update notice gave the same advice. Every install method now runs from your project folder, and the README lists what the installers add besides the skills - a `projects/` folder, `.adaptico/telegram.json` and a `.gitignore` line - and what uninstall leaves behind.
+- `/gtm audit` could report an audit agent as failed when the agent saved its results to a file and replied only "see file". Agents now reply with their full results, and if one still answers with a file, the audit reads that file.
+- `/gtm audit`'s Telegram summary left out the AI-Search Readiness score, and a partial score read "N of 6 vectors" although the audit scores seven. It now lists all seven.
+
 ## [0.22.0]
 
 ### Changed
