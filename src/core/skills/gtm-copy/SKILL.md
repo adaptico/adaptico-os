@@ -1,6 +1,6 @@
 ---
 name: gtm-copy
-version: 1.6.2
+version: 1.6.4
 description: Website copy analysis and rewriting for /gtm copy <target>. Use when the user wants to score existing copy and get optimized before/after rewrites for headlines, value props, CTAs, or body copy. Also trigger for "improve my copy", "rewrite my headline", "is my copy good", "better value prop", or "punch up this page".
 ---
 
@@ -235,7 +235,7 @@ Check every rewritten line: exactly one dominant trigger, earned by a concrete d
 **Pricing Page Copy Structure:**
 1. Headline: Frame the investment, not the cost ("Choose your growth plan")
 2. Plan names: Aspirational or audience-based, not "Basic/Pro/Enterprise"
-3. Recommended plan: Visually highlighted, with an honest badge ("Most Popular" only if it factually is the most-chosen plan; otherwise "Recommended")
+3. Recommended plan: Visually highlighted, with an accurate badge ("Most Popular" only if it factually is the most-chosen plan; otherwise "Recommended")
 4. Feature descriptions: Benefit-oriented, not feature lists
 5. Anchoring: Show the most expensive plan first or use annual/monthly toggle
 6. FAQ: Address pricing objections (refund policy, what's included, switching)
@@ -363,8 +363,10 @@ Full report saved to: YYYY-MM-DD-copy-suggestions.md
 Write the full report to the resolved output path as `YYYY-MM-DD-copy-suggestions.md` (see the orchestrator's *Project Resolution*) with this structure:
 
 ```markdown
-# Copy Analysis & Suggestions: [URL]
-**Date:** [current date]
+# Copy Analysis & Suggestions
+**Project:** [name or domain]
+**Website:** [page URL analyzed]
+**Date:** YYYY-MM-DD
 **Page Type:** [type]
 **Copy Score:** X/100
 

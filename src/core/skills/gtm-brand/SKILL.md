@@ -1,6 +1,6 @@
 ---
 name: gtm-brand
-version: 1.4.7
+version: 1.4.8
 description: Brand voice analysis and guidelines for /gtm brand <target>. Audits the live voice (formal/casual, technical/simple, archetype, consistency) and produces a reusable voice guide - voice chart, do's and don'ts, messaging hierarchy, and on-brand copy samples - distilled into a brand-voice.md the writing commands (copy, copyedit, social, outreach, emails, pricing, ads, leadmagnet, content, article, repurpose, changelog, audit, geo, pitch, vs, landing, humanize) read automatically. Use when the user wants to define, analyze, or document their brand voice, tone, and messaging, or keep copy consistent. Also trigger for "what's our brand voice", "brand guidelines", "tone of voice", "how should we sound", or "make our copy consistent".
 ---
 
@@ -380,7 +380,8 @@ Write the report to the resolved output path as `YYYY-MM-DD-brand-voice.md` (see
 
 ```markdown
 # Brand Voice Guidelines: [Brand Name]
-**Website:** [URL]
+**Project:** [name or domain]
+**Website:** [URL analyzed]
 **Date:** YYYY-MM-DD
 **Project type:** [type]
 **Primary archetype:** [archetype]

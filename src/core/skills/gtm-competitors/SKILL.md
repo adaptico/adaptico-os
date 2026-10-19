@@ -1,6 +1,6 @@
 ---
 name: gtm-competitors
-version: 1.3.4
+version: 1.3.6
 description: Competitive intelligence for /gtm competitors <target>. Use when the user wants to identify competitors, analyze rival marketing and positioning, or find differentiation gaps and steal-worthy tactics. Also trigger for "who are my competitors", "analyze my competition", "competitive analysis", "how do rivals market", or "where can we differentiate".
 ---
 
@@ -345,7 +345,7 @@ For each viable differentiation angle, provide:
 From this analysis, name which rivals warrant a comparison or "alternatives" page on the target's own site - the ones buyers actively weigh the target against, where the search intent ("[competitor] alternative", "[target] vs [competitor]") is bottom-of-funnel and converts. This is a scoping call, not a page draft - for each rival worth a page, note:
 
 - **Rival and format** - the competitor the page targets, and the shape that fits: a single "[rival] alternative" page, a head-to-head "[target] vs [rival]", or a category "best [X] alternatives" list.
-- **The honest hook** - the real reason a best-fit buyer picks the target over this rival, and where the rival is genuinely the better call (a comparison page only converts if it credits that).
+- **The real hook** - the reason a best-fit buyer picks the target over this rival, and where the rival is genuinely the better call (a comparison page only converts if it credits that).
 
 Hand this rival shortlist to `/gtm vs`, which owns the comparison-page build: the four page formats with their URL slugs and target keywords, the competitor-claims fact-check gate (every rival claim sourced and dated), and the conversion framing. Scope the pages here; build them there - don't draft the full page in this report.
 
@@ -413,8 +413,9 @@ Write the full output to `YYYY-MM-DD-competitor-report.md`:
 
 ```markdown
 # Competitive Intelligence Report: [Target Brand]
-**URL:** [url]
-**Date:** [current date]
+**Project:** [name or domain]
+**Website:** [the product's URL]
+**Date:** YYYY-MM-DD
 **Competitors Analyzed:** [count]
 **Competitive Position: [Strong/Moderate/Weak]**
 

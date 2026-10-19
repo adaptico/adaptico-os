@@ -1,6 +1,6 @@
 ---
 name: gtm-outreach
-version: 1.2.3
+version: 1.2.4
 description: Cold outbound sequences for /gtm outreach <target> - multi-touch, value-first cold email and LinkedIn DM sequences for founder-led manual outreach to land the first customers. Use when the user wants cold outreach, outbound, cold email, LinkedIn DMs, prospecting messages, or founder-led sales scripts. Also trigger for "write cold emails", "outbound sequence", "LinkedIn outreach", "how do I reach prospects", "cold DM", or "founder sales script".
 ---
 
@@ -195,7 +195,9 @@ Write the full output to `YYYY-MM-DD-outreach-sequences.md` (see *Project Resolu
 
 ```markdown
 # Cold Outreach Sequences: [Product / Target]
-**Date:** [date]
+**Project:** [name or domain]
+**Website:** [the product's URL, or "none yet"]
+**Date:** YYYY-MM-DD
 **ICP:** [who]
 **Channel:** [chosen channel + one line why]
 
