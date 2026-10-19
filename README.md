@@ -43,30 +43,33 @@ Then point it at your project:
 
 ## Other ways to install
 
-**Any other agent - Cursor, Codex, Windsurf, Gemini CLI:**
+**One line, into the project you're in** (macOS, Linux, or Git Bash on Windows) - run it from your project folder:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/adaptico/adaptico-os/main/install.sh | bash
+```
+
+It clones the repo to a temporary folder, copies the skills and the 5 audit agents into `.claude/` in your project, and deletes the temporary copy. It also adds an empty `projects/` folder for your reports and an `.adaptico/telegram.json` you can fill in later, and adds `.adaptico/` to your `.gitignore` so git ignores the token file. It pipes a script straight to bash, so read [install.sh](install.sh) first if you'd rather not run it unseen - or use the clone path below.
+
+**Inspect or customize first - clone anywhere, then install from your project** (macOS, Linux, or Git Bash on Windows):
+
+```bash
+git clone https://github.com/adaptico/adaptico-os.git ~/adaptico-os
+cd ~/your-project
+bash ~/adaptico-os/install.sh
+```
+
+The installer copies into `.claude/` in the folder you run it from (plus the same `projects/` folder, `.adaptico/telegram.json` and `.gitignore` line), not the folder it lives in, so the clone can sit anywhere and serve several projects. Running it from inside the clone installs into the clone - only useful when you're working on Adaptico OS itself.
+
+Both installers list exactly what they installed; restart Claude Code afterwards so it picks up the new skills. The plugin updates itself with each release; a copied install updates by running the installer again - pull the clone first (the orchestrator tells you when you're behind).
+
+**Cursor, Codex, Windsurf, Gemini CLI, or any other agent:**
 
 ```bash
 npx skills add adaptico/adaptico-os
 ```
 
-This installs the skills into your agent's skills directory. (The audit's 5 parallel agents are a Claude Code feature - they come with the plugin and installer paths.)
-
-**Inspect or customize first - clone, read, then install:**
-
-```bash
-git clone https://github.com/adaptico/adaptico-os.git
-cd adaptico-os
-
-# macOS / Linux:
-./install.sh
-
-# Windows:
-bash install.sh
-```
-
-This copies the skills and audit agents into `.claude/` in the directory you run it from - per-project, easy to read before you run it, easy to edit after. The installer lists exactly what it installed. The plugin updates itself with each release; copied installs update by re-running the installer (the orchestrator tells you when you're behind).
-
-After installing, restart Claude Code so it picks up the new skills.
+This copies the skills only, into your agent's skills directory. The audit's 5 agent files are a Claude Code format and don't come with it, so `/gtm audit` runs its seven areas one after another in the same session instead of handing them to 5 parallel agents - slower, and with less room for each area on a large site. In Claude Code, use the plugin or one of the installers above to get the agents.
 
 ---
 
@@ -152,16 +155,6 @@ Point any command at a URL (`/gtm audit https://example.com`), or pass a saved p
 ---
 
 
-## One-line install
-
-Prefer not to clone first? This pipes the installer straight to bash, so read it before you trust it - the clone path above lets you inspect everything first:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/adaptico/adaptico-os/main/install.sh | bash
-```
-
----
-
 ## Uninstall
 
 Plugin install:
@@ -170,14 +163,11 @@ Plugin install:
 /plugin uninstall adaptico-os
 ```
 
-Copied install (from the cloned repo):
+Copied install (one-line or clone): run a clone's uninstaller from your project folder (macOS, Linux, or Git Bash on Windows). It removes only the skills and agents Adaptico OS installed there, and leaves `projects/` and `.adaptico/telegram.json` (which holds your bot token, if you set one) in place. A one-line install leaves no clone behind, so clone the repo anywhere first.
 
 ```bash
-# macOS / Linux
-./uninstall.sh
-
-# Windows (Git Bash)
-bash uninstall.sh
+cd ~/your-project
+bash ~/adaptico-os/uninstall.sh
 ```
 
 ---

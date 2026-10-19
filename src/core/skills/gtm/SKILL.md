@@ -1,6 +1,6 @@
 ---
 name: gtm
-version: 1.10.9
+version: 1.11.4
 description: Adaptico OS - the go-to-market operating system for SaaS & AI startup founders. Routes all /gtm commands (init, audit, position, competitors, launch, pitch, vs, and more) - and accepts a plain-language situation ("here's where I am / what's happening") which it answers with a recommended command sequence ending in one concrete next action. Use whenever the user types /gtm, asks what to do next on go-to-market, or asks to audit or improve a startup's website, marketing, positioning, copy, launch, or go-to-market.
 ---
 
@@ -53,7 +53,7 @@ The `<target>` argument accepts either a **URL** (e.g. `https://yourproject.com`
 ## Running Any Command
 
 Every free-edition skill installs and runs anytime - there are no locked or gated commands.
-A few skills pay off mainly at a later stage (e.g. `brand`, `social`); each runs the central **Stage-Fit Check** against the founder's tier in `PROFILE.md` (via `templates/advisor-prompt.md`) and, if premature for that tier, opens with one honest Strategic Advisor Note before proceeding (it never refuses).
+A few skills pay off mainly at a later stage (e.g. `brand`, `social`); each runs the central **Stage-Fit Check** against the founder's tier in `PROFILE.md` (via `templates/advisor-prompt.md`) and, if premature for that tier, opens with one Strategic Advisor Note before proceeding (it never refuses).
 `/gtm init` recommends what to focus on first for the founder's stage, and `/gtm audit` doubles as the canonical report - every re-audit leads with what changed since the last one (re-audit monthly/quarterly for strategy movement; weekly only to verify shipped fixes).
 
 ## Project Resolution
@@ -118,7 +118,7 @@ Anything that sounds like work a `/gtm` command exists to do (copy, a plan, a te
 
 **3. For a situation, answer in this fixed shape (terminal only, no report file):**
 - **The read** - one or two lines: the situation as understood, tied to the founder's tier and what the log already shows. State the assumption if one was made.
-- **The sequence** - 2-5 commands in order, one why-line each, derived from the tier's recommended sequence (in `../gtm-init/SKILL.md` Step 5) and the Skill-to-tier matrix (in `templates/advisor-prompt.md`), bent to the founder's Main goal and `LOG.md` history. Stage gates are explicit: when a step should wait on evidence, name the evidence ("`/gtm emails` once signups actually flow"). A command the matrix rates Too early or Avoid for the tier enters the sequence only with its one-line honesty note; a move the log shows already failed enters only with what would be different this time.
+- **The sequence** - 2-5 commands in order, one why-line each, derived from the tier's recommended sequence (in `../gtm-init/SKILL.md` Step 5) and the Skill-to-tier matrix (in `templates/advisor-prompt.md`), bent to the founder's Main goal and `LOG.md` history. Stage gates are explicit: when a step should wait on evidence, name the evidence ("`/gtm emails` once signups actually flow"). A command the matrix rates Too early or Avoid for the tier enters the sequence only with its one-line stage note; a move the log shows already failed enters only with what would be different this time.
 - **One concrete next action** - always the last line: the exact first command, ready to run (`/gtm landing acme`), and an offer to run it now.
 
 **4. Never leave a dead end.** A gap or a clarify also ends with the one next action available - the closest command, or the single question.
@@ -126,7 +126,7 @@ Anything that sounds like work a `/gtm` command exists to do (copy, a plan, a te
 The front door routes and sequences; it writes no report and appends no log line of its own. The command it hands off to logs its run to `LOG.md` as usual.
 
 ### Full GTM Audit (`/gtm audit <target>`)
-This is the flagship command. It launches **5 parallel subagents** (skipping any whose signals don't exist on the site, and saying so), validates each agent's JSON output before synthesis, and - when a prior audit exists - leads the report with what changed since it:
+This is the flagship command. It launches **5 parallel subagents** (a vector whose signals don't exist on the site comes back as a stated skip), validates each agent's JSON output before synthesis, and - when a prior audit exists - leads the report with what changed since it:
 
 1. **gtm-content** agent → ICP Focus vector: does the copy speak to one named reader
 2. **gtm-conversion** agent → Conversion (Primary Pages) + Activation & Time-to-Value vectors
@@ -246,7 +246,7 @@ All outputs must follow these rules:
 3. **Revenue-focused** - Connect every suggestion to business outcomes
 4. **Example-driven** - Include before/after copy examples, not just advice
 5. **Ship-ready** - Every report should be usable as-is, whether the founder acts on it directly or shares it with their team or investors
-6. **Founder-honest** - No fluff, no vanity metrics; if something is broken, say so plainly and rank it
+6. **Plain with the founder** - No fluff, no vanity metrics; if something is broken, say so plainly and rank it
 
 ## File Output
 
@@ -303,7 +303,7 @@ The check runs on the FIRST `/gtm` command of a session only, and only AFTER tha
 2. Read the installed versions in one pass: `grep -m1 "^version:" .claude/skills/gtm*/SKILL.md` - the `gtm*` glob scopes this to Adaptico's own skills (the `gtm` orchestrator and its `gtm-` commands), so other skills installed alongside them never inflate the count.
 3. Compare. **Meaningfully behind** = the `gtm` orchestrator itself is behind the index, or 2 or more installed skills are. Anything less: stay silent.
 4. When meaningfully behind, append ONE closing line to the terminal output, in this shape with the real numbers:
-   `Update available: [N] of [M] installed skills are behind the public release - update with git pull && ./install.sh from your adaptico-os clone, or npx skills add adaptico/adaptico-os.`
+   `Update available: [N] of [M] installed skills are behind the public release - from this project folder, re-run the one-line installer, or pull your adaptico-os clone and run its install.sh from here; a skills-CLI install updates with npx skills add adaptico/adaptico-os.`
 5. If the fetch fails or the file doesn't parse, skip silently - no retry, no mention, done for this session.
 
 Never modify installed files yourself, never re-check within a session, and never repeat the nudge once shown.
