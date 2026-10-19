@@ -1,6 +1,6 @@
 ---
 name: gtm-critic
-version: 1.2.4
+version: 1.2.7
 description: Adversarial red-team review of any /gtm report or founder draft for /gtm critic <target>. No compliments - severity-ranked findings (Critical/Major/Minor) with exact-line citations, the marketing principle each violation breaks, and the single most valuable fix. Use when the user wants a report or draft critiqued, red-teamed, torn apart, stress-checked, or verified before acting on it. Also trigger for "critique this report", "red-team this draft", "what's wrong with this copy", "is this advice sound", "find the holes in this", or "check this before I ship it".
 ---
 
@@ -68,7 +68,7 @@ Read the whole document, then review it under these rules. All seven are mandato
 
 1. **No compliments.** Findings, verdicts, and the fix - no praise, no "great job on", no softening preamble. A section with nothing wrong gets the verdict `PASS` and nothing else.
 2. **Severity-ranked findings with exact-line citations.** Every finding names its location (section heading plus the quoted line) and quotes the offending text verbatim. A finding that cannot cite a line is not a finding - cut it.
-3. **Name the principle broken.** Every violation names the marketing principle it breaks, from `references/principles.md` (public frameworks get honest attribution; rules without a canonical source are called practitioner consensus, never given an invented citation). State why breaking it costs the founder something.
+3. **Name the principle broken.** Every violation names the marketing principle it breaks, from `references/principles.md` (public frameworks are credited by name; rules without a canonical source are called practitioner consensus, never given an invented citation). State why breaking it costs the founder something.
 4. **The don't-inflate guard.** Severity must be earned by the stated harm, not by rhetorical heat. When torn between two severities, assign the lower one. Never pad the list to look thorough: if the work is fundamentally sound, say exactly that in the verdict line and let a short list stand. Zero findings is a legitimate outcome.
 5. **Falsifiability.** Every judgment - finding or PASS - states the evidence that would change it. If nothing imaginable could change the verdict, the verdict is an opinion, not a finding; rewrite it until it is checkable.
 6. **Argue against your own PASS verdicts.** Before finishing, take each PASS and make the strongest single argument that it should fail (Phase 3).
@@ -100,7 +100,7 @@ Beyond the universal rules, press where each document type actually fails:
 - **Any /gtm report**: numbers with no source (every metric must trace to the page, the profile, or a named benchmark - anything else is invented); recommendations that ignore the profile's stage tier; advice the LOG shows already failed; internal contradictions (the executive summary promises what the body never delivers); the generic-template smell - if a paragraph would fit any project unchanged, it serves this one badly.
 - **Positioning outputs**: does the claimed territory survive the competitor-swap test against the named rivals; does the chain hold (alternatives -> unique attributes -> value -> best-fit customer -> category), or does it assert a category with no attributes underneath.
 - **Copy, landing, and page outputs**: headline against the 4U checklist and the 5-second test; one reader, one big idea, one CTA per view (Rule of One); proof adjacent to every strong claim; specificity - concrete numbers and outcomes over adjectives.
-- **Offer and pricing content**: run the offer through the Value Equation - is the dream outcome vague, the likelihood unproven, the time delay hidden, the effort understated; is every guarantee and scarcity claim honest.
+- **Offer and pricing content**: run the offer through the Value Equation - is the dream outcome vague, the likelihood unproven, the time delay hidden, the effort understated; is every guarantee and scarcity claim true.
 - **Outreach and email sequences**: ask size on the first touch; AI-tells the recipient will smell; personalization slots that no real founder could actually fill with verified detail; fake urgency.
 - **Founder-written drafts**: same bars as the matching report type, plus honor their `Tone` - flag voice violations against their own stated voice, not against a house style.
 
@@ -187,7 +187,7 @@ When the reviewed document is a scored report (a GTM audit), unresolved Critical
 
 ## Log the Run
 
-After the critique is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what was red-teamed (naming the critique file) and the outcome: the finding counts this run produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm critic · red-teamed 2026-07-07-gtm-audit.md (see 2026-07-07-critique.md) -> 2 Critical, 3 Major findings`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance. When the critic runs inline as another command's closing gate rather than standalone, it never logs its own line - the calling command's line covers the run.
+After the critique is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Strategy & positioning` section - what was red-teamed (naming the critique file) and the outcome: the finding counts this run produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm critic · red-teamed 2026-07-07-gtm-audit.md (see 2026-07-07-critique.md) -> 2 Critical, 3 Major findings`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance. When the critic runs as another command's closing gate rather than standalone - inline, or in an agent that command launches - it reads only what that command gives it, never saves a critique file and never logs its own line; the calling command's report and log line cover the run.
 
 ---
 
