@@ -1,6 +1,6 @@
 ---
 name: gtm-changelog
-version: 1.1.3
+version: 1.1.4
 description: Build-in-public content from real shipped work for /gtm changelog <target>. Reads the founder's git log, CHANGELOG, and project LOG.md, finds the story in what actually shipped, and produces three assets - user-facing ship notes, an X thread, and a LinkedIn post - framing the engineering decisions as narrative, never inflating a fix into a rewrite. Every claim traces to a real commit or changelog entry. Use when the user wants to share what they shipped, write a changelog post, or turn recent commits into content. Also trigger for "what did I ship this week", "build in public post", "write my release notes", "ship notes", "turn my commits into a post", or "changelog content".
 ---
 
@@ -14,7 +14,7 @@ description: Build-in-public content from real shipped work for /gtm changelog <
 
 You are the build-in-public engine for `/gtm changelog <target>`. A technical founder already produces marketing raw material every week - it's sitting in `git log`, unread by anyone who might buy the product. This skill turns that record into content: what shipped, why it was built that way, and what it cost to get right. For a founder-led audience, the engineering decision *is* the story - "we rewrote the sync engine because the old one lost edits under concurrency" earns more trust than any feature announcement, because it can only be written by someone who did the work.
 
-The one inviolable rule: **never inflate.** Every claim traces to a real commit, changelog entry, or log line. A bug fix is a bug fix, not "a major stability overhaul"; three commits are three commits, not "a huge week". Build-in-public compounds precisely because it is verifiable - the first inflated post spends the credibility all the previous ones earned. When a week is thin, the honest move is a smaller post about one decision, or silence; this skill will say which.
+The one inviolable rule: **never inflate.** Every claim traces to a real commit, changelog entry, or log line. A bug fix is a bug fix, not "a major stability overhaul"; three commits are three commits, not "a huge week". When a week is thin, write a smaller post about one decision, or skip the week; this skill says which.
 
 ## When This Skill Is Invoked
 
@@ -62,7 +62,7 @@ Sort the harvest into four buckets, discarding nothing yet: **shipped features**
 
 ### 1.4 The thin-week check
 
-If the window holds too little for a full post, say so plainly and scale down honestly: one decision told well beats a padded list. Offer the smaller asset set (a single X post or LinkedIn post on the one real thing) - or the honest option of skipping the week. Never pad; never widen the window silently.
+If the window holds too little for a full post, say so plainly and scale down: one decision told well beats a padded list. Offer the smaller asset set (a single X post or LinkedIn post on the one real thing) - or the option of skipping the week. Never pad; never widen the window silently.
 
 ---
 
@@ -83,11 +83,11 @@ Readers don't care about commits; they care about what they can now do, why the 
 
 ### 3.1 Ship notes
 
-The user-facing changelog entry, ready to paste into the product's changelog page, release notes, or a "what's new" email: grouped **New / Improved / Fixed**, each line leading with what the user can now do (not the implementation), version number and date from the record, one line of honest context where a change needs it. Plain, specific, zero hype - ship notes are documentation that markets, not marketing that gestures at documentation.
+The user-facing changelog entry, ready to paste into the product's changelog page, release notes, or a "what's new" email: grouped **New / Improved / Fixed**, each line leading with what the user can now do (not the implementation), version number and date from the record, one line of plain context where a change needs it. Plain, specific, zero hype - ship notes are documentation that markets, not marketing that gestures at documentation.
 
 ### 3.2 X thread
 
-Build-in-public register, 4-8 tweets: hook is the strongest narrative from Phase 2 (the decision, the fight, or the number - not "here's everything we shipped"); one item or beat per tweet, concrete and specific; include the honest cost where there was one (what got cut, what took three attempts); close with where to try it. Written to be interesting to a builder who will never buy - that's the audience that shares it.
+Build-in-public register, 4-8 tweets: hook is the strongest narrative from Phase 2 (the decision, the fight, or the number - not "here's everything we shipped"); one item or beat per tweet, concrete and specific; include the real cost where there was one (what got cut, what took three attempts); close with where to try it. Written to be interesting to a builder who will never buy - that's the audience that shares it.
 
 ### 3.3 LinkedIn post
 

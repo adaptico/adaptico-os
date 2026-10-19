@@ -1,6 +1,6 @@
 # [Project Name] - Profile
 
-> Your project profile. Adaptico OS reads this for context on every `/gtm` command. Keep it short and honest.
+> Your project profile. Adaptico OS reads this for context on every `/gtm` command. Keep it short and accurate.
 
 ## Identity
 - **Website:** https://

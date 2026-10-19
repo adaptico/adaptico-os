@@ -1,6 +1,6 @@
 ---
 name: gtm-channel
-version: 1.1.2
+version: 1.1.3
 description: Single compounding-channel pick for /gtm channel <target> - forces the choice of ONE distribution channel by scoring every candidate against where the ICP actually gathers, the founder's real weekly hours, how the product is bought, and how fast the channel compounds; outputs one primary channel with a 4-week starter plan, an explicit not-now list for every rejected channel, and a kill/review date set before the work starts. It deletes options, it doesn't add them. Use when the user asks which marketing channel to focus on, where to spend their limited time, or feels spread across five channels with none working. Also trigger for "which channel", "where should I focus", "distribution channel", "traction channel", "spread too thin", "marketing channel strategy", "what channel should I bet on", or "Bullseye".
 ---
 
@@ -44,7 +44,7 @@ Then read earlier dated reports in the folder and reuse instead of re-deriving: 
 
 **Ask the founder once** - the message is optional and the run never stalls on it:
 
-> "Four things sharpen this from a generic answer to your answer, if you have a minute: (1) how many hours a week you can genuinely sustain on distribution - the honest number, not the ambitious one, (2) what you're naturally good at or enjoy - writing, talking to people, making videos, building tools, (3) where your last 5 signups actually came from, (4) any channel you refuse to do, so I stop proposing it."
+> "Four things sharpen this from a generic answer to your answer, if you have a minute: (1) how many hours a week you can genuinely sustain on distribution - the real number, not the ambitious one, (2) what you're naturally good at or enjoy - writing, talking to people, making videos, building tools, (3) where your last 5 signups actually came from, (4) any channel you refuse to do, so I stop proposing it."
 
 If unanswered, assume 5 hours/week and label it **assumed**. Label every input in the report **founder-provided**, **observed** (fetched from a public page or a prior report), or **inferred** (your estimate, with the assumption stated).
 
@@ -65,11 +65,11 @@ From the sweep, shortlist **3-5 plausible candidates** for scoring. Everything e
 Score each shortlisted channel 0-3 on four dimensions. Every score carries one evidence line, labeled founder-provided / observed / inferred. The report shows the full scoreboard - the founder should be able to disagree with a number and see exactly what claim they're disagreeing with.
 
 - **ICP habitat (0-3)** - where the buyers already are. 3: observed proof this ICP gathers *and acts* there - named communities discussing the pain weekly, rivals visibly winning customers there, real signups traced to it. 1: plausible by category logic alone. 0: no reachable concentration of these buyers - which no amount of effort fixes.
-- **Founder capacity (0-3)** - hours and temperament. 3: the channel's honest weekly cost (menu table) fits inside the stated hours *and* plays to what the founder is good at or enjoys. 1: it fits the hours but fights the temperament. 0: the weekly cost exceeds the real hours, or the founder refused it.
+- **Founder capacity (0-3)** - hours and temperament. 3: the channel's weekly cost (menu table) fits inside the stated hours *and* plays to what the founder is good at or enjoys. 1: it fits the hours but fights the temperament. 0: the weekly cost exceeds the real hours, or the founder refused it.
 - **Product motion (0-3)** - how the product is bought. 3: the channel matches the buying motion (a self-serve product wants channels where users discover and try alone; a sales-led product wants channels that start conversations) and the price can carry the channel's cost per customer. 0: the arithmetic cannot work - e.g. high-touch outbound selling a $9/month tool.
 - **Time-to-compound (0-3)** - how fast it returns signal, and whether effort accumulates. 3: produces a readable signal inside the 4-week window *and* leaves assets that keep working (posts, rankings, reputation, a list). 2: compounds hard but slowly, or pays fast without compounding. 0: months of silence and nothing accumulates.
 
-**Hard gates:** a 0 in ICP habitat or founder capacity deletes the candidate outright, whatever its total. Traffic can't be willed into a channel the buyers don't use, and a plan the founder can't staff is fiction. If the gates delete every shortlisted candidate (tight hours plus refusals can do it), still pick - the lowest-weekly-cost channel from the sweep with real habitat evidence, its plan sized inside the actual hours even where that under-feeds the menu's honest cost (say so) - and open the report by naming capacity, or the refusals, as the binding constraint to fix.
+**Hard gates:** a 0 in ICP habitat or founder capacity deletes the candidate outright, whatever its total. Traffic can't be willed into a channel the buyers don't use, and a plan the founder can't staff is fiction. If the gates delete every shortlisted candidate (tight hours plus refusals can do it), still pick - the lowest-weekly-cost channel from the sweep with real habitat evidence, its plan sized inside the actual hours even where that under-feeds the menu's weekly cost (say so) - and open the report by naming capacity, or the refusals, as the binding constraint to fix.
 
 **Thin-evidence rule:** if every surviving candidate's habitat score rests on inferred evidence only, still pick (this skill never stalls) - but shorten the review window from 4 weeks to 2, and make week 1 of the starter plan a verification week: confirm the buyers are actually there before building the routine.
 
@@ -94,10 +94,10 @@ Each channel family's loop skeleton and its handoff command live in `references/
 
 **Build-in-public starter kit** - include this section only when the pick is founder-led social:
 
-- **The premise, honestly:** build-in-public works because specifics are the content - real numbers, real decisions, real failures. It costs nothing but candor, and it compounds into an audience that trusts you before they try the product.
+- **The premise:** build-in-public works because specifics are the content - real numbers, real decisions, real failures. It costs nothing but candor, and it compounds into an audience that trusts you before they try the product.
 - **Setup (week 1):** bio that names the ICP and the problem (not "building cool stuff"), pinned post introducing the product and the journey, a running note file where metrics and decisions get captured as they happen - the raw material for every future post.
 - **What to share:** the numbers most founders hide (MRR, signups, churn, a launch that flopped), the decisions with real stakes (pricing, a feature killed, a pivot considered), the lessons with receipts. What NOT to share: vague motivation, milestones without numbers, anything a customer told you in confidence.
-- **Two post skeletons to start** (templates to fill, not finished copy): a numbers post - "[metric] after [timeframe]: [number]. What moved it: [one specific change]. What didn't: [one honest failure]." - and a decision post - "We almost [decision]. Here's why we didn't: [reasoning with stakes]."
+- **Two post skeletons to start** (templates to fill, not finished copy): a numbers post - "[metric] after [timeframe]: [number]. What moved it: [one specific change]. What didn't: [one real failure]." - and a decision post - "We almost [decision]. Here's why we didn't: [reasoning with stakes]."
 - **Cadence floor:** 2-3 posts a week plus daily replies beats a daily grind that dies in week 3.
 - **The handoff:** run `/gtm social` for the full system - live thread listening, triaged replies, and the posting calendar in your voice. The kit above is the on-ramp; that command is the engine. And `/gtm changelog` turns each week's shipped work into ready-to-post build-in-public content - the running note file above, drafted for you from the real git log.
 
@@ -123,7 +123,7 @@ A real calendar date, computed from today: **4 weeks out** by default, **2 weeks
 - **Continue** - signal is real but small: same channel, one deliberate adjustment, new date.
 - **Double down** - the channel is producing: raise the hours, and only now consider what `/gtm leadmagnet` could capture from the traffic.
 
-One honest caveat, in the report: four weeks reads a fast channel (outreach, communities, founder-led social) but only proves *consistency* in a slow one (SEO, content) - for slow channels the review date checks that the groundwork shipped and the leading indicators (indexing, impressions) moved, not that customers arrived. Log the outcome in `LOG.md` either way - under its `## Strategy & positioning` section (the channel verdict is a strategy call), updating this run's `pending` line in place; a dead channel, documented, is the cheapest insurance against re-trying it in six months.
+One caveat, in the report: four weeks reads a fast channel (outreach, communities, founder-led social) but only proves *consistency* in a slow one (SEO, content) - for slow channels the review date checks that the groundwork shipped and the leading indicators (indexing, impressions) moved, not that customers arrived. Log the outcome in `LOG.md` either way - under its `## Strategy & positioning` section (the channel verdict is a strategy call), updating this run's `pending` line in place; a dead channel, documented, is the cheapest insurance against re-trying it in six months.
 
 ---
 
@@ -191,7 +191,7 @@ After the report is saved, append one line for this run to the project's `LOG.md
 - `/gtm social` - the execution engine when the pick is founder-led social or communities: live thread listening, triaged replies, the lean calendar.
 - `/gtm changelog` - when the pick is founder-led social, the weekly content engine: build-in-public posts drawn from what actually shipped.
 - `/gtm outreach` - the execution engine when the pick is cold outbound.
-- `/gtm seo` - the groundwork audit and the honest when-to-invest verdict when SEO is a candidate.
+- `/gtm seo` - the groundwork audit and the when-to-invest verdict when SEO is a candidate.
 - `/gtm launch` - the playbook when the pick is a launch-platform push.
 - `/gtm leadmagnet` - once the picked channel drives real traffic, the capture asset that turns it into an owned list.
 - `/gtm funnel` - check the site converts before feeding it a channel's traffic.

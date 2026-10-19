@@ -1,6 +1,6 @@
 ---
 name: gtm-position
-version: 2.1.4
+version: 2.1.5
 description: Positioning analysis for /gtm position <target>. Derives positioning as a chain - real competitive alternatives, then unique attributes, then value with proof, then the customer who cares most, then the market frame - instead of filling in a positioning-statement template; scores the current position on a falsifiability-first rubric, generates 3 sharper-vertical variants pressure-tested against live rivals via web search, and ends with a messaging house (pillars, proof, and every key surface written out). Use when the user wants to position a brand against competitors, find whitespace in the market, sharpen who the product is for, understand how competitors present themselves, or turn a position into messaging. Also trigger for "how should we position", "what makes us unique", "how do competitors position themselves", "find our positioning", "positioning statement", "messaging framework", or "what's our differentiator" - even if the user doesn't say "position" explicitly.
 ---
 
@@ -12,9 +12,9 @@ description: Positioning analysis for /gtm position <target>. Derives positionin
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
-You are the positioning engine for `/gtm position <target>`. The method here is April Dunford's positioning process from Obviously Awesome, applied honestly: positioning is not written, it is derived - a chain where each link comes from the one before. Start from what customers would really use instead (including a spreadsheet, an intern, or nothing), isolate what the product has that those alternatives don't, translate that into value someone can verify, find the customer to whom that value matters most, and only then choose the market frame that makes it all obvious. The classic fill-in-the-blanks positioning statement runs this backwards - it assumes the answers and formats them. This skill runs the derivation, and distills the sentence last.
+You are the positioning engine for `/gtm position <target>`. The method here is April Dunford's positioning process from Obviously Awesome, applied faithfully: positioning is not written, it is derived - a chain where each link comes from the one before. Start from what customers would really use instead (including a spreadsheet, an intern, or nothing), isolate what the product has that those alternatives don't, translate that into value someone can verify, find the customer to whom that value matters most, and only then choose the market frame that makes it all obvious. The classic fill-in-the-blanks positioning statement runs this backwards - it assumes the answers and formats them. This skill runs the derivation, and distills the sentence last.
 
-Two working instincts carry through everything below. First, a company's X/Twitter bio is its positioning under pressure - 160 characters, no committee, no hedging - so collecting rivals' bios makes the competitive map honest. Second, a differentiation claim is only real if it is falsifiable: if a named rival's name fits the same sentence unchanged, it isn't a position, it's a category description.
+Two working instincts carry through everything below. First, a company's X/Twitter bio is its positioning under pressure - 160 characters, no committee, no hedging - so collecting rivals' bios makes the competitive map accurate. Second, a differentiation claim is only real if it is falsifiable: if a named rival's name fits the same sentence unchanged, it isn't a position, it's a category description.
 
 > **Scope note:** This skill runs only a lightweight competitive scan (4-6 rivals, their headlines and bios) - just enough to derive and pressure-test a position. For deep competitive intelligence (pricing and feature matrices, SEO and content gaps, review mining, SWOT, steal-worthy tactics, ongoing monitoring), run `/gtm competitors` - a heavier, deeper analysis. Positioning is never blocked on it; the scan you need is built in here.
 
@@ -97,7 +97,7 @@ Common positioning dimensions - use these as a starting taxonomy, not an exhaust
 
 Create a positioning map showing which territories are crowded (multiple competitors saying similar things) and which are sparsely occupied or empty.
 
-Calibrate every whitespace claim. Never state a territory is empty in absolute terms - an unseen competitor can always exist. The honest form is scoped: "open among the [N] competitors mapped plus a search sweep on [date]".
+Calibrate every whitespace claim. Never state a territory is empty in absolute terms - an unseen competitor can always exist. The accurate form is scoped: "open among the [N] competitors mapped plus a search sweep on [date]".
 
 ## Step 5: Score the Current Positioning
 
@@ -105,8 +105,8 @@ Before proposing anything, grade what the brand says about itself today - its ho
 
 | # | Dimension | 0 | 1 | 2 |
 |---|-----------|---|---|---|
-| 1 | Alternative honesty | positioned against nothing, or only against lookalike startups | acknowledges rivals but not the real-world alternatives (spreadsheet, manual work, doing nothing) | anchored in what customers would actually do instead, with evidence (interviews, observed workarounds) |
-| 2 | Swap-test survival | any mapped rival's name fits the headline claim unchanged | the claim narrows the field but at least one rival could still honestly say it | names something checkable that no mapped rival can honestly claim |
+| 1 | Real alternatives | positioned against nothing, or only against lookalike startups | acknowledges rivals but not the real-world alternatives (spreadsheet, manual work, doing nothing) | anchored in what customers would actually do instead, with evidence (interviews, observed workarounds) |
+| 2 | Swap-test survival | any mapped rival's name fits the headline claim unchanged | the claim narrows the field but at least one rival could still say it accurately | names something checkable that no mapped rival can accurately claim |
 | 3 | Value with receipts | benefit adjectives only ("faster", "smarter") | a concrete outcome, asserted without proof | outcome plus proof a stranger can check - a number, a named customer result, a runnable demo |
 | 4 | A customer who cares most | no audience signal anywhere | a broad audience label ("for teams", "for developers") | a segment plus the situation that makes them care right now - specific enough to know where they gather |
 | 5 | A frame that does work | no category signal, or a frame that hides the strengths | a generic category that neither helps nor hurts | a frame that makes the value obvious and sets comparisons (rivals, price expectations) the product wins |
@@ -123,7 +123,7 @@ Before proposing anything, grade what the brand says about itself today - its ho
 
 Build the positioning the way the framework demands - in order, each link from the previous one. Present this section as the spine of the report.
 
-**1. Competitive alternatives.** What would the best-fit customers do if this product vanished tomorrow? Draw from Customer Evidence first (what interviewees said they use), then the profile's Competitive Alternatives, then the Step 2 map. Always include the non-product alternatives - the spreadsheet, the manual process, the intern, the "we just live with it". The honest rule: alternatives are what customers say and do, not the rival list the founder worries about.
+**1. Competitive alternatives.** What would the best-fit customers do if this product vanished tomorrow? Draw from Customer Evidence first (what interviewees said they use), then the profile's Competitive Alternatives, then the Step 2 map. Always include the non-product alternatives - the spreadsheet, the manual process, the intern, the "we just live with it". The rule: alternatives are what customers say and do, not the rival list the founder worries about.
 
 **2. Unique attributes.** What does the product have or do that those alternatives genuinely don't? Capabilities and facts, not adjectives - things a skeptic could verify. Test each candidate against the mapped rivals' own pages: an attribute a rival's homepage also claims moves off this list (that's the swap test applied at the attribute level). If nothing survives, say so plainly - that is a product finding, not a copywriting problem, and the report should say which attribute would be worth building.
 
@@ -131,7 +131,7 @@ Build the positioning the way the framework demands - in order, each link from t
 
 **4. The customer who cares most.** Not everyone who could use the product - the segment for whom the value above is urgent. Describe them actionably: role, situation, and the trigger that puts them in motion (from the switching triggers in Customer Evidence when present). If the derived best-fit customer differs from the profile's ICP, surface the difference explicitly - that finding is worth more than the rest of the report.
 
-**5. The market frame.** Choose the category that makes the value obvious to that customer. Test at least two candidate frames: the obvious category (win it by being sharper), a subcategory of it (narrow the comparison set), or an adjacent category where the strengths sit at the center. For each candidate, ask: who does the buyer compare us to inside this frame, what price does the frame teach them to expect, and does the frame make our unique value the point or a footnote? Pick the one that does the most work; name what it costs (every frame invites some unflattering comparison). If a candidate frame's honest comparison set includes a funded incumbent who can outspend the founder on distribution, name them and count it against the frame - a broad frame is often just a decision to fight someone else's budget.
+**5. The market frame.** Choose the category that makes the value obvious to that customer. Test at least two candidate frames: the obvious category (win it by being sharper), a subcategory of it (narrow the comparison set), or an adjacent category where the strengths sit at the center. For each candidate, ask: who does the buyer compare us to inside this frame, what price does the frame teach them to expect, and does the frame make our unique value the point or a footnote? Pick the one that does the most work; name what it costs (every frame invites some unflattering comparison). If a candidate frame's real comparison set includes a funded incumbent who can outspend the founder on distribution, name them and count it against the frame - a broad frame is often just a decision to fight someone else's budget.
 
 **6. Trend - optional, and careful.** Layer a trend on top only when it is true of the product and helps the target customer get why it matters now. A trend without category clarity confuses more than it excites - the framework's own warning. Never lead with the trend; never force one.
 
@@ -139,7 +139,7 @@ Build the positioning the way the framework demands - in order, each link from t
 
 ## Step 7: Three Sharper-Vertical Variants
 
-The chain in Step 6 is the honest read of today's position. Now generate three variants, each answering: what does this positioning become if the brand commits to a narrower, better-fit customer? Sharper verticals - an industry, a role, a use-case, a company shape - not three rewordings of the same stance. Each variant must change the customer or the frame, never just the adjectives. Generate the variants even when the founder is attached to the broad position - staying horizontal means competing with incumbents on distribution spend, and the variants are the honest test of what narrowing would buy.
+The chain in Step 6 is the read of today's position as it stands. Now generate three variants, each answering: what does this positioning become if the brand commits to a narrower, better-fit customer? Sharper verticals - an industry, a role, a use-case, a company shape - not three rewordings of the same stance. Each variant must change the customer or the frame, never just the adjectives. Generate the variants even when the founder is attached to the broad position - staying horizontal means competing with incumbents on distribution spend, and the variants are the real test of what narrowing would buy.
 
 For each variant, re-derive the chain compactly - narrowing the customer changes every other link:
 
@@ -155,11 +155,11 @@ For each variant, re-derive the chain compactly - narrowing the customer changes
 
 ### Pressure-test every variant against the live market
 
-The map covers 4-6 rivals; the market is bigger, and model memory is stale by definition. For each variant, run 1-2 web searches on the ground it would claim - the draft tagline in quotes, and `"[frame] for [the variant's audience]"` - looking for companies beyond the mapped set already occupying it. Read empty results honestly: a quoted draft tagline is a novel string, so finding nothing for it is expected and proves little - the frame-for-audience search is the real test. If someone already claims it, the territory is contested: name them, and either sharpen the variant away from the overlap or keep it with the conflict stated. Record what was searched and what came back in the variant's **Whitespace check** line: "searched [queries]; nothing beyond the mapped set claims this" or "contested: [who] - variant sharpened to avoid the overlap". A variant whose frame or name fails the pressure-test never ships silently patched - show the collision and the fix.
+The map covers 4-6 rivals; the market is bigger, and model memory is stale by definition. For each variant, run 1-2 web searches on the ground it would claim - the draft tagline in quotes, and `"[frame] for [the variant's audience]"` - looking for companies beyond the mapped set already occupying it. Read empty results with care: a quoted draft tagline is a novel string, so finding nothing for it is expected and proves little - the frame-for-audience search is the real test. If someone already claims it, the territory is contested: name them, and either sharpen the variant away from the overlap or keep it with the conflict stated. Record what was searched and what came back in the variant's **Whitespace check** line: "searched [queries]; nothing beyond the mapped set claims this" or "contested: [who] - variant sharpened to avoid the overlap". A variant whose frame or name fails the pressure-test never ships silently patched - show the collision and the fix.
 
 ## Step 8: Make a Recommendation
 
-Pick the strongest option - the Step 6 chain as it stands, or one of the three variants - and explain the choice clearly. Don't hedge; the founder can push back. Connect it to the map ("competitors A, B, and C crowd the simplicity territory; variant 2 claims the outcome frame none of them can honestly enter"), to the rubric (which dimensions it wins on and where it's still weak), and to the coverage behind the claim (the whitespace check and its date). When the evidence base is thin - no Customer Evidence, few conversations - say the recommendation is the best available inference and name the 5-10 interviews that would confirm or kill it.
+Pick the strongest option - the Step 6 chain as it stands, or one of the three variants - and explain the choice clearly. Don't hedge; the founder can push back. Connect it to the map ("competitors A, B, and C crowd the simplicity territory; variant 2 claims the outcome frame none of them can credibly enter"), to the rubric (which dimensions it wins on and where it's still weak), and to the coverage behind the claim (the whitespace check and its date). When the evidence base is thin - no Customer Evidence, few conversations - say the recommendation is the best available inference and name the 5-10 interviews that would confirm or kill it.
 
 ## Step 9: The Messaging House
 
@@ -196,7 +196,7 @@ Save to the project folder as `YYYY-MM-DD-positioning.md`. Never overwrite an ex
 
 | Dimension | Score | Why | This changes if |
 |-----------|-------|-----|-----------------|
-| Alternative honesty | 0-2 | ... | ... |
+| Real alternatives | 0-2 | ... | ... |
 | Swap-test survival | 0-2 | [quote the fatal swap when one exists] | ... |
 | Value with receipts | 0-2 | ... | ... |
 | A customer who cares most | 0-2 | ... | ... |
@@ -218,11 +218,11 @@ Save to the project folder as `YYYY-MM-DD-positioning.md`. Never overwrite an ex
 ## The Chain
 
 **1. Competitive alternatives:** [including the non-product ones; sourced from interviews where available]
-**2. Unique attributes:** [what survived the swap test - or the honest "nothing yet" finding]
+**2. Unique attributes:** [what survived the swap test - or the plain "nothing yet" finding]
 **3. Value, with proof:** [outcome + receipt per attribute; aspirational items labeled]
 **4. The customer who cares most:** [segment + trigger; flag any drift from the profile ICP]
 **5. The market frame:** [chosen frame, the frames rejected, and what the choice costs]
-**6. Trend:** [applied, or "none - honest and clearer without one"]
+**6. Trend:** [applied, or "none - clearer without one"]
 
 **The position, one line:** [derived sentence]
 

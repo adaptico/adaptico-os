@@ -1,7 +1,7 @@
 ---
 name: gtm-repurpose
-version: 1.1.3
-description: Platform-native repurposing for /gtm repurpose <target>. Takes one finished piece the founder already published or drafted - an article, a launch post, a talk - and rewrites it into variants built for each platform - an X thread, a LinkedIn post, a short-form video script outline, and a newsletter section. Each variant is rewritten for the platform's native shape, never truncated, stands alone without the original, and goes through the humanize pass; platforms the piece can't feed honestly get skipped, not filled. Use when the user wants to multiply one finished piece across platforms. Also trigger for "repurpose this", "turn this post into a thread", "atomize this article", "make social posts from my blog post", "content atomization", or "squeeze more out of this piece".
+version: 1.1.4
+description: Platform-native repurposing for /gtm repurpose <target>. Takes one finished piece the founder already published or drafted - an article, a launch post, a talk - and rewrites it into variants built for each platform - an X thread, a LinkedIn post, a short-form video script outline, and a newsletter section. Each variant is rewritten for the platform's native shape, never truncated, stands alone without the original, and goes through the humanize pass; platforms the piece can't feed without padding get skipped, not filled. Use when the user wants to multiply one finished piece across platforms. Also trigger for "repurpose this", "turn this post into a thread", "atomize this article", "make social posts from my blog post", "content atomization", or "squeeze more out of this piece".
 ---
 
 # Repurpose - One Piece, Platform-Native Variants
@@ -54,13 +54,13 @@ Read the source piece once, properly, and extract its reusable assets - this inv
 - **The quotable lines** - sentences worth lifting whole.
 - **The story beat** - the narrative moment (a decision, a failure, a turn) if the piece has one; platforms reward story over summary.
 
-Put the inventory in the report - the founder reuses it long after this run, and it shows honestly what the piece does and doesn't contain.
+Put the inventory in the report - the founder reuses it long after this run, and it shows plainly what the piece does and doesn't contain.
 
 ---
 
 ## Phase 2: The Variants - Native, Not Trimmed
 
-Build each variant from the inventory, for that platform's native shape. Produce only the variants the piece can honestly feed and the founder's channels justify.
+Build each variant from the inventory, for that platform's native shape. Produce only the variants the piece can feed without padding and the founder's channels justify.
 
 **The skip rule (as important as the variants):** if the inventory can't fill a format with real substance - no story beat for a script, no standalone insight strong enough for LinkedIn - skip that variant and say why in one line. A weak variant published is worse than none: it spends the audience's trust on filler. The report's skip notes are part of the deliverable.
 
@@ -140,7 +140,7 @@ Write the full output to the resolved output path as `YYYY-MM-DD-repurpose.md` (
 [The section, ready to paste - or the skip note.]
 
 ## Skipped Variants
-[Each skipped format with its one-line honest reason.]
+[Each skipped format with its one-line reason.]
 
 ## Sequencing
 [The 7-10 day schedule, the re-share note, the LOG line format.]

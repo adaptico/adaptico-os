@@ -2,11 +2,11 @@
 
 The nineteen traction channels cataloged by the Bullseye framework (Gabriel Weinberg and Justin Mares, *Traction*), regrouped into twelve families a software founder can actually staff. Every family must get a one-line verdict in the Phase 1 sweep - the regrouping changes the packaging, never the coverage.
 
-Weekly costs are honest planning figures for one founder doing it properly (practitioner consensus, not measurements). Compounding classes: **fast signal** (readable inside 4 weeks), **compounding** (assets accumulate and keep working), or both.
+Weekly costs are realistic planning figures for one founder doing it properly (practitioner consensus, not measurements). Compounding classes: **fast signal** (readable inside 4 weeks), **compounding** (assets accumulate and keep working), or both.
 
 ## The twelve families
 
-| # | Family | Covers (canonical channels) | Who it fits | Honest weekly cost | Signal & compounding |
+| # | Family | Covers (canonical channels) | Who it fits | Weekly cost | Signal & compounding |
 |---|--------|------------------------------|-------------|--------------------|----------------------|
 | 1 | **Founder-led social** | community building (the founder's own audience) | Founders whose ICP reads X/LinkedIn; products with a story worth following | 4-8 h | Fast signal (replies land day one); compounds as the audience grows |
 | 2 | **Niche communities & forums** | targeting blogs, community building | Products whose buyers ask questions in Reddit/HN/Slack/Discord niches | 3-5 h | Fast signal; reputation compounds slowly |

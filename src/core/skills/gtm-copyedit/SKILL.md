@@ -1,6 +1,6 @@
 ---
 name: gtm-copyedit
-version: 1.1.4
+version: 1.1.5
 description: Line edit of a draft the founder wrote, for /gtm copyedit <target> - an email, a post, a doc, or page copy. A checklist-driven edit pass - front-load the point, tighten sentences, swap jargon for plain English, cut filler, keep the writer's voice (via the project voice guide), and report the cut percentage; ends with the anti-AI humanize pass. Use when the user wants their own draft edited, tightened, or clarified without losing their voice. Also trigger for "edit this draft", "tighten this up", "line-edit this", "make this clearer", "proofread this post", or "cut this down".
 ---
 
@@ -84,9 +84,9 @@ Work through the draft against all ten checks. Each significant edit is logged i
    | in terms of / with regards to | (rewrite the sentence around it) |
    | at this point in time | now |
 
-6. **Cut filler and soft hedges.** just, really, very, quite, actually, basically, "I think" as a reflex. Keep at most one hedge where honesty needs it (a real uncertainty), and keep the ones that are the writer's voice on purpose.
+6. **Cut filler and soft hedges.** just, really, very, quite, actually, basically, "I think" as a reflex. Keep at most one hedge where a real uncertainty needs it, and keep the ones that are the writer's voice on purpose.
 7. **Cut redundant pairs and dead modifiers.** "each and every", "end result", "future plans", "completely finish", "past history".
-8. **Concrete beats abstract.** Where the draft says "significantly faster" and the real number appears elsewhere in the draft or the profile, use it. Never invent a number - if no specific exists, tightening the vague claim is the honest edit.
+8. **Concrete beats abstract.** Where the draft says "significantly faster" and the real number appears elsewhere in the draft or the profile, use it. Never invent a number - if no specific exists, tightening the vague claim is the right edit.
 9. **Match jargon to the reader.** Judge every term of art against the ICP from Phase 0: keep what the reader speaks natively, swap or define in-line what they don't. For a technical reader, don't dumb precise terms down - precision is their plain English.
 10. **One ask.** For emails and posts: a single, explicit next step, stated once. If the draft asks three things, keep the one that matches the spine and move the rest out (a P.S., a follow-up, or gone).
 
@@ -107,7 +107,7 @@ Applied across every edit in Phase 2:
 
 ## Phase 4: The Cut Report
 
-Count honestly and report:
+Count exactly and report:
 
 - **Words before -> words after**, and the percent cut.
 - **Where the cuts came from** - one line per dominant category (wind-up, filler, redundancy, split-and-tightened sentences).

@@ -1,6 +1,6 @@
 ---
 name: gtm-article
-version: 1.1.2
+version: 1.1.3
 description: One research-first, long-form article for /gtm article <target>. Produces a single piece properly - research before any outline, one ownable thesis the founder can defend, an originality floor that rejects me-too angles, every factual claim cited or explicitly marked as opinion, then the humanize and critic passes before the piece saves. Built for durable topical authority and AI-answer citability, not content-mill volume. Use when the user wants to write a blog post, article, guide, or long-form piece. Also trigger for "write an article", "write a blog post", "long-form content", "write a guide about", "draft a post on", or "thought leadership piece".
 ---
 
@@ -45,7 +45,7 @@ Then read the earlier dated reports that feed this piece: `YYYY-MM-DD-content-pl
 
 > "Two things make this piece yours instead of anyone's: (1) what do you know about this topic from experience that someone outside your company couldn't write - a result, a number, a mistake, a build decision? (2) anything concrete I can use: metrics, screenshots worth referencing, a customer story (anonymized is fine)? Also useful: where this will publish, and roughly how long you want it."
 
-No answer: work from the profile, the site, and prior reports, and label the piece's experience content as drawn from public materials - the originality floor (Phase 3) gets harder to pass without founder input, and that consequence is stated honestly rather than papered over.
+No answer: work from the profile, the site, and prior reports, and label the piece's experience content as drawn from public materials - the originality floor (Phase 3) gets harder to pass without founder input, and that consequence is stated plainly rather than papered over.
 
 With no profile loaded, derive what you can from the site and note once that `/gtm init` would tailor the piece to ICP, positioning, and voice.
 
@@ -81,13 +81,13 @@ The thesis passes only if all three hold:
 2. **Defensible** - the evidence and experience from Phase 1 actually support it; a spicy claim the founder can't back is a liability with a byline.
 3. **Not already the consensus** - the survey (1.1) doesn't show three pieces already saying it. Restating the consensus competently is the definition of me-too content.
 
-If no thesis passes, **say so - that is a valid and valuable output.** Propose 2-3 sharper angles the research does support (usually narrower: a specific failure mode, a contrarian slice, the founder's own numbers as the story) and ask which to pursue. On an unattended run: if one proposed angle clearly passes all three tests, proceed with it and record the substitution in the report header; otherwise save the research brief itself as the output - an honest brief beats a hollow article, and the report says exactly that.
+If no thesis passes, **say so - that is a valid and valuable output.** Propose 2-3 sharper angles the research does support (usually narrower: a specific failure mode, a contrarian slice, the founder's own numbers as the story) and ask which to pursue. On an unattended run: if one proposed angle clearly passes all three tests, proceed with it and record the substitution in the report header; otherwise save the research brief itself as the output - a solid brief beats a hollow article, and the report says exactly that.
 
 ---
 
 ## Phase 3: The Originality Floor
 
-Before any outline, grade the planned piece against seven marks. Check each honestly:
+Before any outline, grade the planned piece against seven marks. Check each strictly:
 
 1. **First-hand evidence** - results, numbers, or artifacts from the founder's own work, not just curated links.
 2. **Specific, sourced numbers** - real figures with named sources and dates, not "studies show".
@@ -107,7 +107,7 @@ Now the outline - from the research brief and thesis, not from a template:
 
 - **The opening carries the thesis.** The claim, and why it matters to this reader, lands inside the first three paragraphs - cut any wind-up of the "in the ever-evolving landscape of..." kind before it reaches the page.
 - **Every section advances the argument.** Each section earns its place by moving the thesis forward with evidence or experience; a section that merely "covers" a subtopic gets cut.
-- **One honest counter-argument section.** The strongest case against the thesis, stated fairly, then answered. This is what separates a defended position from a hot take - and it is usually the most-quoted part.
+- **One real counter-argument section.** The strongest case against the thesis, stated fairly, then answered. This is what separates a defended position from a hot take - and it is usually the most-quoted part.
 - **Place the evidence.** Slot each Phase 1 fact and first-hand item where it does the most work; a claim-shaped section with no evidence assigned is a red flag to fix now, not during drafting.
 - **Format for citability.** Descriptive headings a machine can parse (the question, or the claim - not "Part 2"); the direct answer in the first sentence or two under each heading, elaboration after; self-contained passages that survive being quoted alone. The same structure `/gtm geo` audits site-wide, applied at piece level.
 - **One CTA, matched to intent.** From the content plan's intent for this piece - a learning-stage reader gets the newsletter or a related piece, a comparing-stage reader gets the product. One ask; not three.
@@ -119,7 +119,7 @@ Now the outline - from the research brief and thesis, not from a template:
 Write the full piece from the outline, in the voice source from Phase 0. The discipline that holds throughout:
 
 - **Every factual claim is cited or labeled.** A statistic, benchmark, or external fact carries its source inline (linked, with the source named). Anything from the founder's judgment or experience is marked as exactly that - "in our experience", "our numbers show", "I think" - which readers trust more than fake omniscience, not less.
-- **No invented numbers, ever.** A figure without a source does not ship; if the honest version is "we don't have data on this", write that.
+- **No invented numbers, ever.** A figure without a source does not ship; if the true version is "we don't have data on this", write that.
 - **Length is set by substance.** The piece is as long as the argument needs - typically 1,200-2,500 words for a cluster piece, longer only if the evidence carries it. Padding to hit a word count is the content-mill tell this skill exists to avoid.
 - **Concrete over abstract.** Numbers, names, worked examples, before/after - every abstraction is one example away from being useful.
 - **Scannable.** A reader who only reads headings and first sentences should still get the argument (so should a crawler).

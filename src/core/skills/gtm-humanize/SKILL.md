@@ -1,6 +1,6 @@
 ---
 name: gtm-humanize
-version: 1.2.5
+version: 1.2.6
 description: Terminal anti-AI pass for /gtm humanize <target> - strips the tells that make a draft read machine-written (hype vocabulary, stock phrases, "it's not X, it's Y" pivots, staged openers and kickers, em-dash overuse, chatbot residue), then enforces the founder's voice and trims the padding the tells left. With --check it names each tell with its line and a fix and rewrites nothing. Runs standalone on pasted text or a file, and as the default closing pass for the writing commands. Use when the user wants a draft to sound human before it ships, or wants to know which lines read machine-written. Also trigger for "humanize this", "make this sound human", "this sounds like AI", "does this sound like AI", "check this for AI tells", "strip the AI tells", "de-AI this draft", or "make it sound like me".
 ---
 
@@ -82,7 +82,7 @@ Rewrite the draft with every hard tell removed. These are prohibitions, not styl
 5. **Chatbot residue** - "I hope this helps", "Great question", "Let's dive in", "In conclusion", "Certainly!", meta-narration ("In this post, we'll explore..."), and flattery of the reader, in a reply or a post hook ("you're already ahead of most founders"). Delete; start with the point.
 6. **Vague attribution** - "studies show", "experts agree", "research suggests" with no named source. Name the source or cut the claim; never invent a citation.
 7. **Inflated significance** - "watershed moment", "marking a pivotal moment", "the future of X" wrapped around a routine event. If the sentence works with the inflation clause deleted, delete it.
-8. **Hedge stacks** - "could potentially", "may eventually", "might ultimately". Each hedge cancels the next; keep exactly one where uncertainty is honest, cut the rest.
+8. **Hedge stacks** - "could potentially", "may eventually", "might ultimately". Each hedge cancels the next; keep exactly one where the uncertainty is real, cut the rest.
 9. **False-candor and throat-clearing openers** - "I hope this email finds you well", "to be honest", "honestly," leading into a pitch or an ask, "I just wanted to". Lead with the reason for writing. A story told in the writer's own voice keeps its "Honestly, I was terrified."
 10. **Machine leaks** - unfilled template placeholders ("[Your Name]"), leftover citation tokens, tracking parameters (`utm_source=...` from AI tools), knowledge-cutoff disclaimers ("as of my last update"), and notes about what the sources did or didn't show ("based on available information", "not publicly documented"). Strip every one.
 11. **Fragment rows** - two or more fragments in a row for effect ("No setup. No waiting. Just results."), or three short fragments that build to one long sentence. Merge them into one sentence that makes a claim. A single short sentence that adds a fact is fine, and short sentences that each carry their own fact ("Shipped the fix Friday. Broke billing for 40 accounts. Fixed it by Saturday.") count as reporting and stay.
@@ -117,7 +117,7 @@ Findings are leads, not verdicts - verify each in context:
 - **A real correction** - a contrast whose first half is something the reader really believes (often what they just said) and whose second half adds a fact ("It's not high, it's the going rate - $49 against $45-60 for the three closest tools", in reply to "isn't $49 too much?"). It stays; the pivot ban targets contrasts that argue with no one. A plain status fact in docs or a changelog ("Dark mode isn't supported yet. It's planned for March.") stays too.
 - **Deliberate personalization slots** - bracketed slots a sequence leaves for the founder to fill (the `[one real thing you verified about them]` slots in outreach drafts) are design, not tells. Keep them.
 - **Technical terms and literal senses** - "robust statistics", "seamless texture", an API that literally unlocks something, a quiet room, a "period" that is punctuation. Judge by meaning, not string match.
-- **Honest hedges** - a modal in a genuinely uncertain claim ("may add ~5-10% latency") is epistemic honesty. One hedge, kept; stacks, cut.
+- **Real hedges** - a modal in a genuinely uncertain claim ("may add ~5-10% latency") states a real uncertainty. One hedge, kept; stacks, cut.
 - **The writer's own quirks** - on a founder-written draft, disfluency, pacing, and odd word choices are the humanity. Over-polishing a human draft pushes it toward the machine profile; when in doubt, leave their sentence alone.
 
 ---

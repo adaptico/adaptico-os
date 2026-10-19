@@ -1,7 +1,7 @@
 ---
 name: gtm-pricing
-version: 1.1.4
-description: Pricing page audit and value-based packaging design for /gtm pricing <target>. Challenges cost-plus pricing, anchors price to revenue gained or costs saved with an offer-strength check, designs 3 tiers with an honestly-badged anchored middle and annual-discount math (bundled calculator), and tears down or drafts the pricing page - FAQ with the AI-data-privacy answer, objection handling. Use when the user wants to set, raise, audit, or restructure pricing, packaging, or the offer. Also trigger for "how much should I charge", "price my product", "pricing page review", "design my tiers", "annual discount", or "am I charging too little".
+version: 1.1.5
+description: Pricing page audit and value-based packaging design for /gtm pricing <target>. Challenges cost-plus pricing, anchors price to revenue gained or costs saved with an offer-strength check, designs 3 tiers with an accurately badged, anchored middle and annual-discount math (bundled calculator), and tears down or drafts the pricing page - FAQ with the AI-data-privacy answer, objection handling. Use when the user wants to set, raise, audit, or restructure pricing, packaging, or the offer. Also trigger for "how much should I charge", "price my product", "pricing page review", "design my tiers", "annual discount", or "am I charging too little".
 ---
 
 # Pricing Page & Value-Based Packaging
@@ -54,7 +54,7 @@ Label every number in the report **founder-provided**, **observed** (fetched fro
 
 With no profile loaded, derive what you can from the site and note once that `/gtm init` would tailor the pricing to stage, ICP, and goal.
 
-**Stage note:** pricing is high-leverage from the first paying-intent tier onward. For a founder still validating demand, keep the output proportionate: a rough, honest price is itself a demand-signal instrument - cash is the strongest commitment a prospect can show - so favor one simple price or two tiers they can ship this week over a polished three-tier machine. The full packaging treatment pays off once real customers are choosing between plans.
+**Stage note:** pricing is high-leverage from the first paying-intent tier onward. For a founder still validating demand, keep the output proportionate: a rough, real price is itself a demand-signal instrument - cash is the strongest commitment a prospect can show - so favor one simple price or two tiers they can ship this week over a polished three-tier machine. The full packaging treatment pays off once real customers are choosing between plans.
 
 ---
 
@@ -75,10 +75,10 @@ For the ICP's primary use case, estimate what the product is worth per customer 
 
 - **Revenue gained** - deals won, conversion lifted, churn cut, capacity to serve more customers.
 - **Costs cut** - tools replaced (name them and their prices), infrastructure saved, an agency or contractor made unnecessary.
-- **Time saved** - hours per month times a loaded rate honest for the ICP (a founder's hour is not $15).
+- **Time saved** - hours per month times a loaded rate realistic for the ICP (a founder's hour is not $15).
 - **Risk reduced** - only when the ICP demonstrably pays for it (compliance, security); otherwise leave it qualitative.
 
-Build the math from the profile, the founder's answer, and the product's own claims - if the landing page says "save 10 hours a week", that claim is the value anchor to test the price against. Show the arithmetic; label every input. Where nothing can be quantified honestly, say so and anchor to the named next-best alternative's all-in cost instead (value-based pricing's fallback: the buyer's real comparison).
+Build the math from the profile, the founder's answer, and the product's own claims - if the landing page says "save 10 hours a week", that claim is the value anchor to test the price against. Show the arithmetic; label every input. Where nothing can be quantified from real inputs, say so and anchor to the named next-best alternative's all-in cost instead (value-based pricing's fallback: the buyer's real comparison).
 
 ### 1.3 The value-to-price check
 
@@ -113,7 +113,7 @@ Default to three tiers - enough ladder for anchoring and expansion, few enough t
 
 | Tier | Customer | Job |
 |---|---|---|
-| **Low** | The smallest real segment (solo dev, side project) | Deliver the core value at honest capacity; start the expansion path |
+| **Low** | The smallest real segment (solo dev, side project) | Deliver the core value at usable capacity; start the expansion path |
 | **Mid** | The core ICP from the profile | Everything the ICP needs for the primary use case - this is the tier the page sells |
 | **High** | The stretch segment (teams, companies) | Scale, collaboration, security, support - and anchor the mid price |
 
@@ -134,7 +134,7 @@ Sanity-check against the Value Equation findings: whatever raised perceived like
 
 Set the mid tier from the Phase 1 value math (the sanity band), the high tier high enough to anchor and to be worth selling (commonly 3-5x the mid tier's price in self-serve software - a convention to sanity-check against, not a law), and the low tier where the smallest segment says yes without thinking. Then verify the ladder with the calculator (Phase 3): the `midPosition` output shows how the anchor frames the middle - a mid sitting in the lower half of the low-high span reads as the reasonable choice next to the anchor (the center-stage effect: buyers presented with three options gravitate to the middle; anchoring makes the middle look modest).
 
-Badge the mid tier - and keep the badge honest: **"Most popular" only if it is factually the most-chosen plan** (check traction from Phase 0); otherwise "Recommended". Charm prices ($49 vs $50) are fine either way; consistency across tiers matters more than the digit.
+Badge the mid tier - and keep the badge true: **"Most popular" only if it is factually the most-chosen plan** (check traction from Phase 0); otherwise "Recommended". Charm prices ($49 vs $50) are fine either way; consistency across tiers matters more than the digit.
 
 ### 2.4 The annual discount
 
@@ -142,7 +142,7 @@ Offer annual billing at 15-20% off - the range that practitioner consensus says 
 
 - **"Save 20% with annual billing"** - the percent line, plus the absolute: "$117.60/yr on Pro".
 - **Months-free equivalent** - "2.4 months free" often outperforms the bare percent; use whichever is cleaner for the actual number.
-- **Default the page toggle to annual**, show the effective monthly price with an explicit "billed annually" label (the honest-toggle rule in the checklist).
+- **Default the page toggle to annual**, show the effective monthly price with an explicit "billed annually" label (the annual-toggle rule in the checklist).
 
 The bootstrapper's rationale belongs in the report: an annual plan is twelve months of cash in the bank today - runway you don't have to raise or borrow, in exchange for a discount that costs margin you can afford. For a bootstrapped company the annual mix is a survival lever, not a nice-to-have; recommend a target mix and where to nudge it (checkout default, a post-trial upgrade prompt).
 
@@ -175,7 +175,7 @@ The judgments - what each tier holds, what the price should be, whether the spre
 Grade the live page (audit mode) or draft the skeleton (design mode) against the checklist in `references/pricing-heuristics.md` section 1. The load-bearing items:
 
 - **Public prices** for a self-serve product; a talk-to-us tier alongside is fine, "contact us" alone is a finding.
-- **Three tiers, one highlighted, honest badge** (2.3).
+- **Three tiers, one highlighted, accurate badge** (2.3).
 - **Social proof adjacent to the tiers** - an outcome-specific quote or logo strip in the same viewport as the tier cards, ideally next to the highlighted tier: proof at the moment of decision, not on another page.
 - **Annual-default toggle** with the effective monthly price and an explicit "billed annually" note.
 - **Value metric visible per tier; limits phrased as capacity** ("up to 10,000 events/mo"), not punishment.
@@ -189,7 +189,7 @@ In audit mode, grade every item pass/partial/fail with the on-page evidence quot
 
 ## Phase 5: FAQ & Objection Handling
 
-Generate the page FAQ from the bank in the heuristics reference's section 2 - 6 to 10 questions tailored to this product, written in the Phase 0 voice source. Required always: the limit-hit answer, change/cancel mechanics, and the price-change/grandfathering answer (2.5). **Required for AI products: the AI-data-privacy answer** ("Is my data used to train models?") - answer it plainly per the bank's guidance; if the honest answer is bad, flag it as a product finding for the founder instead of wordsmithing around it. Never write a misleading answer.
+Generate the page FAQ from the bank in the heuristics reference's section 2 - 6 to 10 questions tailored to this product, written in the Phase 0 voice source. Required always: the limit-hit answer, change/cancel mechanics, and the price-change/grandfathering answer (2.5). **Required for AI products: the AI-data-privacy answer** ("Is my data used to train models?") - answer it plainly per the bank's guidance; if the true answer is bad, flag it as a product finding for the founder instead of wordsmithing around it. Never write a misleading answer.
 
 Then the founder-facing objection table (report only, not page copy) from the bank's section 4: the "too expensive" reframe runs on Phase 1's value math; the discount ask is answered by the annual discount; a budget objection downshifts the tier, never the price.
 
@@ -199,7 +199,7 @@ Then the founder-facing objection table (report only, not page copy) from the ba
 
 Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on the ship-ready page copy only - tier names and customer lines, CTA labels, the FAQ answers, any before/after rewrites; the pass strips machine tells and enforces the voice source from Phase 0. Leave the analysis, tables, and math untouched. One pricing-specific rule: numbers, billing terms, and limits stay literal after the pass - clarity about money beats brevity, so never compress away an amount, a term, or a consequence. Report the pass in one line; skip it when the founder appends `--no-humanize`.
 
-A price change is one of the highest-stakes things a founder ships. Recommend running `/gtm critic` on this report before acting on it, and close the report with the one-week version: the smallest honest step (often: publish the annual toggle, add the FAQ, fix the badge) versus the full repackage, so the founder can start without a rebuild.
+A price change is one of the highest-stakes things a founder ships. Recommend running `/gtm critic` on this report before acting on it, and close the report with the one-week version: the smallest useful step (often: publish the annual toggle, add the FAQ, fix the badge) versus the full repackage, so the founder can start without a rebuild.
 
 ---
 
@@ -239,7 +239,7 @@ Save to `YYYY-MM-DD-pricing.md` where *Project Resolution* puts it (never overwr
 [The tailored objection table.]
 
 ## Do This Week
-[The smallest honest step, then the full sequence.]
+[The smallest useful step, then the full sequence.]
 
 *Generated by Adaptico OS - `/gtm pricing`*
 ```
@@ -251,7 +251,7 @@ Terminal summary:
 
 Mode:        [audit | design]
 Anchor:      [what the price is/was based on] -> [value-based anchor]
-Tiers:       [low / mid / high with prices; badge honesty note]
+Tiers:       [low / mid / high with prices; badge accuracy note]
 Annual:      [X% off = N.N months free; toggle default]
 Break-even:  [N customers at mid tier | skipped - no cost inputs]
 Humanize:    [N tells stripped | clean | skipped]

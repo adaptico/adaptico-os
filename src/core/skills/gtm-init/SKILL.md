@@ -1,6 +1,6 @@
 ---
 name: gtm-init
-version: 2.1.5
+version: 2.1.6
 description: Set up or update the project profile (PROFILE.md) that the rest of Adaptico OS uses as context, for /gtm init [name]. Runs a founder-friendly intake - stage diagnostic, ICP and goal, what customers would use instead (competitive alternatives, not just competitor names), why the last customers came looking, what's already been tried - and points existing interview notes at /gtm interviews. Use when the user wants to create, set up, or edit their project profile, or onboard a new project. Also trigger for "set up my startup", "create a profile", "onboard my project", or "start a new GTM project".
 ---
 
@@ -35,7 +35,7 @@ Tell the user which mode you're in. For update mode:
 
 Ask these one at a time. Keep it short and founder-friendly.
 
-Before the first question, set expectations in one honest line - say why the intake is this long:
+Before the first question, set expectations in one plain line - say why the intake is this long:
 
 > "A heads-up before we start: this intake is about a dozen short questions. None of them are filler - every answer adds context that makes each `/gtm` command sharper and more specific to your project, so the few minutes here pay back in every report. Don't have an answer yet? Say so and we'll move on - a blank is better than a guess."
 

@@ -1,6 +1,6 @@
 ---
 name: gtm-content
-version: 1.1.2
+version: 1.1.3
 description: Content engine strategy for /gtm content <target>. Builds the editorial plan around the buyers' jobs-to-be-done - 3-5 content pillars derived from the project's positioning, a pillar-and-cluster topic map, a publishing cadence sized to the founder's real weekly hours, and the repurposing system that turns each finished piece into a week of distribution. Strategy only - the writing happens in /gtm article and the atomizing in /gtm repurpose. Use when the user wants a content strategy, an editorial plan, or to decide what to write about and how often. Also trigger for "content strategy", "content plan", "editorial plan", "content engine", "what should I blog about", "topic map", "content pillars", or "should I start a blog".
 ---
 
@@ -16,7 +16,7 @@ description: Content engine strategy for /gtm content <target>. Builds the edito
 
 You are the content strategist for `/gtm content <target>`. Most startup content fails before the first draft: the founder publishes whatever came to mind that week, aimed at nobody in particular, on a cadence that collapses within a month. This skill produces the system that prevents that - a small set of pillars the project has the right to win, a cluster map of pieces that compound instead of scattering, and a cadence the founder can actually hold. It plans; it does not write. One piece gets produced by `/gtm article`, and each finished piece gets atomized by `/gtm repurpose`.
 
-The honest clock, stated up front and kept in the report: content is a slow, compounding channel. It takes months of consistent publishing before search engines, AI answer engines, or an audience reward it - and the reward accrues to depth on a narrow territory, not to volume. A plan that survives six months at four hours a week beats a plan that looks impressive for three weeks and dies. Every sizing decision below follows from that.
+The real timeline, stated up front and kept in the report: content is a slow, compounding channel. It takes months of consistent publishing before search engines, AI answer engines, or an audience reward it - and the reward accrues to depth on a narrow territory, not to volume. A plan that survives six months at four hours a week beats a plan that looks impressive for three weeks and dies. Every sizing decision below follows from that.
 
 ## When This Skill Is Invoked
 
@@ -43,7 +43,7 @@ Then read any earlier dated reports in the folder and build on them instead of r
 
 **Ask the founder once** - the message is optional and the run never stalls on it:
 
-> "Four things size this plan honestly, if you can share them: (1) how many hours a week you can genuinely give to content - the number you could still hold three months from now, not the ambitious one; (2) what you already publish, if anything (blog, newsletter, docs, X); (3) which formats you'd actually enjoy producing - written, video, or both; (4) the topics you could talk about for an hour without preparation."
+> "Four things size this plan to your week, if you can share them: (1) how many hours a week you can genuinely give to content - the number you could still hold three months from now, not the ambitious one; (2) what you already publish, if anything (blog, newsletter, docs, X); (3) which formats you'd actually enjoy producing - written, video, or both; (4) the topics you could talk about for an hour without preparation."
 
 No answer: assume 3-4 hours a week, written-only, and label the assumption in the report. With no profile loaded, derive the ICP and positioning read from the site and note once that `/gtm init` would tailor the plan to stage, ICP, and goal.
 
@@ -51,11 +51,11 @@ No answer: assume 3-4 hours a week, written-only, and label the assumption in th
 
 ## Phase 1: Is Content the Right Bet Right Now?
 
-One honest page before any pillar work - content is a real channel, but it is the slowest one this OS plans, so the report opens with the fit read rather than burying it:
+One plain page before any pillar work - content is a real channel, but it is the slowest one this OS plans, so the report opens with the fit read rather than burying it:
 
 - **If a `channel-plan.md` exists and picked content** - the engine below is the execution system for that bet. Say so and proceed with full confidence.
 - **If it picked a different primary channel** - content can still support it (sales enablement, onboarding material, authority for outreach), but say plainly that this plan is a supporting motion, size the cadence to the low end, and do not let it cannibalize hours from the channel that was chosen.
-- **If no channel decision exists** - state the trade honestly: months of lead time, compounding payoff, and a real weekly cost. Name the two conditions under which the bet makes sense for this project: the ICP researches problems in text, and the founder can hold the cadence.
+- **If no channel decision exists** - state the trade plainly: months of lead time, compounding payoff, and a real weekly cost. Name the two conditions under which the bet makes sense for this project: the ICP researches problems in text, and the founder can hold the cadence.
   - If the founder is treating this plan as the channel decision itself, recommend `/gtm channel` - the command that forces the single-channel pick before a quarter gets committed to this one.
 
 This read never refuses the work - it frames it. The full plan follows either way.
@@ -103,9 +103,9 @@ Sequence the map: which 3-4 pieces come first and why - lead with the cluster pi
 
 ## Phase 4: Cadence - Sized to Real Hours
 
-Take the founder's stated weekly hours (or the labeled assumption) and size the cadence to it honestly. Producing one piece properly - research, draft, edit, publish, repurpose - costs 4-8 focused hours; pretending otherwise is how plans die. A reference table for the report, adjusted to the founder's actual number:
+Take the founder's stated weekly hours (or the labeled assumption) and size the cadence to it. Producing one piece properly - research, draft, edit, publish, repurpose - costs 4-8 focused hours; pretending otherwise is how plans die. A reference table for the report, adjusted to the founder's actual number:
 
-| Real hours/week | Honest cadence | What that means |
+| Real hours/week | Realistic cadence | What that means |
 |---|---|---|
 | ~2 | One piece a month + weekly repurposed posts | The minimum that still compounds; repurposing carries the presence between pieces |
 | ~4 | One piece every 2 weeks | The default founder cadence; sustainable alongside building |
@@ -158,7 +158,7 @@ Write the full output to the resolved output path as `YYYY-MM-DD-content-plan.md
 
 ## Strategy Summary
 [3-4 paragraphs: the channel-fit read, the pillars and why these, the cadence
-and its honest cost, and what compounds if the founder holds it. State the
+and its real cost, and what compounds if the founder holds it. State the
 slow-clock expectation plainly.]
 
 ## Pillars

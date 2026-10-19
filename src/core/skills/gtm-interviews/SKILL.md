@@ -1,6 +1,6 @@
 ---
 name: gtm-interviews
-version: 1.1.3
+version: 1.1.4
 description: Customer-conversation engine for /gtm interviews <target>. Two jobs in one command - generate a customer-discovery interview kit (who to talk to, where to find them, questions that surface real past behavior instead of compliments, a per-conversation capture sheet), and synthesize the founder's transcripts or notes into validated pains, verbatim customer quotes, segments, and switching triggers, written back into PROFILE.md so positioning, copy, outreach, pitch, and vs start from real customer language. Use when the user wants to talk to users or customers, validate a problem or an idea, prepare for user interviews, or make sense of interview notes. Also trigger for "customer interviews", "user interviews", "talk to customers", "customer discovery", "validate my idea", "interview questions", "discovery questions", "synthesize my interview notes", or "what did my customers actually say".
 ---
 
@@ -16,7 +16,7 @@ You are the customer-conversation engine for `/gtm interviews <target>`. Everyth
 
 The enemy this skill is built against is the compliment. People are kind to founders: they say "cool idea, I'd totally use that" to end the conversation pleasantly, and every one of those sentences is a false positive that can steer a company wrong for months. The craft here follows Rob Fitzpatrick's Mom Test rules for customer conversations: keep the conversation about their life, not your idea; ask about specific things that already happened, not opinions about a hypothetical future; and talk less than you listen. For understanding why customers switch tools, the questions borrow the jobs-to-be-done switch-interview lens: what pushed them away from the old way, what pulled them toward the new one, what made them anxious about changing, and what habit almost kept them where they were.
 
-## What This Skill Can and Cannot Do (keep this honest, in the report too)
+## What This Skill Can and Cannot Do (state this plainly, in the report too)
 
 **Can:** build a target list strategy and outreach ask, generate questions that pass the compliment test, give the founder a fixed capture sheet so notes stay comparable, synthesize any pile of transcripts or notes into patterns with the evidence counted, and write validated customer language into `PROFILE.md` where `position`, `copy`, and `outreach` will actually use it.
 
@@ -78,7 +78,7 @@ Provide a short outreach message per channel. Rules: ask for advice about the pr
 
 Before the kit saves, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) on these asks only - they get pasted into DMs and emails as-is, and a recruiting message that smells generated never gets a reply. Skip when the founder appends `--no-humanize`.
 
-### 1.4 How many conversations - the honest math
+### 1.4 How many conversations - the math
 
 Put this framing in every kit, because founders either skip talking to users entirely or turn "100 interviews" into a reason to never act:
 
@@ -156,7 +156,7 @@ Save the kit as `YYYY-MM-DD-interview-kit.md` with the standard report header:
 each phrased so a handful of conversations could prove it wrong]
 
 ## Who to talk to
-[Phase 1: ranked pools, concrete sources, recruit asks, the honest math]
+[Phase 1: ranked pools, concrete sources, recruit asks, the math]
 
 ## The questions
 [Phase 2: the tailored bank, top 5 marked, traps and recoveries, the commitment ask]
@@ -189,7 +189,7 @@ From each conversation, pull:
 - **Commitments given** - time, intros, money - versus compliments given (tracked only to be excluded)
 - **Surprises** - anything that contradicts the profile
 
-### 4.3 Aggregation rules (the honesty layer)
+### 4.3 Aggregation rules (what counts as evidence)
 
 - **A pattern needs 3+ independent mentions.** Below that it is an anecdote - report it, labeled as one. Never let one vivid conversation masquerade as a trend.
 - **Count and show the denominator** everywhere: "7 of 9 described manual export as the breaking point", never "most users say".

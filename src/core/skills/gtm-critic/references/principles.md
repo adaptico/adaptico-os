@@ -1,6 +1,6 @@
 # Marketing Principles Reference
 
-The library `/gtm critic` cites when a finding names the principle it breaks. Attribution is honest: public frameworks are credited to their authors; rules with no single canonical source are marked practitioner consensus rather than given an invented citation. Cite the principle by its name below, with the source in parentheses.
+The library `/gtm critic` cites when a finding names the principle it breaks. Attribution rule: public frameworks are credited to their authors; rules with no single canonical source are marked practitioner consensus rather than given an invented citation. Cite the principle by its name below, with the source in parentheses.
 
 Format per entry: the rule, then what a violation looks like in the wild.
 
@@ -26,7 +26,7 @@ Positioning holds only as a chain: competitive alternatives (what the customer w
 
 ## 4. Competitor-Swap Test (practitioner consensus)
 
-If a direct rival's name fits your headline or value proposition unchanged, it is not positioning - it is a category description. Differentiation must be falsifiable: something a specific competitor could not honestly claim.
+If a direct rival's name fits your headline or value proposition unchanged, it is not positioning - it is a category description. Differentiation must be falsifiable: something a specific competitor could not claim accurately.
 
 **Violation looks like:** "The fastest way to manage your projects" - true of every project tool's homepage; positioning statements built entirely from category-generic benefits.
 
@@ -60,7 +60,7 @@ People resolve uncertainty by looking at what similar others do and what credibl
 
 **Violation looks like:** "trusted by thousands" with no names or numbers; logos of companies that are not actually customers; a strong claim with all testimonials three screens away.
 
-## 10. Honest Scarcity and Loss Aversion (lineage of Kahneman & Tversky; Cialdini on scarcity)
+## 10. Real Scarcity and Loss Aversion (lineage of Kahneman & Tversky; Cialdini on scarcity)
 
 Losses loom larger than gains, and scarcity moves people - which is exactly why fabricated urgency is poison: the first fake deadline a buyer catches costs all future trust.
 
