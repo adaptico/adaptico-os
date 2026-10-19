@@ -1,6 +1,6 @@
 ---
 name: gtm-retention
-version: 1.1.4
+version: 1.1.6
 description: Activation and early-churn diagnosis for /gtm retention <target> - maps signup to first value, commits the founder to ONE activation metric, prioritizes first-90-days fixes over late-stage retention tricks, and designs the churn defenses (cancel flow, save offers, failed-payment recovery posture). Use when the user wants to reduce churn, fix trial retention or activation, or design a cancel flow. Also trigger for "users churn", "trials go dead", "nobody comes back", "cancel flow", "save offer", "stop churn", "failed payments", "keep users", or "retention plan".
 ---
 
@@ -77,7 +77,7 @@ STEP [#]: [name - e.g. "verify email", "connect data source", "invite teammate"]
   Drop-off risk: [low/medium/high - and why]
 ```
 
-Then total the journey: steps, decisions, prerequisites, and estimated time-to-value for a motivated user. Minutes is good. "After a setup project" is a leak. Benchmark honestly: developer PLG activation typically runs 12-20% of signups, meaning ~80% of signups never reach first value - the founder's biggest retention lever is usually hiding in this map, not at the cancel button.
+Then total the journey: steps, decisions, prerequisites, and estimated time-to-value for a motivated user. Minutes is good. "After a setup project" is a leak. For scale: most signups never reach first value (in Lenny Rachitsky's 2022 survey of 500+ products, the median SaaS company activated 30% of its signups) - the founder's biggest retention lever is usually hiding in this map, not at the cancel button.
 
 ### 1.2 Friction verdicts
 
@@ -118,11 +118,11 @@ State the chosen metric as one sentence: "[X]% of new signups [do the event] wit
 
 ## Phase 2: The First 90 Days
 
-### 2.1 Why early, honestly
+### 2.1 Why early
 
 Retention analyses from subscription-billing providers (ProfitWell/Paddle) consistently attribute 60-70% of SaaS churn to the customer's first 90 days. The implication is a spending rule: an hour spent on week-one activation buys more retained revenue than an hour spent on late-stage tricks (loyalty perks, surprise discounts, re-engagement blasts to long-dead accounts). This skill orders every recommendation by that rule.
 
-One honest exception, by stage: pre-PMF (Tier 1), early churn is information, not a leak. When a product hasn't proven people need it, users leaving *is the finding* - talk to them and fix what they say, don't build machinery to slow their exit. The mechanics in Phases 3-4 earn their keep once there is a working funnel and paying customers to defend (Tier 2-3).
+One exception, by stage: pre-PMF (Tier 1), early churn is information, not a leak. When a product hasn't proven people need it, users leaving *is the finding* - talk to them and fix what they say, don't build machinery to slow their exit. The mechanics in Phases 3-4 earn their keep once there is a working funnel and paying customers to defend (Tier 2-3).
 
 ### 2.2 Early-warning signals (founder-sized)
 
@@ -176,7 +176,7 @@ One offer per cancel attempt, and the survey answer picks it - a blanket discoun
 | "Not using it enough" | Pause for 1-3 months (state the auto-resume date), or a hands-on onboarding offer |
 | "Technical problems" | Skip the offer - route straight to a fix and a founder reply |
 | "Too expensive" | 20-30% discount for 2-3 months, or a downgrade framed as right-sizing ("keep what you use, drop what you don't") |
-| "Missing a feature" | Honest roadmap answer with a timeline if real, a workaround if one exists - never a promise you can't keep |
+| "Missing a feature" | A plain roadmap answer with a timeline if real, a workaround if one exists - never a promise you can't keep |
 | "Switching to an alternative" | Ask what the alternative does better (intelligence, not a counter-pitch); offer a targeted counter only if one genuinely exists |
 | "Temporary / seasonal need" | Pause, with the return date in the confirmation |
 | "Shutting down / no longer needed" | No offer. Thank them, make leaving clean, state what happens to their data |
@@ -189,13 +189,13 @@ One offer per cancel attempt, and the survey answer picks it - a blanket discoun
 - **Downgrades are saves.** A customer on a smaller plan is retained revenue and a future upgrade; frame the move by what they keep.
 - **The post-cancel experience is the first step of win-back.** Confirm immediately, state the data-retention window, and leave reactivation one click away. No guilt copy - the goodbye is marketing to a future customer.
 
-Benchmarks, so expectations stay honest (retention-platform norms; label them as benchmarks, not promises): a working cancel flow saves roughly 20-35% of cancel attempts, matched offers get accepted 15-25% of the time, and short capped pauses see a majority of accounts resume.
+Benchmarks, so expectations stay realistic (retention-platform norms; label them as benchmarks, not promises): a working cancel flow saves roughly 20-35% of cancel attempts, matched offers get accepted 15-25% of the time, and short capped pauses see a majority of accounts resume.
 
 ---
 
 ## Phase 4: Failed-Payment Recovery Posture
 
-Involuntary churn - customers lost to failed payments, not decisions - is commonly 20-40% of total churn (higher for SMB and prosumer products with cards on file), and roughly ~9% of MRR is at risk from failed payments in a typical month. It is the cheapest churn to fix because nobody chose to leave. This phase sets the posture; the dunning email sequence itself - copy, timing, escalation - is `/gtm emails`' job, and this skill never duplicates it.
+Involuntary churn - customers lost to failed payments, not decisions - is a real share of total churn (more for SMB and prosumer products with cards on file), and the cheapest to fix because nobody chose to leave. This phase sets the posture; the dunning email sequence itself - copy, timing, escalation - is `/gtm emails`' job, and this skill never duplicates it.
 
 The posture checklist:
 
@@ -213,7 +213,7 @@ Report the posture as found vs recommended: which of these the founder already h
 
 ## Phase 5: Prioritized Plan
 
-### 5.1 Simple churn math (only honest numbers)
+### 5.1 Simple churn math (every input labelled)
 
 If the founder gave real numbers in 0.2, quantify; otherwise show the formula with labeled assumptions and mark the output inferred - never present an assumed number as a measurement.
 
@@ -224,7 +224,7 @@ The compounding view: at 5% monthly churn a cohort halves in ~13 months;
 at 3% it takes ~23 months. Early-stage growth can't outrun the first number.
 ```
 
-Reference points (practitioner benchmarks, label as such): early SMB-serving SaaS commonly runs 3-6% monthly logo churn - under 5% is a working target; B2B products on annual contracts should push under 2%. If measured churn beats the benchmark, say so and size the remaining upside honestly.
+Reference points (practitioner benchmarks, label as such): early SMB-serving SaaS commonly runs 3-6% monthly logo churn - under 5% is a working target; B2B products on annual contracts should push under 2%. If measured churn beats the benchmark, say so and size the remaining upside realistically.
 
 ### 5.2 The ranked list
 
@@ -278,7 +278,7 @@ scope constraint plainly.]
 
 ## Time-to-Value Teardown
 [The signup-to-value map with evidence labels, the friction verdicts, and
-the estimated time-to-value against the 12-20% developer-PLG activation benchmark.]
+the estimated time-to-value, and the activation rate when measured.]
 
 ## The Activation Metric
 [The committed metric as one sentence, why it beats the runners-up, how to
@@ -287,7 +287,7 @@ to record. If it can't be logged today, instrumenting it is P1.]
 
 ## The First 90 Days
 [The three-window defense plan; the early-warning signals worth watching at
-this scale; the stage-honest note if the founder is pre-PMF.]
+this scale; the stage note if the founder is pre-PMF.]
 
 ## Cancel Flow & Save Offers
 [Current state (from 0.2) vs recommended flow; the reason survey; the

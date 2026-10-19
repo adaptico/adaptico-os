@@ -37,9 +37,9 @@
  *              --cpa    = expected cost per conversion (the platform's
  *                         optimization event).
  *              --signal = conversions that count as a readable signal
- *                         (default 50 - the floor major platforms document
- *                         for exiting their learning phase, ~50 optimization
- *                         events per ad set per week).
+ *                         (default 50 - Meta documents about 50 results per
+ *                         ad set in the week after its last significant edit
+ *                         for leaving its learning phase).
  *              --daily  = daily budget; emits days-to-signal and whether that
  *                         pace ever exits the learning phase.
  *              --budget = a fixed test budget; emits the conversions it buys
@@ -184,9 +184,9 @@ function computeBreakeven(inputs) {
 /**
  * Minimum budget for a readable signal.
  * inputs: { cpa, signal (default 50), daily?, budget? }.
- * The default signal floor is the ~50 optimization events per ad set per
- * week that major platforms document for exiting their learning phase - a
- * documented platform number, overridable, not a law of statistics.
+ * The default signal floor is the ~50 results per ad set in a week that Meta
+ * documents for leaving its learning phase - a documented platform number,
+ * overridable, not a law of statistics.
  */
 function computeTestBudget(inputs) {
   const cpa = inputs.cpa;

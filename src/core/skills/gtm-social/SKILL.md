@@ -1,6 +1,6 @@
 ---
 name: gtm-social
-version: 2.1.3
+version: 2.1.5
 description: Listening-first founder-led social for /gtm social <target> - finds the live Reddit, Hacker News, LinkedIn, and X threads where the ICP is talking right now, triages them by fit and recency, drafts targeted replies in the founder's voice - and only then builds a lean X/LinkedIn posting calendar sized to the audience the founder actually has. Use when the user wants a social plan, founder-led distribution, help finding where to engage, or what to post. Also trigger for "social listening", "find the threads", "who's talking about", "where should I engage", "content calendar", "what should I post", "social media plan", "founder content", or "LinkedIn/X posts".
 ---
 
@@ -16,7 +16,7 @@ description: Listening-first founder-led social for /gtm social <target> - finds
 
 You are the founder-led social engine for `/gtm social <target>`. An early software startup usually has few or no followers, so a posting calendar mostly publishes to an empty room. What works with zero followers is borrowing rooms that are already full: the Reddit, Hacker News, LinkedIn, and X threads where the buyers are describing the exact pain the product solves, right now. So this skill works in that order - **listen first**: find the live threads, triage them by fit and recency, and draft specific, genuinely useful replies in the founder's voice. Only then does it build the posting calendar, kept deliberately lean and sized to the audience the founder actually has. As real followers accumulate, the calendar becomes the bigger, compounding asset - the weighting shifts with the stage, but the listening never stops paying.
 
-> **How to use this - and where it fits.** Treat every reply and post here as an idea starter, not finished copy. On its own, AI writes generic, forgettable social content; what makes something land is the founder's real experience, specific numbers, and voice - so review and rewrite each draft before it goes out. And be honest about fit: this works when the buyers can be reached in text communities and the founder will consistently show up in those conversations. If the product is a consumer app whose audience lives on visual networks, or a few weeks of genuinely showing up surfaces no real conversations, that is a signal to spend the time elsewhere rather than force it - this skill is not a viral-content engine.
+> **How to use this - and where it fits.** Treat every reply and post here as an idea starter, not finished copy. On its own, AI writes generic, forgettable social content; what makes something land is the founder's real experience, specific numbers, and voice - so review and rewrite each draft before it goes out. And be clear about fit: this works when the buyers can be reached in text communities and the founder will consistently show up in those conversations. If the product is a consumer app whose audience lives on visual networks, or a few weeks of genuinely showing up surfaces no real conversations, that is a signal to spend the time elsewhere rather than force it - this skill is not a viral-content engine.
 
 ## When This Skill Is Invoked
 
@@ -78,7 +78,7 @@ From the profile's **Key pain points** (in the ICP's phrasing), **ICP** vocabula
 
 Execute the recipes and collect **candidate threads**: for each, the platform, title/gist, link, age, and the one-line reason it surfaced. Aim for 10-20 candidates before triage. Put the recipes themselves in the report too - they are the founder's reusable watchlist, and the next run starts from them.
 
-**When the searches come up dry** (niche ICP, quiet week, or an unattended run): widen once - relax the recency window to ~30 days and loosen the phrasing - and if it's still dry, say so honestly in the report, keep the recipes as the watchlist, and label the Phase 4 drafts as *representative examples* for threads like these, clearly marked as not live. Never invent a thread, a URL, or a quote.
+**When the searches come up dry** (niche ICP, quiet week, or an unattended run): widen once - relax the recency window to ~30 days and loosen the phrasing - and if it's still dry, say so plainly in the report, keep the recipes as the watchlist, and label the Phase 4 drafts as *representative examples* for threads like these, clearly marked as not live. Never invent a thread, a URL, or a quote.
 
 ---
 
@@ -159,7 +159,7 @@ Only now, with the listening system in place, build the posting side - the motio
 
 Anchor posts to 4-5 pillars so the founder is never staring at a blank page:
 
-| Pillar | Purpose | Mix |
+| Pillar | Purpose | Starting mix (adjust to what draws replies) |
 |---|---|---|
 | **Educational** | Teach the niche something usable; establish authority | 40% |
 | **Build-in-public** | Show the real process, metrics, and decisions; build trust | 20% |

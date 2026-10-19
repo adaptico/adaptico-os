@@ -28,13 +28,13 @@ Headline coverage to aim for across the set: the pain phrased as the searcher ty
 
 | Field | Recommended | Behavior |
 |---|---|---|
-| Primary text | ~125 characters before the fold | mobile clips the rest behind "See more" - most users never expand it, so the first sentence carries the whole ad |
+| Primary text | 50-150 characters (Meta's Feed recommendation) | mobile hides the rest behind "See more", so the first sentence carries the ad |
 | Headline | 40 characters (27 for Feed) | the bolded line under the creative |
-| Description | ~25-30 characters | not always shown; never put load-bearing copy here |
+| Description | short - Meta publishes no figure | not always shown; never put load-bearing copy here |
 
 **Creative:** one square (1080x1080) and one vertical (1080x1920) version of each concept covers the placements that matter. A plain product screenshot with a claim overlaid outperforms polished brand creative often enough that it belongs in every first test.
 
-**Small-budget notes:** the ad set needs roughly 50 optimization events in a rolling week to exit the learning phase - most first-test budgets never will, and that is fine: judge the test manually on cost per result and click-through, and do not edit the ad set mid-test (significant edits reset learning and blur the numbers).
+**Small-budget notes:** Meta documents about 50 results per ad set in the week after its last significant edit to leave the learning phase - most first-test budgets never will, and that is fine: judge the test manually on cost per result and click-through, and do not edit the ad set mid-test (significant edits reset learning and blur the numbers).
 
 ## LinkedIn (sponsored content, single image)
 

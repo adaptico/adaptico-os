@@ -1,6 +1,6 @@
 ---
 name: gtm-launch
-version: 1.4.4
+version: 1.4.7
 description: Launch playbook for /gtm launch <target>. Use when the user wants a week-by-week launch plan for Product Hunt, Hacker News, or X, with templates, checklists, and metrics. Also trigger for "plan my launch", "Product Hunt launch", "launch playbook", "how do I launch", or "launch checklist".
 ---
 
@@ -216,7 +216,7 @@ Directories all ask for the same assets in different lengths. Generate the pack 
 - **Short description** (140 characters or less)
 - **Long description** (~500 words)
 - **Keyword list** (comma-separated)
-- **Maker's comment** (first person - the story of why you built it, ending with an honest ask for feedback)
+- **Maker's comment** (first person - the story of why you built it, ending with a direct ask for feedback)
 
 Submission order: directories first (they build the backlink base quietly), Product Hunt as the peak event.
 
@@ -443,6 +443,8 @@ Track these metrics in real-time during launch week:
 
 ### Step 10: Budget Allocation Guide
 
+A starting split to adjust to this launch, not a benchmark:
+
 | Budget Level | Allocation |
 |---|---|
 | **Bootstrapped ($0-500)** | 100% organic: content, communities, founder-led social, manual outreach |
@@ -450,7 +452,7 @@ Track these metrics in real-time during launch week:
 | **Well-Funded ($5,000-25,000)** | 25% influencer/partner, 25% PR/media, 20% content/assets, 15% events, 15% paid ads (retargeting first; cold acquisition only once PMF is validated) |
 | **Enterprise ($25,000+)** | 30% paid ads, 20% events/webinars, 20% PR, 15% influencer, 10% content, 5% tools |
 
-At the served tiers the founder is usually pre- or early-PMF, so fundamentals lead and "paid" means retargeting warm launch visitors, not cold acquisition - cold paid pre-PMF burns scarce cash (B2B SaaS CAC $150-$500) and corrupts the read on real demand. Scale cold acquisition only once the funnel converts the traffic it already gets. (Enterprise sits at Tier 4-5, where paid acquisition is a legitimate core channel, so it leads there.)
+At the served tiers the founder is usually pre- or early-PMF, so fundamentals lead and "paid" means retargeting warm launch visitors, not cold acquisition - cold paid pre-PMF burns scarce cash (paid clicks for B2B software are expensive) and corrupts the read on real demand. Scale cold acquisition only once the funnel converts the traffic it already gets. (Enterprise sits at Tier 4-5, where paid acquisition is a legitimate core channel, so it leads there.)
 
 ### Step 11: Post-Launch Analysis Framework
 
@@ -472,6 +474,9 @@ Write the report to the resolved output path as `YYYY-MM-DD-launch-playbook.md` 
 
 ```markdown
 # Launch Playbook: [Product Name]
+**Project:** [name or domain]
+**Website:** [the product's URL, or "none yet"]
+**Date:** YYYY-MM-DD
 ## Launch Date: [Date]
 ## Launch Type: [Type]
 ## Primary Goal: [Goal with specific target]
@@ -479,7 +484,7 @@ Write the report to the resolved output path as `YYYY-MM-DD-launch-playbook.md` 
 ---
 
 ## What to Expect
-[Include this section in every early-stage playbook - an honest, founder-facing paragraph: this launch is one event, not a growth strategy. For a product nobody knows yet, a good launch day is hundreds of visitors, a few dozen list signups, and a handful of real conversations - the durable yield is the email list, the feedback, and the backlinks. This playbook is the map; the results come from you doing the manual work - replying to every comment, following up with every signup, showing up all day.]
+[Include this section in every early-stage playbook - a plain, founder-facing paragraph: this launch is one event, not a growth strategy. For a product nobody knows yet, a good launch day is hundreds of visitors, a few dozen list signups, and a handful of real conversations - the durable yield is the email list, the feedback, and the backlinks. This playbook is the map; the results come from you doing the manual work - replying to every comment, following up with every signup, showing up all day.]
 
 ## Week-by-Week Plan
 [Detailed week-by-week tasks with checkboxes]

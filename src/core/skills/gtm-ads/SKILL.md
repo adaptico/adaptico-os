@@ -1,6 +1,6 @@
 ---
 name: gtm-ads
-version: 2.1.5
+version: 2.1.8
 description: Paid-ads readiness gate and first real ad test for /gtm ads <target>. Runs a "should you run ads at all" check against stage and unit economics before any creative work - a not-yet verdict names the exact numbers that would flip it; when the gate passes, picks one platform by intent, sizes the smallest readable test budget with kill criteria set before spend, and writes paste-ready ad copy in the picked platform's format (bundled CAC/break-even calculator). It plans and writes only - it never connects to an ad account or launches campaigns; the founder pastes the copy into Ads Manager. Use when the user wants to run, plan, or budget paid ads, write ad copy, or asks whether ads are worth it yet. Also trigger for "should I run ads", "Google Ads", "Meta ads", "LinkedIn ads", "write me an ad", "ad copy", "paid acquisition", "PPC", "ad budget", or "ad variations".
 ---
 
@@ -10,7 +10,7 @@ description: Paid-ads readiness gate and first real ad test for /gtm ads <target
 >
 > Stage-fit (`ads`): Tier 1 Avoid · Tier 2 Avoid · Tier 3 Useful. If the founder's tier
 > (from PROFILE.md) makes this Too early or Avoid, prepend this note verbatim:
-> "Running paid acquisition before validating organic PMF is dangerous - B2B SaaS CAC runs $150-$500 per customer, and bought clicks corrupt your read on real demand. Run funnel and audit first to confirm your funnel converts the traffic you already have."
+> "Running paid acquisition before validating organic PMF is dangerous - B2B SaaS customers won through ads often cost a few hundred dollars or more each, and bought clicks corrupt your read on real demand. Run funnel and audit first to confirm your funnel converts the traffic you already have."
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
@@ -67,7 +67,7 @@ Two checks, run before any creative work. Both must pass for a Ready verdict.
 
 ### 1.1 Demand-validation check
 
-Paid traffic amplifies what already exists; pre-PMF it amplifies noise. Signals that this check passes - assess each honestly from the profile, traction, and prior reports:
+Paid traffic amplifies what already exists; pre-PMF it amplifies noise. Signals that this check passes - assess each from the evidence in the profile, traction, and prior reports:
 
 - **Paying customers from strangers** - people with no tie to the founder chose to pay. A customer base that is all network is a warmth signal, not a demand signal.
 - **An organic funnel with a known conversion rate** - some steady path (search, social, communities, referrals) already turns visitors into signups at a rate the founder can state. If nobody converts free traffic, paid traffic converts worse, at cost.
@@ -82,7 +82,7 @@ Run the calculator (Phase 2) and put three numbers side by side:
 - **A realistic CPA for this ICP on the candidate platform** - from the founder's own past tests (LOG), the category's click prices, or a labeled inference. B2B clicks are expensive; a $30-a-month product meeting a $90 CPA is not a campaign-optimization problem, it is arithmetic.
 - **Break-even ROAS from the real margin** - for AI products the per-customer inference cost is non-optional input; the calculator errors on a negative-margin configuration by design, and that error is a Critical finding, not a footnote.
 
-The check fails when the realistic CPA exceeds the max affordable CAC, or when the inputs needed to know are missing (an honest "we can't compute this yet" fails the gate - spending ahead of the math is the exact mistake this skill exists to prevent).
+The check fails when the realistic CPA exceeds the max affordable CAC, or when the inputs needed to know are missing (a plain "we can't compute this yet" fails the gate - spending ahead of the math is the exact mistake this skill exists to prevent).
 
 ### 1.3 The verdict
 
@@ -111,8 +111,8 @@ node .claude/skills/gtm-ads/scripts/ads_calculator.js abtest --rate 2 --lift 25 
 
 - **`cac`** - CAC from spend and customers (projected for the planned test, or realized from a past one in LOG), plus payback months against contribution. Pass `--churn` only when churn is measured data: on a young product, LTV built from guessed churn is fiction dressed as a ratio - prefer payback months, which needs no lifetime guess. When churn is real, the standard health guidelines are LTV:CAC of 3:1 or better and payback under 12 months.
 - **`breakeven`** - break-even ROAS (1 divided by the contribution-margin fraction: an 80% margin breaks even at 1.25x, a 25% margin at 4x) and the max affordable CAC at the founder's payback tolerance. This is the gate's load-bearing number. The max-CAC figures assume the customer stays through the payback window - churn inside it lowers the real ceiling, another reason a bootstrapper's tolerance sits at 3-6 months, not 12.
-- **`testbudget`** - what a given budget buys in conversions at the expected CPA, the shortfall against a readable signal, and whether a daily budget's pace ever exits the platform's learning phase (the ~50 optimization events per ad set per week the major platforms document).
-- **`abtest`** - visitors per variant needed to detect a given conversion lift (Lehr's sample-size approximation at 80% power), and what those visitors cost. This is the honesty engine behind Phase 3: it shows in one line why a small budget cannot rank headlines.
+- **`testbudget`** - what a given budget buys in conversions at the expected CPA, the shortfall against a readable signal, and whether a daily budget's pace ever exits the platform's learning phase (Meta documents about 50 results per ad set in the week after its last significant edit; Google's bid strategies document a different calibration count).
+- **`abtest`** - visitors per variant needed to detect a given conversion lift (Lehr's sample-size approximation at 80% power), and what those visitors cost. This is the math behind Phase 3: it shows in one line why a small budget cannot rank headlines.
 
 Skip any subcommand whose inputs the founder didn't provide and public pages don't show - say so in the report ("break-even skipped: no cost inputs") rather than inventing values. If the pricing report already computed contribution and break-even, reuse those numbers and say where they came from.
 
@@ -172,7 +172,7 @@ Then check the public ad libraries (reference file, last section): rivals sustai
 
 ### 4.3 What this skill deliberately doesn't do
 
-Running live ad accounts at scale is its own discipline: multi-platform account audits, bid and budget management across campaigns, advanced attribution and server-side tracking, creative asset pipelines. Those jobs are real, and this skill concedes them - they belong to a dedicated PPC practitioner or agency, which starts making sense somewhere around $5-10k of monthly spend that's already paying back. This command owns the decision, the math, and the first honest test; it hands off the scaling.
+Running live ad accounts at scale is its own discipline: multi-platform account audits, bid and budget management across campaigns, advanced attribution and server-side tracking, creative asset pipelines. Those jobs are real, and this skill concedes them - they belong to a dedicated PPC practitioner or agency, which starts making sense somewhere around $5-10k of monthly spend that's already paying back. This command owns the decision, the math, and the first readable test; it hands off the scaling.
 
 ---
 
@@ -180,11 +180,11 @@ Running live ad accounts at scale is its own discipline: multi-platform account 
 
 ### 5.1 Angles from the profile, not from thin air
 
-Build at most three angles, each traceable to a named source: the **pain angle** (the profile's key pain, phrased the way the ICP says it), the **outcome angle** (the differentiator's payoff with a concrete number where one honestly exists), and - only where the profile or competitor report names real rivals buyers actually compare - the **alternative angle** (the switch pitch). Every claim survives the profile's Avoid list and would survive a platform's ad review; nothing gets invented to sound better.
+Build at most three angles, each traceable to a named source: the **pain angle** (the profile's key pain, phrased the way the ICP says it), the **outcome angle** (the differentiator's payoff with a concrete number where a real one exists), and - only where the profile or competitor report names real rivals buyers actually compare - the **alternative angle** (the switch pitch). Every claim survives the profile's Avoid list and would survive a platform's ad review; nothing gets invented to sound better.
 
 ### 5.2 Variants in the platform's format
 
-Write the copy for the one platform Phase 4 picked, in its real fields and limits, from the reference file: for search, a full responsive-search-ad set (10+ headlines at 30 characters covering distinct angles, 4 descriptions at 90) with keyword themes, match types, and negatives; for Meta, 2-3 ads with the first 125 characters of primary text carrying the whole message; for LinkedIn, intro text under 150 characters and a headline under 70; for X, the post is the ad. Each variant is one angle executed cleanly, not a shuffle of the same sentence.
+Write the copy for the one platform Phase 4 picked, in its real fields and limits, from the reference file: for search, a full responsive-search-ad set (10+ headlines at 30 characters covering distinct angles, 4 descriptions at 90) with keyword themes, match types, and negatives; for Meta, 2-3 ads whose first sentence of primary text carries the whole message; for LinkedIn, intro text under 150 characters and a headline under 70; for X, the post is the ad. Each variant is one angle executed cleanly, not a shuffle of the same sentence.
 
 ### 5.3 Message match
 

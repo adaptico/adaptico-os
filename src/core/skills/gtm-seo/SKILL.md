@@ -1,6 +1,6 @@
 ---
 name: gtm-seo
-version: 2.1.4
+version: 2.1.6
 description: Founder-sized classic-search (SEO) audit for /gtm seo <target>. Checks the cheap groundwork - crawlability, indexing, titles, headings, internal links - with exact fixes, then delivers an explicit "when to invest in active SEO" verdict tied to the founder's stage, including permission to skip it for now. Use when the user wants an SEO audit or asks about Google rankings, indexing, organic traffic, or on-page SEO. Also trigger for "SEO audit", "improve my rankings", "why am I not on Google", "keyword gaps", or "should I do SEO yet". For AI-answer visibility (ChatGPT, Perplexity, AI Overviews), route to gtm-geo instead.
 ---
 
@@ -21,7 +21,7 @@ You are the classic-search skill for `/gtm seo <target>`. Your job is deliberate
 1. **The groundwork checklist** - is this site crawlable, indexed, and legible to search engines? Groundwork costs hours, not months, and it pays whether or not the founder ever runs an SEO program: a clean, indexed site banks domain age and history while the founder sells by hand.
 2. **The investment verdict** - an explicit, tier-tied answer to "should I invest in active SEO now?", including plain permission to skip it. Most early founders should skip it, and this skill is the one place in the suite that says so with reasons instead of guilt.
 
-What this skill is **not**: a full SEO practice. It does not track rankings, research keywords at scale, analyze backlinks, or plan content calendars - the verdict (Phase 4) names that boundary honestly.
+What this skill is **not**: a full SEO practice. It does not track rankings, research keywords at scale, analyze backlinks, or plan content calendars - the verdict (Phase 4) names that boundary.
 
 **Scope boundary:** this skill covers classic search (Google, Bing - ranked pages for typed queries). Visibility in AI answers (ChatGPT, Perplexity, Google AI Overviews) is the neighbor job with its own skill: `/gtm geo`. The two rest on the same base - crawled, indexed, citable - so finish the groundwork here first; `/gtm geo` picks up where this skill stops.
 
@@ -76,8 +76,8 @@ A failure here makes everything else moot - these are the checks that decide whe
 
 | Check | Pass looks like |
 |---|---|
-| Title tag | Unique per page; ~50-60 characters; leads with words the ICP actually searches, brand at the end ("Error tracking for mobile teams - Acme", not "Acme - Home") |
-| Meta description | Present, ~150-160 characters, reads as ad copy for the click - what it is, who it's for, why click |
+| Title tag | Unique per page; leads with words the ICP actually searches, brand at the end (Google sets no length limit but cuts the title to the screen width - about 50-60 characters usually fit) ("Error tracking for mobile teams - Acme", not "Acme - Home") |
+| Meta description | Present, the point in the first words (Google cuts it to the screen width - about 150-160 characters usually fit), reads as ad copy for the click - what it is, who it's for, why click |
 | H1 | Exactly one; says what the page is about in the searcher's words, not an unexplained slogan |
 | Heading hierarchy | H2s under the H1, H3s under H2s, no skipped levels; headings describe sections (they are what both crawlers and skimming humans navigate by) |
 | Image alt text | Meaningful images carry descriptive alt text; decorative ones carry empty `alt=""` |
@@ -105,10 +105,10 @@ Google's Search Quality Rater Guidelines grade content on Experience, Expertise,
 JSON-LD structured data (the schema.org vocabulary, Google's preferred format) - the founder-sized set only:
 
 - `Organization` + `WebSite` on the homepage (name, logo, url, sameAs links to real profiles).
-- `SoftwareApplication` or `Product` where honest (real offers only).
+- `SoftwareApplication` or `Product` where accurate (real offers only).
 - `Article` on blog posts (headline, dates, author).
 
-Two honesty rules: never mark up content that isn't visible on the page, and don't chase rich-result stars - the expandable FAQ dropdowns vanished from Google SERPs entirely as of May 2026 (they'd been limited to government and health sites since 2023, and HowTo went earlier), so FAQ markup earns no SERP decoration; FAQ *content* still matters, but for answer extraction, which is `/gtm geo`'s department. Validate whatever ships with Google's Rich Results Test or the schema.org validator.
+Two markup rules: never mark up content that isn't visible on the page, and don't chase rich-result stars - the expandable FAQ dropdowns vanished from Google SERPs entirely as of May 2026 (they'd been limited to government and health sites since 2023, and HowTo went earlier), so FAQ markup earns no SERP decoration; FAQ *content* still matters, but for answer extraction, which is `/gtm geo`'s department. Validate whatever ships with Google's Rich Results Test or the schema.org validator.
 
 ### 2.6 Citability basics (the bridge to GEO)
 
@@ -138,12 +138,12 @@ The section founders actually need. Define the terms first, in the report:
 Then deliver the verdict for **this founder's tier** (from the profile):
 
 - **Tier 1 (validating demand): skip active SEO - explicitly.** You need validation in weeks; this channel pays in quarters. Do the groundwork above (hours), let the domain bank age and indexed history, and spend the writing energy on talking to users. Skipping active SEO now costs you almost nothing *if the groundwork is clean* - that trade is the whole point of this audit.
-- **Tier 2 (finding the channel): still not the default bet.** Run a cheap, honest test only if all three hold: (1) the ICP demonstrably searches for the problem - the founder can name real queries with buying intent (Phase 3 produced them without straining); (2) the runway tolerates a months-long payback while other channel tests run; (3) one solid piece per week is sustainable without stalling the product. Fewer than three: skip, keep the groundwork clean, revisit at the next audit.
+- **Tier 2 (finding the channel): still not the default bet.** Run a cheap, small test only if all three hold: (1) the ICP demonstrably searches for the problem - the founder can name real queries with buying intent (Phase 3 produced them without straining); (2) the runway tolerates a months-long payback while other channel tests run; (3) one solid piece per week is sustainable without stalling the product. Fewer than three: skip, keep the groundwork clean, revisit at the next audit.
 - **Tier 3 (scaling the channel): core.** If search is - or visibly feeds - the working channel, invest properly: a content program against Phase 3's intent map, comparison pages, mention-earning, Search Console review monthly. This is also the point where the specialist boundary below starts to matter.
 
 **Flip conditions - name them in every skip verdict.** A skip is a decision under today's evidence, so state what would reverse it, e.g.: Search Console starts showing impressions for buying-intent queries you never targeted; a direct rival visibly compounds on content (their blog outranks your homepage for your category); Phase 3 surfaces intent queries the ICP confirms using; the founder reaches Tier 3 with runway for a quarters-long channel. Re-run this skill when one fires.
 
-**The specialist boundary, stated once and honestly:** a dedicated SEO practice adds what this skill deliberately does not carry - keyword research and rank tracking at scale, backlink analysis and acquisition, live Search Console/analytics API audits, Core Web Vitals lab testing, programmatic SEO, full schema coverage, content clustering, and local/international/e-commerce work. When search becomes your primary channel, buy or hire that practice; until then, this audit keeps the groundwork clean and tells you when that moment arrives.
+**The specialist boundary, stated once:** a dedicated SEO practice adds what this skill deliberately does not carry - keyword research and rank tracking at scale, backlink analysis and acquisition, live Search Console/analytics API audits, Core Web Vitals lab testing, programmatic SEO, full schema coverage, content clustering, and local/international/e-commerce work. When search becomes your primary channel, buy or hire that practice; until then, this audit keeps the groundwork clean and tells you when that moment arrives.
 
 Either way the verdict lands, it steers months of effort - recommend running `/gtm critic` on this report before the founder commits to (or skips) the channel.
 
