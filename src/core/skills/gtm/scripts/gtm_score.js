@@ -23,33 +23,55 @@
  * copy, structure, server-rendered visibility) - readiness, never rank or
  * citation performance, which stay evidence-only in /gtm geo.
  *
- * Every vector flag is REQUIRED and takes a number 0-100, or the literal
- * "skipped" (its signals don't exist on this site - conditional spawning) or
- * "degraded" (its agent failed validation twice). Excluded vectors are
+ * Each vector is a number 0-100, "skipped" (no signals on this site - a
+ * vector skip) or "degraded" (its agent failed the check twice). Excluded vectors are
  * reported, never silently dropped; the composite re-normalizes over the
  * scored vectors' weights and carries `weightCoverage` + `partial` so a
  * partial composite can never present itself as a full one.
  *
+ * Two ways in:
+ *
+ *   --agents <dir>  the audit's path. Reads the five audit agents' saved replies
+ *                   (<dir>/gtm-competitive.json, gtm-content.json,
+ *                   gtm-conversion.json, gtm-strategy.json, gtm-technical.json),
+ *                   checks each with gtm-audit's validate_agent_output.js, and
+ *                   takes the vector scores and skips from the checked replies.
+ *                   While any reply is missing or fails the check it scores
+ *                   nothing, exits 1, and prints the problems to quote back on
+ *                   the agent's one re-run. --degraded <agent> (repeatable, or
+ *                   comma-separated) marks an agent whose re-run also failed;
+ *                   its vectors are excluded as "degraded". A reply that passes
+ *                   the check cannot be marked degraded.
+ *   seven vector flags  re-scoring a saved audit by hand (the critic's Score
+ *                   Impact line): all seven required, each a number 0-100,
+ *                   "skipped" or "degraded".
+ *
+ * Any other flag is refused, so a mistyped --criticals cannot drop the cap.
+ *
  * Usage:
+ *   node gtm_score.js --agents <dir> [--degraded gtm-strategy] [--criticals N]
  *   node gtm_score.js --positioning 78 --icp 82 --conversion 48 \
  *                     --activation 64 --channel 74 --geo 60 --revenue 72 [--criticals N]
- *   node gtm_score.js --positioning 70 --icp 65 --conversion 60 \
- *                     --activation skipped --channel 55 --geo 40 --revenue degraded
  *   node gtm_score.js --selftest
  *
  * Output: JSON with the composite, grade, band meaning, per-vector weighted
  * contributions, excluded vectors, coverage, weakest/strongest scored
- * vectors, and cap details.
+ * vectors, and cap details; --agents adds each agent's status (valid or
+ * degraded).
  *
  * --criticals N = count of unresolved Critical findings from the critic gate
  * (default 0). One or more caps the composite at 69 (grade C): work standing
  * on a critical defect cannot grade "good", however strong the other vectors.
  *
  * Zero dependencies (Node standard library only).
- * Exit codes: 0 success; 2 usage error. Selftest: 0 pass, 1 fail.
+ * Exit codes: 0 success; 1 an agent reply is missing or fails the check
+ * (--agents); 2 usage error. Selftest: 0 pass, 1 fail.
  */
 
 "use strict";
+
+const fs = require("fs");
+const path = require("path");
 
 // Weights must sum to exactly 1.0 (asserted in --selftest).
 const WEIGHTS = {
@@ -175,6 +197,110 @@ function computeScore(inputs, criticals) {
     weakest: weakest,
     strongest: strongest,
   };
+}
+
+// ---------------------------------------------------------------------------
+// Scoring from the audit agents' saved replies (--agents)
+// ---------------------------------------------------------------------------
+
+function loadValidator() {
+  const p = path.join(__dirname, "..", "..", "gtm-audit", "scripts", "validate_agent_output.js");
+  if (!fs.existsSync(p)) {
+    throw new Error("--agents needs gtm-audit's validate_agent_output.js in the same skills directory (looked for " + p + ")");
+  }
+  return require(p);
+}
+
+/**
+ * Pure: scores an audit from its agents' raw replies, checking each first.
+ * raws: { "<agent>": raw reply string, or null when no reply was saved }.
+ * degraded: agent names whose re-run also failed the check.
+ * validator: the gtm-audit validator module.
+ * Returns { result, problems }; when problems is non-empty, result is null.
+ */
+function scoreFromAgents(raws, degraded, criticals, validator) {
+  const problems = [];
+  const inputs = {};
+  const agents = {};
+  const reasons = {};
+  const names = Object.keys(validator.AGENT_VECTORS);
+
+  degraded.forEach(function (a) {
+    if (names.indexOf(a) === -1) {
+      problems.push("--degraded " + a + ": not an audit agent (one of: " + names.join(", ") + ")");
+    }
+  });
+
+  names.forEach(function (agent) {
+    const owned = validator.AGENT_VECTORS[agent];
+    const raw = raws[agent];
+    const check = raw === null || raw === undefined ? null : validator.validateAgentOutput(raw);
+    const passes = check !== null && check.errors.length === 0 && check.summary.agent === agent;
+
+    if (degraded.indexOf(agent) !== -1) {
+      if (passes) {
+        problems.push(agent + ": its reply passes the check - score it instead of marking it degraded");
+        return;
+      }
+      owned.forEach(function (k) { inputs[k] = "degraded"; });
+      agents[agent] = "degraded";
+      return;
+    }
+    if (check === null) {
+      problems.push(agent + ": no saved reply - save it as " + agent + ".json in the agents folder (if its re-run also failed, pass --degraded " + agent + ")");
+      return;
+    }
+    if (check.errors.length) {
+      problems.push(agent + ": reply failed the check:");
+      check.errors.forEach(function (e) { problems.push("    - " + e); });
+      return;
+    }
+    if (check.summary.agent !== agent) {
+      problems.push(agent + ".json holds " + check.summary.agent + "'s reply - save each agent's reply under its own name");
+      return;
+    }
+    owned.forEach(function (k) {
+      if (check.summary.skipped.indexOf(k) !== -1) {
+        inputs[k] = "skipped";
+        reasons[k] = check.summary.skip_reasons[k];
+      } else {
+        inputs[k] = check.summary.scores[k];
+      }
+    });
+    agents[agent] = "valid";
+  });
+
+  if (problems.length) return { result: null, problems: problems };
+  let result;
+  try {
+    result = computeScore(inputs, criticals);
+  } catch (e) {
+    return { result: null, problems: [e.message] };
+  }
+  result.agents = agents;
+  Object.keys(reasons).forEach(function (k) {
+    result.vectors[k].reason = reasons[k];
+    result.excluded.forEach(function (x) { if (x.key === k) x.reason = reasons[k]; });
+  });
+  return { result: result, problems: [] };
+}
+
+function readAgentReplies(dir, names) {
+  const raws = {};
+  const unreadable = [];
+  names.forEach(function (agent) {
+    const file = path.join(dir, agent + ".json");
+    if (!fs.existsSync(file)) {
+      raws[agent] = null;
+      return;
+    }
+    try {
+      raws[agent] = fs.readFileSync(file, "utf8");
+    } catch (e) {
+      unreadable.push(agent + ": cannot read " + file + " (" + e.code + ")");
+    }
+  });
+  return { raws: raws, unreadable: unreadable };
 }
 
 // ---------------------------------------------------------------------------
@@ -310,12 +436,87 @@ function selftest() {
   try { computeScore(Object.assign(even(50), { icp: "maybe" }), 0); } catch (e) { threw = true; }
   assertEq(threw, true, "unknown status string rejected");
 
+  // --agents: scores come only from replies that pass gtm-audit's check.
+  let validator = null;
+  try { validator = loadValidator(); } catch (e) { failures.push("--agents selftest: " + e.message); }
+  if (validator) {
+    const reply = function (agent, vectors) {
+      return JSON.stringify({ agent: agent, vectors: vectors, findings: [], data_gaps: [] });
+    };
+    const replySet = function (s) {
+      return {
+        "gtm-competitive": reply("gtm-competitive", { positioning: { score: s.positioning, summary: "x" } }),
+        "gtm-content": reply("gtm-content", { icp: { score: s.icp, summary: "x" } }),
+        "gtm-conversion": reply("gtm-conversion", { conversion: { score: s.conversion, summary: "x" }, activation: { score: s.activation, summary: "x" } }),
+        "gtm-strategy": reply("gtm-strategy", { channel: { score: s.channel, summary: "x" }, revenue: { score: s.revenue, summary: "x" } }),
+        "gtm-technical": reply("gtm-technical", { geo: { score: s.geo, summary: "x" } }),
+      };
+    };
+    const mixedSet = function () {
+      return replySet({ positioning: 78, icp: 82, conversion: 48, activation: 64, channel: 74, geo: 60, revenue: 72 });
+    };
+
+    const ok = scoreFromAgents(mixedSet(), [], 0, validator);
+    assertEq(ok.problems.length, 0, "agents: five passing replies score");
+    assertEq(ok.result && ok.result.composite, 68, "agents: same composite as the mixed case");
+    assertEq(ok.result && ok.result.agents["gtm-content"], "valid", "agents: status reported");
+
+    const fenced = mixedSet();
+    fenced["gtm-content"] = "Done.\n```json\n" + fenced["gtm-content"] + "\n```";
+    assertEq(scoreFromAgents(fenced, [], 0, validator).problems.length, 0, "agents: fenced reply accepted");
+
+    const skip = mixedSet();
+    skip["gtm-conversion"] = reply("gtm-conversion", { conversion: { score: 48, summary: "x" }, activation: { skipped: "waitlist only" } });
+    const sk = scoreFromAgents(skip, [], 0, validator);
+    assertEq(sk.result && sk.result.vectors.activation.status, "skipped", "agents: a skip in the reply is a skip");
+    assertEq(sk.result && sk.result.partial, true, "agents: a skip makes the composite partial");
+    assertEq(sk.result && sk.result.vectors.activation.reason, "waitlist only", "agents: the skip reason is carried");
+    assertEq(sk.result && sk.result.excluded[0].reason, "waitlist only", "agents: excluded lists the skip reason");
+
+    const missing = mixedSet();
+    missing["gtm-technical"] = null;
+    const ms = scoreFromAgents(missing, [], 0, validator);
+    assertEq(ms.result, null, "agents: a missing reply scores nothing");
+    assertEq(ms.problems.some(function (p) { return p.indexOf("gtm-technical: no saved reply") === 0; }), true, "agents: the missing agent is named");
+
+    const bad = mixedSet();
+    bad["gtm-content"] = reply("gtm-content", { icp: { score: 140, summary: "x" } });
+    const bd = scoreFromAgents(bad, [], 0, validator);
+    assertEq(bd.result, null, "agents: a failing reply scores nothing");
+    assertEq(bd.problems.some(function (p) { return p.indexOf("0-100") !== -1; }), true, "agents: the check's errors are passed on");
+
+    const deg = mixedSet();
+    deg["gtm-strategy"] = "not json";
+    const dg = scoreFromAgents(deg, ["gtm-strategy"], 0, validator);
+    assertEq(dg.problems.length, 0, "agents: a failing reply can be marked degraded");
+    assertEq(dg.result && dg.result.vectors.channel.status, "degraded", "agents: degraded agent's vectors excluded");
+    assertEq(dg.result && dg.result.vectors.revenue.status, "degraded", "agents: both owned vectors degraded");
+
+    const degMissing = mixedSet();
+    degMissing["gtm-strategy"] = null;
+    assertEq(scoreFromAgents(degMissing, ["gtm-strategy"], 0, validator).problems.length, 0, "agents: a missing reply can be marked degraded");
+
+    assertEq(scoreFromAgents(mixedSet(), ["gtm-content"], 0, validator).result, null, "agents: a passing reply cannot be marked degraded");
+    assertEq(scoreFromAgents(mixedSet(), ["gtm-audit"], 0, validator).result, null, "agents: an unknown --degraded name is refused");
+    const allDeg = scoreFromAgents({}, Object.keys(validator.AGENT_VECTORS), 0, validator);
+    assertEq(allDeg.result === null && allDeg.problems.length === 1, true, "agents: all five degraded is a problem, not a crash");
+
+    const swapped = mixedSet();
+    swapped["gtm-content"] = swapped["gtm-competitive"];
+    assertEq(scoreFromAgents(swapped, [], 0, validator).result, null, "agents: a reply saved under another agent's name is refused");
+
+    const high = replySet({ positioning: 95, icp: 95, conversion: 95, activation: 95, channel: 95, geo: 95, revenue: 95 });
+    const hc = scoreFromAgents(high, [], 1, validator);
+    assertEq(hc.result && hc.result.composite, 69, "agents: the criticals cap applies");
+    assertEq(hc.result && hc.result.uncapped, 95, "agents: the uncapped value is kept");
+  }
+
   if (failures.length) {
     console.error("SELFTEST FAIL (" + failures.length + "):");
     failures.forEach(function (f) { console.error("  - " + f); });
     process.exit(1);
   }
-  console.log("SELFTEST PASS: gtm_score.js (weights, re-normalization, bands, cap, and validation all hold)");
+  console.log("SELFTEST PASS: gtm_score.js (weights, re-normalization, bands, cap, validation, and --agents all hold)");
   process.exit(0);
 }
 
@@ -323,19 +524,94 @@ function selftest() {
 // CLI
 // ---------------------------------------------------------------------------
 
+const USAGE = [
+  "usage: node gtm_score.js --agents <dir> [--degraded <agent>] [--criticals N]",
+  "       node gtm_score.js --positioning N --icp N --conversion N --activation N --channel N --geo N --revenue N [--criticals N]",
+  "       (each vector takes a number 0-100, or 'skipped', or 'degraded')",
+  "       node gtm_score.js --selftest",
+].join("\n");
+
 function main() {
   const args = process.argv.slice(2);
   if (args.indexOf("--selftest") !== -1) {
     selftest();
     return;
   }
+  if (args.indexOf("--help") !== -1 || args.indexOf("-h") !== -1) {
+    console.log(USAGE);
+    return;
+  }
 
   const flags = {};
+  const degraded = [];
   for (let i = 0; i < args.length; i++) {
     if (args[i].slice(0, 2) === "--") {
-      flags[args[i].slice(2)] = args[i + 1];
+      const name = args[i].slice(2);
+      const value = args[i + 1];
+      if (value !== undefined && value.slice(0, 2) === "--") {
+        console.error("gtm_score: --" + name + " needs a value (got the next flag, " + value + ")");
+        process.exit(2);
+      }
+      if (name === "degraded") {
+        String(value === undefined ? "" : value).split(",").forEach(function (a) {
+          if (a.trim()) degraded.push(a.trim());
+        });
+      } else {
+        flags[name] = value;
+      }
       i++;
+    } else {
+      console.error("gtm_score: unexpected argument '" + args[i] + "' - every value follows its --flag");
+      process.exit(2);
     }
+  }
+
+  const known = ["agents", "criticals"].concat(VECTOR_ORDER);
+  const unknown = Object.keys(flags).filter(function (n) { return known.indexOf(n) === -1; });
+  if (unknown.length) {
+    console.error("gtm_score: unknown flag(s): --" + unknown.join(", --") + " (known: --agents, --degraded, --criticals, the seven vectors, --selftest, --help)");
+    process.exit(2);
+  }
+
+  if ("criticals" in flags && (flags.criticals === undefined || !/^\d+$/.test(flags.criticals))) {
+    console.error("gtm_score: --criticals must be a non-negative integer (got: " + (flags.criticals === undefined ? "nothing" : "'" + flags.criticals + "'") + ")");
+    process.exit(2);
+  }
+  const criticals = flags.criticals === undefined ? 0 : parseInt(flags.criticals, 10);
+
+  if ("agents" in flags) {
+    const mixed = VECTOR_ORDER.filter(function (k) { return flags[k] !== undefined; });
+    if (mixed.length) {
+      console.error("gtm_score: pass either --agents or the seven vector flags, not both (got --agents with --" + mixed.join(", --") + ")");
+      process.exit(2);
+    }
+    if (!flags.agents || !fs.existsSync(flags.agents) || !fs.statSync(flags.agents).isDirectory()) {
+      console.error("gtm_score: --agents needs the folder holding the five agents' saved replies (got: " + (flags.agents === undefined ? "nothing" : "'" + flags.agents + "'") + ")");
+      process.exit(2);
+    }
+    let validator;
+    try {
+      validator = loadValidator();
+    } catch (e) {
+      console.error("gtm_score: " + e.message);
+      process.exit(2);
+    }
+    const read = readAgentReplies(flags.agents, Object.keys(validator.AGENT_VECTORS));
+    const scored = read.unreadable.length
+      ? { result: null, problems: read.unreadable }
+      : scoreFromAgents(read.raws, degraded, criticals, validator);
+    if (scored.problems.length) {
+      console.error("NOT SCORED - fix these, then run the same command again:");
+      scored.problems.forEach(function (p) { console.error("  " + p); });
+      console.error("A launched agent's reply that failed the check gets one re-run with these errors quoted; if the re-run fails too, add --degraded <agent>. A reply the session wrote itself is fixed until it passes.");
+      process.exit(1);
+    }
+    console.log(JSON.stringify(scored.result, null, 2));
+    return;
+  }
+  if (degraded.length) {
+    console.error("gtm_score: --degraded works with --agents; by hand, pass the vector itself as 'degraded'");
+    process.exit(2);
   }
 
   const inputs = {};
@@ -355,21 +631,13 @@ function main() {
 
   if (missing.length) {
     console.error("gtm_score: missing required flag(s): " + missing.join(", "));
-    console.error("usage: node gtm_score.js --positioning N --icp N --conversion N --activation N --channel N --geo N --revenue N [--criticals N]");
-    console.error("       (each vector takes a number 0-100, or 'skipped', or 'degraded')");
-    console.error("       node gtm_score.js --selftest");
+    console.error(USAGE);
     process.exit(2);
   }
   if (invalid.length) {
     console.error("gtm_score: must be a number 0-100, or 'skipped'/'degraded': " + invalid.join(", "));
     process.exit(2);
   }
-  if (flags.criticals !== undefined && !/^\d+$/.test(flags.criticals)) {
-    console.error("gtm_score: --criticals must be a non-negative integer (got: '" + flags.criticals + "')");
-    process.exit(2);
-  }
-
-  const criticals = flags.criticals === undefined ? 0 : parseInt(flags.criticals, 10);
 
   let result;
   try {
@@ -386,4 +654,4 @@ if (require.main === module) {
   main();
 }
 
-module.exports = { computeScore: computeScore, WEIGHTS: WEIGHTS, CRITICAL_CAP: CRITICAL_CAP, VECTOR_ORDER: VECTOR_ORDER, VECTOR_LABELS: VECTOR_LABELS };
+module.exports = { computeScore: computeScore, scoreFromAgents: scoreFromAgents, WEIGHTS: WEIGHTS, CRITICAL_CAP: CRITICAL_CAP, VECTOR_ORDER: VECTOR_ORDER, VECTOR_LABELS: VECTOR_LABELS };

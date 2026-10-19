@@ -5,7 +5,8 @@
  * Each of the 5 audit subagents must return one JSON object matching the
  * output contract in its agent file. This script is the deterministic gate
  * between agents and synthesis: the audit validates every agent's JSON here
- * BEFORE using it. A malformed agent is re-run once with the errors below
+ * BEFORE using it, and gtm_score.js --agents runs the same check on all five
+ * saved outputs before it computes the composite. A malformed agent is re-run once with the errors below
  * quoted back to it; if it fails again, its vector(s) are scored as
  * "degraded" - reported, never silently dropped.
  *
@@ -24,8 +25,8 @@
  *   node validate_agent_output.js < agent-output.json   (stdin)
  *   node validate_agent_output.js --selftest
  *
- * Output: on success, one JSON summary line (agent, scored/skipped vectors,
- * finding counts) on stdout, exit 0. On contract violations, each problem
+ * Output: on success, one JSON summary (agent, scored/skipped vectors, each
+ * scored vector's score, finding counts) on stdout, exit 0. On contract violations, each problem
  * on stderr in plain language (quote these back to the agent on its re-run),
  * exit 1. Usage errors exit 2. Selftest: 0 pass, 1 fail.
  *
@@ -62,10 +63,10 @@ function validateAgentOutput(raw) {
 
   // Accept a bare JSON document or extract the last fenced code block.
   let text = String(raw).trim();
-  const fences = text.match(/```(?:json)?\s*\r?\n([\s\S]*?)```/g);
+  const fences = text.match(/```(?:json)?\s*\r?\n([\s\S]*?)```/gi);
   if (fences && fences.length) {
     const last = fences[fences.length - 1];
-    text = last.replace(/^```(?:json)?\s*\r?\n/, "").replace(/```$/, "").trim();
+    text = last.replace(/^```(?:json)?\s*\r?\n/i, "").replace(/```$/, "").trim();
   }
 
   let obj;
@@ -89,6 +90,8 @@ function validateAgentOutput(raw) {
   // vectors
   const scored = [];
   const skipped = [];
+  const scores = {};
+  const skipReasons = {};
   if (typeof obj.vectors !== "object" || obj.vectors === null || Array.isArray(obj.vectors)) {
     errors.push("'vectors' must be an object" + (owned.length ? "" : " (empty {} for " + agent + ")"));
   } else {
@@ -113,6 +116,7 @@ function validateAgentOutput(raw) {
           errors.push("'vectors." + k + ".skipped' must be a non-empty reason string");
         } else {
           skipped.push(k);
+          skipReasons[k] = v.skipped;
         }
         return;
       }
@@ -125,7 +129,10 @@ function validateAgentOutput(raw) {
         errors.push("'vectors." + k + ".summary' must be a non-empty one-line string");
         vectorClean = false;
       }
-      if (vectorClean) scored.push(k);
+      if (vectorClean) {
+        scored.push(k);
+        scores[k] = v.score;
+      }
     });
   }
 
@@ -170,6 +177,8 @@ function validateAgentOutput(raw) {
       agent: agent,
       scored: scored,
       skipped: skipped,
+      scores: scores,
+      skip_reasons: skipReasons,
       findings: counts,
       data_gaps: obj.data_gaps.length,
     },
@@ -204,10 +213,13 @@ function selftest() {
   };
   const r1 = check("valid content output", JSON.stringify(goodContent), true);
   if (r1.summary && r1.summary.scored.join(",") !== "icp") failures.push("valid content: scored should be [icp]");
+  if (r1.summary && r1.summary.scores.icp !== 62) failures.push("valid content: scores.icp should be 62");
 
   // Fenced block extraction (last block wins).
   check("fenced json extracted",
     "Analysis done.\n```json\n" + JSON.stringify(goodContent) + "\n```", true);
+  check("uppercase fence extracted",
+    "Analysis done.\n```JSON\n" + JSON.stringify(goodContent) + "\n```", true);
 
   check("not json", "hello there", false, "not valid JSON");
   check("wrong agent", JSON.stringify(Object.assign({}, goodContent, { agent: "gtm-audit" })), false, "'agent'");
@@ -235,6 +247,7 @@ function selftest() {
   };
   const r2 = check("skipped vector accepted", JSON.stringify(conv), true);
   if (r2.summary && r2.summary.skipped.join(",") !== "activation") failures.push("conversion: skipped should be [activation]");
+  if (r2.summary && r2.summary.skip_reasons.activation !== "no signup surface - waitlist only") failures.push("conversion: skip reason should be carried");
 
   const convMissing = { agent: "gtm-conversion", vectors: { conversion: { score: 48, summary: "x" } }, findings: [], data_gaps: [] };
   check("missing owned vector", JSON.stringify(convMissing), false, "'vectors.activation' is missing");
