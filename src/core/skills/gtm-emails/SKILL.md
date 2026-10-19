@@ -1,6 +1,6 @@
 ---
 name: gtm-emails
-version: 1.4.3
+version: 1.5.1
 description: Lifecycle email sequences for /gtm emails <target> - the activation onboarding and dunning (failed-payment recovery) emails a product sends its own users. Use when the user wants onboarding, activation, welcome, trial, or dunning email sequences. Also trigger for "write my onboarding emails", "welcome sequence", "activation drip", "trial onboarding emails", "dunning emails", "failed payment recovery", or "lifecycle emails".
 ---
 
@@ -14,7 +14,7 @@ description: Lifecycle email sequences for /gtm emails <target> - the activation
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
-You are the lifecycle email engine for `/gtm emails <target>`. You generate the two highest-ROI email sequences an early-stage SaaS founder can own: an **activation onboarding** sequence that drives new signups to first value, and a **dunning** sequence that recovers revenue lost to failed payments. Every sequence is event-triggered, ready to paste into an ESP (Loops, Customer.io, Resend, Mailchimp), and calibrated to SaaS benchmarks. Sprawling nurture, launch blasts, and broadcast campaigns are deliberately deferred - at this stage they cost more attention than they return.
+You are the lifecycle email engine for `/gtm emails <target>`. You generate the two highest-ROI email sequences an early-stage SaaS founder can own: an **activation onboarding** sequence that drives new signups to first value, and a **dunning** sequence that recovers revenue lost to failed payments. Every sequence is event-triggered, ready to paste into an ESP (Loops, Customer.io, Resend, Mailchimp), and judged by the outcome each sequence exists for (5.1). Sprawling nurture, launch blasts, and broadcast campaigns are deliberately deferred - at this stage they cost more attention than they return.
 
 
 ## When This Skill Is Invoked
@@ -31,7 +31,7 @@ Before fetching anything, run the orchestrator's *Project Resolution*. With a pr
 - **Tone** and **Avoid** - the voice every email must match (this skill's "emails must match brand voice" rule), and the claims they must never make.
 - **`brand-voice.md`** (project root, written by `/gtm brand`) - when present, the full voice contract: word lists, Do/Don't rules, and sample lines that keep onboarding and dunning emails sounding like the product they come from. It outranks the one-line `Tone` on conflict.
 - **Main goal** and the **activation milestone** - the "aha" action onboarding drives toward (first project created, first API call, data connected, first report run). If the profile doesn't name it, infer it from the product and confirm in one line.
-- **Project type** and **Stage** - the type sets the benchmark (5.1) and the likely billing model; the stage sets emphasis (Tier 2 onboarding and activation; Tier 3 adds dunning and win-back).
+- **Project type** and **Stage** - the type sets the likely billing model and the metric to watch (5.1); the stage sets emphasis (Tier 2 onboarding and activation; Tier 3 adds dunning and win-back).
 - **Pricing / billing model** - trial vs freemium, card-required or not, plan tiers (from the profile or the live pricing page). This frames the dunning sequence and trial-expiry timing.
 - **Primary channel today**, **Existing assets**, and **Current traction** - where signups come from (seeds the source segmentation in 4.1) and the numbers available for social proof.
 
@@ -60,7 +60,7 @@ Default to the two pillars unless the user asks for one specifically:
 | Sequence | Trigger | Emails | Goal |
 |----------|---------|--------|------|
 | **Activation onboarding** | New signup / trial start | 4-5 | Drive the user to the activation milestone and first value |
-| **Dunning (failed payment)** | Payment failure / card expiring | 3-4 | Recover involuntary churn (~9% of MRR/mo) |
+| **Dunning (failed payment)** | Payment failure / card expiring | 3-4 | Win back revenue from failed payments - churn nobody chose, so a card update often saves it |
 
 Two lighter sequences to offer only when they fit the founder's stage and billing model:
 - **Trial-expiry nudge** (2-3 emails) - convert an expiring trial to paid; folds naturally onto the end of onboarding.
@@ -110,7 +110,7 @@ CTA:   one button into the product, at the exact spot for that step
 
 **Subject Line Rules:**
 - Keep under 50 characters for mobile (40 is ideal); front-load the most important words.
-- Personalize with first name in roughly 20-30% of emails, not every one.
+- Save the first name for some emails rather than all of them, and test it - field studies disagree on whether it still lifts opens.
 - Avoid spam triggers ("free," "guarantee," "act now") in excess.
 - For dunning and trial-expiry, be literal, not clever - clarity beats wit when money or access is at stake.
 - Always write the preview text (preheader) too; it is a second subject line.
@@ -157,7 +157,7 @@ Email 3 (Day 3): SHOW THE VALUE
 Email 4 (Day 5): REMOVE OBJECTIONS / OFFER HELP
   Subject: "Stuck on anything?"
   Body: Address the top reason users stall at this stage. Offer a real path to help
-        (docs, a reply, a quick Loom). Honest and low-pressure.
+        (docs, a reply, a quick Loom). Plain and low-pressure.
   CTA: [help path, or the activation step again]
 
 Email 5 (near trial end - trial-based products only): CONVERT
@@ -215,7 +215,7 @@ Segment on where the user is in the lifecycle, not on demographics:
 ### 4.2 Testing (don't over-test at low volume)
 
 At early-stage send volumes, statistical significance is out of reach - don't chase it. Pick the stronger subject line by judgment and ship. Once a sequence sends to enough users per step to read a result, test in this order:
-1. Subject line (biggest lever on open rate)
+1. Subject line - read the test on clicks or the sequence's outcome, since opens are inflated (5.1)
 2. CTA and the offer (biggest lever on click rate)
 3. Send timing relative to the trigger
 
@@ -225,21 +225,21 @@ At early-stage send volumes, statistical significance is out of reach - don't ch
 
 ### 5.1 Benchmarks (SaaS)
 
-Lifecycle and triggered emails run well above broadcast averages - hold the sequences to the higher bar:
+Open rates are inflated since Apple's Mail Privacy Protection (2021) loads images for Apple Mail users whether or not they read the email, so judge each sequence by clicks and by the outcome it exists for. Triggered emails, sent because of something the user just did, get read and clicked well above broadcasts - hold them to the higher bar.
 
-| Email type | Open rate | Click rate | Note |
-|------------|-----------|------------|------|
-| SaaS broadcast (baseline) | 20-25% | 2-3% | The floor, not the target |
-| Onboarding / triggered | 40-60% | 5-15% | Triggered by a real action, so engagement is high |
-| Dunning | 30-50% | recovery is the metric | Aim to recover a meaningful share of the ~9% of MRR/mo lost to failed payments |
-| Trial-to-paid (no card) | ~18% median | - | A strong onboarding + trial-expiry sequence moves this |
+| Email type | Judge it by | Reference |
+|------------|-------------|-----------|
+| Broadcast (baseline) | Click rate | Mailchimp's all-industry benchmark (campaigns to 1,000+ subscribers; data to December 2023): 2.62% click |
+| Onboarding / triggered | Activation rate of the users who got it | Above broadcast; set the bar from the sequence's first month |
+| Dunning | Revenue recovered from failed payments | The share of failed-payment revenue won back |
+| Trial-expiry | Trial-to-paid | ChartMogul's 2026 survey of 200 B2B products: about 30% within six months when the trial needs a card, more than 5x trials without one |
 
 Track the outcome, not vanity opens: activation rate from onboarding, trial-to-paid conversion, and revenue recovered by dunning.
 
 ### 5.2 Compliance (keep it short)
 
 - **Transactional vs marketing:** dunning and core onboarding are transactional (account-necessary), so they're less restricted - but the moment an email sells, marketing rules apply.
-- **CAN-SPAM (US):** accurate "from", honest subject, a physical address, and a working unsubscribe on marketing emails.
+- **CAN-SPAM (US):** accurate "from", a subject line that isn't misleading, a physical address, and a working unsubscribe on marketing emails.
 - **GDPR (EU):** explicit opt-in for marketing; document consent; honor deletion.
 - Always recommend the founder confirm specifics with their own legal counsel.
 
@@ -259,7 +259,9 @@ Write the full output to the resolved output path as `YYYY-MM-DD-email-sequences
 
 ```markdown
 # Lifecycle Email Sequences: [Product Name]
-**Date:** [current date]
+**Project:** [name or domain]
+**Website:** [URL analyzed]
+**Date:** YYYY-MM-DD
 **Project type:** [type]
 **Activation milestone:** [the "aha" action]
 **Sequences generated:** [list]
@@ -272,7 +274,7 @@ Write the full output to the resolved output path as `YYYY-MM-DD-email-sequences
 - **Trigger:** [the product event that starts it]
 - **Emails:** [count]
 - **Goal:** [activation / recovery / conversion]
-- **Target:** [the benchmark for this sequence type]
+- **Measure by:** [the metric from 5.1 and its reference]
 
 ### Email 1: [Email Name]
 **Send:** [timing relative to the trigger]
@@ -320,9 +322,9 @@ Total Emails: [count]
   Activation onboarding (5 emails) - drive signups to first value
   Dunning (4 emails)              - recover failed-payment churn
 
-Targets:
-  Onboarding open rate: 40-60%
-  Dunning: recover a share of the ~9% of MRR/mo lost involuntarily
+Measure by:
+  Onboarding: activation rate of the users who got it
+  Dunning: revenue recovered from failed payments
 
 Full sequences saved to: YYYY-MM-DD-email-sequences.md
 ```

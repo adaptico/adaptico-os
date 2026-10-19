@@ -1,6 +1,6 @@
 ---
 name: gtm-funnel
-version: 1.3.4
+version: 1.4.1
 description: Funnel and activation analysis for /gtm funnel <target> - maps the public funnel (landing, pricing, signup) and works with the founder on the post-signup path to first value. Use when the user wants to find funnel drop-off/leaks or improve trial-to-paid and PLG activation. Also trigger for "fix my funnel", "where am I losing users", "activation rate", "trial conversion", or "funnel leaks".
 ---
 
@@ -12,7 +12,7 @@ description: Funnel and activation analysis for /gtm funnel <target> - maps the 
 
 > Full persona and general guidance: read `../gtm/templates/advisor-prompt.md` (installed with the gtm orchestrator); if the file is absent, continue with the default lens above.
 
-You are the funnel analysis engine for `/gtm funnel <target>`. For an early software startup the funnel is not a complex, multi-touch attribution machine - it is a basic flow from the landing-page click to the first time the product delivers real value (activation, the "aha" moment). Your job is simple friction detection: trace that journey step by step, find where people drop off, quantify the friction, and recommend specific fixes. Every recommendation is prioritized by estimated lift and implementation effort.
+You are the funnel analysis engine for `/gtm funnel <target>`. For an early software startup the funnel is not a complex, multi-touch attribution machine - it is a basic flow from the landing-page click to the first time the product delivers real value (activation, the "aha" moment). Your job is simple friction detection: trace that journey step by step, find where people drop off, quantify the friction, and recommend specific fixes. Every recommendation is prioritized by impact and implementation effort.
 
 ## When This Skill Is Invoked
 
@@ -23,7 +23,7 @@ The user runs `/gtm funnel <target>`. Run *Project Resolution* and gather contex
 ## Phase 0: Gather Context
 
 Before fetching anything, run the orchestrator's *Project Resolution*. With a profile loaded, read `PROFILE.md` and pull the fields that frame the teardown - `/gtm init` captured them, and `/gtm position` / `/gtm competitors` may have sharpened them, so don't re-derive from the page what's already here:
-- **Project type**, **Stage**, and **Main goal** - the type points to the funnel shape and activation moment (1.1) and the benchmark (3.3); the goal is the conversion the whole funnel optimizes toward.
+- **Project type**, **Stage**, and **Main goal** - the type points to the funnel shape and activation moment (1.1) and the reference points (3.3); the goal is the conversion the whole funnel optimizes toward.
 - **Primary channel today**, **Existing assets**, and **Current traction** - where the traffic comes from; this anchors the traffic-source mix in the metrics (3.1) and the Traffic Source Alignment (5.2) instead of guessing it.
 - **ICP** and **Key pain points** - who moves through the funnel; the relevance bar for the Clarity and Motivation scores (2.1).
 - **Differentiator** and **Key messages** - the positioning the funnel pages (hero, pricing value-framing) should lead with.
@@ -44,7 +44,7 @@ This skill reads your *public* pages - landing, pricing, the signup form, docs a
 
 > "I can see everything up to your signup form. For what happens after signup - onboarding, and the moment a new user first gets value - tell me whatever you can: a sentence or two on the steps, a screenshot or screen-recording, or a link or doc (onboarding guide, Loom, help-center article). It's optional - without it I'll infer those steps from your docs, demos, and reviews and mark them as inferred."
 
-Treat whatever the founder gives as the source of truth for the post-signup steps. For anything still unknown, fall back to public signals (1.2) and benchmarks (3.3), and label every step **observed** (you fetched it), **founder-provided** (they told or showed you), or **inferred** (reconstructed from a public signal) so the founder always knows which parts are real and which are your best reconstruction.
+Treat whatever the founder gives as the source of truth for the post-signup steps. For anything still unknown, fall back to public signals (1.2) - a step's rate stays "not measured yet" unless measured or given, since the 3.3 references are for scale, never a step's rate - and label every step **observed** (you fetched it), **founder-provided** (they told or showed you), or **inferred** (reconstructed from a public signal) so the founder always knows which parts are real and which are your best reconstruction.
 
 ### 1.1 Identify the Funnel Shape
 
@@ -74,7 +74,7 @@ STEP [#]: [Page Name]
   Friction Elements: [anything that slows or confuses]
   Trust Elements: [anything that builds confidence]
   Activation Signal: [if this is the first-value moment, what proves the user "got it"]
-  Load Time: [estimated based on page complexity]
+  Load Time: [measured LCP, or the speed indicators observed (page weight, render-blocking scripts, image formats) - never an estimate]
 ```
 
 The steps after signup (onboarding, the empty state, the activation moment) sit behind an auth wall you can't fetch. Use whatever the founder gave you above; for anything still missing, reconstruct it from what *is* public - product tour pages, docs and quickstarts, demo videos, screenshots, changelog, and review mentions of setup. Label every step **observed**, **founder-provided**, or **inferred** so it's clear which parts are real and which are your best reconstruction.
@@ -93,21 +93,21 @@ Traffic Sources
 [Homepage] ─── 100% of visitors
   |
   v
-[Pricing Page] ─── ~30% click through
+[Pricing Page] ─── [X]% click through, or "not measured yet"   (observed / founder-provided)
   |
   v
-[Signup Form] ─── ~15% reach signup
+[Signup Form] ─── [X]% reach signup
   |
   v
-[Onboarding] ─── ~10% complete signup
+[Onboarding] ─── [X]% complete signup
   |
   v
-[Activation] ─── ~6% reach first value (the "aha" moment)
+[Activation] ─── [X]% reach first value (the "aha" moment)
   |
   v
-[Paid Plan] ─── ~2% convert to paid
+[Paid Plan] ─── [X]% convert to paid
 
-Overall: 2% visitor-to-paid conversion
+Overall: [X]% visitor-to-paid conversion
 ```
 
 Adjust this template to match the actual funnel discovered on the site.
@@ -173,11 +173,11 @@ For each page in the funnel, score these dimensions:
 | Paywall before value | Upgrade is asked before the user is activated | Gate on value, not on a timer - let them feel the win first |
 | No prompt at the limit | No upgrade CTA where the user hits a wall | Contextual upgrade prompts at natural limits and value moments |
 | Weak plan differentiation | Free and paid look the same | Make the paid value obvious exactly when it's needed |
-| Card-required trial deters signups | Steep drop at the top of the funnel | Know the tradeoff: no-card trials get more signups (~18% trial-to-paid), card-required gets fewer but converts higher (~31%) |
+| Card-required trial deters signups | Steep drop at the top of the funnel | Know the tradeoff: no-card trials get more signups, card-required gets fewer but converts much higher (ChartMogul's 2026 survey of 200 B2B products: about 30% paid within six months with a card, more than 5x trials without one) |
 
 ### 2.3 The Activation Step - Where Early SaaS Funnels Actually Leak
 
-For a software startup the biggest, most overlooked leak is rarely the pricing page - it is the gap between signup and first value. Developer PLG activation typically sits at 12-20%, meaning ~80% of people who sign up never reach the moment the product proves itself. Diagnose it directly:
+For a software startup the biggest, most overlooked leak is rarely the pricing page - it is the gap between signup and first value. Most people who sign up never reach the moment the product proves itself: in Lenny Rachitsky's 2022 survey of 500+ products, the median SaaS company activated 30% of its signups, each by its own milestone. Diagnose it directly:
 
 - **Name the activation moment.** What single action means a new user "got it"? (first successful API call, first report generated, first project shared.) If the founder can't name it, that is finding number one.
 - **Count the steps to get there.** From signup to that moment, how many screens, fields, decisions, and external prerequisites (API keys, data import, inviting a teammate)? Every one is a place to drop off.
@@ -193,21 +193,22 @@ Score the activation step on the same five dimensions as every other page (2.1),
 
 ### 3.1 Key Funnel Metrics
 
-Estimate these from the page if there are no analytics; ask the founder for any real numbers - and when nothing is instrumented yet, note that `/gtm analytics` stands up the events so the next funnel read runs on real numbers. The spine is three conversions - signup, activation, paid - not a chain of sales-qualified stages.
+Use the founder's real numbers - ask for them; where a rate is not measured, write "not measured yet" rather than an estimate - and when nothing is instrumented yet, note that `/gtm analytics` stands up the events so the next funnel read runs on real numbers. The spine is three conversions - signup, activation, paid - not a chain of sales-qualified stages.
 
 ```
 FUNNEL METRICS
 ==============
 
-Traffic (ask the founder or estimate):
+Traffic (ask the founder; "not measured yet" if unknown):
   Monthly Visitors: [number]
   Traffic Sources: [organic %, paid %, referral %, direct %, social %]
 
 Conversion (the spine):
-  Visitor   -> Signup:        [X]% (benchmark: 1.5-2.5%)
-  Signup    -> Activated:     [X]% (benchmark: 12-20% PLG; ~80% never reach value)
-  Activated -> Paid:          [X]% (trial-to-paid; benchmark: 18% no-card / 31% card)
-  Overall   Visitor -> Paid:  [X]% (benchmark: 0.5-3%)
+  Visitor   -> Signup:        [X]%
+  Signup    -> Activated:     [X]% (reference: 30% SaaS median, Lenny Rachitsky 2022 survey of 500+ products, each by its own milestone)
+  Activated -> Paid:          [X]% (the share of activated users who pay)
+  Signup    -> Paid:          [X]% (trial-to-paid: the two rates above multiplied; reference only when the trial needs a card: about 30% paid within six months, ChartMogul 2026 survey of 200 B2B products)
+  Overall   Visitor -> Paid:  [X]% (the three spine rates multiplied)
 
 Unit economics (only if the founder has the numbers - secondary at this stage):
   LTV:CAC Ratio: [X]:1 (target: 3:1 or higher)
@@ -216,34 +217,34 @@ Unit economics (only if the founder has the numbers - secondary at this stage):
 
 ### 3.2 Quantify the Impact of Every Fix
 
-Tie each recommendation to revenue so the founder can prioritize. Use whatever real numbers exist and estimate the rest.
+Tie each recommendation to revenue so the founder can prioritize. Use the founder's real numbers. The only assumed input a scenario may carry is the target rate it tests (X% to Y%), named as such; with a base input missing (visitors, ARPA), give the impact as High / Medium / Low with the reason and list the missing input under Funnel Metrics as "not measured yet", with what to collect and where (`/gtm analytics` sets up the events).
 
 ```
 Monthly new revenue ~= Visitors x (Visitor->Signup) x (Signup->Activated) x (Activated->Paid) x ARPA
 
-Example (PLG):
-  5,000 visitors x 2% signup x 40% activated x 18% trial-to-paid x $40 ARPA
-  = ~$2,880 new MRR / month
+Example (PLG, made-up inputs to show the arithmetic):
+  50,000 visitors x 2% signup x 20% activated x 25% of activated pay x $40 ARPA
+  = ~$2,000 new MRR / month
 
-Lift activation from 40% to 55% with a guided first run:
-  5,000 x 2% x 55% x 18% x $40 = ~$3,960 new MRR / month
-  = +$1,080 MRR / month, about +$13,000 ARR from one fix
+Lift activation from 20% to 30% with a guided first run:
+  50,000 x 2% x 30% x 25% x $40 = ~$3,000 new MRR / month
+  = +$1,000 MRR / month, about +$12,000 ARR from one fix
 ```
 
 Activation is usually the cheapest lever with the largest payoff: it sits in the middle of the chain, so every downstream rate compounds on it.
 
 ### 3.3 Funnel Benchmarks (software)
 
-Anchor every gap to these. They are SaaS / PLG numbers, not e-commerce or webinar funnels.
+Use these for scale only. Each comes from one publisher's own sample, so a gap against one is a question to look into, never a verdict on its own; where no row exists, compare the funnel with its own past numbers.
 
-| Funnel Step | Good | Great | Note |
-|---|---|---|---|
-| Landing page (B2B SaaS) | 4.1% (median) | 10%+ (top quartile) | visitor -> signup on a dedicated page |
-| Visitor -> Signup (site-wide) | 1.5-2.5% | 4%+ | median visitor-to-lead |
-| Signup -> Activated (PLG) | 12-20% | 30%+ | developer PLG; ~80% never reach value |
-| Trial -> Paid (no credit card) | 18.2% (median) | 25%+ | more signups, lower conversion |
-| Trial -> Paid (card required) | 31.4% (median) | 40%+ | fewer signups, higher conversion |
-| Demo -> Close (sales-led) | 15-25% | 40%+ | enterprise / sales-led B2B |
+| Funnel Step | Reference | What was measured |
+|---|---|---|
+| Landing page (SaaS) | 3.8% median; top quarter above 11.6% | Unbounce 2024: pages built with its builder |
+| Signup -> Activated | 30% median | Lenny Rachitsky 2022: self-reported survey of 500+ products, SaaS subset, each by its own activation milestone |
+| Trial signup -> Paid (card required) | about 30%, more than 5x no-card trials | ChartMogul 2026: survey of 200 B2B software products, paid within six months of signup |
+| Visitor -> Signup, Demo -> Close, Visitor -> Paid | none with a reachable primary source | track the funnel's own trend; for demos, ask for demos held vs closed-won over the last two to four quarters |
+
+Quote a reference only for the kind of funnel it measured, always with its publisher, year and what it measured: the trial-to-paid figure is for trials that need a card, so a no-card trial or a freemium plan gets no reference figure.
 
 ---
 
@@ -255,42 +256,44 @@ Rank every recommendation using this framework:
 
 | Priority | Impact | Effort | When to Implement |
 |----------|--------|--------|-------------------|
-| **P1 (Do Now)** | High impact (>10% lift) | Low effort (<1 day) | This week |
-| **P2 (Plan)** | High impact (>10% lift) | Medium effort (1-5 days) | This month |
-| **P3 (Schedule)** | Medium impact (5-10% lift) | Low effort (<1 day) | This month |
-| **P4 (Backlog)** | Medium impact (5-10% lift) | High effort (5+ days) | This quarter |
-| **P5 (Nice to Have)** | Low impact (<5% lift) | Any effort | When resources allow |
+| **P1 (Do Now)** | High impact | Low effort (<1 day) | This week |
+| **P2 (Plan)** | High impact | Medium effort (1-5 days) | This month |
+| **P3 (Schedule)** | Medium impact | Low effort (<1 day) | This month |
+| **P4 (Backlog)** | Medium impact | High effort (5+ days) | This quarter |
+| **P5 (Nice to Have)** | Low impact | Any effort | When resources allow |
+
+Impact is a judgment from the finding, given with its one-line reason - never a predicted lift percentage.
 
 ### 4.2 Funnel-Stage-Specific Optimizations
 
 **Top of Funnel (visit to signup):**
-- Headline message-match fix against the traffic source (expected lift: 10-30%; A/B test it only if traffic allows - otherwise just ship the matched version)
-- Social proof near the signup CTA (expected lift: 5-15%)
-- Page speed optimization (expected lift: 5-20%)
-- Cut signup-form fields to the minimum (expected lift: ~7% per field removed)
+- Headline message-match fix against the traffic source (A/B test it only if traffic allows - otherwise just ship the matched version)
+- Social proof near the signup CTA
+- Page speed optimization (faster pages convert better)
+- Cut signup-form fields to the minimum
 
 **Activation (signup to first value) - usually the highest-leverage stage:**
-- Guided first run / onboarding checklist (expected lift: 15-30% of new signups reaching value)
-- Sample or demo data so the empty state shows the product working (expected lift: 10-25%)
-- Remove or defer setup steps that block first value - API keys, imports, invites (expected lift: 10-20%)
-- A single-player path to the "aha" moment before any team or integration step (expected lift: 10-20%)
+- Guided first run / onboarding checklist
+- Sample or demo data so the empty state shows the product working
+- Remove or defer setup steps that block first value - API keys, imports, invites
+- A single-player path to the "aha" moment before any team or integration step
 - Instrument and prompt toward the activation milestone (makes every later fix measurable)
 
 **Middle of Funnel (consideration):**
-- Case study and testimonial pages (expected lift: 10-20%)
-- Feature and "vs [competitor]" comparison pages (expected lift: 5-15%)
-- Interactive product demo or playground (expected lift: 15-30%)
+- Case study and testimonial pages
+- Feature and "vs [competitor]" comparison pages
+- Interactive product demo or playground
 
 **Bottom of Funnel (trial to paid):**
-- Pricing page redesign that frames value before price (expected lift: 10-25%)
-- Risk reversal - free trial, no-card option, money-back (expected lift: 10-20%)
-- Contextual upgrade prompts at natural limits and value moments (expected lift: 5-15%)
-- Annual plan framed first, with the saving shown (expected lift: 5-15%)
+- Pricing page redesign that frames value before price
+- Risk reversal - free trial, no-card option, money-back
+- Contextual upgrade prompts at natural limits and value moments
+- Annual plan framed first, with the saving shown
 
 **Post-signup (retention and expansion):**
-- Onboarding / activation email sequence (expected impact: 10-20% less early churn)
-- Dunning / failed-payment recovery (recovers a chunk of the ~9% of MRR/mo lost to involuntary churn)
-- Referral prompt after the user hits value (expected lift: 5-15% new users)
+- Onboarding / activation email sequence
+- Dunning / failed-payment recovery (wins back revenue from failed payments - churn nobody chose, so a card update often saves it)
+- Referral prompt after the user hits value
 
 ### 4.3 Pricing Page Optimization
 
@@ -299,7 +302,7 @@ Since pricing pages are often the highest-leverage optimization point:
 **Pricing Page Audit Checklist:**
 - [ ] Headline frames value, not cost ("Choose your growth plan" not "Pricing")
 - [ ] Plans are limited to 3 (or 3 + enterprise)
-- [ ] One plan is highlighted with an honest badge ("Most Popular" only if it factually is the most-chosen plan; otherwise "Recommended")
+- [ ] One plan is highlighted with an accurate badge ("Most Popular" only if it factually is the most-chosen plan; otherwise "Recommended")
 - [ ] Annual pricing is shown first with savings highlighted
 - [ ] Features are benefit-oriented (not jargon)
 - [ ] Social proof appears near pricing (testimonials, customer count)
@@ -363,8 +366,9 @@ Write the full output to the resolved output path as `YYYY-MM-DD-funnel-analysis
 
 ```markdown
 # Funnel Analysis: [Business Name]
-**URL:** [url]
-**Date:** [current date]
+**Project:** [name or domain]
+**Website:** [URL analyzed]
+**Date:** YYYY-MM-DD
 **Project Type:** [type]
 **Funnel Shape:** [landing -> ... -> paid]
 **Activation Moment:** [the single first-value action]
@@ -384,7 +388,7 @@ inferred steps are best reconstructions, not observations]
 
 ## Funnel Map
 
-[ASCII funnel visualization with estimated conversion rates at each step]
+[ASCII funnel map: each step's measured or founder-provided rate, or "not measured yet"]
 
 ---
 
@@ -403,21 +407,21 @@ inferred steps are best reconstructions, not observations]
 signups drop before first value, and the single highest-priority fix]
 
 ## Funnel Metrics
-[Current metrics vs benchmarks, with gaps highlighted]
+[Current metrics, each with its 3.3 reference where one exists; a gap is a question to look into, not a verdict. Then each input still "not measured yet" - what to collect and where (`/gtm analytics` sets up the events)]
 
 ## Revenue Impact Analysis
-[MRR impact of each fix, with activation-lift scenarios]
+[Revenue scenarios from the founder's own numbers - what a stage moving from X to Y would add, labelled as scenarios, every input named; with no numbers, impact as High / Medium / Low with the reason]
 
 ## Optimization Recommendations
 
 ### Priority 1 - Do Now (This Week)
-[Specific actions with expected lift]
+[Specific actions, each with its impact and the reason]
 
 ### Priority 2 - Plan (This Month)
-[Specific actions with expected lift]
+[Specific actions, each with its impact and the reason]
 
 ### Priority 3 - Strategic (This Quarter)
-[Specific actions with expected lift]
+[Specific actions, each with its impact and the reason]
 
 ---
 
@@ -450,18 +454,19 @@ Evidence: [X] observed · [Y] founder-provided · [Z] inferred
 Funnel Health: [X]/100
 
 Conversion Flow:
-  Visitors  -> Signups:   [X]% (benchmark: 1.5-2.5%)
-  Signups   -> Activated: [X]% (benchmark: 12-20%)
-  Activated -> Paid:      [X]% (benchmark: 18-31%)
-  Overall:                [X]% (benchmark: 0.5-3%)
+  Visitors  -> Signups:   [X]%
+  Signups   -> Activated: [X]% (reference: 30% SaaS median of signups reaching each company's own milestone, Lenny Rachitsky 2022 survey)
+  Activated -> Paid:      [X]%
+  Signup    -> Paid:      [X]% [card-required trials only - reference: about 30% paid within six months, ChartMogul 2026 survey of 200 B2B products]
+  Overall:                [X]%
 
-Biggest Bottleneck: [stage] - [X]% drop-off
-Revenue Opportunity: ~$[X,XXX] new MRR/month with recommended fixes
+Biggest Bottleneck: [stage] - [X]% drop-off, or "not measured yet" and the evidence that points there
+[Revenue scenario: if [stage] moves from X% to Y%, ~$[X,XXX] new MRR/month - only from the founder's own numbers]
 
 Top 3 Fixes:
-  1. [fix] - est. [X]% lift
-  2. [fix] - est. [X]% lift
-  3. [fix] - est. [X]% lift
+  1. [fix] - impact [High/Medium/Low]: [reason]
+  2. [fix] - impact [High/Medium/Low]: [reason]
+  3. [fix] - impact [High/Medium/Low]: [reason]
 
 Full analysis saved to: YYYY-MM-DD-funnel-analysis.md
 ```

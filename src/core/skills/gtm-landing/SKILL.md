@@ -1,6 +1,6 @@
 ---
 name: gtm-landing
-version: 1.5.3
+version: 1.6.2
 description: Landing page conversion-rate-optimization teardown for /gtm landing <target>. Use when the user wants a section-by-section CRO review of a landing or signup page with prioritized fixes. Also trigger for "optimize my landing page", "CRO review", "why isn't my page converting", "improve signups", or "landing page teardown".
 ---
 
@@ -30,7 +30,7 @@ Before fetching the page, run the orchestrator's *Project Resolution*. With a pr
 - **Primary channel today** and **Existing assets** - where the page's traffic comes from; the hero is judged for message match against this source (Section 1).
 - **Tone** and **Avoid** - the voice every rewrite and A/B-test copy must honor, and the claims the page must never make.
 - **`brand-voice.md`** (project root, written by `/gtm brand`) - when present, the voice contract: the replacement hero and any rewritten copy are written inside its rules. It outranks the profile's one-line `Tone`.
-- **Project type**, **Stage**, and **Main goal** - frame the read: project type sets the expected Page Type and benchmark (Step 1), and the goal is the conversion the teardown optimizes toward.
+- **Project type**, **Stage**, and **Main goal** - frame the read: project type sets the expected Page Type (Step 1), and the goal is the conversion the teardown optimizes toward.
 - Then read any `YYYY-MM-DD-positioning.md`, `YYYY-MM-DD-competitor-report.md`, or `YYYY-MM-DD-gtm-audit.md` in the folder for detail.
 
 With no profile loaded, derive what you can from the page; *Project Resolution* will have offered to set one up, and running `/gtm init` would tailor the teardown to the founder's ICP, positioning, and goal.
@@ -51,24 +51,26 @@ Keep the list to roughly 15 entries - an index of what matters, not a site mirro
 ## How to Execute
 
 ### Step 1: Identify the Page Type
-Determine which type of landing page you are analyzing. This affects benchmark expectations and scoring weights.
+Determine which type of landing page you are analyzing. This sets the conversion the teardown measures against.
 
-| Page Type | Primary Goal | Good CR | Great CR |
-|---|---|---|---|
-| Lead Capture | Email/form submission | 5-10% | 15%+ |
-| SaaS Signup | Free trial or freemium signup | 3-7% | 10%+ |
-| E-commerce Product | Add to cart / Purchase | 2-4% | 5%+ |
-| Webinar Registration | Register for event | 20-30% | 40%+ |
-| App Download | Install app | 10-15% | 20%+ |
-| Waitlist | Join waitlist | 15-25% | 35%+ |
-| Consultation Booking | Schedule a call | 5-10% | 15%+ |
-| Nonprofit Donation | Make a donation | 2-5% | 8%+ |
+| Page Type | Primary Goal |
+|---|---|
+| Lead Capture | Email/form submission |
+| SaaS Signup | Free trial or freemium signup |
+| E-commerce Product | Add to cart / Purchase |
+| Webinar Registration | Register for event |
+| App Download | Install app |
+| Waitlist | Join waitlist |
+| Consultation Booking | Schedule a call |
+| Nonprofit Donation | Make a donation |
+
+Published conversion benchmarks exist for only a few page types, and each comes from one platform's own pages - use one for scale, never as this page's expected rate. Unbounce's 2024 report on pages built with its builder put the median at 3.8% for SaaS and 4.2% for e-commerce, with the top quarter above 11.6% and 11.4%; M+R's 2026 nonprofit benchmarks put donation-page completion at 11% on desktop and 8% on mobile. The other page types have none with a reachable primary source.
 
 ### Step 2: Run the 7-Point CRO Framework
 Analyze each section in order. Score each section 1-10 and provide specific findings.
 
 #### Section 1: Hero Section (Weight: 25%)
-The first screen a visitor sees. This is where 80% of conversion decisions begin.
+The first screen a visitor sees, and the part of the page that gets the most attention.
 
 **Message match comes first:** a hero converts relative to its traffic source. If visitors arrive from a specific ad, an HN/PH/X launch post, or a docs link (`Primary channel today` from Phase 0), the headline must mirror that promise - a broken scent trail between source and page is the most common, highest-yield miss, and a generic homepage used as a launch landing page is the classic example. Give it an explicit verdict against the Phase 0 source: **Match** (the hero echoes the source's promise and its words), **Partial** (same topic, different words - the visitor has to translate), or **Break** (the hero answers a different question than the click asked). On Partial or Break, the fix is a source-matched hero rewrite, and it outranks every other hero fix. Match the promise and intent, not just the keywords.
 
@@ -90,7 +92,7 @@ Any **Fail**, or two or more **Partial**, means the hero is failing its one job.
 - [ ] CTA text is action-oriented (not "Submit" or "Click Here")
 - [ ] Hero image or video supports the message (not generic stock)
 - [ ] Trust badges or social proof visible above the fold
-- [ ] Page loads in under 3 seconds
+- [ ] Main content renders fast - Google's "good" Largest Contentful Paint is 2.5 seconds or less (measured; otherwise "not measured yet")
 - [ ] No navigation menu competing with the CTA (for dedicated landing pages)
 
 **Scoring Criteria:**
@@ -242,7 +244,7 @@ Then check the mechanics of whatever fields remain:
 
 | Element | Best Practice |
 |---|---|
-| Field count | Every additional field reduces conversion ~7%. Lead capture: 3-5 fields max. |
+| Field count | Fewer fields usually convert better; long text boxes and sensitive fields (phone, street address) cost the most. Lead capture: 3-5 fields max. |
 | Labels | Use inline labels or floating labels. Avoid placeholder-only labels. |
 | Button text | Match the value proposition. "Get My Free Guide" > "Submit". |
 | Error handling | Inline validation. Specific error messages. Don't clear the entire form on error. |
@@ -252,27 +254,19 @@ Then check the mechanics of whatever fields remain:
 | Field types | Use appropriate input types (email, tel, url) for mobile keyboards. |
 
 ### Step 5: Mobile Responsiveness Audit
-Mobile accounts for 60%+ of web traffic. Check:
+Read the site's own analytics split first. On B2B software sites desktop usually carries most visits (Siege Media's 2026 data on 120 brands put the typical SaaS site near 28% mobile), but links shared in social apps and chat open on phones. Check:
 
 - [ ] CTA is thumb-reachable (bottom half of screen)
 - [ ] Text is readable without zooming (16px minimum body text)
 - [ ] Forms are usable on mobile (large tap targets, appropriate keyboards)
 - [ ] Images resize properly and don't break layout
 - [ ] No horizontal scrolling required
-- [ ] Page loads under 3 seconds on 4G
+- [ ] Largest Contentful Paint 2.5 seconds or less on mobile (Google's "good" threshold, read from real-visit data where the site has it; otherwise "not measured yet")
 - [ ] Click-to-call for phone numbers
 - [ ] Sticky CTA bar on scroll (if applicable)
 
 ### Step 6: Page Speed Impact Assessment
-Reference these conversion impact benchmarks:
-
-| Load Time | Conversion Impact |
-|---|---|
-| 0-2 seconds | Baseline (optimal) |
-| 2-3 seconds | -7% conversion rate |
-| 3-5 seconds | -20% conversion rate |
-| 5-8 seconds | -35% conversion rate |
-| 8+ seconds | -50%+ conversion rate |
+Slower pages convert worse, and the losses are steepest in the first few seconds of loading. No study measured a fixed conversion drop per second that would hold for this page, so report speed against Google's Core Web Vitals thresholds - a Largest Contentful Paint of 2.5 seconds or less is "good", over 4 seconds is "poor" - and state the direction, never a predicted conversion loss. Quote an LCP only from a measurement - PageSpeed Insights field data or the founder's own; with none, report the speed indicators the page shows (page weight, render-blocking scripts, image formats) and write "LCP not measured yet".
 
 Check for common speed issues:
 - Unoptimized images (use WebP, lazy loading)
@@ -318,16 +312,17 @@ Write the report to the resolved output path as `YYYY-MM-DD-landing-cro.md` (see
 
 ```markdown
 # Landing Page CRO Analysis
-## [Page URL]
-### Analysis Date: [date]
+**Project:** [name or domain]
+**Website:** [page URL analyzed]
+**Date:** YYYY-MM-DD
 
 ---
 
 ## Overall CRO Score: [X/100]
 
 ## Page Type: [identified type]
-## Current Estimated Conversion Rate: [a hedged range off the Step 1 page-type benchmark, nudged by the findings - a heuristic read, not a measured number; label it as such]
-## Target Conversion Rate: [realistic improvement target]
+## Conversion Rate: [the measured rate from the profile or log, with its date and where it came from, or "not measured yet" - `/gtm analytics` sets up the tracking; never an estimate]
+## Target: [once the rate is measured, the change to watch for after the fixes ship; until then, the first number to collect and where - `/gtm analytics`]
 
 ---
 
@@ -381,13 +376,13 @@ Write the report to the resolved output path as `YYYY-MM-DD-landing-cro.md` (see
 ## Prioritized Fix List
 
 ### Quick Wins (implement this week)
-1. [fix with expected impact]
+1. [fix - impact High / Medium / Low, with the reason]
 
 ### Medium-Term (implement this month)
-1. [fix with expected impact]
+1. [fix - impact High / Medium / Low, with the reason]
 
 ### Strategic (implement this quarter)
-1. [fix with expected impact]
+1. [fix - impact High / Medium / Low, with the reason]
 
 ---
 
@@ -401,17 +396,47 @@ Before saving, run the `gtm-humanize` closing pass (`../gtm-humanize/SKILL.md`) 
 
 ## Optional Critic Pass
 
-If the founder asked for a red-teamed or critiqued teardown, run the `gtm-critic` review protocol (`../gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and end the run; never leave the save waiting on an answer.
+If the founder asked for a red-teamed or critiqued teardown, run the `gtm-critic` review protocol (`../gtm-critic/SKILL.md`) on the draft report before saving, and fold the fixes in. Otherwise save first, then offer it in one line - "Run `/gtm critic` on this report to red-team it before you act on it." - and go on to the terminal summary and the log line below; never leave the save waiting on an answer.
+
+## Terminal Output
+
+After the report is saved, display a condensed summary:
+
+```
+=== LANDING PAGE CRO: [page URL] ===
+
+Page Type: [type]
+CRO Score: [X]/100
+Conversion Rate: [the measured rate with its date, or "not measured yet"]
+Hero: what it is [Pass/Partial/Fail] · who it's for [Pass/Partial/Fail] · why care [Pass/Partial/Fail] | message match [Match/Partial/Break]
+
+Section Scores:
+  Hero:                    [X]/10
+  Value Proposition:       [X]/10
+  Social Proof:            [X]/10
+  Features and Benefits:   [X]/10
+  Objection Handling:      [X]/10
+  Call-to-Action:          [X]/10
+  Footer and Secondary:    [X]/10
+Copy Score: [X]/100
+
+Top 3 Fixes:
+  1. [fix] - impact [High/Medium/Low]: [reason]
+  2. [fix] - impact [High/Medium/Low]: [reason]
+  3. [fix] - impact [High/Medium/Low]: [reason]
+
+Full report saved to: YYYY-MM-DD-landing-cro.md
+```
 
 ## Log the Run
 
 After the report is saved, append one line for this run to the project's `LOG.md`, in the log's fixed format, under its `## Site & conversion` section - what this run produced (naming the report file) and the outcome: a concrete result the run itself produced, or `pending` with a review date when the result lands later. Example: `- 2026-07-07 · /gtm landing · CRO teardown of the signup page (see 2026-07-07-landing-cro.md) -> 9 prioritized fixes, 3 in the hero`. Skip this when no project is loaded (a one-off has no log); if the project has no `LOG.md` yet, create it from `../gtm/templates/log-template.md` (installed with the gtm orchestrator) first. Then echo that exact line to the terminal as the run's closing `Logged:` line, so a run that skipped the write-back is visible at a glance.
 
 ## Key Principles
-- Always tie recommendations to REVENUE IMPACT. Don't just say "change the button color" -- say "changing the CTA button to a contrasting color typically increases clicks 15-30%, which at your current traffic could mean X more conversions per month."
+- Always tie recommendations to REVENUE IMPACT. Don't just say "change the button color" -- say why it moves the business: "a CTA that contrasts with the rest of the page is easier to find; at your 2,000 visits a month, each extra point of conversion is 20 more signups." Use the founder's real numbers when the profile or log has them; with none, name the impact as High / Medium / Low with the reason. Never quote a typical lift percentage.
 - Prioritize fixes by effort-to-impact ratio. Quick wins first.
 - Be specific. "Improve your headline" is useless. "Change your headline from 'Welcome to Our Platform' to 'Cut Your Reporting Time by 75% -- Automated Analytics for Growth Teams' because it adds specificity, a quantified benefit, and targets a specific audience" is actionable.
-- Reference industry benchmarks so the founder/team understands where they stand.
+- Reference a benchmark only with its source named (publisher and year) and what it measured; otherwise compare the page with its own past numbers.
 - If you have access to the page via browser tools, take screenshots and reference specific elements.
 - If the user has run `/gtm audit` previously, incorporate those findings into the CRO analysis for a more complete picture.
 
